@@ -129,7 +129,7 @@ body > header > div {
 /* ----------========== BACK TO TOP BUTTON ==========---------- */
 #toTop {
 	position: fixed;
-	bottom: 30px;
+	bottom: 4em;
     right: 30px;
     
     display: none;
