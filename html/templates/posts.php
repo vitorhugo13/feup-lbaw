@@ -72,3 +72,12 @@
         </div>
     </div>
 <?php } ?>
+
+<?php function draw_comment_area() { ?>
+    <form class="comment-area">
+        <div>
+            <textarea placeholder="Leave a comment!" rows="3"></textarea>
+            <i class="far fa-paper-plane"></i>
+        </div>
+    </form>
+<?php } ?>
