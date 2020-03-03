@@ -31,17 +31,53 @@ body > header > div {
     height: 0.5em;
 }
 
+body > header > nav .search-bar {
+    border-radius: 2em;
+    height: 2.2em; 
+    width: 15em !important;
+}
+
+body > header > nav > div > div > i {
+    font-size: 1.6em;
+}
+
+.form-control:focus {
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 0.1em var(--main-color);
+    
+} 
+
 /* ----------========== SIDEBAR ==========---------- */
 #sidebar {
-    padding: 5em 0;
     position: fixed;
-    width: 250px;
+    width: 14em;
+}
+
+#sidebar-navigation {
+    width: 100%;
+    padding: 1em 0;
+    border-radius: 5px;
+    background-color: var(--background-strong);
+}
+
+#sidebar > button {
+    margin-top: 1em;
+    background-color: var(--main-color); /* Green */
+    color: var(--background-strong);
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    padding: 0.7em 2.4em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
 }
 
 /* ----------========== FEED ==========---------- */
 #feed {
     position: relative;
-    margin-left: 250px;
+    margin-left: 16em;
 }
 
 /* ----------========== CARD ==========---------- */
@@ -50,7 +86,7 @@ body > header > div {
 
     padding: 0.5em 1em;
     margin-bottom: 1em;
-    border-radius: 1em;
+    border-radius: 5px;
 }
 
 .post-preview > header {
@@ -64,21 +100,19 @@ body > header > div {
 
 .post-preview > header .title {
     color: var(--foreground);
-    text-decoration-color: var(--foreground);
     
     font-weight: bolder;
     font-size: 1.5em;
 }
 
 .post-preview > header .by {
-    margin: 0 0.5em;
+    margin: 0 0.05em 0 0.5em;
 
     color: var(--foreground-fade);
 }
 
 .post-preview > header .author {
     color: var(--foreground);
-    text-decoration-color: var(--foreground);
 
     font-size: 1.1em;
 }
