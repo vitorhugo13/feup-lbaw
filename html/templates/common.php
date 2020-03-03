@@ -72,9 +72,7 @@
 <?php } ?>
 
 <?php function draw_back_to_top() { ?>
-    <button id="toTop">
-        Back to Top
-    </button>
+    <i id="toTop" class="fas fa-arrow-alt-circle-up"></i>
 <?php } ?>
 
 <?php function draw_footer() { ?>

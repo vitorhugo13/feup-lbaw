@@ -17,7 +17,7 @@
 let button = document.getElementById('toTop');
 
 window.onscroll = function() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
         button.style.display = "block";
     } else {
         button.style.display = "none";

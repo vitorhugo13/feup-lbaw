@@ -5,7 +5,7 @@ include_once(__DIR__.'/../templates/posts.php');
 
 ?>
 
-<?php doc_start('Post', ['common', 'post'], []); ?>
+<?php doc_start('Post', ['common', 'post'], ['top']); ?>
 <?php draw_header(); ?>
 
 <div class="post">
@@ -51,12 +51,13 @@ include_once(__DIR__.'/../templates/posts.php');
             <header><span>Comments</span><span>&middot;</span><span>1230</span></header>
             <form>
                 <textarea placeholder="Leave a comment!"></textarea>
-                <button type="submit"><i class="far fa-paper-plane"></i></button>
+                <i class="far fa-paper-plane"></i>
             </form>
             <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
             <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
             <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
 </div>
+<?php draw_back_to_top(); ?>
 
 <?php draw_footer(); ?>
 <?php doc_end(); ?>
