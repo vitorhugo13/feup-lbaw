@@ -36,7 +36,7 @@
 <?php function draw_header() { ?>
     <header>
         <nav class="navbar">
-            <a class="navbar-brand" href="#"><img src="../assets/logo.png" width="30" alt="LAMA logo" /></a>
+            <a class="navbar-brand" href="../pages/home.php"><img src="../assets/logo.png" width="30" alt="LAMA logo" /></a>
             <form class="form-inline">
                 <input class="form-control" type="search" placeholder="Search" aria-label="Search"
                     style="border-radius: 2em;" />
@@ -88,7 +88,7 @@
         </ul>
         <ul>
             <li>About:</li>
-            <li>Team</li>
+            <li><a href="../pages/team.php">Team</a></li>
             <li>Regulations</li>
         </ul>
     </footer>
