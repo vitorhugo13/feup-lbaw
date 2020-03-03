@@ -49,10 +49,9 @@ include_once(__DIR__.'/../templates/posts.php');
 </div>
 <div class="comment-section">
             <header><span>Comments</span><span>&middot;</span><span>1230</span></header>
-            <form>
-                <textarea placeholder="Leave a comment!"></textarea>
-                <i class="far fa-paper-plane"></i>
-            </form>
+
+            <?php draw_comment_area(); ?>
+
             <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
             <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
             <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>

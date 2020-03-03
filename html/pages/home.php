@@ -44,7 +44,7 @@ include_once(__DIR__.'/../templates/posts.php');
             </div>
         </div>
     </div>
-<button>New Post</button>
+    <button>New Post</button>
 </div>
 
 <div id="feed">
