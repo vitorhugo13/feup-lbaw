@@ -71,6 +71,11 @@
     <div id="content">
 <?php } ?>
 
+<?php function draw_back_to_top() { ?>
+    <button id="toTop">
+        Back to Top
+    </button>
+<?php } ?>
 
 <?php function draw_footer() { ?>
     </div>

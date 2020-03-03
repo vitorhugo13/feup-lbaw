@@ -20,3 +20,8 @@
 .comment-section > header {
     margin-bottom: 1em;
 }
+
+
+.thread {
+    background-color: var(--background);
+}

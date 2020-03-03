@@ -35,13 +35,13 @@ body > header > div {
 #sidebar {
     padding: 5em 0;
     position: fixed;
-    width:250px;
+    width: 250px;
 }
 
 /* ----------========== FEED ==========---------- */
 #feed {
     position: relative;
-    left: 250px;
+    margin-left: 250px;
 }
 
 /* ----------========== CARD ==========---------- */
@@ -125,5 +125,15 @@ body > header > div {
     font-weight: bolder;
     margin-bottom: 0.60em;
 }
+
+/* ----------========== BACK TO TOP BUTTON ==========---------- */
+#toTop {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	cursor: pointer;
+    display: none;
+}
+
 
 /* ----------========== MEDIA QUERIES ==========---------- */
