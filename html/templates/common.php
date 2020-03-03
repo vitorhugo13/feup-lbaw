@@ -86,7 +86,7 @@
         </ul>
         <ul>
             <li>About:</li>
-            <li>Team</li>
+            <li><a href="../pages/team.php">Team</a></li>
             <li>Regulations</li>
         </ul>
     </footer>
