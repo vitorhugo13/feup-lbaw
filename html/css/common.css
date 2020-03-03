@@ -1,0 +1,129 @@
+@import 'constants.css';
+
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+
+#content {
+    flex: 1 0 auto;
+    padding: 2em;
+}
+
+/* ----------========== NAVBAR ==========---------- */
+body > header > nav {
+    background-color: var(--background-strong);
+}
+
+body > header > div {
+    background-color: var(--background-strong);
+
+    border-radius: 0 0 60% 60%;
+    height: 0.5em;
+}
+
+/* ----------========== SIDEBAR ==========---------- */
+#sidebar {
+    padding: 5em 0;
+    position: fixed;
+    width:250px;
+}
+
+/* ----------========== FEED ==========---------- */
+#feed {
+    position: relative;
+    left: 250px;
+}
+
+/* ----------========== CARD ==========---------- */
+.post-preview {
+    background-color: var(--background-strong);
+
+    padding: 0.5em 1em;
+    margin-bottom: 1em;
+    border-radius: 1em;
+}
+
+.post-preview > header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 0.5em;
+}
+
+.post-preview > header .title {
+    color: var(--foreground);
+    text-decoration-color: var(--foreground);
+    
+    font-weight: bolder;
+    font-size: 1.5em;
+}
+
+.post-preview > header .by {
+    margin: 0 0.5em;
+
+    color: var(--foreground-fade);
+}
+
+.post-preview > header .author {
+    color: var(--foreground);
+    text-decoration-color: var(--foreground);
+
+    font-size: 1.1em;
+}
+
+.post-preview > footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-preview > footer > .votes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post-preview > footer > .votes > .upvotes {
+    margin-right: 1.5em;
+}
+
+.post-preview > footer > .votes > div *:first-child, .post-preview > footer > .comments *:first-child {
+    margin-right: 0.5em;
+} 
+
+
+/* ----------========== FOOTER ==========---------- */
+
+#footer {
+    flex-shrink: 0;
+
+    background-color: var(--background-strong);
+
+    padding: 1.5em 3em;
+}
+
+#footer > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#footer > ul > li:first-child {
+    font-weight: bolder;
+    margin-bottom: 0.60em;
+}
+
+/* ----------========== MEDIA QUERIES ==========---------- */

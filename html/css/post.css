@@ -1,0 +1,22 @@
+@import 'constants.css';
+
+.post {
+    background-color: var(--background-strong);
+
+    padding: 1.5em 3em;
+}
+
+.post i {
+    font-size: 1.2em;
+}
+
+.comment-section {
+    background-color: var(--background-strong);
+
+    margin-top: 1em;
+    padding: 1.5em 3em;
+}
+
+.comment-section > header {
+    margin-bottom: 1em;
+}
