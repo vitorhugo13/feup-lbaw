@@ -21,7 +21,28 @@
     margin-bottom: 1em;
 }
 
-
 .thread {
     background-color: var(--background);
+}
+
+.comment-area > div {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+.comment-area > div > textarea {
+    background-color: var(--background);
+    color: var(--foreground);
+
+    width: 100%;
+
+    border-style: none;
+    padding: 0.5em 1em;
+}
+
+.comment-area > div > i {
+    position: absolute;
+    bottom: 13px;
+    right: 13px;
 }

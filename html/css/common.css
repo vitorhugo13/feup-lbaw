@@ -163,10 +163,12 @@ body > header > nav > div > div > i {
 /* ----------========== BACK TO TOP BUTTON ==========---------- */
 #toTop {
 	position: fixed;
-	bottom: 10px;
-	right: 10px;
-	cursor: pointer;
+	bottom: 30px;
+    right: 30px;
+    
     display: none;
+	cursor: pointer;
+    font-size: 2em;
 }
 
 
