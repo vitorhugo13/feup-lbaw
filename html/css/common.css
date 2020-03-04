@@ -111,65 +111,6 @@ body > header > nav > div > div > i {
     margin-left: 16em;
 }
 
-/* ----------========== CARD ==========---------- */
-.post-preview {
-    background-color: var(--background-strong);
-
-    padding: 0.5em 1em;
-    margin-bottom: 1em;
-    border-radius: 5px;
-}
-
-.post-preview > header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 0.5em;
-}
-
-.post-preview > header .title {
-    color: var(--foreground);
-    
-    font-weight: bolder;
-    font-size: 1.5em;
-}
-
-.post-preview > header .by {
-    margin: 0 0.05em 0 0.5em;
-
-    color: var(--foreground-fade);
-}
-
-.post-preview > header .author {
-    color: var(--foreground);
-
-    font-size: 1.1em;
-}
-
-.post-preview > footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.post-preview > footer > .votes {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.post-preview > footer > .votes > .upvotes {
-    margin-right: 1.5em;
-}
-
-.post-preview > footer > .votes > div *:first-child, .post-preview > footer > .comments *:first-child {
-    margin-right: 0.5em;
-} 
-
-
 /* ----------========== FOOTER ==========---------- */
 
 #footer {
@@ -194,7 +135,7 @@ body > header > nav > div > div > i {
 /* ----------========== BACK TO TOP BUTTON ==========---------- */
 #toTop {
 	position: fixed;
-	bottom: 30px;
+	bottom: 4em;
     right: 30px;
     
     display: none;
