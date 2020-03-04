@@ -38,14 +38,12 @@
         <nav class="navbar">
             <a class="navbar-brand" href="../pages/home.php"><img src="../assets/logo.png" width="30" alt="LAMA logo" /></a>
             <form class="form-inline">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                    style="border-radius: 2em;" />
+                <input class="form-control search-bar" type="search" placeholder="Search" aria-label="Search"/>
             </form>
             <div class="d-flex align-items-center">
-                <div class="dropdown">
-                    <span class="badge badge-pill badge-light">3</span>
-                    <img class="rounded-circle dropdown-toggle" data-toggle="dropdown"
-                        src="../assets/notifications.png" height="30">
+                <div class="dropdown d-flex align-items-center">
+                    <span class="badge badge-pill badge-light mr-2">3</span>
+                    <i class="fas fa-bell" data-toggle="dropdown"></i>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="#">Action</a>
                         <a class="dropdown-item" href="#">Another action</a>

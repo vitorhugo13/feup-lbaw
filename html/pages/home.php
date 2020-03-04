@@ -9,6 +9,7 @@ include_once(__DIR__.'/../templates/posts.php');
 <?php draw_header(); ?>
 
 <div id="sidebar" class="d-flex flex-column align-items-center">
+    <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
     <div>
         <nav>
             <div class="nav nav-pills" id="pills-tab" role="tablist">
@@ -44,7 +45,8 @@ include_once(__DIR__.'/../templates/posts.php');
             </div>
         </div>
     </div>
-    <button>New Post</button>
+    </div>
+    <button><i class="fas fa-plus"></i><strong>  New Post</strong></button>
 </div>
 
 <div id="feed">
