@@ -64,7 +64,6 @@
                 </div>
             </div>
         </nav>
-        <div></div>
     </header>
     <div id="content">
 <?php } ?>
