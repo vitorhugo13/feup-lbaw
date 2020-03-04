@@ -47,6 +47,14 @@ body > header > nav > div > div > i {
     
 } 
 
+/* ----------========== NOTIFICATIONS ==========---------- */
+.notification-menu {
+    width: 25em;
+    max-height: 15em;
+
+    overflow-y: auto;
+}
+
 /* ----------========== SIDEBAR ==========---------- */
 #sidebar {
     position: fixed;
