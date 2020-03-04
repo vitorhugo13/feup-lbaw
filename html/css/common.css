@@ -53,6 +53,37 @@ body > header > nav > div > div > i {
     width: 14em;
 }
 
+#sidebar #pills-tab > a.active {
+    background-color: var(--background-strong);
+    border-bottom: solid var(--main-color);
+    border-radius: 5px 5px 0 0;
+    color: var(--main-color);
+}
+
+#sidebar #pills-tab > a {
+    color: var(--foreground);
+    border-bottom: solid var(--background);
+    border-radius: 0;
+}
+
+.tab-categories  {
+    margin: 1em 0;
+}
+
+#sidebar .tab-categories  ul {
+    list-style: none;
+    padding-left: 0.7em;
+}
+
+#sidebar .tab-categories  ul > li {
+    margin: 0.3em 0;    
+}
+
+#view-categories {
+    color: var(--foreground);
+    font-size: small;
+}
+
 #sidebar-navigation {
     width: 100%;
     padding: 1em 0;
@@ -66,7 +97,7 @@ body > header > nav > div > div > i {
     color: var(--background-strong);
     border: none;
     border-radius: 5px;
-    width: 100%;
+    width: 80%;
     padding: 0.7em 2.4em;
     text-align: center;
     text-decoration: none;
