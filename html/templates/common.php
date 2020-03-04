@@ -47,6 +47,8 @@
                         <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
                         <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
                         <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
+                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
+                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
                         <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>               
                     </div>
                 </div>
@@ -90,5 +92,5 @@
 <?php } ?>
 
 <?php function draw_notification($text) { ?>
-    <a class="dropdown-item notification" href=""><?=$text?></a>
+    <a class="dropdown-item text-wrap notification" href=""><?=$text?></a>
 <?php } ?>
