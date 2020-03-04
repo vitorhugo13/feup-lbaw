@@ -5,7 +5,7 @@ include_once(__DIR__.'/../templates/posts.php');
 
 ?>
 
-<?php doc_start('LAMA', ['common'], []); ?>
+<?php doc_start('LAMA', ['common'], ['top']); ?>
 <?php draw_header(); ?>
 
 <div id="sidebar" class="d-flex flex-column align-items-center">
