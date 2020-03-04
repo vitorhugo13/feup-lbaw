@@ -15,7 +15,8 @@
     
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
+    <link href="https://fonts.googleapis.com/css?family=Heebo:100,300,400,500,700,800,900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/logo_image.svg">
     <?php foreach($stylesheets as $stylesheet) { ?>
         <link rel="stylesheet" href="../css/<?=$stylesheet?>.css">
     <?php } ?>
@@ -36,7 +37,7 @@
 <?php function draw_header() { ?>
     <header>
         <nav class="navbar">
-            <a class="navbar-brand" href="../pages/home.php"><img src="../assets/logo.png" width="30" alt="LAMA logo" /></a>
+            <a class="navbar-brand" href="../pages/home.php"><img src="../assets/logo_text.svg" width="50" alt="LAMA logo" /></a>
             <form class="form-inline">
                 <input class="form-control search-bar" type="search" placeholder="Search" aria-label="Search"/>
             </form>
