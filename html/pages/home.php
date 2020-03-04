@@ -18,33 +18,35 @@ include_once(__DIR__.'/../templates/posts.php');
                 <a class="nav-item nav-link" id="top-tab" data-toggle="tab" href="#nav-top" aria-selected="false">Top</a>
             </div>
         </nav>
-        <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-fresh" role="tabpanel" aria-labelledby="nav-fresh-tab">
+            <div class="tab-categories tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-fresh" role="tabpanel" aria-labelledby="nav-fresh-tab">
                 <ul>
-                    <li>Politics</li>
-                    <li>Cars</li>
-                    <li>College</li>
-                    <li>Religion</li>
+                    <li>! Politics</li>
+                    <li>! Cars</li>
+                    <li>! College</li>
+                    <li>! Religion</li>
                 </ul>
             </div>
             <div class="tab-pane fade" id="nav-hot" role="tabpanel" aria-labelledby="nav-hot-tab">
                 <ul>
-                    <li>Feelings</li>
-                    <li>Cars</li>
-                    <li>Religion</li>
-                    <li>College</li>
+                    <li>! Feelings</li>
+                    <li>! Cars</li>
+                    <li>! Religion</li>
                 </ul>
             </div>
             <div class="tab-pane fade" id="nav-top" role="tabpanel" aria-labelledby="nav-top-tab">
                 <ul>
-                    <li>College</li>
-                    <li>Teenager</li>
-                    <li>Politics</li>
-                    <li>Cars</li>
+                    <li>! College</li>
+                    <li>! Teenager</li>
+                    <li>! Politics</li>
+                    <li>! Cars</li>
+                    <li>! Corona Virus</li>
                 </ul>
             </div>
+            
         </div>
     </div>
+    <a id="view-categories" href="">View all</a>
     </div>
     <button><i class="fas fa-plus"></i><strong>  New Post</strong></button>
 </div>
