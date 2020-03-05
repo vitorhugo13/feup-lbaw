@@ -43,7 +43,7 @@
                 </div>
             </div>
         </header>
-        <div class="comment-content">
+        <div class="comment-body">
             <p><?=$content?></p>
         </div>
         <footer class="d-flex flex-row align-items-center justify-content-between">
@@ -74,12 +74,13 @@
 <?php } ?>
 
 <?php function draw_comment_area() { ?>
-    <form class="comment-area">
-        <div>
-            <textarea placeholder="Leave a comment!" rows="3"></textarea>
-            <i class="far fa-paper-plane"></i>
+    <div id="comment-area">
+        <textarea id="comment-content" placeholder="Leave a comment!" rows="3"></textarea>
+        <div class="d-flex flex-row justify-content-end">
+            <button id="cancel-btn">Cancel</button>
+            <button id="post-btn">Post</button>
         </div>
-    </form>
+    </div>
 <?php } ?>
 
 <?php function draw_category_badge($name) { ?>

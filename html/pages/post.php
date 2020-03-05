@@ -12,7 +12,7 @@ include_once(__DIR__.'/../templates/posts.php');
     <header class="d-flex flex-column">
         <div class="d-flex flex-row align-items-center justify-content-between">
             <div>    
-                <img class="rounded-circle" src="../assets/user.jpg" width="50">
+                <a href="#"><img class="rounded-circle" src="../assets/user.jpg" width="50"></a>
                 <a href="#">lamao</a>
                 <span>&middot;</span>
                 <span>17h ago</span>
@@ -49,14 +49,14 @@ include_once(__DIR__.'/../templates/posts.php');
         <div class="downvotes"><i class="far fa-thumbs-down"></i>407</div>
     </footer>
 </div>
-<div class="comment-section">
-            <header><span>Comments</span><span>&middot;</span><span>1230</span></header>
-
-            <?php draw_comment_area(); ?>
-
-            <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
-            <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
-            <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
+<div id="comment-section">
+    <header><span>Comments</span><span>&middot;</span><span>1230</span></header>
+    <?php draw_comment_area(); ?>
+    <div id="comments">
+        <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
+        <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
+        <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
+    </div>
 </div>
 <?php draw_back_to_top(); ?>
 
