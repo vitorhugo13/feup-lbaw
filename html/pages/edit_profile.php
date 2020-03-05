@@ -8,13 +8,13 @@ include_once(__DIR__.'/../templates/common.php');
 <?php draw_header(); ?>
 
 
-<div class="container-fluid d-flex  align-items-center flex-wrap justify-content-center mb-3 mt-5">
+<div class="container-fluid d-flex align-items-center flex-wrap justify-content-center ">
 
-    <div class="md-3 mt-5 d-flex flex-column justify-content-between align-items-center flex-grow-1 p-2 flex-fill">
+    <div class=" d-flex flex-column justify-content-between align-items-center flex-grow-1 p-2 flex-fill">
 
         <h1>Edit Profile</h1>
                 
-        <img src="../assets/team_photos/vitorhugo.jpg" class="img rounded-circle  mt-2" alt="Profile photo">  
+        <img src="../assets/team_photos/vitorhugo.jpg" class="img rounded-circle  " alt="Profile photo">  
                 
         <form class="d-flex flex-column align-items-center" method="post" enctype="multipart/form-data">
             <button type="submit" class="btn photo-btn">Change photo</button>
@@ -32,9 +32,9 @@ include_once(__DIR__.'/../templates/common.php');
     </div>
 
 
-    <div class="form-box md-3 mt-5 d-flex flex-column justify-content-between align-items-center  flex-grow-1">
+    <div class="form-box  d-flex flex-column justify-content-between align-items-center  flex-grow-1">
 
-        <div class="logo mt-5 mb-3">
+        <div class="logo">
             <a href="home.html"><img src="../assets/lbaw.png" width="150px"></a>
         </div>
 
