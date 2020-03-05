@@ -1,13 +1,31 @@
-#sidebar-navigation > section {
+#sidebar-navigation>section {
     width: 10em;
 }
 
-#sidebar-navigation > section > button {
+#sidebar-navigation>section>button {
     color: var(--main-color);
     border-color: var(--main-color);
 }
 
-#sidebar-navigation > section > button:hover {
+#sidebar-navigation>section>button:hover {
     color: var(--background-strong);
     background-color: var(--main-color);
+}
+
+#comm-news {
+    border: solid 2px var(--main-color);
+}
+
+.category-card {
+    color: var(--foreground);
+    background-color: var(--background-strong);
+}
+
+.category-card footer {
+    border: none;
+    background-color: inherit;
+}
+
+main.card-deck {
+    margin-left: 20rem;
 }
