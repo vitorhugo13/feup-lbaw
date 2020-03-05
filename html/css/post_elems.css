@@ -167,6 +167,14 @@
     align-items: center;
 }
 
+.post-preview > footer > .votes img {
+    color: var(--foreground);
+}
+
+.post-preview > footer > .votes > div:nth-child(2) > img {
+    transform: rotate(180deg);
+}
+
 .post-preview > footer > .votes > .upvotes {
     margin-right: 1.5em;
 }

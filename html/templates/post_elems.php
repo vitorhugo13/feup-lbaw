@@ -17,8 +17,8 @@
         </div>
         <footer>
             <div class="votes">
-                <div class="upvotes"><i class="far fa-thumbs-up"></i><?=$upvotes?></div>
-                <div class="downvotes"><i class="far fa-thumbs-down"></i><?=$downvotes?></div>
+            <div class="upvotes"><img src="../assets/hoof_filled.svg" width="13" alt="uphoof" /><?=$upvotes?></div>
+            <div class="downvotes"><img src="../assets/hoof_outline.svg" width="13" alt="downhoof" /><?=$downvotes?></div>
             </div>
             <div class="comments"><i class="far fa-comment"></i><?=$comments?></div>
         </footer>
