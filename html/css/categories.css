@@ -3,22 +3,23 @@
 }
 
 #sidebar-navigation>section>button {
-    color: var(--main-color);
-    border-color: var(--main-color);
+    color: var(--foreground);
+    border-color: var(--foreground);
 }
 
 #sidebar-navigation>section>button:hover {
     color: var(--background-strong);
-    background-color: var(--main-color);
-}
-
-#comm-news {
-    border: solid 2px var(--main-color);
+    background-color: var(--foreground);
 }
 
 .category-card {
     color: var(--foreground);
     background-color: var(--background-strong);
+    border: solid 2px transparent;
+}
+
+.category-card:hover {
+    border: solid 2px var(--main-color);
 }
 
 .category-card footer {
@@ -26,6 +27,8 @@
     background-color: inherit;
 }
 
-main.card-deck {
-    margin-left: 20rem;
+.highlight {
+    color: var(--foreground);
+    text-align: center;
+    /* vertical-align: text-bottom; */
 }
