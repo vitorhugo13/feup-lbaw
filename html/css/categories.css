@@ -1,3 +1,6 @@
+@import 'constants.css';
+
+
 #sidebar-navigation>section {
     width: 10em;
 }

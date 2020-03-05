@@ -5,8 +5,9 @@ include_once(__DIR__.'/../templates/post_elems.php');
 
 ?>
 
-<?php doc_start('LAMA', ['common', 'post_elems'], ['top']); ?>
+<?php doc_start('LAMA', ['common', 'home', 'post_elems'], ['top']); ?>
 <?php draw_header(); ?>
+
 <div class="container">
 <div id="sidebar" class="d-flex flex-column align-items-center">
     <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
@@ -46,7 +47,7 @@ include_once(__DIR__.'/../templates/post_elems.php');
             
         </div>
     </div>
-    <a id="view-categories" href="">View all</a>
+    <a id="view-categories" href="./categories.php">View all</a>
     </div>
     <button><i class="fas fa-plus"></i><strong>  New Post</strong></button>
 </div>
@@ -63,6 +64,7 @@ include_once(__DIR__.'/../templates/post_elems.php');
     <?php draw_post_preview('Title', 'username', 'This is the post content preview', '50k', '360', '1230'); ?>
 </div>
 </div>
+
 <?php draw_back_to_top(); ?>
 
 <?php draw_footer(); ?>
