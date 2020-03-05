@@ -62,9 +62,11 @@
 .post-preview {
     background-color: var(--background-strong);
 
-    padding: 0.5em 1em;
+    padding: 1em 1.5em;
     margin-bottom: 1em;
     border-radius: 5px;
+
+    font-weight: 300;
 }
 
 .post-preview > header {
@@ -73,26 +75,27 @@
     justify-content: space-between;
     align-items: center;
 
-    margin-bottom: 0.5em;
+    margin-bottom: 0.8em;
 }
 
 .post-preview > header .title {
     color: var(--foreground);
-    
-    font-weight: bolder;
-    font-size: 1.5em;
+
+    font-weight: 600;
+    font-size: large;
 }
 
 .post-preview > header .by {
     margin: 0 0.05em 0 0.5em;
 
     color: var(--foreground-fade);
+    font-size: small;
 }
 
 .post-preview > header .author {
     color: var(--foreground);
 
-    font-size: 1.1em;
+    font-size: small;
 }
 
 .post-preview > footer {

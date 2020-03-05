@@ -13,10 +13,13 @@ body {
     color: var(--foreground);
 }
 
+.container {
+    margin-left: 3em;
+}
 
 #content {
     flex: 1 0 auto;
-    padding: 2em;
+    padding: 2em 3em;
 }
 
 /* ----------========== NAVBAR ==========---------- */
@@ -58,7 +61,7 @@ body > header > nav > div > div > i {
 /* ----------========== SIDEBAR ==========---------- */
 #sidebar {
     position: fixed;
-    width: 14em;
+    width: 16em;
 }
 
 #sidebar #pills-tab > a.active {
@@ -72,10 +75,11 @@ body > header > nav > div > div > i {
     color: var(--foreground);
     border-bottom: solid var(--background);
     border-radius: 0;
+    font-weight: 500;
 }
 
 .tab-categories  {
-    margin: 1em 0;
+    margin: 1.2em 0 1.6em 0;
 }
 
 #sidebar .tab-categories  ul {
@@ -84,17 +88,18 @@ body > header > nav > div > div > i {
 }
 
 #sidebar .tab-categories  ul > li {
-    margin: 0.3em 0;    
+    margin: 0.3em 0;
 }
 
 #view-categories {
     color: var(--foreground);
     font-size: small;
+    font-weight: 300;
 }
 
 #sidebar-navigation {
     width: 100%;
-    padding: 1em 0;
+    padding: 1.5em 0;
     border-radius: 5px;
     background-color: var(--background-strong);
 }
@@ -111,12 +116,20 @@ body > header > nav > div > div > i {
     text-decoration: none;
     display: inline-block;
     font-size: 15px;
+    font-weight: 500;
 }
 
 /* ----------========== FEED ==========---------- */
+#mainpage {
+    margin: auto;
+    justify-content: center;
+}
+
 #feed {
+    
     position: relative;
-    margin-left: 16em;
+    margin-left: 20em;
+    max-width: 70%;
 }
 
 /* ----------========== FOOTER ==========---------- */
