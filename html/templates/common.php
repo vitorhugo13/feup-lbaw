@@ -1,11 +1,11 @@
 <?php function doc_start($title, $stylesheets, $scripts) { ?>
-<!doctype html>
-<html lang="en">
+    <!doctype html>
+    <html lang="en">
 
-<head>
-    <title><?=$title?></title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <title><?=$title?></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- JQuery, Popper and BootstrapJS scripts -->
@@ -15,28 +15,32 @@
     
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
+    <link href="https://fonts.googleapis.com/css?family=Heebo:100,300,400,500,700,800,900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/logo_tab.png">
     <?php foreach($stylesheets as $stylesheet) { ?>
         <link rel="stylesheet" href="../css/<?=$stylesheet?>.css">
     <?php } ?>
 
-    <?php foreach($scripts as $script) { ?>
-        <script src="../js/<?=$script?>.js" defer></script>
-    <?php } ?>
-</head>
-<body>
+        <?php foreach($stylesheets as $stylesheet) { ?>
+            <link rel="stylesheet" href="../css/<?=$stylesheet?>.css">
+        <?php } ?>
+
+        <?php foreach($scripts as $script) { ?>
+            <script src="../js/<?=$script?>.js" defer></script>
+        <?php } ?>
+    </head>
+    <body>
 <?php } ?>
 
 <?php function doc_end() { ?>
-</body>
-</html>
+    </body>
+    </html>
 <?php } ?>
-
 
 <?php function draw_header() { ?>
     <header>
         <nav class="navbar">
-            <a class="navbar-brand" href="../pages/home.php"><img src="../assets/logo.png" width="30" alt="LAMA logo" /></a>
+            <a class="navbar-brand" href="../pages/home.php"><img src="../assets/logo_text.svg" width="50" alt="LAMA logo" /></a>
             <form class="form-inline">
                 <input class="form-control search-bar" type="search" placeholder="Search" aria-label="Search"/>
             </form>
@@ -44,10 +48,13 @@
                 <div class="dropdown d-flex align-items-center">
                     <span class="badge badge-pill badge-light mr-2">3</span>
                     <i class="fas fa-bell" data-toggle="dropdown"></i>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-menu dropdown-menu-right notification-menu">
+                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
+                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
+                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
+                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
+                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
+                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>               
                     </div>
                 </div>
                 <div class="dropdown" style="margin-left: 1em">
@@ -87,4 +94,8 @@
             <li>Regulations</li>
         </ul>
     </footer>
+<?php } ?>
+
+<?php function draw_notification($text) { ?>
+    <a class="dropdown-item text-wrap notification" href=""><?=$text?></a>
 <?php } ?>

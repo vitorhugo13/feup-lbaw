@@ -1,0 +1,34 @@
+#sidebar-navigation>section {
+    width: 10em;
+}
+
+#sidebar-navigation>section>button {
+    color: var(--foreground);
+    border-color: var(--foreground);
+}
+
+#sidebar-navigation>section>button:hover {
+    color: var(--background-strong);
+    background-color: var(--foreground);
+}
+
+.category-card {
+    color: var(--foreground);
+    background-color: var(--background-strong);
+    border: solid 2px transparent;
+}
+
+.category-card:hover {
+    border: solid 2px var(--main-color);
+}
+
+.category-card footer {
+    border: none;
+    background-color: inherit;
+}
+
+.highlight {
+    color: var(--foreground);
+    text-align: center;
+    /* vertical-align: text-bottom; */
+}
