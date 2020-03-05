@@ -33,7 +33,7 @@
                 <div class="dropdown">
                     <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Report</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
                         <a class="dropdown-item" href="#">Edit</a>
                         <a class="dropdown-item" href="#">Mute</a>
                         <a class="dropdown-item" href="#">Block User</a>
@@ -85,4 +85,74 @@
 
 <?php function draw_category_badge($name) { ?>
     <a href="#" class="badge badge-pill category-badge">! <?=$name?></a>
+<?php } ?>
+
+<?php function draw_category_move_badge($name) { ?>
+    <span class="badge badge-pill category-move-badge">! <?=$name?><i class="fas fa-minus"></i></span>
+<?php } ?>
+
+<?php function draw_report_modal() { ?>
+    <div class="modal fade" id="report-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Report reason</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <select class="custom-select" id="report-reason">
+                        <option selected>Choose...</option>
+                        <option value="1">Harassement</option>
+                        <option value="2">Wrong category</option>
+                        <option value="3">Explicit content</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
+<?php function draw_move_modal() { ?>
+    <div class="modal fade" id="move-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Move</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <select class="custom-select">
+                            <option selected>Add new category...</option>
+                            <option value="1">College</option>
+                            <option value="2">World</option>
+                            <option value="3">Economics</option>
+                            <option value="3">Cinema</option>
+                            <option value="3">Music</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button">Add</button>
+                        </div>
+                    </div>
+                    <div class="selected-categories">
+                        <?php draw_category_move_badge('Politics'); ?>
+                        <?php draw_category_move_badge('Gaming'); ?>
+                        <?php draw_category_move_badge('Ethics'); ?>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php } ?>

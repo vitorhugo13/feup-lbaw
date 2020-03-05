@@ -1,11 +1,11 @@
 <?php
 
 include_once(__DIR__.'/../templates/common.php');
-include_once(__DIR__.'/../templates/posts.php');
+include_once(__DIR__.'/../templates/post_elems.php');
 
 ?>
 
-<?php doc_start('LAMA', ['common', 'post'], ['top']); ?>
+<?php doc_start('LAMA', ['common', 'post_elems'], ['top']); ?>
 <?php draw_header(); ?>
 <div class="container">
 <div id="sidebar" class="d-flex flex-column align-items-center">
