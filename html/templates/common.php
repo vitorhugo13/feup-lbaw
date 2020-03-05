@@ -76,7 +76,7 @@
 <?php } ?>
 
 <?php function draw_back_to_top() { ?>
-    <i id="toTop" class="fas fa-arrow-alt-circle-up"></i>
+    <i id="to-top" class="fas fa-arrow-alt-circle-up"></i>
 <?php } ?>
 
 <?php function draw_footer() { ?>

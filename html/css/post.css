@@ -1,6 +1,11 @@
 @import 'constants.css';
 
 
+#content {
+    width: 80em;
+    margin: 0 auto;
+}
+
 /* ----------========== POST ==========---------- */
 .post {
     background-color: var(--background-strong);

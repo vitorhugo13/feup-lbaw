@@ -154,10 +154,10 @@ body > header > nav > div > div > i {
 }
 
 /* ----------========== BACK TO TOP BUTTON ==========---------- */
-#toTop {
+#to-top {
 	position: fixed;
-	bottom: 4em;
-    right: 30px;
+	bottom: .5em;
+    right: 1em;
     
     display: none;
 	cursor: pointer;
