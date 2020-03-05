@@ -54,7 +54,7 @@
                     <img class="rounded-circle dropdown-toggle" data-toggle="dropdown" src="../assets/logo.png"
                         height="30">
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="../pages/profile.php">Profile</a>
                         <a class="dropdown-item" href="#">Feed</a>
                         <a class="dropdown-item" href="#">Reports</a>
                         <a class="dropdown-item" href="#">Time</a>

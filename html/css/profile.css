@@ -1,0 +1,164 @@
+.profile-container{
+    margin:0 auto;
+    width:75%;
+}
+/*left column*/
+.img{
+    border: 5px solid var(--main-color);
+    padding: 0;
+
+    box-sizing: border-box;
+
+    max-width: 300px;
+    width: 80%;
+    height: auto;
+}
+
+.btn {
+    margin-top: 1em;
+    background-color: var(--main-color); /* Green */
+    color: var(--background-strong);
+    border: none;
+    border-radius: 5px;
+    width: 75%;
+    padding: 0.7em 2.4em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+
+    margin-top:1.2em;
+    margin-bottom:1.2em;
+}
+
+.btn-2{
+    background-color: var(--main-color); /* Green */
+    color: var(--background-strong);
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin:auto;
+    padding-left:1.2em;
+    padding-right:1.2em;
+
+
+}
+
+.bio{
+    margin-top:1.2em;
+    margin-bottom:1.2em;      
+}
+
+
+/*middle column */
+.glory{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:3em;
+}
+
+.points h2{
+    font-weight: bold;
+    margin-bottom:1.1em;
+    color: var(--foreground);
+}
+
+.contest{
+    border-style: solid;
+    border-color: var(--main-color);
+    margin-bottom: 1.1em;
+    padding:1.1em;
+    padding-bottom:0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contest-text{
+    font-weight: bold;
+    color: var(--background-strong);
+}
+
+.categories-text h2{
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.list-top li{
+    list-style-type: none;
+}
+
+/*top categories table */
+.table_categories{
+    border-style: solid;
+    border-width: 5px;
+    border-color: var(--main-color);
+    border-radius: 5px;
+    width: 75%;
+
+   padding:1.1em;
+
+}
+
+
+.top_categories{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:auto;
+}
+
+.username h3{
+    font-weight: bold;
+    color:var(--main-color);
+}
+
+.username{
+    margin-top:1.1em;
+}
+
+.col-test{
+    padding-right:2em;
+    padding-bottom:2em;
+    padding-top:2em;
+
+}
+
+.top_category{
+    margin-top:1.2em;
+    font-size: 1.5em;
+}
+
+.number-posts{
+    font-size: 2em;
+    color:var(--main-color);
+    font-weight: bold;
+    margin-left:0.1em;
+    margin-top:0.4em;
+}
+
+a, a:hover{
+    text-decoration: none;
+}
+
+
+@media (max-width: 32em) {
+   
+   #content{
+       
+   }
+
+   .table_categories{
+       width: 100%;
+   }
+
+   .profile-container{
+    margin:0;
+    width:100%;
+   }
+
+}
