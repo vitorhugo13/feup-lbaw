@@ -6,7 +6,11 @@
                 <span class="by">by</span>
                 <a class="author" href="#"><?=$author?></a>
             </div>
-            <i class="far fa-star"></i>
+            <label class="checkbox-label">
+                <input type="checkbox" id="star-category">
+                <i class="unchecked far fa-star"></i>
+                <i class="checked fas fa-star"></i>
+            </label>
         </header>
         <div class="content">
             <p><?=$content?></p>
