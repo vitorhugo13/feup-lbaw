@@ -1,6 +1,5 @@
 @import 'constants.css';
 
-
 #content {
     width: 80em;
     margin: 0 auto;
@@ -25,6 +24,31 @@
     padding: 1.5em 3em;
 }
 
-#comment-section > header {
+#comment-section > header { 
     margin-bottom: 1em;
+}
+
+/* ----------========== MEDIA QUERIES ==========---------- */
+@media (max-width: 82em) {
+    #content {
+        width: 70em;
+    }
+}
+@media (max-width: 72em) {
+    #content {
+        width: 60em;
+    }
+}
+@media (max-width: 62em) {
+    #content {
+        width: 100%;
+    }
+}
+@media (max-width: 32em) {
+    #content {
+        padding: 1em 0.5em;
+    }
+    .post, #comment-section {
+        padding: 1em;
+    }
 }
