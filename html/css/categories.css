@@ -1,0 +1,13 @@
+#sidebar-navigation > section {
+    width: 10em;
+}
+
+#sidebar-navigation > section > button {
+    color: var(--main-color);
+    border-color: var(--main-color);
+}
+
+#sidebar-navigation > section > button:hover {
+    color: var(--background-strong);
+    background-color: var(--main-color);
+}
