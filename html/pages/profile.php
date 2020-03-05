@@ -1,11 +1,11 @@
 <?php
 
 include_once(__DIR__.'/../templates/common.php');
-include_once(__DIR__.'/../templates/posts.php');
+include_once(__DIR__.'/../templates/post_elems.php');
 
 ?>
 
-<?php doc_start('PROFILE', ['profile','common','post'], []); ?>
+<?php doc_start('PROFILE', ['profile','common','post_elems'], []); ?>
 <?php draw_header(); ?>
 
 <div class="profile-container">
@@ -27,7 +27,7 @@ include_once(__DIR__.'/../templates/posts.php');
                 </div>
             </div>
             <div class="d-flex flex-wrap flex-column">
-                <div class="container bio">
+                <div class=" bio">
                     <i class="fab fa-font-awesome-flag"></i> Adoro desporto e ecónomia. Sou uma pessoa bastante respeitadora, portanto também exigo que o sejam comigo. Abraço! 
                 </div>
             </div>
