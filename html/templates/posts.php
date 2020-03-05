@@ -81,3 +81,7 @@
         </div>
     </form>
 <?php } ?>
+
+<?php function draw_category_badge($name) { ?>
+    <a href="#" class="badge badge-pill category-badge">! <?=$name?></a>
+<?php } ?>

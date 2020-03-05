@@ -46,3 +46,77 @@
     bottom: 13px;
     right: 13px;
 }
+
+/* ----------========== CATEGORIES ==========---------- */
+.post-categories {
+    margin: 0.5em 0 1em 0;
+}
+
+.category-badge {
+    background-color: var(--background);
+    color: var(--main-color);
+
+    padding: 0.5em 1em;
+}
+
+/* ----------========== POST PREVIEW ==========---------- */
+.post-preview {
+    background-color: var(--background-strong);
+
+    padding: 1em 1.5em;
+    margin-bottom: 1em;
+    border-radius: 5px;
+
+    font-weight: 300;
+}
+
+.post-preview > header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 0.8em;
+}
+
+.post-preview > header .title {
+    color: var(--foreground);
+
+    font-weight: 600;
+    font-size: large;
+}
+
+.post-preview > header .by {
+    margin: 0 0.05em 0 0.5em;
+
+    color: var(--foreground-fade);
+    font-size: small;
+}
+
+.post-preview > header .author {
+    color: var(--foreground);
+
+    font-size: small;
+}
+
+.post-preview > footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-preview > footer > .votes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post-preview > footer > .votes > .upvotes {
+    margin-right: 1.5em;
+}
+
+.post-preview > footer > .votes > div *:first-child, .post-preview > footer > .comments *:first-child {
+    margin-right: 0.5em;
+} 
+

@@ -34,8 +34,10 @@ include_once(__DIR__.'/../templates/posts.php');
             </div>
         </div>
         <h1>Title title</h1>
-        <div>
-            Ethics Politics
+        <div class="post-categories">
+            <?php draw_category_badge('Politics'); ?>
+            <?php draw_category_badge('Gaming'); ?>
+            <?php draw_category_badge('Ethics'); ?>
         </div>
     </header>
     <div class="content">

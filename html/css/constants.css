@@ -5,4 +5,12 @@
     --accent-color: #9738E3;
     --foreground: #edf5e1;
     --foreground-fade: #edf5e1b0;
+
+    
 }
+
+body {
+    font-family: 'Heebo', sans-serif;
+}
+
+
