@@ -166,5 +166,17 @@ body > header > nav > div > div > i {
     font-size: 2em;
 }
 
+/* ----------========== MODALS ==========---------- */
+.modal-content {
+    background-color: var(--background);
+}
+
+.modal-footer {
+    border: none;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--background-strong);
+}
 
 /* ----------========== MEDIA QUERIES ==========---------- */

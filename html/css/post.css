@@ -1,5 +1,11 @@
 @import 'constants.css';
 
+#content {
+    width: 80em;
+    margin: 0 auto;
+}
+
+/* ----------========== POST ==========---------- */
 .post {
     background-color: var(--background-strong);
 
@@ -10,158 +16,39 @@
     font-size: 1.2em;
 }
 
-.comment-section {
+/* ----------========== COMMENT SECTION ==========---------- */
+#comment-section {
     background-color: var(--background-strong);
 
     margin-top: 1em;
     padding: 1.5em 3em;
 }
 
-.comment-section > header {
+#comment-section > header { 
     margin-bottom: 1em;
 }
 
-.thread {
-    background-color: var(--background);
+/* ----------========== MEDIA QUERIES ==========---------- */
+@media (max-width: 82em) {
+    #content {
+        width: 70em;
+    }
 }
-
-.comment-area > div {
-    display: inline-block;
-    position: relative;
-    width: 100%;
+@media (max-width: 72em) {
+    #content {
+        width: 60em;
+    }
 }
-
-.comment-area > div > textarea {
-    background-color: var(--background);
-    color: var(--foreground);
-
-    width: 100%;
-
-    border-style: none;
-    padding: 0.5em 1em;
+@media (max-width: 62em) {
+    #content {
+        width: 100%;
+    }
 }
-
-.comment-area > div > i {
-    position: absolute;
-    bottom: 13px;
-    right: 13px;
+@media (max-width: 32em) {
+    #content {
+        padding: 1em 0.5em;
+    }
+    .post, #comment-section {
+        padding: 1em;
+    }
 }
-
-/* ----------========== CATEGORIES ==========---------- */
-.post-categories {
-    margin: 0.5em 0 1em 0;
-}
-
-.category-badge {
-    background-color: var(--background);
-    color: var(--main-color);
-
-    padding: 0.5em 1em;
-}
-
-/* ----------========== POST PREVIEW ==========---------- */
-.post-preview {
-    background-color: var(--background-strong);
-
-    padding: 1em 1.5em;
-    margin-bottom: 1em;
-    border-radius: 5px;
-    font-size: 0.9em;
-    font-weight: 300;
-}
-
-.post-preview > header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 0.8em;
-}
-
-.post-preview > header .title {
-    color: var(--foreground);
-    text-decoration: none;
-
-    font-weight: 600;
-    font-size: large;
-}
-
-.post-preview > header .by {
-    margin: 0 0.05em 0 0.5em;
-
-    color: var(--foreground);
-    font-size: small;
-}
-
-.post-preview > header .author {
-    color: var(--main-color);
-
-    font-size: small;
-}
-
-.post-preview .checkbox-label{
-    display: block;
-    position: relative;
-    cursor: pointer;
-    color: var(--accent-color);
-    margin: 0;
-
-}
-
-.post-preview .checkbox-label > input {
-    opacity: 0;
-    cursor: pointer;
-    display: none;
-}
-
-.post-preview .checkbox-label input ~ .checked {
-    display: none;
-}
-
-/* On mouse-over, add a grey background color */
-.post-preview .checkbox-label:after input ~ .unchecked {
-    display: block;
-}
-.post-preview .checkbox-label:hover input ~ .checked {
-    display: block;
-}
-
-/* On mouse-over, add a grey background color */
-.post-preview .checkbox-label:hover input ~ .unchecked {
-    display: none;
-}
-.post-preview .checkbox-label:hover input ~ .checked {
-    display: block;
-}
-  
-  /* Show the checkmark when checked */
-  .post-preview .checkbox-label input:checked ~ .checked {
-    display: block;
-  }
-   /* Show the checkmark when checked */
-   .post-preview .checkbox-label input:checked ~ .unchecked {
-    display: none;
-  }
-
-.post-preview > footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.post-preview > footer > .votes {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.post-preview > footer > .votes > .upvotes {
-    margin-right: 1.5em;
-}
-
-.post-preview > footer > .votes > div *:first-child, .post-preview > footer > .comments *:first-child {
-    margin-right: 0.5em;
-} 
-
