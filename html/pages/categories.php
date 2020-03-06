@@ -12,13 +12,13 @@ include_once(__DIR__ . '/../templates/category.php');
         <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
             <p class="align-self-start ml-3">Order By:</p>
             <ul class="nav flex-column nav-pills text-center">
-                <li class="nav-item mb-1">
+                <li class="nav-item">
                     <a class="nav-link active" data-toggle="pill" href="#">Name</a>
                 </li>
-                <li class="nav-item mb-1">
+                <li class="nav-item">
                     <a class="nav-link" data-toggle="pill" href="#">Posts</a>
                 </li>
-                <li class="nav-item mb-1">
+                <li class="nav-item">
                     <a class="nav-link" data-toggle="pill" href="#">Activity</a>
                 </li>
             </ul>
