@@ -1,0 +1,100 @@
+@import 'constants.css';
+
+
+/* ----------========== SIDEBAR ==========---------- */
+#sidebar {
+    background-color: var(--background-strong);
+
+    position: fixed;
+    
+    width: 16em;
+    border-radius: 5px;
+
+    padding: 1em 2em;
+}
+
+#sidebar > header {
+    margin-bottom: 1em;
+}
+
+/* ----------========== MAIN CONTENT ==========---------- */
+#main {
+    background-color: var(--background-strong);
+
+    width: 75em;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+#main .tab-content {
+    padding: 1.5em 3em;
+}
+
+/* ----------========== TABLES ==========---------- */
+table {
+    width: 100%;
+}
+table * {
+    color: var(--foreground);
+}
+
+.table thead th, .table tbody td {
+    border: none;
+}
+
+table.table thead {
+    border-bottom: 2px solid var(--main-color);
+    background-color: var(--background);
+    text-align: left;
+}
+
+table tbody tr {
+    background-color: var(--background);
+}
+table tbody tr:nth-child(2n+1) {
+    background-color: var(--background-strong);
+}
+
+table.table tbody tr *:nth-child(1) {
+    word-break: break-all;
+}
+table.table tbody tr *:nth-child(2) {
+    text-align: center;
+}
+table tbody tr *:nth-child(3) {
+    text-align: center;
+}
+table tbody tr *:nth-child(4) {
+    text-align: center;
+}
+
+/* ----------========== MEDIA QUERIES ==========---------- */
+@media (max-width: 82em) {
+    #main {
+        width: 70em;
+    }
+}
+@media (max-width: 72em) {
+    #main {
+        width: 60em;
+    }
+    #main .tab-content {
+        padding: 0.7em 1.4em;
+    }
+}
+@media (max-width: 62em) {
+    #main {
+        width: 100%;
+    }
+}
+@media (max-width: 32em) {
+    #content {
+        padding: 1em 0.5em;
+    }
+    #main .tab-content {
+        padding: 0.4em;
+    }
+
+    table.table tbody td {
+        padding: 0.3em;
+    }
+}

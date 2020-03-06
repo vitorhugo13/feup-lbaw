@@ -63,7 +63,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="../pages/profile.php">Profile</a>
                         <a class="dropdown-item" href="#">Feed</a>
-                        <a class="dropdown-item" href="#">Reports</a>
+                        <a class="dropdown-item" href="../pages/reports.php">Reports</a>
                         <a class="dropdown-item" href="#">Time</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Log Out</a>
@@ -76,7 +76,7 @@
 <?php } ?>
 
 <?php function draw_back_to_top() { ?>
-    <i id="toTop" class="fas fa-arrow-alt-circle-up"></i>
+    <i id="to-top" class="fas fa-arrow-alt-circle-up"></i>
 <?php } ?>
 
 <?php function draw_footer() { ?>

@@ -5,7 +5,7 @@ include_once(__DIR__ . '/../templates/category.php');
 
 ?>
 
-<?php doc_start('LAMA TEAM', ['common', 'team', 'categories'], []); ?>
+<?php doc_start('LAMA TEAM', ['common', 'team', 'categories', 'home'], []); ?>
 <?php draw_header(); ?>
 <div class="container-fluid">
     <aside id="sidebar" class="d-flex flex-column align-items-center">

@@ -183,3 +183,36 @@
     margin-right: 0.5em;
 } 
 
+
+/* ----------========== REPORT MODAL (COMMENT/POST) ==========---------- */
+#report-modal .modal-body {
+    padding: 2em 4em;
+}
+
+/* ----------========== REPORT MODAL (COMMENT/POST) ==========---------- */
+#move-modal .modal-body {
+    padding: 2em 3em;
+}
+
+#move-modal .input-group {
+    margin-bottom: 2em;
+}
+
+.category-move-badge > i {
+    margin-left: 1em;
+}
+
+.category-move-badge {
+    background-color: var(--background-strong);
+    color: var(--main-color);
+
+    margin: 0.3em;
+    padding: 0.5em 1em;
+    font-size: 1.1em;
+
+    cursor: pointer;
+}
+
+.category-move-badge:hover {
+    opacity: 60%;
+}

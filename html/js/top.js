@@ -1,6 +1,6 @@
 'use strict';
 
-let button = document.getElementById('toTop');
+let button = document.getElementById('to-top');
 
 window.onscroll = function() {
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
