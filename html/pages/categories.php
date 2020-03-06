@@ -11,11 +11,22 @@ include_once(__DIR__ . '/../templates/category.php');
     <aside id="sidebar" class="d-flex flex-column align-items-center">
         <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
             <p class="align-self-start ml-3">Order By:</p>
-            <section class="btn-group-vertical">
-                <button type="button" class="btn btn-outline-success">Name</button>
-                <button type="button" class="btn btn-outline-success">Posts</button>
-                <button type="button" class="btn btn-outline-success">Activity</button>
-            </section>
+            <ul class="nav flex-column nav-pills text-center">
+                <li class="nav-item mb-1">
+                    <a class="nav-link active" data-toggle="pill" href="#">Name</a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a class="nav-link" data-toggle="pill" href="#">Posts</a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a class="nav-link" data-toggle="pill" href="#">Activity</a>
+                </li>
+            </ul>
+            <!-- <section class="btn-group-vertical">
+                <button type="button" class="btn btn-outline-light">Name</button>
+                <button type="button" class="btn btn-outline-light">Posts</button>
+                <button type="button" class="btn btn-outline-light">Activity</button>
+            </section> -->
         </div>
         <button><i class="fas fa-plus"></i><strong> New Post</strong></button>
         <button><i class="fas fa-plus"></i><strong> New Category</strong></button>
@@ -23,7 +34,7 @@ include_once(__DIR__ . '/../templates/category.php');
 
     <main id="feed">
         <section class="card-deck row row-cols-1 row-cols-lg-2 row-cols-xl-3" id="comm-news">
-            <div class="col mb-4 highlight"><i class="fas fa-grip-lines"></i></div>
+            <div class="col mb-4 highlight"></div>
             <div class="col mb-4">
                 <article class="card category-card">
                     <div class="card-body">
@@ -41,7 +52,7 @@ include_once(__DIR__ . '/../templates/category.php');
                     </footer>
                 </article>
             </div>
-            <div class="col mb-4 highlight"><i class="fas fa-grip-lines"></i></div>
+            <div class="col mb-4 highlight"></div>
         </section>
 
         <section class="card-deck row row-cols-1 row-cols-lg-2 row-cols-xl-3">

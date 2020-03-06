@@ -1,13 +1,18 @@
-#sidebar-navigation>section {
+#sidebar-navigation li {
     width: 10em;
 }
 
-#sidebar-navigation>section>button {
+#sidebar-navigation a {
     color: var(--foreground);
     border-color: var(--foreground);
 }
 
-#sidebar-navigation>section>button:hover {
+#sidebar-navigation a:hover {
+    color: var(--background-strong);
+    background-color: var(--foreground);
+}
+
+#sidebar-navigation a.active {
     color: var(--background-strong);
     background-color: var(--foreground);
 }
@@ -16,6 +21,7 @@
     color: var(--foreground);
     background-color: var(--background-strong);
     border: solid 2px transparent;
+    transition: border-color 400ms ease-in-out 0s;
 }
 
 .category-card:hover {
@@ -30,5 +36,4 @@
 .highlight {
     color: var(--foreground);
     text-align: center;
-    /* vertical-align: text-bottom; */
 }
