@@ -1,14 +1,12 @@
 @import 'constants.css';
-
-
-html, body {
+html,
+body {
     height: 100%;
 }
 
 body {
     display: flex;
     flex-direction: column;
-
     background-color: var(--background);
     color: var(--foreground);
 }
@@ -18,75 +16,64 @@ body {
     padding: 2em 3em;
 }
 
+
 /* ----------========== NAVBAR ==========---------- */
-body > header > nav {
+
+body>header>nav {
     background-color: var(--background-strong);
 }
 
-body > header > div {
+body>header>div {
     background-color: var(--background-strong);
-
     border-radius: 0 0 60% 60%;
     height: 0.5em;
 }
 
-body > header > nav .search-bar {
-    border-radius: 2em;
-    height: 2.2em; 
-    width: 15em !important;
-}
-
-body > header > nav > div > div > i {
+body>header>nav>div>div>i {
     font-size: 1.6em;
 }
 
-.form-control:focus {
-    border-color: var(--main-color);
-    box-shadow: 0 0 0 0.1em var(--main-color);
-    
-} 
-
 /* ----------========== NOTIFICATIONS ==========---------- */
+
 .notification-menu {
     width: 25em;
     max-height: 15em;
-
     overflow-y: auto;
 }
 
 /* ----------========== FOOTER ==========---------- */
-
 #footer {
     flex-shrink: 0;
-
     background-color: var(--background-strong);
-
     padding: 1.5em 3em;
 }
 
-#footer > ul {
+#footer>ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-#footer > ul > li:first-child {
+#footer>ul>li:first-child {
     font-weight: bolder;
     margin-bottom: 0.60em;
 }
+
 
 /* ----------========== BACK TO TOP BUTTON ==========---------- */
 #to-top {
 	position: fixed;
 	bottom: .5em;
     right: 1em;
-    
+
     display: none;
-	cursor: pointer;
+    cursor: pointer;
     font-size: 2em;
 }
 
+
 /* ----------========== MODALS ==========---------- */
+
 .modal-content {
     background-color: var(--background);
 }
@@ -98,3 +85,63 @@ body > header > nav > div > div > i {
 .modal-header {
     border-bottom: 1px solid var(--background-strong);
 }
+
+
+/* ----------========== Search Bar ==========---------- */
+
+input {
+    outline: none;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+    display: none;
+}
+
+.expandable-search input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    font-family: inherit;
+    font-size: 100%;
+    background: var(--foreground) url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 10px center;
+    border: solid 2px transparent;
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+    width: 1.8em;
+    height: 2em;
+    padding-left: 25%;
+    color: transparent;
+    cursor: pointer;
+}
+
+.expandable-search input[type=search]:hover:not(:focus) {
+    -webkit-box-shadow: 0 0 8px var(--main-color);
+	-moz-box-shadow: 0 0 8px var(--main-color);
+	box-shadow: 0 0 8px var(--main-color);
+}
+
+.expandable-search input[type=search]:focus {
+    width: 8em;
+    padding-left: 2.5em;
+    padding-right: 1em;
+    color: var(--background-strong);
+    background-color: var(--foreground);
+    border-color: var(--main-color);
+    cursor: auto;
+}
+
+.expandable-search input:-moz-placeholder {
+    color: transparent;
+}
+
+.expandable-search input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+
+/* ----------========== MEDIA QUERIES ==========---------- */

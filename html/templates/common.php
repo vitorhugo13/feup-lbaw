@@ -41,8 +41,8 @@
     <header>
         <nav class="navbar">
             <a class="navbar-brand" href="../pages/home.php"><img src="../assets/logo_text.svg" width="50" alt="LAMA logo" /></a>
-            <form class="form-inline">
-                <input class="form-control search-bar" type="search" placeholder="Search" aria-label="Search"/>
+            <form class="expandable-search">
+                <input type="search" placeholder="Search" aria-label="Search"/>
             </form>
             <div class="d-flex align-items-center">
                 <div class="dropdown d-flex align-items-center">
@@ -61,7 +61,11 @@
                     <img class="rounded-circle dropdown-toggle" data-toggle="dropdown" src="../assets/logo.png"
                         height="30">
                     <div class="dropdown-menu dropdown-menu-right">
+<<<<<<< HEAD
                         <a class="dropdown-item" href="./profile.php">Profile</a>
+=======
+                        <a class="dropdown-item" href="../pages/profile.php">Profile</a>
+>>>>>>> 50190ff18bf2fe27652f778de65df43882485ad6
                         <a class="dropdown-item" href="#">Feed</a>
                         <a class="dropdown-item" href="./reports.php">Reports</a>
                         <a class="dropdown-item" href="#">Time</a>

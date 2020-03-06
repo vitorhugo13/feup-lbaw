@@ -43,6 +43,41 @@
     border-radius: 5px;
 
     font-weight: 300;
+    font-size: 0.9em;
+}
+
+
+/* ----------========== REPORT MODAL (COMMENT/POST) ==========---------- */
+#report-modal .modal-body {
+    padding: 2em 4em;
+}
+
+/* ----------========== REPORT MODAL (COMMENT/POST) ==========---------- */
+#move-modal .modal-body {
+    padding: 2em 3em;
+}
+
+#move-modal .input-group {
+    margin-bottom: 2em;
+}
+
+#move-modal .category-move-badge > i {
+    margin-left: 1em;
+}
+
+.category-move-badge {
+    background-color: var(--background-strong);
+    color: var(--main-color);
+
+    margin: 0.3em;
+    padding: 0.5em 1em;
+    font-size: 1.1em;
+
+    cursor: pointer;
+}
+
+.category-move-badge:hover {
+    opacity: 60%;
 }
 
 .post-preview > header {
@@ -56,6 +91,7 @@
 
 .post-preview > header .title {
     color: var(--foreground);
+    text-decoration: none;
 
     font-weight: 600;
     font-size: large;
@@ -64,15 +100,59 @@
 .post-preview > header .by {
     margin: 0 0.05em 0 0.5em;
 
-    color: var(--foreground-fade);
+    color: var(--foreground);
     font-size: small;
 }
 
 .post-preview > header .author {
-    color: var(--foreground);
+    color: var(--main-color);
 
     font-size: small;
 }
+
+.post-preview .checkbox-label{
+    display: block;
+    position: relative;
+    cursor: pointer;
+    color: var(--foreground);
+    margin: 0;
+    font-size: medium;
+}
+
+.post-preview .checkbox-label > input {
+    opacity: 0;
+    cursor: pointer;
+    display: none;
+}
+
+.post-preview .checkbox-label input ~ .checked {
+    display: none;
+}
+
+/* On mouse-over, add a grey background color */
+.post-preview .checkbox-label:after input ~ .unchecked {
+    display: block;
+}
+.post-preview .checkbox-label:hover input ~ .checked {
+    display: block;
+}
+
+/* On mouse-over, add a grey background color */
+.post-preview .checkbox-label:hover input ~ .unchecked {
+    display: none;
+}
+.post-preview .checkbox-label:hover input ~ .checked {
+    display: block;
+}
+  
+  /* Show the checkmark when checked */
+  .post-preview .checkbox-label input:checked ~ .checked {
+    display: block;
+  }
+   /* Show the checkmark when checked */
+   .post-preview .checkbox-label input:checked ~ .unchecked {
+    display: none;
+  }
 
 .post-preview > footer {
     display: flex;
@@ -81,11 +161,18 @@
     align-items: center;
 }
 
-/* ----------========== VOTES (COMMENT/POST/PREVIEW) ==========---------- */
 .post-preview > footer > .votes {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.post-preview > footer > .votes img {
+    color: var(--foreground);
+}
+
+.post-preview > footer > .votes > div:nth-child(2) > img {
+    transform: rotate(180deg);
 }
 
 .post-preview > footer > .votes > .upvotes {
