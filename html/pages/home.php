@@ -49,7 +49,7 @@ include_once(__DIR__ . '/../templates/post_elems.php');
             </div>
             <a id="view-categories" href="../pages/categories.php">View all</a>
         </div>
-        <button><i class="fas fa-plus"></i><strong> New Post</strong></button>
+        <a href="./edit_post.php"><i class="fas fa-plus"></i><strong> New Post</strong></a>
     </div>
 
     <div id="feed">
