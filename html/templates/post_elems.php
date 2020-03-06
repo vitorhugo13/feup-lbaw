@@ -2,9 +2,9 @@
     <div class="post-preview">
         <header>
             <div>
-                <a class="title" href="#"><?=$title?></a>
+                <a class="title" href="../pages/post.php"><?=$title?></a>
                 <span class="by">by</span>
-                <a class="author" href="#"><?=$author?></a>
+                <a class="author" href="../pages/profile.php"><?=$author?></a>
             </div>
             <label class="checkbox-label">
                 <input type="checkbox" id="star-category">

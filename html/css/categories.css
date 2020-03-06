@@ -31,6 +31,7 @@
 }
 
 .category-card {
+    min-width: 17rem;
     color: var(--foreground);
     background-color: var(--background-strong);
     border: solid 2px transparent;
@@ -44,6 +45,7 @@
 }
 
 .category-card footer {
+    margin: 0;
     border: none;
     background-color: inherit;
 }
