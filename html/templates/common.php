@@ -41,8 +41,8 @@
     <header>
         <nav class="navbar">
             <a class="navbar-brand" href="../pages/home.php"><img src="../assets/logo_text.svg" width="50" alt="LAMA logo" /></a>
-            <form class="form-inline">
-                <input class="form-control search-bar" type="search" placeholder="Search" aria-label="Search"/>
+            <form class="expandable-search">
+                <input type="search" placeholder="Search" aria-label="Search"/>
             </form>
             <div class="d-flex align-items-center">
                 <div class="dropdown d-flex align-items-center">
