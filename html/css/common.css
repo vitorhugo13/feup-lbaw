@@ -107,13 +107,19 @@ body>header>nav>div>div>i {
     display: inline-block;
     font-size: 15px;
     font-weight: 500;
-}
 
-#sidebar>button:hover {
     -webkit-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
 	-moz-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
 	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
 }
+
+/* To change hover shadow remove it above
+and uncomment following rule */
+/* #sidebar>button:hover {
+    -webkit-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
+	-moz-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
+} */
 
 /* ----------========== FEED ==========---------- */
 
