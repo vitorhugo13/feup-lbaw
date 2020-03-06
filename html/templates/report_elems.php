@@ -1,4 +1,4 @@
-<?php function draw_post_report($title, $reason, $date) { ?>
+<?php function draw_report($title, $reason, $date) { ?>
     <tr>
         <td><?=$title?></td>
         <td><?=$reason?></td>

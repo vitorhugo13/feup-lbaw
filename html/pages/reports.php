@@ -12,9 +12,9 @@ include_once(__DIR__.'/../templates/report_elems.php');
 <aside id="sidebar" class="d-flex flex-column align-items-center">
     <header class="align-self-start">Reports</header>
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Posts</a>
-      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Comments</a>
-      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Contest</a>
+      <a class="nav-link active" id="v-pills-posts-tab" data-toggle="pill" href="#posts-tab" role="tab" aria-controls="v-pills-posts" aria-selected="true">Posts</a>
+      <a class="nav-link" id="v-pills-comments-tab" data-toggle="pill" href="#comments-tab" role="tab" aria-controls="v-pills-comments" aria-selected="false">Comments</a>
+      <a class="nav-link" id="v-pills-contests-tab" data-toggle="pill" href="#contests-tab" role="tab" aria-controls="v-pills-contests" aria-selected="false">Contests</a>
     </div>
 </aside>
 
@@ -22,27 +22,65 @@ include_once(__DIR__.'/../templates/report_elems.php');
 
 <div id="main">
     <div class="tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-            <table>
-                <tr>
-                    <th>Title</th>
-                    <th>Reason</th>
-                    <th>Date</th>
-                    <th></th>
-                </tr>
-                <?php draw_post_report('Title title', 'Harassement', '20/02/2020'); ?>
-                <?php draw_post_report('Title is a pretty big title that deforms the table', 'Harassement', '20/02/2020'); ?>
-                <?php draw_post_report('Title title', 'Harassement', '20/02/2020'); ?>
-                <?php draw_post_report('Title title', 'Harassement', '20/02/2020'); ?>
-                <?php draw_post_report('Title title', 'Harassement', '20/02/2020'); ?>
-                <?php draw_post_report('Title title', 'Harassement', '20/02/2020'); ?>
+        <div class="tab-pane fade show active" id="posts-tab" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <table class="table table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Date</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('I am the daughter of an influential anti-vaccine figure and was unvaccinated until I got my own shots at 18. AMA!', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                </tbody>
             </table>
         </div>
-        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-            2
+        <div class="tab-pane fade" id="comments-tab" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <table class="table table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Date</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('I am the daughter of an influential anti-vaccine figure and was unvaccinated until I got my own shots at 18. AMA!', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                </tbody>
+            </table>
         </div>
-        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-            3
+        <div class="tab-pane fade" id="contests-tab" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+            <table class="table table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Date</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('I am the daughter of an influential anti-vaccine figure and was unvaccinated until I got my own shots at 18. AMA!', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                    <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
