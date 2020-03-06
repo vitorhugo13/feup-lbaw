@@ -11,9 +11,9 @@
                     </aside>
                 </header>
             </div>
-            <footer class="d-flex flex-row justify-content-between card-footer">
-                <p><?= $posts ?> posts</p>
-                <p>Last active: <?= $activity ?></p>
+            <footer class="row justify-content-between card-footer">
+                <p class="col-12 col-xl-6"><?= $posts ?> posts</p>
+                <p class="col-12 col-xl-6">Last active: <?= $activity ?></p>
             </footer>
         </article>
     </div>
