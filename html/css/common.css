@@ -93,7 +93,10 @@ input {
     outline: none;
 }
 
-input::-webkit-search-decoration,
+input::-webkit-search-decoration {
+    display: none;
+}
+
 input::-webkit-search-cancel-button {
     display: none;
 }
@@ -141,6 +144,20 @@ input::-webkit-search-cancel-button {
 
 .expandable-search input::-webkit-input-placeholder {
     color: transparent;
+}
+
+/* .expandable-search input:focus:-moz-placeholder {
+    color: var(--background-strong);
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+} */
+
+.expandable-search input:focus::-webkit-input-placeholder {
+    color: var(--background-strong);
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
 }
 
 
