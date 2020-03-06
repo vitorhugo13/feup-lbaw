@@ -104,7 +104,8 @@ input::-webkit-search-cancel-button {
     box-sizing: content-box;
     font-family: inherit;
     font-size: 100%;
-    background: var(--foreground) url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 10px center;
+    /* background: var(--foreground) url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 10px center; */
+    background: var(--foreground) url("../assets/search.svg") no-repeat 2px center;
     border: solid 2px transparent;
     -webkit-border-radius: 10em;
     -moz-border-radius: 10em;
@@ -119,11 +120,11 @@ input::-webkit-search-cancel-button {
     cursor: pointer;
 }
 
-.expandable-search input[type=search]:hover:not(:focus) {
+/* .expandable-search input[type=search]:hover:not(:focus) {
     -webkit-box-shadow: 0 0 8px var(--main-color);
 	-moz-box-shadow: 0 0 8px var(--main-color);
 	box-shadow: 0 0 8px var(--main-color);
-}
+} */
 
 .expandable-search input[type=search]:focus {
     width: 8em;
@@ -131,7 +132,6 @@ input::-webkit-search-cancel-button {
     padding-right: 1em;
     color: var(--background-strong);
     background-color: var(--foreground);
-    border-color: var(--main-color);
     cursor: auto;
 }
 
