@@ -1,0 +1,51 @@
+@import 'constants.css';
+
+
+/* ----------========== SIDEBAR ==========---------- */
+#sidebar {
+    background-color: var(--background-strong);
+
+    position: fixed;
+    
+    width: 16em;
+    border-radius: 5px;
+
+    padding: 1em 2em;
+}
+
+#sidebar > header {
+    margin-bottom: 1em;
+}
+
+/* ----------========== MAIN CONTENT ==========---------- */
+#main {
+    background-color: var(--background-strong);
+
+    width: 75em;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+#main .tab-content {
+    padding: 1.5em 3em;
+}
+
+
+/* ----------========== TABLES ==========---------- */
+table tr:nth-child(2) td{
+    border-top: 2px solid var(--main-color);
+}
+table tr:nth-child(2n+1) {
+    background-color: var(--background);
+}
+table tr:nth-child(2n+1) th + th, table tr:nth-child(2n+1) td + td {
+    border-left: 2px solid var(--background-strong);
+}
+table td {
+    border-top: 2px solid var(--background);
+}
+table th + th, table td + td {
+    border-left: 2px solid var(--background);
+}
+table tr * {
+    padding: 0.4em 0.8em;
+}
