@@ -33,12 +33,6 @@ body>header>div {
     height: 0.5em;
 }
 
-body>header>nav .search-bar {
-    border-radius: 2em;
-    height: 2.2em;
-    width: 15em !important;
-}
-
 body>header>nav>div>div>i {
     font-size: 1.6em;
 }
