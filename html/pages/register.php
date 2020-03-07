@@ -4,7 +4,7 @@ include_once(__DIR__.'/../templates/common.php');
 
 ?>
 
-<?php doc_start('REGISTER', ['register'], []); ?>
+<?php doc_start('LAMA', ['register'], []); ?>
 
 <div class="container-fluid">
     <div class="row">
