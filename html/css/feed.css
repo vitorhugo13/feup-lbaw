@@ -1,0 +1,17 @@
+
+
+input[type=checkbox] {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.2); /* IE */
+    -moz-transform: scale(1.2); /* FF */
+    -webkit-transform: scale(1.2); /* Safari and Chrome */
+    -o-transform: scale(1.2); /* Opera */
+}
+
+.input[type=checkbox]:checked:before{
+    background-color:green;
+}
+
+.opt{
+    border-top: 3px solid var(--main-color);
+}

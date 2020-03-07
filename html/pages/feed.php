@@ -5,21 +5,37 @@ include_once(__DIR__ . '/../templates/post_elems.php');
 
 ?>
 
-<?php doc_start('FEED', ['common', 'home', 'post_elems', 'sidebar','feed'], ['top', 'sidebar']); ?>
+<?php doc_start('FEED', ['common', 'home', 'post_elems','search', 'sidebar','feed'], ['top', 'sidebar']); ?>
 <?php draw_header(); ?>
 
 <div class="container">
     <div id="sidebar" class="d-flex flex-column align-items-center">
         <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
-            <div>
-                <div class="tab-categories tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-fresh" role="tabpanel" aria-labelledby="nav-fresh-tab">
-                        <ul>
-                            <li>! Politics<label><input type="checkbox" class="checkbox"></label></li>
-                            <li>! Cars</li>
-                            <li>! College</li>
-                            <li>! Religion</li>
-                        </ul>
+            <div class="opt">
+                <div class="d-flex flex-column align-self-start" id="filters">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="filter-username">
+                            ! Literature
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="filter-category">
+                            ! Sports
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="filter-title">
+                            ! Cinema
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="filter-title">
+                            ! Politics
+                        </label>
                     </div>
                 </div>
             </div>
@@ -33,8 +49,8 @@ include_once(__DIR__ . '/../templates/post_elems.php');
     </div>
 
     <div id="feed">
-        <?php draw_post_preview('I just got out of prison. Ask me anything.', 'titogrine', 'Donec bibendum sollicitudin semper. Integer et mi eget leo convallis tempor aliquam nec justo. Donec hendrerit ipsum ut neque bibendum, in cursus est tempus. Pellentesque sem erat, consequat cursus nibh sit amet, ultrices ultrices eros. Nam lacinia viverra nisl sit amet porttitor. Nam imperdiet, orci sit amet iaculis facilisis, mi erat molestie justo, a egestas dui velit vel nulla. Quisque commodo erat eget nibh venenatis tincidunt. Integer condimentum mollis nisl consequat accumsan. Curabitur cursus velit lorem, ac mattis est interdum id. Nunc lacinia velit dui, et luctus nulla laoreet ornare.', '50k', '360', '1230'); ?>
-        <?php draw_post_preview('I am a 105-Year-Old Woman. AMA', 'cajo_albuquerque', 'For clarification, I am her 2x great-grand nephew who will be answering these questions when Im at her house sometime after January 6th, 2020 (Most likely Jan 11, the dates not final). The answers will be direct quotes from her.', '34k', '40', '130'); ?>
+        <?php draw_post_preview('11-year-old Syrian table tennis player Hend Zaza qualifies for Olympics', 'titogrine', 'An 11-year-old Syrian table tennis player has qualified for Tokyo 2020 and is set to become one of the youngest Olympians of all time. Prodigy Hend Zaza qualified to play in this summers Games after winning last weeks West Asia Olympic qualification tournament in Jordan. Zaza, who was born in 2009, will become the youngest athlete to compete at this years competition. Ranked 155th in the world, she defeated Lebanons Mariana Sahakian 4-3 in the womens final in Amman. Sahakian is 42 years old, meaning there was a 31-year age gap between the two. ', '50k', '360', '1230'); ?>
+        <?php draw_post_preview('I was the director of the film that won the Oscar in 2008', 'cajo_albuquerque', '', '34k', '40', '130'); ?>
         <?php draw_post_preview('I am the daughter of an influential anti-vaccine figure and was unvaccinated until I got my own shots at 18. AMA!', 'bernas670', 'My mother is a huge anti-vaxxer who not only is active in her community but also a prominent figure who pandered to thousands of scared and/or new mothers. She is a part of some of the biggest antivax facebooks groups and runs her own, she has fought against bills and laws and help spread very dangerous misinformation to her almost cult like following.', '5006', '160', '530'); ?>
         <?php draw_post_preview('My hamster will go over my keyboard. Ask it anything.', 'jlopes', 'Its an iPhone keyboard if you were wondering.', '3762', '36', '768'); ?>
         <?php draw_post_preview('I’m going to sleep. AMA so I can wake up with notifications on my phone and feel loved', 'andreia_sousa', '', '492', '30', '690'); ?>
