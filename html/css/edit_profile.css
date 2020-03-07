@@ -79,7 +79,7 @@ button[type="submit"], .discard{
     transition: 0.5s;
 }
 
-form{
+#content form{
     width:80%;
 }
 
@@ -103,7 +103,7 @@ form{
         margin:0 auto;
     }
 
-    form{
+    #content form{
         width: 100%;
     }
 }

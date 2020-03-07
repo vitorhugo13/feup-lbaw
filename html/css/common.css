@@ -131,26 +131,29 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
 
 /* ----------========== Search Bar ==========---------- */
 
-input {
+.expandable-search input,
+#collapsed-search input {
     outline: none;
 }
 
-input::-webkit-search-decoration {
+.expandable-search input::-webkit-search-decoration,
+#collapsed-search input::-webkit-search-decoration {
     display: none;
 }
 
-input::-webkit-search-cancel-button {
+.expandable-search input::-webkit-search-cancel-button,
+#collapsed-search input::-webkit-search-cancel-button {
     display: none;
 }
 
 #collapsed-search {
     /* hidden behind header */
     z-index: -1;
-    /* width: 100%; */
+    width: 60%;
     border-radius: 0 0 100px 100px;
     background-color: var(--background-strong);
     padding-bottom: 0.7em;
-    margin-top: -3.5em;
+    margin: -3.5em auto 0 auto;
 }
 
 #collapsed-search.active {
