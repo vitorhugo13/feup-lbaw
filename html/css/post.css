@@ -22,17 +22,19 @@
 }
 
 .post >header > div .post-user > a:nth-child(2) {
-    color: var(--accent-color);
+    color: var(--main-color);
+    font-size: 0.9em;
 }
 
 .post >header > div .post-user > span {
     font-size: small;
     font-weight: 300;
-    margin-left: 0.2em;
+    margin-left: 0.3em;
 }
 
 .post i {
     font-size: 1em;
+    cursor: pointer;
 }
 
 .post > header .dropdown-menu {
@@ -56,6 +58,7 @@
 .post > footer > div {
     margin-right: 1.5em;
     font-size: 0.9em;
+    font-weight: 300;
 }
 
 .post > footer > div > img {
@@ -78,6 +81,124 @@
 #comment-section > header { 
     margin-bottom: 1em;
 }
+
+/* ----------========== COMMENT AREA ==========---------- */
+
+#comment-section > header > span:first-child {
+    font-size: large;
+    font-weight: 500;
+}
+
+#comment-section > header > span:last-child {
+    font-size: medium;
+    font-weight: 300;
+}
+
+#comment-area textarea {
+    background-color: var(--background);
+    color: var(--foreground);
+    border-style: none;
+    width: 100%;
+
+    padding: 0.5em 1em;
+    margin-bottom: 0.4em;
+    border-radius: 5px;
+}
+
+#comment-area textarea:focus {
+    outline: 0 none;
+    border: solid 1px var(--foreground);
+}
+
+#comment-area button {
+    width: 6em;
+    padding: 0.3em 0.5em;
+    margin-left: 0.5em;
+    border: 0;
+    border-radius: 2px;
+    background-color: var(--main-color);
+    color: var(--background-strong);
+    font-weight: 600;
+}
+
+#comment-area button:first-child {
+    background-color: var(--background);
+    color: var(--main-color);
+    font-weight: 400;
+}
+
+#comment-area button:focus {
+    outline: 0 none;
+}
+
+/* ----------========== COMMENT THREAD ==========---------- */
+.thread {
+    background-color: var(--background);
+    border-radius: 5px;
+    padding: 0.3em 0.6em;
+}
+
+.thread .comment > header {
+    margin-bottom: 0.3em;
+}
+
+.thread .comment > header > div .dropdown {
+    cursor: pointer;
+}
+
+.thread .comment > header > div .dropdown-menu{
+    background-color: var(--foreground);
+    color: var(--background-strong);
+}
+
+.thread .comment > header > div > span{
+    font-size: 0.7em;
+    font-weight: 300;
+}
+
+.thread .comment > header > div > span:first-child{
+    font-size: 0.8em;
+    font-weight: 400;
+}
+
+.thread .comment > .comment-body > p {
+    font-size: 0.9em;
+    font-weight: 300;
+    margin-bottom: 0.7em;
+}
+
+.thread .comment > footer > .votes {
+    margin-right: 1.5em;
+    font-size: 0.8em;
+    font-weight: 300;
+}
+
+.thread .comment > footer > .votes > div > img {
+    margin-right: 0.4em;
+}
+
+.thread .comment > footer > .votes > div:nth-child(2) > img {
+    transform: rotate(180deg);
+}
+
+.thread .comment > footer > button {
+    background-color: var(--background-strong);
+    color: var(--foreground);
+    border: none;
+    border-radius: 2px;
+    font-size: small;
+    font-weight: 400;
+    padding: 0.4em 1em;
+}
+
+.thread .comment > footer > button:hover {
+    color: var(--accent-color);
+}
+
+.thread .replies .comment:first-child > header > div > span:first-child {
+    color: var(--main-color);
+}
+
 
 /* ----------========== MEDIA QUERIES ==========---------- */
 @media (max-width: 82em) {
