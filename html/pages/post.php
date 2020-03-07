@@ -5,7 +5,7 @@ include_once(__DIR__.'/../templates/post_elems.php');
 
 ?>
 
-<?php doc_start('Post', ['common', 'post_elems', 'post'], ['top', 'comment']); ?>
+<?php doc_start('Post', ['common', 'post_elems', 'post'], ['top', 'comment', 'textarea']); ?>
 <?php draw_header(); ?>
 
 <div class="post">

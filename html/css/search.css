@@ -1,0 +1,41 @@
+@import 'constants.css';
+
+
+.container {
+    margin-left: 3em;
+}
+
+/* ----------========== SIDEBAR ==========---------- */
+#filters {
+    margin: 1em 2.6em;
+    font-size: 1.2em;
+}
+
+#filters label {
+    margin-left: 0.3em;
+}
+
+#filters input[type=checkbox] {
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.2); /* IE */
+  -moz-transform: scale(1.2); /* FF */
+  -webkit-transform: scale(1.2); /* Safari and Chrome */
+  -o-transform: scale(1.2); /* Opera */
+}
+/* ----------========== FEED ==========---------- */
+#mainpage {
+    margin: auto;
+    justify-content: center;
+}
+
+#search-results {
+    position: relative;
+    margin-left: 20em;
+    max-width: 70%;
+}
+
+@media (max-width: 992px) {
+    #search-results {
+        margin-left: 0;
+    }
+}

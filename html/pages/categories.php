@@ -32,22 +32,21 @@ include_once(__DIR__ . '/../templates/category.php');
     </aside>
 
     <main id="feed">
-        <section class="card-deck row row-cols-1 row-cols-lg-2 row-cols-xl-3" id="comm-news">
-            <div class="col mb-lg-4 highlight"></div>
-            <div class="col mb-4">
-                <article class="card category-card">
+        <section class="card-deck row">
+            <div class="col-0 col-lg-3 col-xl-4"></div>
+            <div class="col-12 col-lg-6 col-xl-4  mb-4">
+                <article class="card category-card" id="comm-news">
                     <div class="card-body">
                         <header class="d-flex flex-row justify-content-center">
                             <h5 class="card-title">! Community News</h5>
                         </header>
                     </div>
-                    <footer class="d-flex flex-row justify-content-between card-footer">
-                        <p>23 posts</p>
-                        <p>Last active: 15 days</p>
+                    <footer class="card-footer">
+                        <p>23 posts &middot; Last active: 15 days</p>
                     </footer>
                 </article>
             </div>
-            <div class="col mb-lg-4 highlight"></div>
+            <div class="col-0 col-lg-3 col-xl-4"></div>
         </section>
 
         <section class="card-deck row row-cols-1 row-cols-lg-2 row-cols-xl-3">
