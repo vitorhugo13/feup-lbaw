@@ -1,0 +1,141 @@
+@import 'constants.css';
+
+#sidebar {
+    position: fixed;
+    width: 16em;
+}
+
+#sidebar #pills-tab > a.active {
+    background-color: var(--background-strong);
+    border-bottom: solid var(--main-color);
+    border-radius: 5px 5px 0 0;
+    color: var(--main-color);
+}
+
+#sidebar #pills-tab > a {
+    color: var(--foreground);
+    border-bottom: solid var(--background);
+    border-radius: 0;
+    font-weight: 500;
+}
+
+.tab-categories  {
+    margin: 1.2em 0 1.6em 0;
+}
+
+#sidebar .tab-categories  ul {
+    list-style: none;
+    padding-left: 0.7em;
+}
+
+#sidebar .tab-categories  ul > li {
+    margin: 0.3em 0;
+}
+
+#view-categories {
+    color: var(--foreground);
+    font-size: small;
+    font-weight: 300;
+}
+
+#sidebar-navigation {
+    width: 100%;
+    padding: 1em 0;
+    border-radius: 0 0 5px 5px;
+    background-color: var(--background-strong);
+}
+
+#sidebar > a {
+    margin-top: 1em;
+    background-color: var(--main-color); /* Green */
+    color: var(--background-strong);
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    padding: 0.7em 2.4em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+#side-toggle{
+    display: none;
+    background-color: var(--background-strong);
+    color: var(--foreground);
+    text-align: center;
+    padding-top: 0.5em;
+    border-radius: 0 10px 30px 0 ;
+}
+
+#angle-right {
+    display: none;
+}
+
+#angle-left {
+    display: none;
+}
+
+#angle-right.active {
+    display: inline;
+}
+
+#angle-left.active {
+    display: inline;
+}
+
+@media (max-width: 992px) {
+    .wrapper {
+        display: block;
+    }
+
+    #sidebar {
+        min-width: 250px;
+        max-width: 250px;
+        height: fit-content;
+        position: fixed;
+        top: 15%;
+        left: -250px;
+        z-index: 9999;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+        background-color: var(--background);
+        padding-bottom: 1em;
+        border-radius: 0 0 10px 0;
+    }
+
+    #sidebar.active {
+        left: 0;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 998;
+        opacity: 0;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .overlay.active {
+        display: block;
+        opacity: 1;
+    }
+
+    #side-toggle {
+        display: block;
+        height: 4em;
+        width: 1.5em;
+        position: absolute;
+        top: 0;
+        right: -1.5em;
+    }
+}
