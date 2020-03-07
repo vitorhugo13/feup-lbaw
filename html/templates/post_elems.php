@@ -9,7 +9,7 @@
             <label class="checkbox-label">
                 <input type="checkbox" id="star-category">
                 <i class="unchecked far fa-star"></i>
-                <i class="checked fas fa-star"></i>
+                <i class="checked fas fa-star"></i> 
             </label>
         </header>
         <div class="content">
@@ -24,6 +24,8 @@
         </footer>
     </div>
 <?php } ?>
+
+
 
 <?php function draw_comment($author, $time, $content, $upvotes, $downvotes) { ?>
     <div class="comment p-3">
