@@ -39,7 +39,7 @@ include_once(__DIR__.'/../templates/post_elems.php');
         </div> 
 
         <div class="col-12 col-md-5 col-lg-4 glory"> 
-            <img src="../assets/logo.png"  width="60" alt="photo">
+            <img src="../assets/logo_text.svg"  width="60" alt="photo">
             <div class="points"> <h2>12903 points</h2></div>
             <div class="contest">
                 <div class="contest-text">

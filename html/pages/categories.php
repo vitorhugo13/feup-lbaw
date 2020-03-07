@@ -5,9 +5,9 @@ include_once(__DIR__ . '/../templates/category.php');
 
 ?>
 
-<?php doc_start('LAMA TEAM', ['common', 'team', 'categories', 'home'], []); ?>
+<?php doc_start('LAMA TEAM', ['common', 'team', 'categories', 'home', 'sidebar'], ['sidebar']); ?>
 <?php draw_header(); ?>
-<div class="container-fluid">
+<section id="wrapper">
     <aside id="sidebar" class="d-flex flex-column align-items-center">
         <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
             <p class="align-self-start ml-3">Order By:</p>
@@ -23,13 +23,17 @@ include_once(__DIR__ . '/../templates/category.php');
                 </li>
             </ul>
         </div>
-        <button><i class="fas fa-plus"></i><strong> New Post</strong></button>
-        <button><i class="fas fa-plus"></i><strong> New Category</strong></button>
+        <a href="../pages/edit_post.php"><i class="fas fa-plus"></i><strong> New Post</strong></a>
+        <a href="#"><i class="fas fa-plus"></i><strong> New Category</strong></a>
+        <div id="side-toggle">
+            <i class="fas fa-angle-right active" id="angle-right"></i>
+            <i class="fas fa-angle-left" id="angle-left"></i>
+        </div>
     </aside>
 
     <main id="feed">
         <section class="card-deck row row-cols-1 row-cols-lg-2 row-cols-xl-3" id="comm-news">
-            <div class="col mb-4 highlight"></div>
+            <div class="col mb-lg-4 highlight"></div>
             <div class="col mb-4">
                 <article class="card category-card">
                     <div class="card-body">
@@ -43,7 +47,7 @@ include_once(__DIR__ . '/../templates/category.php');
                     </footer>
                 </article>
             </div>
-            <div class="col mb-4 highlight"></div>
+            <div class="col mb-lg-4 highlight"></div>
         </section>
 
         <section class="card-deck row row-cols-1 row-cols-lg-2 row-cols-xl-3">
@@ -63,8 +67,11 @@ include_once(__DIR__ . '/../templates/category.php');
             <?php draw_category_card('Environment', '769', '1 year') ?>
             <?php draw_category_card('Other', '326', '1 year') ?>
         </section>
+
     </main>
-</div>
+    <!-- Dark Overlay element -->
+    <div class="overlay"></div>
+</section>
 
 <?php draw_footer(); ?>
 <?php doc_end(); ?>

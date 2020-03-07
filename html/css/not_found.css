@@ -1,0 +1,44 @@
+#content{
+    width:50%;
+    margin:auto;
+}
+
+button[type="submit"]{
+    border:none;
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: var(--main-color);;
+    color:#000;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+.error{
+    text-align: center;
+    margin-top:5em;
+}
+
+h2{
+    color:var(--main-color);
+    font-weight: bold;
+}
+
+
+@media (max-width: 52em) {
+   
+    #content{
+        width: 75%;
+    }
+ 
+}
+
+@media (max-width: 35em) {
+   
+    #content{
+        width: 100%;
+        margin:0;
+    }
+ 
+}

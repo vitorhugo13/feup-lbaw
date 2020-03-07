@@ -1,0 +1,45 @@
+#content{
+    width:40%;
+    margin: 1.2em auto;
+    background-color: var(--background-strong);
+    border-radius: 5px;
+}
+
+.reg-title h3{
+    color: var(--main-color);
+}
+
+.img{   
+    height: auto;
+    margin:0 auto;
+}
+
+.rule{
+    margin-left: 1.4em;
+}
+.ty{
+    margin: 0 auto;
+    color: var(--main-color);
+}
+
+.rule span{
+    color:var(--accent-color);
+}
+
+@media (max-width: 62em) { 
+    
+    #content{
+        width:90%;
+    }
+}
+
+@media (max-width: 42em) { 
+    
+    #content{
+        width:90%;
+    }
+
+    .rule{
+        margin-left: 0;
+    }
+}

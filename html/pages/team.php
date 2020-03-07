@@ -20,8 +20,8 @@ include_once(__DIR__.'/../templates/common.php');
                     <div><i class="fas fa-birthday-cake"></i>  20 years </div>
                     <div><i class="fas fa-thumbtack"></i>  Viseu </div>
                     <div  class="d-flex flex-column" >
-                        <div><i class="fas fa-info-circle"></i> Love programming and everything</div>
-                        <div class="personal-info-left">related to computers.</div>
+                        <div><i class="fas fa-info-circle"></i> Love programming and</div>
+                        <div class="personal-info-left">everything related to computers.</div>
                     </div>
                 </div>
             </div>
@@ -32,8 +32,8 @@ include_once(__DIR__.'/../templates/common.php');
                     <div> 21 years <i class="fas fa-birthday-cake"></i></div>
                     <div> Viseu <i class="fas fa-thumbtack"></i></div>
                     <div  class="d-flex flex-column" >
-                        <div> Really excited to finish my course <i class="fas fa-info-circle"></i></div>
-                        <div class="personal-info-right">and get to work as soon as possible.</div>
+                        <div> Really excited to finish my <i class="fas fa-info-circle"></i></div>
+                        <div class="personal-info-right">course and get to work as soon as possible.</div>
                     </div>
                 </div>
                 <img src="../assets/team_photos/cajo.jpg" class="img" alt="Cajo's photo">
@@ -65,8 +65,8 @@ include_once(__DIR__.'/../templates/common.php');
                     <div> 20 years <i class="fas fa-birthday-cake"></i></div>
                     <div> Fafe <i class="fas fa-thumbtack"></i></div>
                     <div  class="d-flex flex-column" >
-                        <div> Love sports, particularly football. <i class="fas fa-info-circle"></i></div>
-                        <div class="personal-info-right">Delighted by the power of computing.</div>
+                        <div> Love sports. Family first.<i class="fas fa-info-circle"></i></div>
+                        <div class="personal-info-right">Delighted by the power of computing. </div>
                     </div>
             </div>
             <img src="../assets/team_photos/vitorhugo.jpg" class="img" alt="Vitor's photo">

@@ -5,78 +5,6 @@
     margin-left: 3em;
 }
 
-/* ----------========== SIDEBAR ==========---------- */
-#sidebar {
-    position: fixed;
-    width: 16em;
-}
-
-#sidebar #pills-tab > a.active {
-    background-color: var(--background-strong);
-    border-bottom: solid var(--main-color);
-    border-radius: 5px 5px 0 0;
-    color: var(--main-color);
-}
-
-#sidebar #pills-tab > a {
-    color: var(--foreground);
-    border-bottom: solid var(--background);
-    border-radius: 0;
-    font-weight: 500;
-}
-
-.tab-categories  {
-    margin: 1.2em 0 1.6em 0;
-}
-
-#sidebar .tab-categories  ul {
-    list-style: none;
-    padding-left: 0.7em;
-}
-
-#sidebar .tab-categories  ul > li {
-    margin: 0.3em 0;
-}
-
-#view-categories {
-    color: var(--foreground);
-    font-size: small;
-    font-weight: 300;
-}
-
-#sidebar-navigation {
-    width: 100%;
-    padding: 1.5em 0;
-    border-radius: 5px;
-    background-color: var(--background-strong);
-}
-
-#sidebar > a {
-    margin-top: 1em;
-    background-color: var(--main-color); /* Green */
-    color: var(--background-strong);
-    border: none;
-    border-radius: 5px;
-    width: 80%;
-    padding: 0.7em 2.4em;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    font-weight: 500;
-    -webkit-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
-	-moz-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
-	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
-}
-
-/* To change hover shadow remove it above
-and uncomment following rule */
-#sidebar > a:hover {
-    -webkit-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
-	-moz-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
-	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
-}
-
 /* ----------========== FEED ==========---------- */
 #mainpage {
     margin: auto;
@@ -88,4 +16,10 @@ and uncomment following rule */
     position: relative;
     margin-left: 20em;
     max-width: 70%;
+}
+
+@media (max-width: 992px) {
+    #feed {
+        margin-left: 0;
+    }
 }
