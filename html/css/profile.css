@@ -43,6 +43,11 @@
     color: var(--background-strong);
 }
 
+.username .dropdown-menu > a:last-child{
+    color: var(--error-color);
+    font-weight: 500;
+}
+
 .username .dropdown-menu > div {
     width: 80%;
     margin: auto;

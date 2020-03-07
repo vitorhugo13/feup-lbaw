@@ -17,12 +17,12 @@ include_once(__DIR__.'/../templates/post_elems.php');
                 <div class="dropdown col-1">        
                 <div  data-toggle="dropdown"><i class="fas fa-ellipsis-v"></i></div>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="../pages/profile.php">Profile</a>
-                        <a class="dropdown-item" href="#">Feed</a>
-                        <a class="dropdown-item" href="#">Reports</a>
-                        <a class="dropdown-item" href="#">Time</a>
+                        <a class="dropdown-item" href="../pages/profile.php">Promote</a>
+                        <a class="dropdown-item" href="#">Demote</a>
+                        <a class="dropdown-item" href="#">Report</a>
+                        <a class="dropdown-item" href="#">Block</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Log Out</a>
+                        <a class="dropdown-item" href="#">Delete</a>
                     </div>
                 </div>
             </div>
@@ -105,6 +105,8 @@ include_once(__DIR__.'/../templates/post_elems.php');
             </div>
     </div>
 </div>
+
+<?php draw_back_to_top(); ?>
 
 <?php draw_footer(); ?>
 <?php doc_end(); ?>
