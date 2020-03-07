@@ -25,7 +25,7 @@
     </div>
 <?php } ?>
 
-<?php function draw_comment($author, $time, $content, $upvotes, $downvotes, $comments) { ?>
+<?php function draw_comment($author, $time, $content, $upvotes, $downvotes) { ?>
     <div class="comment p-3">
         <header class="d-flex flex-row align-items-center justify-content-between">
             <div>
@@ -52,15 +52,10 @@
         </div>
         <footer class="d-flex flex-row align-items-center justify-content-between">
             <div class="votes d-flex flex-row align-items-center justify-content-between">
-                <div class="upvotes mr-3"><i class="far fa-thumbs-up mr-1"></i><?=$upvotes?></div>
-                <div class="downvotes mr-3"><i class="far fa-thumbs-down mr-1"></i><?=$downvotes?></div>
-                <?php if ($comments != null) { ?>
-                <div class="comments mr-3"><i class="far fa-comment mr-1"></i><?=$comments?></div>
-                <?php } ?>
+                <div class="upvotes mr-3"><img src="../assets/hoof_filled.svg" width="11" alt="downhoof"/></i><?=$upvotes?></div>
+                <div class="downvotes mr-3"><img src="../assets/hoof_outline.svg" width="11" alt="downhoof"/></i><?=$downvotes?></div>
             </div>
-            <?php if ($comments != null) { ?>
-            <button class="reply-btn d-flex align-items-center"><i class="fas fa-reply mr-1"></i><span>Reply</span></button>
-            <?php } ?>
+            <button class="reply-btn d-flex align-items-center"><span>Reply</span></button>
         </footer>
     </div>
 <?php } ?>
