@@ -12,7 +12,7 @@ include_once(__DIR__.'/../templates/common.php');
 
     <div class="d-flex flex-column align-items-center flex-fill">
 
-        <h1>Edit Profile</h1>
+        <h3>Edit Profile</h3>
                 
         <img src="../assets/team_photos/vitorhugo.jpg" class="img rounded-circle  " alt="Profile photo">  
                 
