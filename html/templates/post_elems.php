@@ -9,7 +9,7 @@
             <label class="checkbox-label">
                 <input type="checkbox" id="star-category">
                 <i class="unchecked far fa-star"></i>
-                <i class="checked fas fa-star"></i>
+                <i class="checked fas fa-star"></i> 
             </label>
         </header>
         <div class="content">
@@ -24,6 +24,8 @@
         </footer>
     </div>
 <?php } ?>
+
+
 
 <?php function draw_comment($author, $time, $content, $upvotes, $downvotes) { ?>
     <div class="comment p-3">
@@ -74,7 +76,7 @@
 
 <?php function draw_comment_area() { ?>
     <div id="comment-area">
-        <textarea id="comment-content" placeholder="Leave a comment!" rows="3"></textarea>
+        <textarea id="comment-content" placeholder="Leave a comment!" oninput="auto_grow(this)"></textarea>
         <div class="d-flex flex-row justify-content-end">
             <button id="cancel-btn">Cancel</button>
             <button id="post-btn">Post</button>
