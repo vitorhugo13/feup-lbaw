@@ -150,7 +150,7 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
     /* hidden behind header */
     z-index: -1;
     width: 60%;
-    border-radius: 0 0 100px 100px;
+    border-radius: 0 0 40px 40px;
     background-color: var(--background-strong);
     padding-bottom: 0.7em;
     margin: -3.5em auto 0 auto;

@@ -30,7 +30,7 @@
 }
 
 .category-card {
-    min-width: 17rem;
+    min-width: 16rem;
     color: var(--foreground);
     background-color: var(--background-strong);
     border: solid 2px transparent;
@@ -47,9 +47,4 @@
     margin: 0;
     border: none;
     background-color: inherit;
-}
-
-.highlight {
-    color: var(--foreground);
-    text-align: center;
 }
