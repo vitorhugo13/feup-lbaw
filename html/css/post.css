@@ -1,7 +1,7 @@
 @import 'constants.css';
 
 #content {
-    width: 80em;
+    width: 75%;
     margin: 0 auto;
 }
 
@@ -9,11 +9,52 @@
 .post {
     background-color: var(--background-strong);
 
-    padding: 1.5em 3em;
+    padding: 2em 3em;
+    border-radius: 5px;
+}
+
+.post > header > div:first-child {
+    margin-bottom: 1.5em;
+}
+
+.post >header > div .post-user > a:first-child {
+    margin-right: 1em;
+}
+
+.post >header > div .post-user > a:nth-child(2) {
+    color: var(--accent-color);
+}
+
+.post >header > div .post-user > span {
+    font-size: small;
+    font-weight: 300;
+    margin-left: 0.2em;
 }
 
 .post i {
-    font-size: 1.2em;
+    font-size: 1.1em;
+}
+
+.post > header > h4 {
+    font-weight: 500;
+}
+
+.post .post-body > p {
+    font-size: 0.9em;
+    font-weight: 400;
+}
+
+.post > footer > div {
+    margin-right: 1.5em;
+    font-size: 0.9em;
+}
+
+.post > footer > div > img {
+    margin-right: 0.15em
+}
+
+.post > footer > div:nth-child(2) > img {
+    transform: rotate(180deg);
 }
 
 /* ----------========== COMMENT SECTION ==========---------- */
@@ -22,6 +63,7 @@
 
     margin-top: 1em;
     padding: 1.5em 3em;
+    border-radius: 5px;
 }
 
 #comment-section > header { 

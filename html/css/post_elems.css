@@ -9,6 +9,7 @@
 
     padding: 0.5em 1em;
     margin-bottom: 0.4em;
+    border-radius: 5px;
 }
 
 #comment-area button {
@@ -20,11 +21,16 @@
 /* ----------========== COMMENT THREAD ==========---------- */
 .thread {
     background-color: var(--background);
+    border-radius: 5px;
 }
 
 /* ----------========== CATEGORIES ==========---------- */
 .post-categories {
-    margin: 0.5em 0 1em 0;
+    margin: 0.2em 0 1.6em 0;
+}
+
+.post-categories > a {
+    margin-right: 0.5em;
 }
 
 .category-badge {
@@ -32,6 +38,11 @@
     color: var(--main-color);
 
     padding: 0.5em 1em;
+}
+
+.category-badge:hover {
+    background-color: var(--background);
+    color: var(--accent-color);
 }
 
 /* ----------========== POST PREVIEW ==========---------- */
