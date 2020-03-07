@@ -13,7 +13,7 @@ include_once(__DIR__.'/../templates/post_elems.php');
         <div class="d-flex flex-row align-items-center justify-content-between">
             <div class="post-user d-flex flex-row align-items-center justify-content-between">    
                 <a href="#"><img class="rounded-circle" src="../assets/user.jpg" width="40"></a>
-                <a href="#">lamao</a>
+                <a href="#">DanTheWhiskyMan</a>
                 <span>&middot;</span>
                 <span>17h ago</span>
             </div>
@@ -52,12 +52,11 @@ include_once(__DIR__.'/../templates/post_elems.php');
     </footer>
 </div>
 <div id="comment-section">
-    <header><span>Comments</span><span>&middot;</span><span>1230</span></header>
+    <header><span>Comments</span><span> &middot; </span><span>1230</span></header>
     <?php draw_comment_area(); ?>
     <div id="comments">
-        <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
-        <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
-        <?php draw_thread(['lama', '17h ago', 'this is a comment', '10k', '2', '30'], [['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2'], ['lama', '17h ago', 'this is a comment', '10k', '2']]); ?>
+        <?php draw_thread(['AbhorrentCards', '15h ago', 'Does an Escalade pull of you off the plane everytime you land?', '104', '2', '1'], [['DanTheWhiskyMan', '14h ago', 'Yes I only accept Escalades or Continentals ;)', '10', '0']]); ?>
+        <?php draw_thread(['afihavok', '16h ago', 'Redditors: this is an AMA, please be wary of proof until...sees username...K, were good.', '261', '24', '2'], [['DanTheWhiskyMan', '14h ago', 'It was almost intentional ;)', '1', '2'], ['delinquent', '12h ago', 'I love self evident names.', '74', '12']]); ?>
     </div>
 </div>
 

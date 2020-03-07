@@ -32,7 +32,12 @@
 }
 
 .post i {
-    font-size: 1.1em;
+    font-size: 1em;
+}
+
+.post > header .dropdown-menu {
+    color: var(--background-strong);
+    background-color: var(--foreground);
 }
 
 .post > header > h4 {
@@ -42,6 +47,10 @@
 .post .post-body > p {
     font-size: 0.9em;
     font-weight: 400;
+}
+
+.post > footer {
+    margin-top: 1.5em;
 }
 
 .post > footer > div {

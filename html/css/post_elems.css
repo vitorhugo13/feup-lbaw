@@ -1,6 +1,17 @@
 @import 'constants.css';
 
 /* ----------========== COMMENT AREA ==========---------- */
+
+#comment-section > header > span:first-child {
+    font-size: large;
+    font-weight: 500;
+}
+
+#comment-section > header > span:last-child {
+    font-size: medium;
+    font-weight: 300;
+}
+
 #comment-area textarea {
     background-color: var(--background);
     color: var(--foreground);
@@ -12,9 +23,30 @@
     border-radius: 5px;
 }
 
+#comment-area textarea:focus {
+    outline: 0 none;
+    border: solid 1px var(--foreground);
+}
+
 #comment-area button {
-    width: 5em;
-    margin-left: 0.4em;
+    width: 6em;
+    padding: 0.3em 0.5em;
+    margin-left: 0.5em;
+    border: 0;
+    border-radius: 2px;
+    background-color: var(--main-color);
+    color: var(--background-strong);
+    font-weight: 600;
+}
+
+#comment-area button:first-child {
+    background-color: var(--background);
+    color: var(--main-color);
+    font-weight: 400;
+}
+
+#comment-area button:focus {
+    outline: 0 none;
 }
 
 
@@ -23,6 +55,8 @@
     background-color: var(--background);
     border-radius: 5px;
 }
+
+
 
 /* ----------========== CATEGORIES ==========---------- */
 .post-categories {
