@@ -4,7 +4,7 @@ include_once(__DIR__.'/../templates/common.php');
 
 ?>
 
-<?php doc_start('LOG IN', ['login'], []); ?>
+<?php doc_start('LAMA', ['login'], []); ?>
 
 <div class="container-fluid">
     <div class="row">
