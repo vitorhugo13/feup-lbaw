@@ -18,7 +18,7 @@ include_once(__DIR__ . '/../templates/post_elems.php');
                     <a class="nav-item nav-link" id="top-tab" data-toggle="tab" href="#nav-top" aria-selected="false">Top</a>
                 </div>
             </nav>  
-            <div class="d-flex flex-column" id="filters">
+            <div class="d-flex flex-column align-self-start" id="filters">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="filter-username">
                     <label class="form-check-label" for="filter-username">
