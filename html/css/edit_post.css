@@ -1,0 +1,65 @@
+@import 'constants.css';
+
+
+#sidebar {
+    width: 22em;
+}
+
+#sidebar > div:first-child {
+    background-color: var(--background-strong);
+    padding: 1.4em 2.2em;
+    border-radius: 5px;
+}
+
+#sidebar header {
+    margin-bottom: 1em;
+    border-bottom: 1px solid var(--main-color);
+}
+
+#sidebar > div:first-child > div {
+    margin-bottom: 0.8em;
+}
+
+#sidebar .category-move-badge {
+    background-color: var(--background);
+    font-size: 1em;
+    padding: 0.5em 1em;
+}
+
+#sidebar > div:nth-child(2) {
+    margin: 1em 0;
+}
+#sidebar > div:nth-child(2) * {
+    width: 6em;
+    margin: 0 0.5em;
+}
+
+
+#main {
+    background-color: var(--background-strong);
+
+    width: 80em;
+    padding: 1em 2em;
+}
+
+#post-title {
+    background-color: var(--background-strong);
+    color: var(--foreground);
+
+    margin-bottom: 1em;
+    font-size: 1.3em;
+
+    border: none;
+    border-bottom: 2px solid var(--background);
+}
+
+#post-title:focus {
+    border-bottom: 2px solid var(--main-color);
+}
+
+#post-body {
+    background-color: var(--background-strong);
+    color: var(--foreground);
+
+    border: none;
+}
