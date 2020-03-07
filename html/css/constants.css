@@ -5,8 +5,7 @@
     --accent-color: #9756e3;
     --foreground: #edf5e1;
     --foreground-fade: #edf5e1b0;
-
-    
+    --error-color: #C60000;
 }
 
 body {
