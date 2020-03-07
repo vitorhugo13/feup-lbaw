@@ -8,7 +8,7 @@ include_once(__DIR__.'/../templates/common.php');
 <?php draw_header(); ?>
 
 
-<div class="d-flex align-items-center flex-wrap justify-content-center ">
+<div class="d-flex align-items-center flex-wrap justify-content-center">
 
     <div class="d-flex flex-column align-items-center flex-fill">
 
@@ -63,7 +63,7 @@ include_once(__DIR__.'/../templates/common.php');
 
         </form>
 
-        <div class="text-center mb-3">
+        <div class="text-center">
              <a href="./profile.php"><button type="submit" class="btn">Discard changes</button></a>
          </div>
     </div>
