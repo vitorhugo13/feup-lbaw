@@ -164,13 +164,7 @@ input::-webkit-search-cancel-button {
     cursor: pointer;
 }
 
-/* .expandable-search input[type=search]:hover:not(:focus) {
-    -webkit-box-shadow: 0 0 8px var(--main-color);
-	-moz-box-shadow: 0 0 8px var(--main-color);
-	box-shadow: 0 0 8px var(--main-color);
-} */
-
-.expandable-search input[type=search]:focus {
+.expandable-search input[type=search]:hover {
     width: 8em;
     padding-left: 2.5em;
     padding-right: 1em;
@@ -187,14 +181,14 @@ input::-webkit-search-cancel-button {
     color: transparent;
 }
 
-/* .expandable-search input:focus:-moz-placeholder {
+/* .expandable-search input:hover:-moz-placeholder {
     color: var(--background-strong);
-    -webkit-transition: all .5s;
+    -webkit-transition: all .5s;git 
     -moz-transition: all .5s;
     transition: all .5s;
 } */
 
-.expandable-search input:focus::-webkit-input-placeholder {
+.expandable-search input:hover::-webkit-input-placeholder {
     color: var(--background-strong);
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
