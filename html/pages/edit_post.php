@@ -6,10 +6,10 @@ include_once(__DIR__.'/../templates/report_elems.php');
 
 ?>
 
-<?php doc_start('Edit Post', ['common', 'post_elems', 'edit_post'], ['top']); ?>
+<?php doc_start('Edit Post', ['common', 'post_elems', 'edit_post'], ['top', 'textarea']); ?>
 <?php draw_header(); ?>
 
-<form>
+<form class="d-flex flex-row">
     <div id="sidebar">
         <div>
             <header>Categories</header>
@@ -31,16 +31,21 @@ include_once(__DIR__.'/../templates/report_elems.php');
                 <?php draw_category_move_badge('Gaming'); ?>
                 <?php draw_category_move_badge('Ethics'); ?>
             </div>
-        </div>
-        <div class="d-flex flex-row justify-content-center">
-            <button class="btn btn-secondary">Cancel</button>
-            <button class="btn btn-primary" type="submit">Post</button>
-        </div>    
+        </div>  
     </div>
 
-    <div id="main" class="d-flex flex-column justify-content-stretch">
+    <div id="main">
+        <div class="d-flex flex-column justify-content-stretch">
         <input type="text" id="post-title" placeholder="Title"/>
-        <textarea id="post-body" placeholder="What is this post about?" rows="3"></textarea>
+        <textarea id="post-body" placeholder="What is this post about?" oninput="auto_grow(this)"></textarea>
+        <div class="d-flex flex-row justify-content-end">
+            <button class="btn btn-secondary">Cancel</button>
+            <button class="btn btn-primary" type="submit">Post</button>
+        </div>  
+        </div>  
+    </div>
+
+    <div id="spacer">
     </div>
 </form>
 

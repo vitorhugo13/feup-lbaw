@@ -1,11 +1,17 @@
 @import 'constants.css';
 
 
-#sidebar {
-    width: 22em;
+/* ----------========== CONTENT ==========---------- */
+#content {
+    margin: 0 auto;
 }
 
-#sidebar > div:first-child {
+/* ----------========== SIDEBAR ==========---------- */
+#sidebar {
+    width: 20em;
+}
+
+#sidebar > div {
     background-color: var(--background-strong);
     padding: 1.4em 2.2em;
     border-radius: 5px;
@@ -16,7 +22,7 @@
     border-bottom: 1px solid var(--main-color);
 }
 
-#sidebar > div:first-child > div {
+#sidebar > div > div {
     margin-bottom: 0.8em;
 }
 
@@ -26,20 +32,14 @@
     padding: 0.5em 1em;
 }
 
-#sidebar > div:nth-child(2) {
-    margin: 1em 0;
-}
-#sidebar > div:nth-child(2) * {
-    width: 6em;
-    margin: 0 0.5em;
-}
-
-
-#main {
+/* ----------========== MAIN ==========---------- */
+#main > div{
     background-color: var(--background-strong);
 
-    width: 80em;
+    border-radius: 5px;
+    width: 60em;
     padding: 1em 2em;
+    margin: 0 2em;
 }
 
 #post-title {
@@ -62,4 +62,19 @@
     color: var(--foreground);
 
     border: none;
+    min-height: 10em;
+    margin-bottom: 1em;
+
+    resize: none;
+    overflow: hidden;
+}
+
+#main > div > div > .btn {
+    margin-left: 1em;
+    width: 6em;
+}
+
+/* ----------========== SPACER ==========---------- */
+#spacer {
+    width: 22em;
 }
