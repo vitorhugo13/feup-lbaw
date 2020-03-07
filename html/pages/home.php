@@ -8,7 +8,7 @@ include_once(__DIR__ . '/../templates/post_elems.php');
 <?php doc_start('LAMA', ['common', 'home', 'post_elems', 'sidebar'], ['top', 'sidebar']); ?>
 <?php draw_header(); ?>
 
-<div class="container">
+<div class="wrapper">
     <div id="sidebar" class="d-flex flex-column align-items-center">
         <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
             <div>
@@ -57,7 +57,7 @@ include_once(__DIR__ . '/../templates/post_elems.php');
     </div>
 
     <div id="feed">
-        <?php draw_post_preview('I just got out of prison. Ask me anything.', 'bernas634', 'Donec bibendum sollicitudin semper. Integer et mi eget leo convallis tempor aliquam nec justo. Donec hendrerit ipsum ut neque bibendum, in cursus est tempus. Pellentesque sem erat, consequat cursus nibh sit amet, ultrices ultrices eros. Nam lacinia viverra nisl sit amet porttitor. Nam imperdiet, orci sit amet iaculis facilisis, mi erat molestie justo, a egestas dui velit vel nulla. Quisque commodo erat eget nibh venenatis tincidunt. Integer condimentum mollis nisl consequat accumsan. Curabitur cursus velit lorem, ac mattis est interdum id. Nunc lacinia velit dui, et luctus nulla laoreet ornare.', '50k', '360', '1230'); ?>
+        <?php draw_post_preview('I just got out of prison. Ask me anything.', 'bernas634', 'I got arrested because I was selling weed in Portugal. Got myself half a year in prison, but it was kida chill really. Now I am back in the streets and keeping myself away from trouble.', '50k', '360', '1230'); ?>
         <?php draw_post_preview('I am a 105-Year-Old Woman. AMA', 'WorldVexillologist', 'For clarification, I am her 2x great-grand nephew who will be answering these questions when Im at her house sometime after January 6th, 2020 (Most likely Jan 11, the dates not final). The answers will be direct quotes from her.', '34k', '40', '130'); ?>
         <?php draw_post_preview('I am the daughter of an influential anti-vaccine figure and was unvaccinated until I got my own shots at 18. AMA!', 'phoriaa', 'My mother is a huge anti-vaxxer who not only is active in her community but also a prominent figure who pandered to thousands of scared and/or new mothers. She is a part of some of the biggest antivax facebooks groups and runs her own, she has fought against bills and laws and help spread very dangerous misinformation to her almost cult like following.', '5006', '160', '530'); ?>
         <?php draw_post_preview('My hamster will go over my keyboard. Ask it anything.', 'un_lucky', 'Its an iPhone keyboard if you were wondering.', '3762', '36', '768'); ?>

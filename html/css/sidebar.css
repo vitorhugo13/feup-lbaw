@@ -5,30 +5,30 @@
     width: 16em;
 }
 
-#sidebar #pills-tab > a.active {
+#sidebar #pills-tab>a.active {
     background-color: var(--background-strong);
     border-bottom: solid var(--main-color);
     border-radius: 5px 5px 0 0;
     color: var(--main-color);
 }
 
-#sidebar #pills-tab > a {
+#sidebar #pills-tab>a {
     color: var(--foreground);
     border-bottom: solid var(--background);
     border-radius: 0;
     font-weight: 500;
 }
 
-.tab-categories  {
+.tab-categories {
     margin: 1.2em 0 1.6em 0;
 }
 
-#sidebar .tab-categories  ul {
+#sidebar .tab-categories ul {
     list-style: none;
     padding-left: 0.7em;
 }
 
-#sidebar .tab-categories  ul > li {
+#sidebar .tab-categories ul>li {
     margin: 0.3em 0;
 }
 
@@ -45,9 +45,10 @@
     background-color: var(--background-strong);
 }
 
-#sidebar > a {
+#sidebar>a {
     margin-top: 1em;
-    background-color: var(--main-color); /* Green */
+    background-color: var(--main-color);
+    /* Green */
     color: var(--background-strong);
     border: none;
     border-radius: 5px;
@@ -60,13 +61,17 @@
     font-weight: 500;
 }
 
-#side-toggle{
+#side-toggle {
     display: none;
-    background-color: var(--background-strong);
+    background-color: var(--background);
+    /* border-right: solid 1px var(--accent-color); */
     color: var(--foreground);
     text-align: center;
-    padding-top: 0.5em;
-    border-radius: 0 10px 30px 0 ;
+    padding-top: 1em;
+    border-radius: 0 10px 30px 0;
+    -webkit-box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.75);
 }
 
 #angle-right {
