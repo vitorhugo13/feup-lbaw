@@ -1,0 +1,80 @@
+@import 'constants.css';
+
+
+/* ----------========== CONTENT ==========---------- */
+#content {
+    margin: 0 auto;
+}
+
+/* ----------========== SIDEBAR ==========---------- */
+#sidebar {
+    width: 20em;
+}
+
+#sidebar > div {
+    background-color: var(--background-strong);
+    padding: 1.4em 2.2em;
+    border-radius: 5px;
+}
+
+#sidebar header {
+    margin-bottom: 1em;
+    border-bottom: 1px solid var(--main-color);
+}
+
+#sidebar > div > div {
+    margin-bottom: 0.8em;
+}
+
+#sidebar .category-move-badge {
+    background-color: var(--background);
+    font-size: 1em;
+    padding: 0.5em 1em;
+}
+
+/* ----------========== MAIN ==========---------- */
+#main > div{
+    background-color: var(--background-strong);
+
+    border-radius: 5px;
+    width: 60em;
+    padding: 1em 2em;
+    margin: 0 2em;
+}
+
+#post-title {
+    background-color: var(--background-strong);
+    color: var(--foreground);
+
+    margin-bottom: 1em;
+    font-size: 1.3em;
+
+    border: none;
+    border-bottom: 2px solid var(--background);
+}
+
+#post-title:focus {
+    border-bottom: 2px solid var(--main-color);
+}
+
+#post-body {
+    background-color: var(--background-strong);
+    color: var(--foreground);
+
+    border: none;
+    min-height: 10em;
+    margin-bottom: 1em;
+
+    resize: none;
+    overflow: hidden;
+}
+
+#main > div > div > .btn {
+    margin-left: 1em;
+    width: 6em;
+}
+
+/* ----------========== SPACER ==========---------- */
+#spacer {
+    width: 22em;
+}

@@ -21,7 +21,8 @@
         <?php foreach($stylesheets as $stylesheet) { ?>
             <link rel="stylesheet" href="../css/<?=$stylesheet?>.css">
         <?php } ?>
-
+        
+        <script src="../js/searchbar.js" defer></script>
         <?php foreach($scripts as $script) { ?>
             <script src="../js/<?=$script?>.js" defer></script>
         <?php } ?>
@@ -69,6 +70,9 @@
             </div>
         </nav>
     </header>
+    <form action="" id="collapsed-search" class="d-flex flex-row justify-content-center">
+        <input type="search" placeholder="Search" aria-label="Search"/>
+    </form>
     <div id="content">
 <?php } ?>
 
