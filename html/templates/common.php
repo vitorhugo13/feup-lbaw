@@ -91,7 +91,7 @@
         <ul>
             <li>About:</li>
             <li><a href="../pages/team.php">Team</a></li>
-            <li>Regulations</li>
+            <li><a href="../pages/regulations.php">Regulations</a></li>
         </ul>
     </footer>
 <?php } ?>
