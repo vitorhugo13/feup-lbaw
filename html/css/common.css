@@ -146,7 +146,7 @@ input::-webkit-search-cancel-button {
 #collapsed-search {
     /* hidden behind header */
     z-index: -1;
-    width: 99vw;
+    /* width: 100%; */
     border-radius: 0 0 100px 100px;
     background-color: var(--background-strong);
     padding-bottom: 0.7em;
