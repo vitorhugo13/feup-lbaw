@@ -13,7 +13,7 @@ include_once(__DIR__.'/../templates/common.php');
             <div class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
               
                 <div class="logo mt-5 mb-3">
-                    <a href="./home.php"><img src="../assets/lama_logo.svg" width="150px"></a>
+                    <a href="./home.php"><img src="../assets/lama_logo.svg" width="140px"></a>
                 </div>
 
                 <div class="heading mb-3">
@@ -51,7 +51,7 @@ include_once(__DIR__.'/../templates/common.php');
 
                     </div>
 
-                    <div class="text-white">
+                    <div class="register-account">
                       Don't have an account?
                       <a href="./register.php" class="register-link"> Register here.</a>
                     </div>
