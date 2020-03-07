@@ -1,4 +1,5 @@
 @import 'constants.css';
+
 html,
 body {
     height: 100%;
@@ -29,7 +30,7 @@ body>header>div {
     height: 0.6em;
 }
 
-body > header > nav > div > div > img{
+body>header>nav>div>div>img {
     margin-right: 0.5em;
     cursor: pointer;
 }
@@ -45,15 +46,15 @@ body>header>nav>div>div .badge {
     color: var(--background-strong);
 }
 
-body > header > nav > div > div .dropdown-menu {
+body>header>nav>div>div .dropdown-menu {
     background-color: var(--foreground);
 }
 
-body > header > nav > div > div .dropdown-menu > a {
+body>header>nav>div>div .dropdown-menu>a {
     color: var(--background-strong);
 }
 
-body > header > nav > div > div .dropdown-menu .dropdown-divider {
+body>header>nav>div>div .dropdown-menu .dropdown-divider {
     border-top: 1px solid var(--background-strong);
     width: 80%;
     margin: auto;
@@ -103,8 +104,8 @@ body > header > nav > div > div .dropdown-menu .dropdown-divider {
 
 /* ----------========== BACK TO TOP BUTTON ==========---------- */
 #to-top {
-	position: fixed;
-	bottom: .5em;
+    position: fixed;
+    bottom: .5em;
     right: 1em;
 
     display: none;
@@ -142,6 +143,23 @@ input::-webkit-search-cancel-button {
     display: none;
 }
 
+#collapsed-search {
+    /* hidden behind header */
+    z-index: -1;
+    width: 100vw;
+    border-radius: 0 0 100px 100px;
+    background-color: var(--background-strong);
+    padding-bottom: 0.7em;
+    margin-top: -3.5em;
+}
+
+#collapsed-search.active {
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+    margin-top: 0;
+}
+
 .expandable-search input[type=search] {
     -webkit-appearance: textfield;
     -webkit-box-sizing: content-box;
@@ -154,9 +172,9 @@ input::-webkit-search-cancel-button {
     -webkit-border-radius: 10em;
     -moz-border-radius: 10em;
     border-radius: 10em;
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    transition: all .5s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
     width: 1.8em;
     height: 2em;
     padding-left: 25%;
@@ -164,13 +182,31 @@ input::-webkit-search-cancel-button {
     cursor: pointer;
 }
 
-.expandable-search input[type=search]:hover {
+#collapsed-search input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    font-family: inherit;
+    font-size: 90%;
+    background: var(--foreground) url("../assets/search.svg") no-repeat 2px center;
+    border: solid 2px transparent;
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
     width: 8em;
+    height: 2em;
     padding-left: 2.5em;
     padding-right: 1em;
     color: var(--background-strong);
-    background-color: var(--foreground);
     cursor: auto;
+}
+
+#collapsed-search input:-moz-placeholder {
+    color: var(--background-strong);
+}
+
+#collapsed-search input::-webkit-input-placeholder {
+    color: var(--background-strong);
 }
 
 .expandable-search input:-moz-placeholder {
@@ -181,18 +217,36 @@ input::-webkit-search-cancel-button {
     color: transparent;
 }
 
-/* .expandable-search input:hover:-moz-placeholder {
-    color: var(--background-strong);
-    -webkit-transition: all .5s;git 
-    -moz-transition: all .5s;
-    transition: all .5s;
-} */
+/* Screen is > 576px wide */
+@media (min-width: 576px) {
+    .expandable-search input[type=search]:hover {
+        width: 8em;
+        padding-left: 2.5em;
+        padding-right: 1em;
+        color: var(--background-strong);
+        background-color: var(--foreground);
+        cursor: auto;
+    }
 
-.expandable-search input:hover::-webkit-input-placeholder {
-    color: var(--background-strong);
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    transition: all .5s;
+    /* .expandable-search input:hover:-moz-placeholder {
+        color: var(--background-strong);
+        -webkit-transition: all .5s;git 
+    -webkit-transition: all .5s;git 
+        -webkit-transition: all .5s;git 
+        -moz-transition: all .5s;
+        transition: all .5s;
+    } */
+
+    .expandable-search input:hover::-webkit-input-placeholder {
+        color: var(--background-strong);
+        -webkit-transition: all .5s;
+        -moz-transition: all .5s;
+        transition: all .5s;
+    }
+
+    #collapsed-search.active {
+        margin-top: -3.5em;
+    }
 }
 
 
