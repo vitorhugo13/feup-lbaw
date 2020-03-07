@@ -219,6 +219,8 @@ input::-webkit-search-cancel-button {
 
 /* Screen is > 576px wide */
 @media (min-width: 576px) {
+
+    .expandable-search input[type=search]:focus,
     .expandable-search input[type=search]:hover {
         width: 8em;
         padding-left: 2.5em;
@@ -237,6 +239,7 @@ input::-webkit-search-cancel-button {
         transition: all .5s;
     } */
 
+    .expandable-search input:focus::-webkit-input-placeholder,
     .expandable-search input:hover::-webkit-input-placeholder {
         color: var(--background-strong);
         -webkit-transition: all .5s;

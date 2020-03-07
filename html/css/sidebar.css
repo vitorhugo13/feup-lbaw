@@ -95,7 +95,7 @@
         max-width: 250px;
         height: fit-content;
         position: fixed;
-        top: 15%;
+        top: 4.5rem;
         left: -250px;
         z-index: 9999;
         -webkit-transition: all 0.3s ease-out;
