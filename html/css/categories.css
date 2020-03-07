@@ -54,3 +54,88 @@
     color: var(--foreground);
     text-align: center;
 }
+
+
+/* Sidebar related */
+#side-toggle{
+    display: none;
+    background-color: var(--background-strong);
+    color: var(--foreground);
+    text-align: center;
+    padding-top: 0.5em;
+    border-radius: 0 10px 30px 0 ;
+}
+
+#angle-right {
+    display: none;
+}
+
+#angle-left {
+    display: none;
+}
+
+#angle-right.active {
+    display: inline;
+}
+
+#angle-left.active {
+    display: inline;
+}
+
+
+@media (max-width: 992px) {
+    /* Collapsable sidebar */
+
+    .wrapper {
+        display: block;
+    }
+
+    #sidebar {
+        min-width: 250px;
+        max-width: 250px;
+        height: fit-content;
+        position: fixed;
+        top: 15%;
+        left: -250px;
+        z-index: 9999;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+        background-color: var(--background);
+        padding-bottom: 1em;
+        border-radius: 0 0 10px 0;
+    }
+
+    #sidebar.active {
+        left: 0;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 998;
+        opacity: 0;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .overlay.active {
+        display: block;
+        opacity: 1;
+    }
+
+    #side-toggle {
+        display: block;
+        height: 4em;
+        width: 1.5em;
+        position: absolute;
+        top: 0;
+        right: -1.5em;
+    }
+}
