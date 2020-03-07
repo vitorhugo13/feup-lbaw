@@ -6,23 +6,28 @@ let btn = document.getElementById('side-toggle')
 let angleLeft = document.getElementById('angle-left')
 let angleRight = document.getElementById('angle-right')
 
-function collapse() {
-    sidebar.classList.remove('active')
-    overlay .classList.remove('active')
+function toggleSidebar() {
+    if(sidebar.classList.contains('active')){
+        collapse()
+    } else {
+        show()
+    }
 
-    
+    sidebar.classList.toggle('active')
+    overlay.classList.toggle('active')
+}
+
+function collapse() {
     angleRight.classList.add('active')
     angleLeft.classList.remove('active')
+    btn.style['background-color'] = 'var(--background)'
 }
 
 function show() {
-    sidebar.classList.add('active')
-    overlay .classList.add('active')
-
     angleRight.classList.remove('active')
     angleLeft.classList.add('active')
+    btn.style['background-color'] = 'var(--background-strong)'
 }
 
-angleLeft.addEventListener('click', collapse)
-overlay.addEventListener('click', collapse)
-angleRight.addEventListener('click', show)
+overlay.addEventListener('click', toggleSidebar)
+btn.addEventListener('click', toggleSidebar)
