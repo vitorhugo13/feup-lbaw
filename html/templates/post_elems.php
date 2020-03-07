@@ -74,7 +74,7 @@
 
 <?php function draw_comment_area() { ?>
     <div id="comment-area">
-        <textarea id="comment-content" placeholder="Leave a comment!" rows="3"></textarea>
+        <textarea id="comment-content" placeholder="Leave a comment!" oninput="auto_grow(this)"></textarea>
         <div class="d-flex flex-row justify-content-end">
             <button id="cancel-btn">Cancel</button>
             <button id="post-btn">Post</button>
