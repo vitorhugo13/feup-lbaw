@@ -1,23 +1,71 @@
 #content{
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
 }
 
-.img{
-    border: 5px solid var(--main-color);
-    padding: 0;
-
-    box-sizing: border-box;
-
-    max-width: 300px;
-    width: 100%;
-    height: auto;
-    margin: 0.5em;
+.edite-image {position: relative;}
+.edite-image .link {
+    position: absolute;
+    bottom: 10px; /*your button position*/
+    right: 10px; /*your button position*/
 }
 
-h1{
-    font-weight: bold;
+.img{
+    border: 2px solid var(--main-color);
+    padding: 0;
+    margin: 0.5em 0;
+    box-sizing: border-box;
+    max-width: 160px;
+    width: 70%;
+    height: auto;
+}
+
+h3{
+    font-weight: 400;
     color: var(--main-color);
+    align-self: start;
+}
+
+.edit-profile-info .btn{
+    width: 10em;
+    padding: 0.7em 1.2em;
+    margin: auto;
+    border: 0;
+    border-radius: 2px;
+    background-color: var(--background-strong);
+    color: var(--foreground);
+    font-size: 0.9em;
+    font-weight: 500;
+    text-align: center;
+}
+
+.edit-profile-info .btn:hover{
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.edit-profile-info .btn:focus{
+    outline: 0 none;
+}
+
+.edit-profile-info > textarea {
+    background-color: var(--background-strong);
+    color: var(--foreground);
+    border-style: none;
+    width: 80%;
+    border: solid 1px transparent;
+
+    padding: 0.5em 1em;
+    margin-bottom: 0.4em;
+    border-radius: 5px;
+
+    font-size: 0.9em;
+    font-weight: 300;
+}
+
+.edit-profile-info > textarea:focus {
+    outline: 0 none;
+    border: solid 1px var(--foreground);
 }
 
 /*from previous style sheet*/
@@ -26,12 +74,12 @@ h1{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 70vh;
+    padding-top: 6em;
 }
 
 .form-box  h4{
     font-weight: bold;
-    color: #fff;
+    color: var(--foreground);
 }
 
 .form-box .form-input{
@@ -45,7 +93,7 @@ h1{
     border:none;
     border-radius: 5px;
     outline: none;
-    background: white;
+    background: var(--foreground);
     padding-left: 45px;
 }
 
@@ -65,24 +113,29 @@ h1{
     border-bottom: 2px solid var(--main-color);
 }
 
+.changes-buttons button[type="submit"]{
+    padding: 0.7em 1.2em;
+    margin: auto;
+    border: 0;
+    border-radius: 2px;
+    background-color: var(--background-strong);
+    color: var(--main-color);
+    font-size: 0.9em;
+    font-weight: 500;
+    text-align: center;
+    width: 10em;
+}
 
-
-button[type="submit"], .discard{
-    border:none;
-    cursor: pointer;
-    width: 150px;
-    height: 40px;
-    border-radius: 5px;
-    background-color: var(--main-color);;
-    color:#000;
-    font-weight: bold;
-    transition: 0.5s;
+.changes-buttons > button[type="submit"]{
+    background-color: var(--main-color);
+    color: var(--background-strong);
+    font-weight: 600;
+    margin-left: 0.5em;
 }
 
 #content form{
-    width:80%;
+    width: 90%;
 }
-
 
 @media (max-width: 72em) {
     #content{

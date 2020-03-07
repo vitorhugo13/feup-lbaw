@@ -4,15 +4,15 @@ include_once(__DIR__.'/../templates/common.php');
 
 ?>
 
-<?php doc_start('EDIT PROFILE', ['edit_profile','common'], []); ?>
+<?php doc_start('LAMA', ['edit_profile','common'], []); ?>
 <?php draw_header(); ?>
 
 
 <div class="d-flex align-items-center flex-wrap justify-content-center">
-
-    <div class="d-flex flex-column align-items-center flex-fill">
-
-        <h1>Edit Profile</h1>
+    
+    <div class="edit-profile-info d-flex flex-column align-items-center flex-fill">
+        
+        <h3>Edit Profile</h3>
                 
         <img src="../assets/team_photos/vitorhugo.jpg" class="img rounded-circle  " alt="Profile photo">  
                 
@@ -22,7 +22,7 @@ include_once(__DIR__.'/../templates/common.php');
 
 
         <!--need to be changed when implementing this feature(this way due to A3)-->
-        <textarea rows="5" cols="30" class="mt-3"> Hello! My name's Vítor and i am currently taking LBAW's course at FEUP.</textarea>
+        <textarea rows="5" cols="30" class="mt-3">Hello! My name's Vítor and i am currently taking LBAW's course at FEUP.</textarea>
         <button type="submit" class="mt-1 btn">Update bio</button>
        
                 
@@ -57,15 +57,12 @@ include_once(__DIR__.'/../templates/common.php');
             </div>
 
 
-            <div class="text-center mb-3">
+            <div class="changes-buttons text-right mb-3">
+                <a href="./profile.php"><button type="submit" class="btn">Discard changes</button></a>
                 <button type="submit" class="btn">Save changes</button>
             </div>
 
         </form>
-
-        <div class="text-center">
-             <a href="./profile.php"><button type="submit" class="btn">Discard changes</button></a>
-         </div>
     </div>
 </div>
 
