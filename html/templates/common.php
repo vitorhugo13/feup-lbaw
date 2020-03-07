@@ -47,12 +47,12 @@
                     <span class="badge badge-pill badge-light mr-2">3</span>
                     <i class="fas fa-bell" data-toggle="dropdown"></i>
                     <div class="dropdown-menu dropdown-menu-right notification-menu">
-                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
-                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
-                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
-                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
-                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>                     
-                        <?php draw_notification('çoasdhnfoçansdon oadjfoça çlkjadlçfjoa ojkj ajdsfoj alkçdfajshkniuer vbsoirhoibobcinsecoin'); ?>               
+                        <?php draw_notification('bernas634 just commented your post'); ?>                     
+                        <?php draw_notification('5 LAMA\'s have upvoted your post recently'); ?>                     
+                        <?php draw_notification('Someone reported your post'); ?>                     
+                        <?php draw_notification('un_lucky replied to your comment yesterday'); ?>                     
+                        <?php draw_notification('There are 10 new posts on !Drunk'); ?>                     
+                        <?php draw_notification('One of your posts just hit 1k comments. Congratulations!'); ?>               
                     </div>
                 </div>
                 <div class="dropdown" style="margin-left: 1em">
@@ -60,9 +60,9 @@
                         height="30">
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="../pages/profile.php">Profile</a>
-                        <a class="dropdown-item" href="#">Feed</a>
+                        <a class="dropdown-item" href="../pages/feed.php">Feed</a>
                         <a class="dropdown-item" href="../pages/reports.php">Reports</a>
-                        <a class="dropdown-item" href="#">Time</a>
+                        <a class="dropdown-item" href="../pages/profile.php#blocked"><i class="fas fa-ban"></i> 49:30:06</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Log Out</a>
                     </div>

@@ -102,7 +102,7 @@
     color: var(--foreground);
 }
 
-.blocked{
+#blocked{
     padding: 1em 3em;
     display: flex;
     align-items: center;

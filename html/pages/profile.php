@@ -40,7 +40,7 @@ include_once(__DIR__.'/../templates/post_elems.php');
         <div class="side-info col-12 col-md-5 col-lg-4"> 
             <img src="../assets/gold_llama.svg"  width="80" alt="photo">
             <div class="points"> <p>&diams; 12903 points &diams;</p></div>
-            <div class="blocked">
+            <div id="blocked">
                 <div class="blocked-text">
                     <p>You are blocked for:</p>
                 </div>
