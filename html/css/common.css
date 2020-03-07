@@ -26,11 +26,37 @@ body>header>nav {
 body>header>div {
     background-color: var(--background-strong);
     border-radius: 0 0 60% 60%;
-    height: 0.5em;
+    height: 0.6em;
+}
+
+body > header > nav > div > div > img{
+    margin-right: 0.5em;
+    cursor: pointer;
 }
 
 body>header>nav>div>div>i {
-    font-size: 1.6em;
+    font-size: 1.5em;
+    margin-right: 0.5em;
+    cursor: pointer;
+}
+
+body>header>nav>div>div .badge {
+    background-color: var(--main-color);
+    color: var(--background-strong);
+}
+
+body > header > nav > div > div .dropdown-menu {
+    background-color: var(--foreground);
+}
+
+body > header > nav > div > div .dropdown-menu > a {
+    color: var(--background-strong);
+}
+
+body > header > nav > div > div .dropdown-menu .dropdown-divider {
+    border-top: 1px solid var(--background-strong);
+    width: 80%;
+    margin: auto;
 }
 
 /* ----------========== NOTIFICATIONS ==========---------- */
@@ -45,7 +71,7 @@ body>header>nav>div>div>i {
 #footer {
     flex-shrink: 0;
     background-color: var(--background-strong);
-    padding: 1.5em 3em;
+    padding: 2em 3em;
 }
 
 #footer>ul {
@@ -54,11 +80,26 @@ body>header>nav>div>div>i {
     margin: 0;
 }
 
-#footer>ul>li:first-child {
-    font-weight: bolder;
-    margin-bottom: 0.60em;
+#footer>ul:last-child {
+    list-style: none;
+    margin-right: 2em;
 }
 
+#footer>ul>li {
+    font-weight: 300;
+    font-size: small;
+    margin: 0 0 0.2em 0.5em;
+}
+
+#footer>ul>li>a {
+    color: var(--foreground);
+}
+
+#footer>ul>li:first-child {
+    font-weight: 500;
+    font-size: medium;
+    margin: 0 0 0.7em 0;
+}
 
 /* ----------========== BACK TO TOP BUTTON ==========---------- */
 #to-top {
@@ -106,7 +147,7 @@ input::-webkit-search-cancel-button {
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     font-family: inherit;
-    font-size: 100%;
+    font-size: 90%;
     /* background: var(--foreground) url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 10px center; */
     background: var(--foreground) url("../assets/search.svg") no-repeat 2px center;
     border: solid 2px transparent;
