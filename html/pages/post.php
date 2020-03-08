@@ -23,7 +23,7 @@ include_once(__DIR__.'/../templates/post_elems.php');
                     <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
-                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="edit_post.php">Edit</a>
                         <a class="dropdown-item" href="#">Mute</a>
                         <a class="dropdown-item" data-toggle="modal" data-target="#move-modal">Move</a>
                         <a class="dropdown-item" href="#">Block User</a>
