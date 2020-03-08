@@ -78,19 +78,16 @@ include_once(__DIR__ . '/../templates/report_elems.php');
                 <table class="table table-responsive-sm">
                     <thead>
                         <tr>
-                            <th scope="col">Title</th>
+                            <th scope="col">Justification</th>
                             <th scope="col">Reason</th>
                             <th scope="col">Date</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                        <?php draw_report('You should review my suspension since that was not what I meant. If you notice that comment well, it has a context, but the owner of the main comment edited it.', 'Harassement', '06/03/2020'); ?>
+                        <?php draw_report('I was just giving my opinion about black people. I did not insult anyone.', 'Racism', '02/03/2020'); ?>
+                        <?php draw_report('Can not I give my opinion on homosexuals? I thought there was still freedom of speech. I did not disrespect anyone', 'Homophobia', '01/03/2020'); ?>
                     </tbody>
                 </table>
             </div>

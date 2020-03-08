@@ -173,7 +173,13 @@
 
 /* ----------========== REPORT MODAL (COMMENT/POST) ==========---------- */
 #report-modal .modal-body {
-    padding: 2em 4em;
+    padding: 2em 4em 1.5em 4em;
+}
+
+#report-modal .custom-select {
+    background-color: var(--foreground);
+    color: var(--background);
+    font-weight: 400;
 }
 
 /* ----------========== REPORT MODAL (COMMENT/POST) ==========---------- */
@@ -182,11 +188,29 @@
 }
 
 #move-modal .input-group {
-    margin-bottom: 2em;
+    margin-bottom: 1.5em;
 }
 
 .category-move-badge > i {
     margin-left: 1em;
+}
+
+#move-modal .input-group > select {
+    background-color: var(--foreground);
+    color: var(--background);
+    font-weight: 400;
+}
+
+#move-modal .input-group-append .btn{
+    background-color: var(--background);
+    color: var(--foreground);
+    font-weight: 500;
+    border: solid 1px var(--foreground);
+}
+
+#move-modal .input-group-append .btn:hover{
+    background-color: var(--background);
+    color: var(--accent-color);
 }
 
 .category-move-badge {
@@ -195,7 +219,7 @@
 
     margin: 0.3em;
     padding: 0.5em 1em;
-    font-size: 1.1em;
+    font-size: 0.9em;
 
     cursor: pointer;
 }
