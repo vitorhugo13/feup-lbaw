@@ -5,7 +5,7 @@ include_once(__DIR__.'/../templates/post_elems.php');
 
 ?>
 
-<?php doc_start('LAMA', ['profile','common','post_elems'], []); ?>
+<?php doc_start('LAMA', ['profile','common','post_elems'], ['top']); ?>
 <?php draw_header(); ?>
 
 <div class="profile-container">
