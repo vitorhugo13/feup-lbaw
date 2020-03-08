@@ -1,5 +1,9 @@
 @import 'constants.css';
 
+/* #content {
+    min-width: 70em;
+} */
+
 #sidebar-navigation li {
     width: 10em;
 }
