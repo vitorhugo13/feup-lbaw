@@ -58,7 +58,8 @@ include_once(__DIR__.'/../templates/common.php');
 
 
             <div class="changes-buttons text-right mb-3">
-                <a href="./profile.php"><button type="submit" class="btn">Discard changes</button></a>
+                <!-- <a href="./profile.php"><button type="submit" class="btn">Discard changes</button></a> -->
+                <a href="./profile.php">Discard changes</a>
                 <button type="submit" class="btn">Save changes</button>
             </div>
 
