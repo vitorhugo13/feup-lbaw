@@ -1,6 +1,6 @@
 <?php function draw_category_card($title, $posts, $activity)
 { ?>
-    <div class="col mb-4">
+    <div class="col mb-4 px-3 px-sm-0">
         <article class="card category-card">
             <div class="card-body">
                 <header class="d-flex flex-row justify-content-between">

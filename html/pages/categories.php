@@ -36,7 +36,7 @@ include_once(__DIR__ . '/../templates/category.php');
     <main id="feed">
         <section class="card-deck row">
             <div class="col-0 col-md-3"></div>
-            <div class="col-12 col-md-6  mb-4">
+            <div class="col-12 col-md-6 px-3 px-sm-0 mb-4">
                 <article class="card category-card" id="comm-news">
                     <div class="card-body">
                         <header class="d-flex flex-row justify-content-center">
