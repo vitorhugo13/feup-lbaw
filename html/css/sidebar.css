@@ -38,6 +38,12 @@
     font-weight: 300;
 }
 
+#view-categories:hover {
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: 400;
+}
+
 #sidebar-navigation {
     width: 100%;
     padding: 1em 0;

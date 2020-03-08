@@ -3,7 +3,8 @@
 /* ----------========== FEED ==========---------- */
 #feed {
     position: relative;
-    margin-left: 20em;
+    margin-left: 17em;
+    /* max-width: 70%; */
 }
 
 @media (max-width: 992px) {
