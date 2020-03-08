@@ -1,13 +1,23 @@
 @import 'constants.css';
 
+#sidebar-navigation {
+    padding: 1.5em 1em;
+}
+
 #sidebar-navigation li {
     width: 10em;
+}
+
+#sidebar-navigation p {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--main-color);
 }
 
 #sidebar-navigation a {
     font-weight: 500;
     color: var(--foreground);
-    border-right: solid var(--background);
+    border-right: solid 2px var(--background);
     border-radius: 5px 0 0 5px;
 
     transition: color 200ms linear 0s;
@@ -42,9 +52,19 @@
     transition: border-color 400ms ease-in-out 0s;
     -webkit-transition: border-color 400ms ease-in-out 0s;
     -moz-transition: border-color 400ms ease-in-out 0s;
+    cursor: pointer;
 }
 
-.category-card:hover {
+#feed section:first-child .category-card {
+    border: solid 2px var(--foreground);
+    
+}
+
+#feed section:first-child h5 {
+    /* color: var(--accent-color); */
+}
+
+.category-card:hover, #feed section:first-child .category-card:hover {
     border: solid 2px var(--main-color);
 }
 
@@ -54,6 +74,17 @@
     background-color: inherit;
 }
 
+.category-card footer p {
+    font-size: 0.9em;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.category-card footer p:last-child {
+    font-weight: 300;
+}
+
 .category-card i {
-    margin-right: 0.75em;
+    font-size: 0.9em;
+    margin-left: 0.75em;
 }

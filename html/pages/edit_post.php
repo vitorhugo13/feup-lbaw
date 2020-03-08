@@ -6,7 +6,7 @@ include_once(__DIR__.'/../templates/report_elems.php');
 
 ?>
 
-<?php doc_start('Edit Post', ['common', 'post_elems', 'edit_post'], ['top', 'textarea']); ?>
+<?php doc_start('LAMA', ['common', 'post_elems', 'edit_post'], ['top', 'textarea']); ?>
 <?php draw_header(); ?>
 
 <form class="d-flex flex-row">

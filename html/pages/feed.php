@@ -5,7 +5,7 @@ include_once(__DIR__ . '/../templates/post_elems.php');
 
 ?>
 
-<?php doc_start('FEED', ['common', 'home', 'post_elems','search', 'sidebar','feed'], ['top', 'sidebar']); ?>
+<?php doc_start('LAMA', ['common', 'home', 'post_elems','search', 'sidebar','feed'], ['top', 'sidebar']); ?>
 <?php draw_header(); ?>
 
 <div class="container">

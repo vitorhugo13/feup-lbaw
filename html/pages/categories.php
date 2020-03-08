@@ -5,7 +5,7 @@ include_once(__DIR__ . '/../templates/category.php');
 
 ?>
 
-<?php doc_start('LAMA TEAM', ['common', 'team', 'sidebar', 'categories', 'home'], ['sidebar']); ?>
+<?php doc_start('LAMA', ['common', 'team', 'sidebar', 'categories', 'home'], ['sidebar']); ?>
 <?php draw_header(); ?>
 <section id="wrapper">
     <aside id="sidebar" class="d-flex flex-column align-items-center">
@@ -40,12 +40,12 @@ include_once(__DIR__ . '/../templates/category.php');
                 <article class="card category-card" id="comm-news">
                     <div class="card-body">
                         <header class="d-flex flex-row justify-content-center">
-                            <h5 class="card-title">! Community News</h5>
+                            <h6 class="card-title">! Community News</h6>
                         </header>
                     </div>
-                    <footer class="card-footer">
-                        <p>23 posts &middot; Last active: 15 days</p>
-                    </footer>
+                    <footer class="card-footer d-flex flex-row justify-content-between">
+                        <p>23 posts </p> <p> Last active: 15 days</p>
+                    </footer> 
                 </article>
             </div>
             <div class="col-0 col-md-3"></div>
