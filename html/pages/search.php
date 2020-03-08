@@ -8,7 +8,7 @@ include_once(__DIR__ . '/../templates/post_elems.php');
 <?php doc_start('LAMA', ['common', 'home', 'search', 'post_elems', 'sidebar'], ['top', 'sidebar']); ?>
 <?php draw_header(); ?>
 
-<div class="container">
+<div class="wrapper">
     <div id="sidebar" class="d-flex flex-column align-items-center">
         <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
             <nav>
@@ -47,7 +47,7 @@ include_once(__DIR__ . '/../templates/post_elems.php');
     </div>
 
     <div id="search-results">
-        <div class="tab-categories tab-content" id="nav-tabContent">
+        <div class="tab-cats tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-fresh" role="tabpanel" aria-labelledby="nav-fresh-tab">
                 <?php draw_post_preview('I am a man in my early thirties and I have been with the same woman since I was 13. Ask me anything.', 'Glaurung', 'Celerabrating our 19th anniversary together this week.', '6922', '36', '556'); ?>    
                 <?php draw_post_preview('I just got out of prison. Ask me anything.', 'bernas634', 'Donec bibendum sollicitudin semper. Integer et mi eget leo convallis tempor aliquam nec justo. Donec hendrerit ipsum ut neque bibendum, in cursus est tempus. Pellentesque sem erat, consequat cursus nibh sit amet, ultrices ultrices eros. Nam lacinia viverra nisl sit amet porttitor. Nam imperdiet, orci sit amet iaculis facilisis, mi erat molestie justo, a egestas dui velit vel nulla. Quisque commodo erat eget nibh venenatis tincidunt. Integer condimentum mollis nisl consequat accumsan. Curabitur cursus velit lorem, ac mattis est interdum id. Nunc lacinia velit dui, et luctus nulla laoreet ornare.', '50k', '360', '1230'); ?>
