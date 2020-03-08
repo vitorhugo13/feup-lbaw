@@ -1,16 +1,6 @@
 @import 'constants.css';
 
-
-/* .container {
-    margin-left: 3em;
-} */
-
 /* ----------========== FEED ==========---------- */
-#mainpage {
-    margin: auto;
-    justify-content: center;
-}
-
 #feed {
     position: relative;
     margin-left: 17em;

@@ -1,10 +1,5 @@
 @import 'constants.css';
 
-#content {
-    width: 75%;
-    margin: 0 auto;
-}
-
 /* ----------========== POST ==========---------- */
 .post {
     background-color: var(--background-strong);
@@ -205,25 +200,7 @@
 
 
 /* ----------========== MEDIA QUERIES ==========---------- */
-@media (max-width: 82em) {
-    #content {
-        width: 70em;
-    }
-}
-@media (max-width: 72em) {
-    #content {
-        width: 60em;
-    }
-}
-@media (max-width: 62em) {
-    #content {
-        width: 100%;
-    }
-}
 @media (max-width: 32em) {
-    #content {
-        padding: 1em 0.5em;
-    }
     .post, #comment-section {
         padding: 1em;
     }

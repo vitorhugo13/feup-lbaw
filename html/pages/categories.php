@@ -30,6 +30,8 @@ include_once(__DIR__ . '/../templates/category.php');
             <i class="fas fa-angle-left" id="angle-left"></i>
         </div>
     </aside>
+    <!-- Dark Overlay element -->
+    <div class="overlay"></div>
 
     <main id="feed">
         <section class="card-deck row">
@@ -68,8 +70,6 @@ include_once(__DIR__ . '/../templates/category.php');
         </section>
 
     </main>
-    <!-- Dark Overlay element -->
-    <div class="overlay"></div>
 </section>
 
 <?php draw_footer(); ?>
