@@ -5,7 +5,7 @@ include_once(__DIR__ . '/../templates/post_elems.php');
 
 ?>
 
-<?php doc_start('LAMA', ['common', 'search', 'post_elems', 'sidebar'], ['top', 'sidebar']); ?>
+<?php doc_start('LAMA', ['common', 'home', 'search', 'post_elems', 'sidebar'], ['top', 'sidebar']); ?>
 <?php draw_header(); ?>
 
 <div class="container">
@@ -20,20 +20,20 @@ include_once(__DIR__ . '/../templates/post_elems.php');
             </nav>  
             <div class="d-flex flex-column align-self-start" id="filters">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="filter-username">
                     <label class="form-check-label" for="filter-username">
+                        <input class="form-check-input" type="checkbox" value="" id="filter-username">
                         Username
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="filter-category">
                     <label class="form-check-label" for="filter-category">
+                        <input class="form-check-input" type="checkbox" value="" id="filter-category">
                         Category
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="filter-title">
                     <label class="form-check-label" for="filter-title">
+                        <input class="form-check-input" type="checkbox" value="" id="filter-title">
                         Title
                     </label>
                 </div>

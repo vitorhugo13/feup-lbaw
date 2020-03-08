@@ -1,10 +1,3 @@
-input[type=checkbox] {
-    /* Double-sized Checkboxes */
-    -ms-transform: scale(1.1); /* IE */
-    -moz-transform: scale(1.1); /* FF */
-    -webkit-transform: scale(1.1); /* Safari and Chrome */
-    -o-transform: scale(1.1); /* Opera */
-}
 
 #sidebar-navigation {
     border-radius: 5px;
@@ -34,4 +27,9 @@ input[type=checkbox] {
     bottom: 3px;
     margin-right: 0.3em;
     color: var(--main-color) !important;
+}
+
+.form-check label {
+    font-size: 0.9em;
+    font-weight: 400;
 }
