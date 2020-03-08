@@ -32,8 +32,8 @@ include_once(__DIR__.'/../templates/common.php');
                     <div> 21 years <i class="fas fa-birthday-cake"></i></div>
                     <div> Viseu <i class="fas fa-thumbtack"></i></div>
                     <div  class="d-flex flex-column" >
-                        <div> Really excited to finish my <i class="fas fa-info-circle"></i></div>
-                        <div class="personal-info-right">course and get to work as soon as possible.</div>
+                        <div> Video games and programming <i class="fas fa-info-circle"></i></div>
+                        <div class="personal-info-right"> are my passion.</div>
                     </div>
                 </div>
                 <img src="../assets/team_photos/cajo.jpg" class="img" alt="Cajo's photo">
