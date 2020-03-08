@@ -1,5 +1,9 @@
 @import 'constants.css';
 
+#content > form {
+    height: 100%;
+}
+
 /* ----------========== Categories Tab ==========---------- */
 
 #categories-tab {
@@ -13,14 +17,12 @@
     font-size: 1.1em;
     font-weight: 400;
     color: var(--main-color);
-    padding-bottom: 0.5em;
-    border-bottom: 1px solid var(--main-color);
+    padding-bottom: 0.2em;
+    margin-bottom: 1em;
+    border-bottom: 2px solid var(--background);
 }
 
 #selected-categories {
-    border-top: 2px solid var(--background);
-    padding: 1em 0;
-    justify-content: start;
     text-align: left;
     margin-left: 0;
 }
@@ -30,12 +32,11 @@
     background-color: var(--background);
     font-size: 0.9em;
     padding: 0.5em 1em;
-    margin: 1em 0.5em 0 0;
-    width: 80%;
+    margin: .75em 0.5em 0 0;
 }
 
 #categories-tab .input-group {
-    margin: 0.5em 0 1em 0;
+    margin: 0.5em 0 .5em 0;
 }
 
 #categories-tab .input-group>select {

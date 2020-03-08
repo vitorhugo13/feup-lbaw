@@ -10,7 +10,7 @@ include_once(__DIR__ . '/../templates/report_elems.php');
 <?php draw_header(); ?>
 
 <form class="row m-2 m-lg-0">
-    <section id="categories-tab" class="col-12 col-lg-3">
+    <section id="categories-tab" class="col-12 col-xl-3">
         <header>Post Categories</header>
         <div class="input-group">
             <select class="custom-select">
@@ -25,14 +25,14 @@ include_once(__DIR__ . '/../templates/report_elems.php');
                 <button class="btn btn-outline-secondary" type="button">Add</button>
             </div>
         </div>
-        <footer id="selected-categories" class="d-flex flex-column align-items-center">
+        <footer id="selected-categories" class="d-flex flex-row flex-wrap">
             <?php draw_category_move_badge('Politics'); ?>
             <?php draw_category_move_badge('Gaming'); ?>
             <?php draw_category_move_badge('Ethics'); ?>
         </footer>
     </section>
 
-    <section id="text-tab" class="col-12 col-lg-8 ml-0 ml-lg-5 mt-5 mt-lg-0">
+    <section id="text-tab" class="col-12 col-xl-8 ml-0 ml-xl-5 mt-5 mt-xl-0">
         <div class="d-flex flex-column justify-content-start align-items-stretch form-group">
             <input type="text" id="post-title" placeholder="Title" />
             <textarea id="post-body" placeholder="What is this post about?"></textarea>
