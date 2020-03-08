@@ -1,20 +1,9 @@
 @import 'constants.css';
 
-
-/* .container {
-    margin-left: 3em;
-} */
-
 /* ----------========== FEED ==========---------- */
-#mainpage {
-    margin: auto;
-    justify-content: center;
-}
-
 #feed {
     position: relative;
     margin-left: 20em;
-    /* max-width: 70%; */
 }
 
 @media (max-width: 992px) {

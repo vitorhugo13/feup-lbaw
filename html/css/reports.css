@@ -32,21 +32,26 @@
 }
 
 /* ----------========== MAIN CONTENT ==========---------- */
-#main {
+/* #main {
     background-color: var(--background-strong);
 
     width: 75em;
     margin: 0 auto;
-    border-radius: 5px;
-}
+} */
+
 #main .tab-content {
-    padding: 1.5em 3em;
+    padding: 1em;
+}
+
+#main {
+    background-color: var(--background-strong);
+    position: relative;
+    border-radius: 5px;
+    margin-left: 20em;
 }
 
 /* ----------========== TABLES ==========---------- */
-table {
-    width: 100%;
-}
+
 table * {
     color: var(--foreground);
 }
@@ -68,38 +73,58 @@ table tbody tr:nth-child(2n+1) {
     background-color: var(--background-strong);
 }
 
-table.table tbody tr *:nth-child(1) {
-    word-break: break-all;
+table td {
+    position: relative;
 }
-table.table tbody tr *:nth-child(2) {
-    text-align: center;
+
+table .data-title span,
+table .data-date span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding-left: .75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-table tbody tr *:nth-child(3) {
-    text-align: center;
+
+.data-title {
+    width: 70%;
 }
-table tbody tr *:nth-child(4) {
+.data-reason {
     text-align: center;
+    width: 14%;
+}
+.data-date {
+    text-align: center;
+    width: 14%;
 }
 
 /* ----------========== MEDIA QUERIES ==========---------- */
-@media (max-width: 82em) {
+
+@media (max-width: 992px) {
+    #main {
+        margin-left: 0;
+    }
+}
+/*@media (max-width: 82em) {
     #main {
         width: 70em;
     }
-}
+} */
 @media (max-width: 72em) {
-    #main {
+    /* #main {
         width: 60em;
-    }
+    } */
     #main .tab-content {
         padding: 0.7em 1.4em;
     }
 }
-@media (max-width: 62em) {
+/* @media (max-width: 62em) {
     #main {
         width: 100%;
     }
-}
+} */
 @media (max-width: 32em) {
     #content {
         padding: 1em 0.5em;
