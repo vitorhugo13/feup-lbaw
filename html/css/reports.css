@@ -2,19 +2,33 @@
 
 
 /* ----------========== SIDEBAR ==========---------- */
-#sidebar {
-    background-color: var(--background-strong);
-
-    position: fixed;
-    
-    width: 16em;
-    border-radius: 5px;
-
-    padding: 1em 2em;
+#sidebar-navigation li {
+    width: 10em;
 }
 
-#sidebar > header {
-    margin-bottom: 1em;
+#sidebar-navigation a {
+    font-weight: 500;
+    color: var(--foreground);
+    border-right: solid var(--background);
+    border-radius: 5px 0 0 5px;
+
+    transition: color 200ms linear 0s;
+    -webkit-transition: color 200ms linear 0s;
+    -moz-transition: color 200ms linear 0s;
+}
+
+#sidebar-navigation a:hover {
+    color: var(--main-color);
+}
+
+#sidebar-navigation a:focus {
+    outline: none;
+}
+
+#sidebar-navigation a.active {
+    color: var(--main-color);
+    border-color: var(--main-color);
+    background-color: var(--background-strong);
 }
 
 /* ----------========== MAIN CONTENT ==========---------- */
