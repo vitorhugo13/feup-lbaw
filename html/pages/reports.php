@@ -46,12 +46,12 @@ include_once(__DIR__ . '/../templates/report_elems.php');
                         </tr>
                     </thead>
                     <tbody>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('I am the daughter of an influential anti-vaccine figure and was unvaccinated until I got my own shots at 18. AMA!', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                        <?php draw_report('I think that using violence in our childrens education is important. AMA.', 'Violence', '07/03/2020'); ?>
+                        <?php draw_report('I am the daughter of an influential anti-vaccine figure and was unvaccinated until I got my own shots at 18. AMA!', 'Harassement', '05/03/2020'); ?>
+                        <?php draw_report('I hired a black employee and it was the worst decision I made. Does anyone have a solution to the problem?', 'Racism', '03/03/2020'); ?>
+                        <?php draw_report('There are several people in my job who are foreigners, and I feel sick to see them here. AMA', 'Xenophobia', '29/02/2020'); ?>
+                        <?php draw_report('Hitler is our savior. Ask me anything, I will be happy to explain why.', 'Inappropriate', '27/02/2020'); ?>
+                        <?php draw_report('I am terrified of homosexuals, I cannot relate to them. Somebody else?', 'Homophobia', '20/02/2020'); ?>
                     </tbody>
                 </table>
             </div>
@@ -66,12 +66,11 @@ include_once(__DIR__ . '/../templates/report_elems.php');
                         </tr>
                     </thead>
                     <tbody>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('I am the daughter of an influential anti-vaccine figure and was unvaccinated until I got my own shots at 18. AMA!', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
+                        <?php draw_report('Same here, that scum should leave our country.', 'Xenophobia', '08/03/2020'); ?>
+                        <?php draw_report('ahahah, poor thing, if you were dressed, none of this had happened.', 'Harassement', '06/03/2020'); ?>
+                        <?php draw_report('Kim Jong-un and Trump are our only solution', 'Inappropriate', '04/03/2020'); ?>
+                        <?php draw_report('The women place is in the kitchen.', 'Sexism', '02/02/2020'); ?>
+                        <?php draw_report('Look who he is ...I thought you were at Burger King', 'Bullying', '29/02/2020'); ?>
                     </tbody>
                 </table>
             </div>
@@ -87,7 +86,7 @@ include_once(__DIR__ . '/../templates/report_elems.php');
                     </thead>
                     <tbody>
                         <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
-                        <?php draw_report('I am the daughter of an influential anti-vaccine figure and was unvaccinated until I got my own shots at 18. AMA!', 'Harassement', '20/02/2020'); ?>
+                        <?php draw_report('', 'Harassement', '20/02/2020'); ?>
                         <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
                         <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
                         <?php draw_report('Title title', 'Harassement', '20/02/2020'); ?>
