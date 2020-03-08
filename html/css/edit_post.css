@@ -11,14 +11,32 @@
     width: 20em;
 }
 
-#sidebar > div {
-    background-color: var(--background-strong);
-    padding: 1.4em 2.2em;
+#sidebar-navigation {
     border-radius: 5px;
 }
 
+#sidebar-navigation > div:first-child > p{
+    font-size: 1.1em;
+    font-weight: 400;
+    margin-bottom: 0;
+    color: var(--main-color);
+}
+
+.opt{
+    border-top: 2px solid var(--background);
+    padding: 1em 0;
+    justify-content: start;
+    text-align: left;
+    margin-left: 0;
+}
+
+#sidebar > div {
+    background-color: var(--background-strong);
+    padding: 1.4em 2.2em;
+}
+
 #sidebar header {
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     border-bottom: 1px solid var(--main-color);
 }
 
@@ -28,8 +46,31 @@
 
 #sidebar .category-move-badge {
     background-color: var(--background);
-    font-size: 1em;
+    font-size: 0.9em;
     padding: 0.5em 1em;
+    margin: 1em 0.5em 0 0;
+}
+
+#sidebar-navigation .input-group {
+    margin: 0.5em 0 1em 0;
+}
+
+#sidebar-navigation .input-group > select{
+    background-color: var(--foreground);
+    color: var(--background);
+    font-weight: 400;
+}
+
+#sidebar-navigation .input-group-append .btn{
+    background-color: var(--background);
+    color: var(--foreground);
+    font-weight: 500;
+    border: solid 1px var(--foreground);
+}
+
+#sidebar-navigation .input-group-append .btn:hover{
+    background-color: var(--background);
+    color: var(--accent-color);
 }
 
 /* ----------========== MAIN ==========---------- */
@@ -37,7 +78,7 @@
     background-color: var(--background-strong);
 
     border-radius: 5px;
-    width: 60em;
+    width: 100%;
     padding: 1em 2em;
     margin: 0 2em;
 }
@@ -47,19 +88,23 @@
     color: var(--foreground);
 
     margin-bottom: 1em;
-    font-size: 1.3em;
+    font-size: 1.2em;
+    font-weight: 500;
 
     border: none;
     border-bottom: 2px solid var(--background);
 }
 
 #post-title:focus {
-    border-bottom: 2px solid var(--main-color);
+    border: none;
+    border-bottom: 1px solid var(--main-color);
+    outline: 0 none;
 }
 
 #post-body {
     background-color: var(--background-strong);
     color: var(--foreground);
+    font-weight: 300;
 
     border: none;
     min-height: 10em;
@@ -69,12 +114,28 @@
     overflow: hidden;
 }
 
-#main > div > div > .btn {
-    margin-left: 1em;
-    width: 6em;
+#post-body:focus {
+    outline: 0 none;
 }
 
-/* ----------========== SPACER ==========---------- */
-#spacer {
-    width: 22em;
+#post-buttons button {
+    width: 8em;
+    padding: 0.5em 1.5em;
+    margin-left: 0.5em;
+    border: 0;
+    border-radius: 2px;
+    background-color: var(--main-color);
+    color: var(--background-strong);
+    font-weight: 600;
 }
+
+#post-buttons button:first-child {
+    background-color: var(--background);
+    color: var(--main-color);
+    font-weight: 400;
+}
+
+#post-buttons button:focus {
+    outline: 0 none;
+}
+

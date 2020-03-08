@@ -11,8 +11,9 @@ include_once(__DIR__.'/../templates/report_elems.php');
 
 <form class="d-flex flex-row">
     <div id="sidebar">
-        <div>
-            <header>Categories</header>
+        <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
+            <div class="align-items-left"> <p class="nav-title">Post Categories</p></div>
+            <div class="opt">
             <div class="input-group">
                 <select class="custom-select">
                     <option selected>Add new category...</option>
@@ -31,6 +32,7 @@ include_once(__DIR__.'/../templates/report_elems.php');
                 <?php draw_category_move_badge('Gaming'); ?>
                 <?php draw_category_move_badge('Ethics'); ?>
             </div>
+            </div>
         </div>  
     </div>
 
@@ -38,14 +40,13 @@ include_once(__DIR__.'/../templates/report_elems.php');
         <div class="d-flex flex-column justify-content-stretch">
         <input type="text" id="post-title" placeholder="Title"/>
         <textarea id="post-body" placeholder="What is this post about?" oninput="auto_grow(this)"></textarea>
-        <div class="d-flex flex-row justify-content-end">
+        <div id="post-buttons" class="d-flex flex-row justify-content-end">
             <button class="btn btn-secondary">Cancel</button>
             <button class="btn btn-primary" type="submit">Post</button>
         </div>  
         </div>  
     </div>
 
-    <div id="spacer">
     </div>
 </form>
 

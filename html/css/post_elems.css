@@ -201,5 +201,5 @@
 }
 
 .category-move-badge:hover {
-    opacity: 60%;
+    color: var(--accent-color);
 }

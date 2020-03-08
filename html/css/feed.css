@@ -10,6 +10,11 @@
     color: var(--main-color);
 }
 
+#sidebar > div {
+    background-color: var(--background-strong);
+    padding: 1.4em 2.2em;
+}
+
 .opt{
     border-top: 2px solid var(--background);
     justify-content: start;
