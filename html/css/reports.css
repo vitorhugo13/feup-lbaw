@@ -6,6 +6,17 @@
     width: 10em;
 }
 
+#sidebar-navigation{
+    padding: 1.5em;
+}
+
+#sidebar-navigation p {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--main-color);
+    margin-left: 0.5em;
+}
+
 #sidebar-navigation a {
     font-weight: 500;
     color: var(--foreground);
@@ -40,14 +51,14 @@
 } */
 
 #main .tab-content {
-    padding: 1em;
+    padding: 0.5em 1.5em;
 }
 
 #main {
     background-color: var(--background-strong);
     position: relative;
     border-radius: 5px;
-    margin-left: 20em;
+    margin-left: 17em;
 }
 
 /* ----------========== TABLES ==========---------- */
@@ -62,14 +73,14 @@ table * {
 
 table.table thead {
     border-bottom: 2px solid var(--main-color);
-    background-color: var(--background);
+    background-color: var(--background-strong);
     text-align: left;
 }
 
 table tbody tr {
     background-color: var(--background);
 }
-table tbody tr:nth-child(2n+1) {
+table tbody tr:nth-child(2n) {
     background-color: var(--background-strong);
 }
 
@@ -90,14 +101,21 @@ table .data-date span {
 
 .data-title {
     width: 70%;
+    
+    font-weight: 300;
+    font-size: 0.9em;
 }
 .data-reason {
-    text-align: center;
     width: 14%;
+    font-weight: 400;
+    font-size: 1em;
 }
 .data-date {
-    text-align: center;
+    text-align: ;
     width: 14%;
+
+    font-weight: 300;
+    font-size: 0.9em;
 }
 
 /* ----------========== MEDIA QUERIES ==========---------- */
