@@ -1,10 +1,5 @@
 @import 'constants.css';
 
-
-.container {
-    margin-left: 3em;
-}
-
 /* ----------========== SIDEBAR ==========---------- */
 #filters {
     margin: 1em 2.6em;
@@ -15,13 +10,23 @@
     margin-left: 0.3em;
 }
 
-#filters input[type=checkbox] {
-  /* Double-sized Checkboxes */
-  -ms-transform: scale(1.2); /* IE */
-  -moz-transform: scale(1.2); /* FF */
-  -webkit-transform: scale(1.2); /* Safari and Chrome */
-  -o-transform: scale(1.2); /* Opera */
+.form-check input{
+    vertical-align: middle;
+    position: relative;
+    bottom: 3px;
+    margin-right: 0.3em;
+    color: var(--main-color) !important;
 }
+
+.form-check label {
+    font-size: 0.9em;
+    font-weight: 400;
+}
+
+#sidebar-navigation {
+    border-radius: 5px;
+}
+
 /* ----------========== FEED ==========---------- */
 #mainpage {
     margin: auto;
@@ -30,8 +35,7 @@
 
 #search-results {
     position: relative;
-    margin-left: 20em;
-    max-width: 70%;
+    margin-left: 17em;
 }
 
 @media (max-width: 992px) {

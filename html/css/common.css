@@ -55,6 +55,12 @@ body>header>nav>div>div .dropdown-menu>a {
     color: var(--background-strong);
 }
 
+
+body>header>nav>div>div .dropdown-menu > a > i{
+    color: var(--error-color);
+    margin: 0 0.2em 0 0.7em;
+}
+
 body>header>nav>div>div .dropdown-menu .dropdown-divider {
     border-top: 1px solid var(--background-strong);
     width: 80%;
