@@ -55,6 +55,11 @@ body>header>nav>div>div .dropdown-menu>a {
     color: var(--background-strong);
 }
 
+body>header>nav>div>div .dropdown-menu>a:hover {
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
 
 body>header>nav>div>div .dropdown-menu > a > i{
     color: var(--error-color);
@@ -129,10 +134,50 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
 
 .modal-footer {
     border: none;
+
 }
 
 .modal-header {
+    padding: 1em 1.5em 0.7em 1.5em;
     border-bottom: 1px solid var(--background-strong);
+}
+
+.modal-header .modal-title {
+    font-size: 1.3em;
+    font-weight: 400;
+}
+
+.modal-header .close {
+    text-shadow: none;
+    color: var(--foreground);
+}
+
+.modal-header .close:hover {
+    color: var(--main-color);
+}
+
+.modal-footer button {
+    width: 6em;
+    padding: 0.5em 0.5em;
+    margin-left: 0.5em;
+    border: 0;
+    border-radius: 2px;
+}
+
+.modal-footer button:focus {
+    outline: 0 none;
+}
+
+.modal-footer .btn-primary {
+    background-color: var(--main-color);
+    color: var(--background-strong);
+    font-weight: 600;
+}
+
+.modal-footer  .btn-secondary {
+    background-color: var(--background-strong);
+    color: var(--main-color);
+    font-weight: 400;
 }
 
 
