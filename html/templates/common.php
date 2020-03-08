@@ -65,7 +65,7 @@
                         <a class="dropdown-item" href="../pages/reports.php">Reports</a>
                         <a class="dropdown-item" href="../pages/profile.php#blocked"><i class="fas fa-ban"></i> 49:30:06</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Log Out</a>
+                        <a class="dropdown-item" href="../pages/home_guest.php">Log Out</a>
                     </div>
                 </div>
             </div>

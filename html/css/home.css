@@ -12,3 +12,14 @@
         margin-left: 0;
     }
 }
+
+/* ----------========== Guest Buttons ==========---------- */
+#log-buttons a {
+    color: var(--main-color);
+}
+
+@media (max-width: 576px) {
+    #log-buttons :nth-child(2) {
+        display: none;
+    }
+}

@@ -20,7 +20,7 @@ include_once(__DIR__.'/../templates/common.php');
                     <h4>Create new account</h4>
                 </div>
                     
-                <form>
+                <form action="../pages/home.php">
 
                     <div class="form-input">
                         <span> <i class="fa fa-user"></i></span>
@@ -54,7 +54,7 @@ include_once(__DIR__.'/../templates/common.php');
                     <h6><span>or register with</span></h6>
                                       
                     <div class="google mb-3">         
-                        <a href="" class="btn btn-block btn-social btn-google"><i class="fab fa-google"></i>oogle</a>          
+                        <a href="../pages/home.php" class="btn btn-block btn-social btn-google"><i class="fab fa-google"></i>oogle</a>          
                     </div>
                       
                     <div class="text-white">
