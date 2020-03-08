@@ -28,7 +28,7 @@ include_once(__DIR__.'/../templates/common.php');
             <div class="name d-flex flex-wrap reverse spacing">
                 <div class="d-flex flex-column text-right">
                     <h4>Carlos Jorge</h4>
-                    <div> up20170XXXX@fe.up.pt <i class="fas fa-envelope"></i> </div>
+                    <div> up201706735@fe.up.pt <i class="fas fa-envelope"></i> </div>
                     <div> 21 years <i class="fas fa-birthday-cake"></i></div>
                     <div> Viseu <i class="fas fa-thumbtack"></i></div>
                     <div  class="d-flex flex-column" >
@@ -59,7 +59,7 @@ include_once(__DIR__.'/../templates/common.php');
             <div class="name d-flex flex-wrap reverse spacing">
                 <div class="d-flex flex-column text-right">
                     <h4>Vítor Gonçalves</h4>
-                    <div> up20170XXXX@fe.up.pt <i class="fas fa-envelope"></i> </div>
+                    <div> up201703917@fe.up.pt <i class="fas fa-envelope"></i> </div>
                     <div> 20 years <i class="fas fa-birthday-cake"></i></div>
                     <div> Fafe <i class="fas fa-thumbtack"></i></div>
                     <div  class="d-flex flex-column" >
