@@ -1,9 +1,5 @@
 @import 'constants.css';
 
-/* #content {
-    min-width: 70em;
-} */
-
 #sidebar-navigation li {
     width: 10em;
 }
@@ -33,6 +29,11 @@
     background-color: var(--background-strong);
 }
 
+.col, .col-12, .col-md-6 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .category-card {
     min-width: 16rem;
     color: var(--foreground);
@@ -51,4 +52,8 @@
     margin: 0;
     border: none;
     background-color: inherit;
+}
+
+.category-card i {
+    margin-right: 0.75em;
 }
