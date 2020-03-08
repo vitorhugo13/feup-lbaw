@@ -68,7 +68,7 @@ include_once(__DIR__.'/../templates/post_elems.php');
                     </div>
 
                     <div class="top_category d-flex justify-content-between">
-                        <span><i class="fas fa-medal"></i> ! Literature</span>
+                        <span><i class="fas fa-medal"></i> ! Music</span>
                         <span>783</span>
                     </div>
                 </div>
@@ -82,27 +82,16 @@ include_once(__DIR__.'/../templates/post_elems.php');
         <div class="col-12 col-lg-3">
         </div>
         <div class="col-12 col-lg-9"> 
-
-            <div class="number-posts align-baseline"> <strong>Posts </strong> (19)</div>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '50k', '360', '1230'); ?>
-            </div>
+            <div class="number-posts align-baseline"> <strong>Posts </strong> (11)</div>
+            <?php draw_post_preview('Manchester United is the best team ever. Prove me otherwise.', 'vitorhugo_5', 'For me, the English team of Macnhester United is the best team ever. Although they are not having a good time, nothing can erase their past. AMA, and I explain the reason.', '5073', '360', '1230'); ?>
+            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '49', '1', '2'); ?>
+            <?php draw_post_preview('Canceling Olympics would reduce Japans GDP by 1.4%, study says', 'vitorhugo_5', 'If the spread of the new coronavirus forces the cancelation of the Olympics, it will reduce Japan annual gross domestic product by 1.4 percent, a securities firm estimates. In a report Friday, SMBC Nikko Securities Inc. projects the sporting extravaganza will create ¥670 billion ($6.4 billion) in consumer demand and that canceling it will sap about ¥7.8 trillion from GDP.', '39k', '3060', '4330'); ?>            <?php draw_post_preview('VAR, the death of football as we know it.', 'vitorhugo_5', 'Although the VAR came to assist the referees in some decisions, sooner or later it will end the emotion of football. It is impossible for a fan to celebrate a goal knowing that minutes later it can be canceled. NO MODERN FOOTBALL.', '5043', '60', '130'); ?>
+            <?php draw_post_preview('I have already been to several music festivals in several countries. Ask me anything', 'vitorhugo_5', 'Music festivals are something that completely cheers me up. Imagine a sunset, with beer and good music ... better than that? complicated. Feel free to ask any questions.', '403', '30', '30'); ?>
+            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '129', '13', '10'); ?>
+            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '34', '4', '1'); ?>
+            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '9', '1', '0'); ?>
+            <?php draw_post_preview('Title', 'vitorhugo_5', 'This is the post content preview', '1089', '890', '309'); ?>
+        </div>
     </div>
 </div>
 
