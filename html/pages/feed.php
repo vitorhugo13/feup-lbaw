@@ -11,29 +11,30 @@ include_once(__DIR__ . '/../templates/post_elems.php');
 <div class="container">
     <div id="sidebar" class="d-flex flex-column align-items-center">
         <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
+            <div class="align-items-left"> <p class="nav-title">Stared Categories</p></div>
             <div class="opt">
                 <div class="d-flex flex-column align-self-start" id="filters">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
                         <label class="form-check-label" for="filter-username">
+                            <input class="form-check-input" type="checkbox" value="">
                             ! Literature
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
                         <label class="form-check-label" for="filter-category">
+                            <input class="form-check-input" type="checkbox" value="">
                             ! Sports
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
                         <label class="form-check-label" for="filter-title">
+                            <input class="form-check-input" type="checkbox" value="">
                             ! Cinema
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
                         <label class="form-check-label" for="filter-title">
+                            <input class="form-check-input" type="checkbox" value="">
                             ! Politics
                         </label>
                     </div>
