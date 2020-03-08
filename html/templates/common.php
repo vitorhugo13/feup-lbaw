@@ -39,7 +39,7 @@
     <header>
         <nav class="navbar">
             <a class="navbar-brand" href="../pages/home.php"><img src="../assets/logo_text.svg" width="50" alt="LAMA logo" /></a>
-            <form class="expandable-search">
+            <form class="expandable-search" action="../pages/search.php">
                 <input type="search" placeholder="Search" aria-label="Search"/>
             </form>
             <div class="d-flex align-items-center">
@@ -71,7 +71,7 @@
             </div>
         </nav>
     </header>
-    <form action="" id="collapsed-search" class="d-flex flex-row justify-content-center">
+    <form action="../pages/search.php" id="collapsed-search" class="d-flex flex-row justify-content-center">
         <input type="search" placeholder="Search" aria-label="Search"/>
     </form>
     <div id="content">
