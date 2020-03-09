@@ -1,18 +1,10 @@
-
-#sidebar-navigation {
-    border-radius: 5px;
-}
+@import 'constants.css';
 
 #sidebar-navigation > div:first-child > p{
     font-size: 1.1em;
     font-weight: 400;
     margin-bottom: 0.5em;
     color: var(--main-color);
-}
-
-#sidebar > div {
-    background-color: var(--background-strong);
-    padding: 1.4em 2.2em;
 }
 
 .opt{
