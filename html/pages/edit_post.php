@@ -9,7 +9,7 @@ include_once(__DIR__ . '/../templates/report_elems.php');
 <?php doc_start('LAMA', ['common', 'post_elems', 'edit_post'], ['top', 'textarea']); ?>
 <?php draw_header(); ?>
 
-<form class="row m-2 m-lg-0">
+<form class="row m-2 m-lg-0" action="../pages/post.php">
     <section id="categories-tab" class="col-12 col-xl-3">
         <header>Post Categories</header>
         <div class="input-group">
