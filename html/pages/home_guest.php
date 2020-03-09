@@ -29,8 +29,8 @@ include_once(__DIR__ . '/../templates/post_elems.php');
                 </div>
             </div>
             <div id="log-buttons">
-                <a href="../pages/login.php" class="btn">LogIn</a>
-                <a href="../pages/register.php" class="btn">SignUp</a>
+                <a href="../pages/login.php" class="btn">Log In</a>
+                <a href="../pages/register.php" class="btn">Sign Up</a>
             </div>
         </div>
     </nav>
