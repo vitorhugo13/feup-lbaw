@@ -4,19 +4,19 @@ body  .name  h2{
 
 .team h3{
     color:#03BB85;
-    font-weight: bold;
+    font-weight: 400;
 }
 
 .personal-info-left{
     padding-left: 1.3em;
 }
 
-.team{
-    padding-bottom: 1em;
-}
-
 .personal-info-right{
     padding-right: 1.3em;
+}
+
+.team{
+    padding-bottom: 1em;
 }
 
 .team-page > div:nth-child(2) {

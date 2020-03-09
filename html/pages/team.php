@@ -12,7 +12,7 @@ include_once(__DIR__.'/../templates/common.php');
 
         <div class="container-fluid d-flex align-items-center flex-wrap justify-content-between">
 
-            <div class="name d-flex flex-wrap spacing">
+            <div class="name d-flex flex-wrap  spacing">
                 <img src="../assets/team_photos/bernas.jpeg" class="img" alt="Bernardo's photo">
                 <div class="d-flex flex-column text-left">
                     <h4>Bernardo Santos</h4>
