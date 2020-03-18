@@ -47,8 +47,8 @@ include_once(__DIR__.'/../templates/post_elems.php');
         <p>If you want to see some pictures and videos of my journey so far check out my IG @dannydyer</p>
     </div>
     <footer class="d-flex flex-row align-items-center">
-    <div class="upvotes"><img src="../assets/hoof_filled.svg" width="13" alt="uphoof"/> 2062</div>
-    <div class="downvotes"><img src="../assets/hoof_outline.svg" width="13" alt="downhoof"/>  407</div>
+    <div class="upvotes"><img src="../assets/hoof_filled.svg" width="13" alt="uphoof"/> +2062</div>
+    <div class="downvotes"><img src="../assets/hoof_outline.svg" width="13" alt="downhoof"/>  -407</div>
     </footer>
 </div>
 <div id="comment-section">

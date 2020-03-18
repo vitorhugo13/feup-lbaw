@@ -26,8 +26,8 @@ include_once(__DIR__ . '/../templates/category.php');
         <a href="../pages/edit_post.php"><i class="fas fa-plus"></i><strong> New Post</strong></a>
         <a href="#"><i class="fas fa-plus"></i><strong> New Category</strong></a>
         <div id="side-toggle">
-            <i class="fas fa-angle-right active" id="angle-right"></i>
-            <i class="fas fa-angle-left" id="angle-left"></i>
+            <i class="fas fa-bars active" id="angle-right"></i>
+            <i class="fas fa-bars" id="angle-left"></i>
         </div>
     </aside>
     <!-- Dark Overlay element -->
@@ -40,7 +40,7 @@ include_once(__DIR__ . '/../templates/category.php');
                 <article class="card category-card" id="comm-news">
                     <div class="card-body">
                         <header class="d-flex flex-row justify-content-center">
-                            <h6 class="card-title">! Community News</h6>
+                            <h5 class="card-title">! Community News</h5>
                         </header>
                     </div>
                     <footer class="card-footer d-flex flex-row justify-content-between">

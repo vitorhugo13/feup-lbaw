@@ -1,27 +1,26 @@
 @import 'constants.css';
 
-
 /* ----------========== SIDEBAR ==========---------- */
+
+#sidebar-navigation {
+    padding: 1.5em 1em;
+}
+
 #sidebar-navigation li {
     width: 10em;
 }
 
-#sidebar-navigation{
-    padding: 1.5em;
-}
-
 #sidebar-navigation p {
-    font-size: 1.1em;
-    font-weight: 500;
+    font-size: 1.0em;
+    font-weight: 400;
     color: var(--main-color);
-    margin-left: 0.5em;
 }
 
 #sidebar-navigation a {
-    font-weight: 500;
+    font-weight: 400;
     color: var(--foreground);
-    border-right: solid var(--background);
-    border-radius: 5px 0 0 5px;
+    border-left: solid var(--background);
+    border-radius: 0 0 0 0;
 
     transition: color 200ms linear 0s;
     -webkit-transition: color 200ms linear 0s;

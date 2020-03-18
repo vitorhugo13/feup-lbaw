@@ -4,7 +4,7 @@
         <article class="card category-card">
             <div class="card-body">
                 <header class="d-flex flex-row justify-content-between">
-                    <h6 class="card-title">! <?= $title ?></h6>
+                    <h5 class="card-title">! <?= $title ?></h5>
                     <aside>
                         <i class="fas fa-pen"></i>
                         <i class="far fa-star"></i>

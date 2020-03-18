@@ -33,7 +33,6 @@
     font-size: 0.9em;
 }
 
-
 /* ----------========== REPORT MODAL (COMMENT/POST) ==========---------- */
 #report-modal .modal-body {
     padding: 2em 4em;
@@ -73,7 +72,7 @@
     justify-content: space-between;
     align-items: center;
 
-    margin-bottom: 0.8em;
+    margin-bottom: 0.5em;
 }
 
 .post-preview > header .title {
@@ -81,7 +80,7 @@
     text-decoration: none;
 
     font-weight: 600;
-    font-size: large;
+    font-size: 1.2em;
 }
 
 .post-preview > header .by {
@@ -103,6 +102,8 @@
     cursor: pointer;
     color: var(--foreground);
     margin: 0;
+    margin-left: 1em;
+    align-self: flex-start;
     font-size: medium;
 }
 
@@ -146,6 +147,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: 1.8em;
 }
 
 .post-preview > footer > .votes {

@@ -20,13 +20,13 @@ function toggleSidebar() {
 function collapse() {
     angleRight.classList.add('active')
     angleLeft.classList.remove('active')
-    btn.style['background-color'] = 'var(--background)'
+    btn.style['background-color'] = 'var(--main-color)'
 }
 
 function show() {
     angleRight.classList.remove('active')
     angleLeft.classList.add('active')
-    btn.style['background-color'] = 'var(--background-strong)'
+    btn.style['background-color'] = 'var(--main-color)'
 }
 
 overlay.addEventListener('click', toggleSidebar)

@@ -16,11 +16,13 @@
     color: var(--foreground);
     border-bottom: solid var(--background);
     border-radius: 0;
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 1em;
 }
 
 .tab-categories {
     margin: 1.2em 0 1.6em 0;
+    font-weight: 300;
 }
 
 #sidebar .tab-categories ul {
@@ -51,27 +53,27 @@
     background-color: var(--background-strong);
 }
 
-#sidebar>a {
+#sidebar > a {
     margin-top: 1em;
     background-color: var(--main-color);
     /* Green */
     color: var(--background-strong);
     border: none;
     border-radius: 5px;
-    width: 80%;
-    padding: 0.7em 2.4em;
+    width: 70%;
+    padding: 0.8em 1em;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 15px;
+    font-size: 1em;
     font-weight: 500;
 }
 
 #side-toggle {
     display: none;
-    background-color: var(--background);
+    background-color: var(--main-color);
     /* border-right: solid 1px var(--accent-color); */
-    color: var(--foreground);
+    color: var(--background-strong);
     text-align: center;
     padding-top: 1em;
     border-radius: 0 10px 30px 0;

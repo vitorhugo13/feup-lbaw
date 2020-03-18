@@ -17,8 +17,8 @@
         </div>
         <footer>
             <div class="votes">
-            <div class="upvotes"><img src="../assets/hoof_filled.svg" width="13" alt="uphoof" /><?=$upvotes?></div>
-            <div class="downvotes"><img src="../assets/hoof_outline.svg" width="13" alt="downhoof" /><?=$downvotes?></div>
+            <div class="upvotes"><img src="../assets/hoof_filled.svg" width="13" alt="uphoof" />+<?=$upvotes?></div>
+            <div class="downvotes"><img src="../assets/hoof_outline.svg" width="13" alt="downhoof" />-<?=$downvotes?></div>
             </div>
             <div class="comments"><i class="far fa-comment"></i><?=$comments?></div>
         </footer>
@@ -54,8 +54,8 @@
         </div>
         <footer class="d-flex flex-row align-items-center justify-content-between">
             <div class="votes d-flex flex-row align-items-center justify-content-between">
-                <div class="upvotes mr-3"><img src="../assets/hoof_filled.svg" width="11" alt="downhoof"/></i><?=$upvotes?></div>
-                <div class="downvotes mr-3"><img src="../assets/hoof_outline.svg" width="11" alt="downhoof"/></i><?=$downvotes?></div>
+                <div class="upvotes mr-3"><img src="../assets/hoof_filled.svg" width="11" alt="downhoof"/></i>+<?=$upvotes?></div>
+                <div class="downvotes mr-3"><img src="../assets/hoof_outline.svg" width="11" alt="downhoof"/></i>-<?=$downvotes?></div>
             </div>
             <button class="reply-btn d-flex align-items-center"><span>Reply</span></button>
         </footer>
@@ -89,7 +89,7 @@
 <?php } ?>
 
 <?php function draw_category_move_badge($name) { ?>
-    <span class="badge badge-pill category-move-badge">! <?=$name?><i class="fas fa-minus"></i></span>
+    <span class="badge badge-pill category-move-badge">! <?=$name?><i class="fas fa-times"></i></span>
 <?php } ?>
 
 <?php function draw_report_modal() { ?>

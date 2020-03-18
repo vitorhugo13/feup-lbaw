@@ -51,8 +51,8 @@ include_once(__DIR__ . '/../templates/post_elems.php');
         </div>
         <a href="./edit_post.php"><i class="fas fa-plus"></i><strong> New Post</strong></a>
         <div id="side-toggle">
-            <i class="fas fa-angle-right active" id="angle-right"></i>
-            <i class="fas fa-angle-left" id="angle-left"></i>
+            <i class="fas fa-bars active" id="angle-right"></i>
+            <i class="fas fa-bars" id="angle-left"></i>
         </div>
     </div>
 

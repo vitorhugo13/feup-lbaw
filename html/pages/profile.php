@@ -11,7 +11,7 @@ include_once(__DIR__.'/../templates/post_elems.php');
 <div class="profile-container">
     <div class="row">
         <div class="info-card col-test col-12 col-lg-3 d-flex flex-column align-items-center"> 
-            <img src="../assets/team_photos/vitorhugo.jpg" class="img rounded-circle  mt-2" alt="Profile photo">
+            <img src="../assets/team_photos/vitorhugo.jpg" class="img " alt="Profile photo">
             <div class="username d-flex flex-row align-items-center">
                 <p>vitorhugo_5</p>
                 <div class="dropdown col-1">        
@@ -38,8 +38,11 @@ include_once(__DIR__.'/../templates/post_elems.php');
         </div> 
 
         <div class="side-info col-12 col-md-5 col-lg-4"> 
-            <img src="../assets/gold_llama.svg"  width="80" alt="photo">
-            <div class="points"> <p>&diams; 12903 points &diams;</p></div>
+            <div class="glory-points d-flex flex-column align-items-center">
+                <img src="../assets/gold_llama.svg"  width="80" alt="photo">
+                <div class="points"> <p>&diams; 12903 points &diams;</p></div>
+            </div>
+            
             <div id="blocked">
                 <div class="blocked-text">
                     <p>You are blocked for:</p>

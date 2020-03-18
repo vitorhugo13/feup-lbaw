@@ -6,7 +6,7 @@ include_once(__DIR__ . '/../templates/report_elems.php');
 
 ?>
 
-<?php doc_start('Reports', ['common', 'post_elems', 'reports', 'sidebar'], ['top', 'sidebar']); ?>
+<?php doc_start('Reports', ['common', 'post_elems', 'sidebar', 'reports'], ['top', 'sidebar']); ?>
 <?php draw_header(); ?>
 
 <section class="wrapper">
@@ -26,8 +26,8 @@ include_once(__DIR__ . '/../templates/report_elems.php');
             </ul>
         </div>
         <div id="side-toggle">
-            <i class="fas fa-angle-right active" id="angle-right"></i>
-            <i class="fas fa-angle-left" id="angle-left"></i>
+            <i class="fas fa-bars active" id="angle-right"></i>
+            <i class="fas fa-bars" id="angle-left"></i>
         </div>
     </aside>
     <!-- Dark Overlay element -->

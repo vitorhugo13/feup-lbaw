@@ -93,7 +93,7 @@ h3{
     border:none;
     border-radius: 5px;
     outline: none;
-    background: var(--foreground);
+    background: var(--background-strong);
     padding-left: 45px;
 }
 
@@ -101,7 +101,7 @@ h3{
     position:absolute;
     top:12px; /* estava a 8*/
     padding-left: 20px;
-    color: #777;
+    color: var(--foreground);
 }
 
 .form-box .form-input input::placeholder{
@@ -110,6 +110,8 @@ h3{
 
 .form-box .form-input input:focus,
 .form-box .form-input input:valid{
+    color: var(--foreground);
+
     border-bottom: 2px solid var(--main-color);
 }
 

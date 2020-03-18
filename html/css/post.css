@@ -3,8 +3,9 @@
 /* ----------========== POST ==========---------- */
 .post {
     background-color: var(--background-strong);
-
-    padding: 2em 3em;
+    width: 80%;
+    padding: 2em 2em;
+    margin: auto;
     border-radius: 5px;
 }
 
@@ -76,10 +77,11 @@
 /* ----------========== COMMENT SECTION ==========---------- */
 #comment-section {
     background-color: var(--background-strong);
-
+    margin: auto;
     margin-top: 1em;
-    padding: 1.5em 3em;
+    padding: 0.5em 1.5em;
     border-radius: 5px;
+    width: 80%;
 }
 
 #comment-section > header { 

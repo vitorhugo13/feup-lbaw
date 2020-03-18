@@ -13,7 +13,7 @@ include_once(__DIR__.'/../templates/common.php');
         <div class="container-fluid d-flex align-items-center flex-wrap justify-content-between">
 
             <div class="name d-flex flex-wrap  spacing">
-                <img src="../assets/team_photos/bernas.jpeg" class="img" alt="Bernardo's photo">
+                <img src="../assets/team_photos/bernas.jpeg" class="img rounded-circle  mt-2" alt="Bernardo's photo">
                 <div class="d-flex flex-column text-left">
                     <h4>Bernardo Santos</h4>
                     <div><i class="fas fa-envelope"></i>  up201706534@fe.up.pt </div>
@@ -36,7 +36,7 @@ include_once(__DIR__.'/../templates/common.php');
                         <div class="personal-info-right"> are my passion.</div>
                     </div>
                 </div>
-                <img src="../assets/team_photos/cajo.jpg" class="img" alt="Cajo's photo">
+                <img src="../assets/team_photos/cajo.jpg" class="img rounded-circle  mt-2" alt="Cajo's photo">
             </div>
 
         </div>  
@@ -44,7 +44,7 @@ include_once(__DIR__.'/../templates/common.php');
         <div class="container-fluid d-flex  align-items-center flex-wrap justify-content-between">
 
             <div class="name d-flex flex-wrap spacing">
-                <img src="../assets/team_photos/tito.jpg" class="img" alt="Tito's photo">
+                <img src="../assets/team_photos/tito.jpg" class="img rounded-circle  mt-2" alt="Tito's photo">
                 <div class="d-flex flex-column text-left">
                     <h4>Tito Griné</h4>
                     <div><i class="fas fa-envelope"></i>  up201706732@fe.up.pt </div>
@@ -67,7 +67,7 @@ include_once(__DIR__.'/../templates/common.php');
                         <div class="personal-info-right">Delighted by the power of computing. </div>
                     </div>
             </div>
-            <img src="../assets/team_photos/vitorhugo.jpg" class="img" alt="Vitor's photo">
+            <img src="../assets/team_photos/vitorhugo.jpg" class="img rounded-circle  mt-2" alt="Vitor's photo">
         </div>
 
     </div>

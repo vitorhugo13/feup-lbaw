@@ -15,8 +15,12 @@ body {
 #content {
     flex: 1 0 auto;
     padding: 2em 3em;
-    width: 75%;
+    width: 70%;
     margin: 0 auto;
+}
+
+.wrapper {
+    width: 90%;
 }
 
 /* ----------========== NAVBAR ==========---------- */
@@ -63,11 +67,11 @@ body>header>nav>div>div .dropdown-menu>a:hover {
 
 body>header>nav>div>div .dropdown-menu > a > i{
     color: var(--error-color);
-    margin: 0 0.2em 0 0.7em;
 }
 
 body>header>nav>div>div .dropdown-menu .dropdown-divider {
     border-top: 1px solid var(--background-strong);
+    padding-top: 0.2em;
     width: 80%;
     margin: auto;
 }
@@ -201,7 +205,7 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
 #collapsed-search {
     /* hidden behind header */
     z-index: -1;
-    width: 60%;
+    width: 100%;
     border-radius: 0 0 40px 40px;
     background-color: var(--background-strong);
     padding-bottom: 0.7em;
@@ -248,7 +252,7 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
     -webkit-border-radius: 10em;
     -moz-border-radius: 10em;
     border-radius: 10em;
-    width: 8em;
+    width: 60%;
     height: 2em;
     padding-left: 2.5em;
     padding-right: 1em;
@@ -277,7 +281,7 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
 
     .expandable-search input[type=search]:focus,
     .expandable-search input[type=search]:hover {
-        width: 8em;
+        width: 19em;
         padding-left: 2.5em;
         padding-right: 1em;
         color: var(--background-strong);
@@ -312,21 +316,22 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
 
 @media (max-width: 82em) {
     #content {
-        width: 70em;
+        width: 70%;
     }
 
 }
 
-@media (max-width: 72em) {
+@media (max-width: 50em) {
     #content {
-        width: 60em;
+        width: 85%;
+    }
+
+    .wrapper {
+        width: 100%;
     }
 }
 
 @media (max-width: 62em) {
-    #content {
-        width: 100%;
-    }
 
     .notification-menu {
         width: 15em;
