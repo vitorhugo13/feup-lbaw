@@ -320,35 +320,11 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
 
 /* ----------========== MEDIA QUERIES ==========---------- */
 
-/* @media (max-width: 82em) {
-    #content {
-        width: 70%;
-    }
-
-} */
-
-/* @media (max-width: 50em) {
-    #content {
-        width: 85%;
-    }
-
-    .wrapper {
-        width: 100%;
-    }
-} */
-
 @media (max-width: 992px) {
     #content {
         width: 40em;
     }
 }
-
-/* @media (max-width: 62em) {
-
-    .notification-menu {
-        width: 15em;
-    }
-} */
 
 @media (max-width: 768px) {
     #content {
@@ -358,16 +334,6 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
         width: 15em;
     }
 }
-
-/* @media (max-width: 32em) {
-    #content {
-        padding: 1em 0.5em;
-    }
-
-    .notification-menu {
-        width: auto;
-    }
-} */
 
 @media (max-width: 576px) {
     #content {

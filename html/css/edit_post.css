@@ -1,5 +1,9 @@
 @import 'constants.css';
 
+#content {
+    width: 70em;
+}
+
 #content > form {
     height: 100%;
 }
@@ -148,7 +152,30 @@
 /* ----------========== Media Queries ==========---------- */
 
 @media (max-width: 1200px) {
+    #content {
+        width: 60em;
+    }
+}
+
+@media (max-width: 992px) {
+    #content {
+        width: 40em;
+    }
+
     #categories-tab {
         height: auto;
-    }    
+    }  
+}
+
+@media (max-width: 768px) {
+    #content {
+        width: 35em;
+    }
+}
+
+@media (max-width: 576px) {
+    #content {
+        width: 95%;
+        padding: 1.5em 0.5em;
+    }
 }
