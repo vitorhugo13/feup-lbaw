@@ -3,8 +3,9 @@
         <header>
             <div>
                 <a class="title" href="../pages/post.php"><?=$title?></a>
-                <span class="by">by</span>
-                <a class="author" href="../pages/profile.php"><?=$author?></a>
+                <span class="by">
+                    by <a class="author" href="../pages/profile.php"><?=$author?></a>
+                </span>
             </div>
             <label class="checkbox-label">
                 <input type="checkbox" id="star-category">

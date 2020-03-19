@@ -1,6 +1,6 @@
 'use strict'
 
-let query = window.matchMedia('(max-width: 576px)')
+let query = window.matchMedia('(max-width: 575px)')
 let expandable = document.querySelector('.expandable-search input')
 let collapsed = document.getElementById('collapsed-search')
 let collapsedInput = collapsed.getElementsByTagName('input')[0]

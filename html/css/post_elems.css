@@ -29,7 +29,7 @@
     margin-bottom: 1em;
     border-radius: 5px;
 
-    font-weight: 300;
+    font-weight: 400;
     font-size: 0.9em;
 }
 
@@ -79,12 +79,14 @@
     color: var(--foreground);
     text-decoration: none;
 
+    margin-right: 0.5em;
     font-weight: 600;
-    font-size: 1.2em;
+    font-size: 1.2rem;
 }
 
 .post-preview > header .by {
-    margin: 0 0.05em 0 0.5em;
+    display: inline-block;
+
 
     color: var(--foreground);
     font-size: small;

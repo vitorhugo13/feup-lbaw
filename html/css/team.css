@@ -2,6 +2,10 @@ body  .name  h2{
     font-weight: bold;
 }
 
+#content {
+    width: 80em;
+}
+
 .team h3{
     color:#03BB85;
     font-weight: 400;
