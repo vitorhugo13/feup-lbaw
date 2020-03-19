@@ -9,8 +9,8 @@ include_once(__DIR__ . '/../templates/report_elems.php');
 <?php doc_start('LAMA', ['common', 'post_elems', 'edit_post'], ['top', 'textarea']); ?>
 <?php draw_header(); ?>
 
-<form class="row m-2 m-lg-0" action="../pages/post.php">
-    <section id="categories-tab" class="col-12 col-xl-3">
+<form class="" action="../pages/post.php">
+    <section id="categories-tab" class="">
         <header>Post Categories</header>
         <div class="input-group">
             <select class="custom-select">
@@ -32,7 +32,7 @@ include_once(__DIR__ . '/../templates/report_elems.php');
         </footer>
     </section>
 
-    <section id="text-tab" class="col-12 col-xl-8 ml-0 ml-xl-4 mt-4 mt-xl-0">
+    <section id="text-tab" class="mt-4">
         <div class="d-flex flex-column justify-content-start align-items-stretch form-group">
             <input type="text" id="post-title" placeholder="Title" />
             <textarea id="post-body" placeholder="What is this post about?"></textarea>

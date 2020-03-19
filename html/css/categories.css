@@ -87,3 +87,11 @@
     font-size: 0.9em;
     margin-left: 0.75em;
 }
+
+/* ----------========== MEDIA QUERIES ==========---------- */
+
+@media (max-width: 576px) {
+    .card-deck .card {
+        margin: 0;
+    }
+}

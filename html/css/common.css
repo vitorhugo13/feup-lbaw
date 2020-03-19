@@ -15,18 +15,19 @@ body {
 #content {
     flex: 1 0 auto;
     padding: 2em 3em;
-    width: 70%;
+    width: 60em;
     margin: 0 auto;
-}
-
-.wrapper {
-    width: 90%;
 }
 
 /* ----------========== NAVBAR ==========---------- */
 
-body>header>nav {
+body>header {
     background-color: var(--background-strong);
+}
+
+body>header>nav {
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 body>header>div {
@@ -86,33 +87,38 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
 
 /* ----------========== FOOTER ==========---------- */
 #footer {
-    flex-shrink: 0;
     background-color: var(--background-strong);
-    padding: 2em 3em;
 }
 
-#footer>ul {
+#footer-content {
+    flex-shrink: 0;
+    padding: 2em 3em;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+#footer-content>ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-#footer>ul:last-child {
+#footer-content>ul:last-child {
     list-style: none;
     margin-right: 2em;
 }
 
-#footer>ul>li {
+#footer-content>ul>li {
     font-weight: 300;
     font-size: small;
     margin: 0 0 0.2em 0.5em;
 }
 
-#footer>ul>li>a {
+#footer-content>ul>li>a {
     color: var(--foreground);
 }
 
-#footer>ul>li:first-child {
+#footer-content>ul>li:first-child {
     font-weight: 500;
     font-size: medium;
     margin: 0 0 0.7em 0;
@@ -314,14 +320,14 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
 
 /* ----------========== MEDIA QUERIES ==========---------- */
 
-@media (max-width: 82em) {
+/* @media (max-width: 82em) {
     #content {
         width: 70%;
     }
 
-}
+} */
 
-@media (max-width: 50em) {
+/* @media (max-width: 50em) {
     #content {
         width: 85%;
     }
@@ -329,21 +335,51 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
     .wrapper {
         width: 100%;
     }
+} */
+
+@media (max-width: 992px) {
+    #content {
+        width: 40em;
+    }
 }
 
-@media (max-width: 62em) {
+/* @media (max-width: 62em) {
 
+    .notification-menu {
+        width: 15em;
+    }
+} */
+
+@media (max-width: 768px) {
+    #content {
+        width: 35em;
+    }
     .notification-menu {
         width: 15em;
     }
 }
 
-@media (max-width: 32em) {
+/* @media (max-width: 32em) {
     #content {
         padding: 1em 0.5em;
     }
 
     .notification-menu {
         width: auto;
+    }
+} */
+
+@media (max-width: 576px) {
+    #content {
+        width: 95%;
+        padding: 1.5em 0.5em;
+    }
+
+    .notification-menu {
+        width: auto;
+    }
+
+    #footer-content {
+        padding: 1em;
     }
 }

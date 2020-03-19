@@ -1,7 +1,7 @@
 .reg-container{
-    width: 75%;
-    margin: 1.5em auto;
-    padding: 2em;
+    /* width: 75%; */
+    /* margin: 1.5em auto; */
+    padding: 2em 1.5em;
     background-color: var(--background-strong);
     border-radius: 5px;
 }
@@ -15,7 +15,7 @@
 .rule{
     margin-left: 1.3em;
     font-size: 1.1em;
-    font-weight: 300;
+    /* font-weight: 300;  */
 }
 
 .rule span{
@@ -35,17 +35,16 @@
 }
 
 
-@media (max-width: 62em) { 
+/* @media (max-width: 62em) { 
     
     #content{
         width:90%;
     }
-}
+} */
 
-@media (max-width: 42em) { 
-    
-    #content{
-        width:90%;
+@media (max-width: 576px) { 
+    .reg-container{
+        padding: 1em;
     }
 
     .rule{
