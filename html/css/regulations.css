@@ -6,9 +6,11 @@
     border-radius: 5px;
 }
 
-.reg-title h4{
+h1{
     color: var(--main-color);
     font-weight: 400;
+    text-align: center;
+    font-size: 2rem;
     margin-bottom: 0.5em;
 }
 

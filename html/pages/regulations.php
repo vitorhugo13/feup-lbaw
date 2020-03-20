@@ -9,10 +9,7 @@ include_once(__DIR__.'/../templates/common.php');
 
 <div class="reg-container d-flex flex-wrap flex-column">
 
-
-    <div class="reg-title">
-        <h4>LAMA Regulations</h4>
-    </div>
+    <h1>LAMA Regulations</h1>
 
     <div class="rule mt-3">
         <p><span>1 &middot;</span> It is forbidden to solicit votes or engage in vote manipulation.</p>
