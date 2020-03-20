@@ -1,26 +1,22 @@
-.profile-container{
-    margin:0 auto;
+.row {
+    margin: auto 0;
 }
-/*left column*/
+
+.user-info,
+.points-info {
+    background-color: var(--background-strong);
+    border-radius: 5px;
+    padding: 2em;
+}
+
+/* ----------------- User Info -------------- */
 .img{
     border: 2px solid var(--main-color);
     padding: 0;
 
     box-sizing: border-box;
     max-width: 200px;
-    width: 70%;
     height: auto;
-}
-
-.profile-container .info-card {
-    background-color: var(--background-strong);
-    padding: 2em;
-    border-radius: 5px;
-}
-
-.username{
-    margin-top: 1.0em;
-    font-size: 1em;
 }
 
 .username > p {
@@ -30,6 +26,7 @@
     font-weight: 500;
 }
 
+/* ----------------- Dropdown -------------- */
 .username .dropdown{
     cursor: pointer;
 }
@@ -50,28 +47,22 @@
     border-top: solid 1px var(--background-strong);
 }
 
-.info-card div:last-child {
-    width: 100%;
-    justify-content: center;
-}
-
+/* ----------------- Bio & Button -------------- */
 .bio{
-    margin-top:1.2em;
-    margin-bottom:1.2em;
-    padding:auto;  
-    
-    font-size: 0.9em;
+    padding: 0.5em;  
     font-weight: 300;
 }
 
 .edit-button {
-    width: 100%;
+    width: 10em;
     padding: 0.7em 1.2em;
-    margin: auto;
-    border: 0;
+    margin: 0 auto;
+    border: none;
     border-radius: 2px;
+
     background-color: var(--background);
     color: var(--main-color);
+
     font-size: 0.9em;
     font-weight: 500;
     text-align: center;
@@ -83,24 +74,7 @@
     text-decoration: none;
 }
 
-/*middle column */
-.side-info{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 2em 0;
-}
-
-.glory-points {
-    margin: auto;
-}
-
-.points > p{
-    font-weight: 500;
-    font-size: 1.5em;
-    margin: 0.5em 0 1em 0;
-    color: var(--foreground);
-}
+/* ----------------- Contest -------------- */
 
 #blocked{
     padding: 1em 3em;
@@ -116,21 +90,16 @@
 
 .blocked-text{
     font-weight: 300;
-    font-size: 1.2em;
     color: var(--foreground);
 }
 
-.blocked-text > p{
-    margin-bottom: 0.3em;
-}
-
-.side-info .remaining-time {
+.remaining-time {
     font-weight: 500;
     font-size: 1.6em;
     color: var(--foreground);
 }
 
-.side-info .contest-button{
+.contest-button{
     width: 100%;
     padding: 0.7em 1.2em;
     margin: auto;
@@ -144,72 +113,67 @@
     text-align: center;
 }
 
-.side-info .contest-button:hover{
+.contest-button:hover{
     background-color: var(--error-color);
     color: var(--foreground);
 }
 
-.side-info .contest-button:focus{
+.contest-button:focus{
     outline: 0 none;
 }
 
-/*top categories table */
-.table_categories{
-    border-style: solid;
-    border-width: 5px;
-    border-color: var(--main-color);
-    border-radius: 5px;
-    width: 70%;
-    
+/* ----------------- Glory Points -------------- */
+.glory-points {
+    width: 200px;
+    height: 200px;
+    padding: 0.8em;
+    border-radius: 50%;
+    background-color: var(--background);
 }
 
-.top_categories{
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    margin:auto;
-    padding: 2em 2.5em;
-    border-radius: 5px;
-    background-color: var(--background-strong);
+.glory-points img {
+    width: 120px;
+    height: 120px;
 }
 
-.categories-text h4{
+.glory-points > p{
     font-weight: 500;
-    color: var(--main-color);
+    font-size: 1.2em;
+    color: var(--foreground);
 }
 
-.list-top > div {
-    margin-left: 0.7em;
+.points-info hr {
+    width: 100%;
+    border: 1px solid var(--background);
 }
 
-.list-top > div i {
-    margin-right: 0.3em;
-}
-
-.list-top > div > span{
+/* ----------------- Top Categories -------------- */
+.top-categories {
+    padding: 0.8em;
+    text-align: center;
     font-size: 0.8em;
 }
 
-.list-top > div > span:last-child {
-    font-weight: 200;
+.top-categories h3{
+    color: var(--main-color);
+    font-weight: 500;
 }
 
-.top_category{
+.top-category{
     margin-top:1.2em;
     font-size: 1.4em;
 }
 
-.profile-container .post-section {
-    margin-top: 1.5em;
+/* ----------------- Posts -------------- */
+.post-section {
+    margin: 1.5em auto 0 auto;
+    width: 70%;
 }
 
 .number-posts {
     color:var(--foreground);
     font-weight: 300;
     font-size: 1.0em;
-
-    margin-left: 0.2em;
-    margin-bottom: 0.5em;
 }
 
 .number-posts > strong{
@@ -217,27 +181,16 @@
     font-size: 1.3em;
 }
 
-/*media queries */
-@media (max-width: 82em) {
-   
-    #content{
-        padding:0;
-    }
- 
-    .table_categories{
+@media (max-width: 991px) {
+    .post-section {
         width: 100%;
-    }
- 
-    .profile-container{
-     margin:0;
-     width:100%;
-    } 
-
-    .info-card{
-        max-width: 85%;
-        margin: auto;
     }
 }
 
-
-
+@media (max-width: 575px) {
+    .remaining-time {
+        font-weight: 500;
+        font-size: 1.2em;
+        color: var(--foreground);
+    }
+}
