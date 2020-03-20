@@ -32,7 +32,7 @@ include_once(__DIR__ . '/../templates/report_elems.php');
         </footer>
     </section>
 
-    <section id="text-tab" class="col-12 col-lg-7 ml-0 ml-lg-4 mt-4 mt-lg-0">
+    <section id="text-tab" class="col-12 col-lg-7 ml-0 ml-lg-3 mt-4 mt-lg-0">
         <div class="d-flex flex-column justify-content-start align-items-stretch form-group">
             <input type="text" id="post-title" placeholder="Title" />
             <textarea id="post-body" placeholder="What is this post about?"></textarea>
