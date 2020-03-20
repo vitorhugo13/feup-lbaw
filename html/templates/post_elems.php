@@ -31,10 +31,9 @@
 <?php function draw_comment($author, $time, $content, $upvotes, $downvotes) { ?>
     <div class="comment p-3">
         <header class="d-flex flex-row align-items-center justify-content-between">
-            <div>
+            <div class="name-time">
                 <span><?=$author?></span>
-                <span>&middot;</span>
-                <span><?=$time?></span>
+                <span>&middot; <?=$time?></span>
             </div>
             <div class="d-flex flex-row">
                 <div class="dropdown">

@@ -1,7 +1,7 @@
 <?php
 
-include_once(__DIR__.'/../templates/common.php');
-include_once(__DIR__.'/../templates/post_elems.php');
+include_once(__DIR__ . '/../templates/common.php');
+include_once(__DIR__ . '/../templates/post_elems.php');
 
 ?>
 
@@ -11,11 +11,12 @@ include_once(__DIR__.'/../templates/post_elems.php');
 <div class="post">
     <header class="d-flex flex-column">
         <div class="d-flex flex-row align-items-center justify-content-between">
-            <div class="post-user d-flex flex-row align-items-center justify-content-between">    
+            <div class="post-user d-flex flex-row align-items-center justify-content-between">
                 <a href="#"><img class="rounded-circle" src="../assets/user.jpg" width="40"></a>
-                <a href="#">DanTheWhiskyMan</a>
-                <span>&middot;</span>
-                <span>17h ago</span>
+                <div class="name-time">
+                    <a href="#">DanTheWhiskyMan</a>
+                    <span>&middot; 17h ago</span>
+                </div>
             </div>
             <div class="d-flex flex-row align-items-center">
                 <i class="far fa-star mr-3"></i>
@@ -34,11 +35,11 @@ include_once(__DIR__.'/../templates/post_elems.php');
             </div>
         </div>
         <h4> I had the greatest job interview in the world, 5000 people applied and I won. I now travel the world and talk about whisky for a living. AMA</h1>
-        <div class="post-categories">
-            <?php draw_category_badge('Politics'); ?>
-            <?php draw_category_badge('Gaming'); ?>
-            <?php draw_category_badge('Ethics'); ?>
-        </div>
+            <div class="post-categories">
+                <?php draw_category_badge('Politics'); ?>
+                <?php draw_category_badge('Gaming'); ?>
+                <?php draw_category_badge('Ethics'); ?>
+            </div>
     </header>
     <div class="post-body">
         <p>Last year I applied for a job to become a Global Whisky Ambassador for Grant’s Scotch Whisky. They advertised the role across multiple social media websites so they had a lot of attention from all over the world.</p>
@@ -47,8 +48,8 @@ include_once(__DIR__.'/../templates/post_elems.php');
         <p>If you want to see some pictures and videos of my journey so far check out my IG @dannydyer</p>
     </div>
     <footer class="d-flex flex-row align-items-center">
-    <div class="upvotes"><img src="../assets/hoof_filled.svg" width="13" alt="uphoof"/> +2062</div>
-    <div class="downvotes"><img src="../assets/hoof_outline.svg" width="13" alt="downhoof"/>  -407</div>
+        <div class="upvotes"><img src="../assets/hoof_filled.svg" width="13" alt="uphoof" /> +2062</div>
+        <div class="downvotes"><img src="../assets/hoof_outline.svg" width="13" alt="downhoof" /> -407</div>
     </footer>
 </div>
 <div id="comment-section">
