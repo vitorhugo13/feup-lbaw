@@ -5,7 +5,7 @@ include_once(__DIR__ . '/../templates/post_elems.php');
 
 ?>
 
-<?php doc_start('LAMA', ['common', 'home', 'post_elems', 'sidebar'], ['top', 'sidebar']); ?>
+<?php doc_start('LAMA', ['common', 'home', 'post_elems', 'sidebar'], ['top', 'sidebar', 'filters']); ?>
 
 <!-- HEADER FOR GUEST -->
 <header>
@@ -48,9 +48,9 @@ include_once(__DIR__ . '/../templates/post_elems.php');
                 <div>
                     <nav>
                         <div class="nav nav-pills" id="pills-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="fresh-tab" data-toggle="tab" href="#nav-fresh" aria-selected="true">Fresh</a>
-                            <a class="nav-item nav-link" id="hot-tab" data-toggle="tab" href="#nav-hot" aria-selected="false">Hot</a>
-                            <a class="nav-item nav-link" id="top-tab" data-toggle="tab" href="#nav-top" aria-selected="false">Top</a>
+                            <a class="nav-item nav-link fresh-tab active" data-toggle="tab" href="#nav-fresh" aria-selected="true">Fresh</a>
+                            <a class="nav-item nav-link hot-tab" data-toggle="tab" href="#nav-hot" aria-selected="false">Hot</a>
+                            <a class="nav-item nav-link top-tab" data-toggle="tab" href="#nav-top" aria-selected="false">Top</a>
                         </div>
                     </nav>
                     <div class="tab-categories tab-content" id="nav-tabContent">
@@ -89,6 +89,15 @@ include_once(__DIR__ . '/../templates/post_elems.php');
                 <i class="fas fa-bars" id="angle-left"></i>
             </div>
         </div>
+
+        <nav class="filters d-lg-none mb-3 d-flex flex-column align-items-center">
+            <div class="nav nav-pills" id="mid-pills-tab" role="tablist">
+                <a class="nav-item nav-link fresh-tab active" data-toggle="tab" href="#nav-fresh" aria-selected="true">Fresh</a>
+                <a class="nav-item nav-link hot-tab" data-toggle="tab" href="#nav-hot" aria-selected="false">Hot</a>
+                <a class="nav-item nav-link top-tab" data-toggle="tab" href="#nav-top" aria-selected="false">Top</a>
+            </div>
+            <hr>
+        </nav>
 
         <div id="feed">
             <?php draw_post_preview('I just got out of prison. Ask me anything.', 'bernas634', 'I got arrested because I was selling weed in Portugal. Got myself half a year in prison, but it was kida chill really. Now I am back in the streets and keeping myself away from trouble.', '50k', '360', '1230'); ?>

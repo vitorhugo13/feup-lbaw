@@ -28,28 +28,6 @@
 }
 
 /* ----------========== FEED ==========---------- */
-
-.filters #mid-pills-tab>a {
-    padding-bottom: 0.2em;
-    background-color: var(--background);
-    color: var(--foreground);
-    border-bottom: 3px solid var(--background-strong);
-    border-radius: 0;
-    font-size: 1em;
-}
-
-.filters #mid-pills-tab>a.active {
-    border-bottom: solid var(--main-color);
-    color: var(--main-color);
-}
-
-.filters hr {
-    width: 90%;
-    margin: -3px 0 0 0;
-    border-top: 3px solid var(--background-strong);
-    z-index: -1;
-}
-
 #mainpage {
     margin: auto;
     justify-content: center;
