@@ -36,15 +36,7 @@ h1{
     margin: 0 auto 1em auto;
 }
 
-
-/* @media (max-width: 62em) { 
-    
-    #content{
-        width:90%;
-    }
-} */
-
-@media (max-width: 576px) { 
+@media (max-width: 575px) { 
     .reg-container{
         padding: 1em;
     }

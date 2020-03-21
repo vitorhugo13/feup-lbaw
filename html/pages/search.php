@@ -5,7 +5,7 @@ include_once(__DIR__ . '/../templates/post_elems.php');
 
 ?>
 
-<?php doc_start('LAMA', ['common', 'home', 'search', 'post_elems', 'sidebar'], ['top', 'sidebar']); ?>
+<?php doc_start('LAMA', ['common', 'home', 'search', 'post_elems', 'sidebar'], ['top', 'sidebar', 'filters']); ?>
 <?php draw_header(); ?>
 
 <div class="wrapper">
@@ -13,11 +13,11 @@ include_once(__DIR__ . '/../templates/post_elems.php');
         <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
             <nav>
                 <div class="nav nav-pills" id="pills-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="fresh-tab" data-toggle="tab" href="#nav-fresh" aria-selected="true">Fresh</a>
-                    <a class="nav-item nav-link" id="hot-tab" data-toggle="tab" href="#nav-hot" aria-selected="false">Hot</a>
-                    <a class="nav-item nav-link" id="top-tab" data-toggle="tab" href="#nav-top" aria-selected="false">Top</a>
+                    <a class="nav-item nav-link fresh-tab active" data-toggle="tab" href="#nav-fresh" aria-selected="true">Fresh</a>
+                    <a class="nav-item nav-link hot-tab" data-toggle="tab" href="#nav-hot" aria-selected="false">Hot</a>
+                    <a class="nav-item nav-link top-tab" data-toggle="tab" href="#nav-top" aria-selected="false">Top</a>
                 </div>
-            </nav>  
+            </nav>
             <div class="d-flex flex-column align-self-start" id="filters">
                 <div class="form-check">
                     <label class="form-check-label" for="filter-username">
@@ -46,10 +46,19 @@ include_once(__DIR__ . '/../templates/post_elems.php');
         </div>
     </div>
 
+    <nav class="filters d-lg-none mb-3 d-flex flex-column align-items-center">
+        <div class="nav nav-pills" id="mid-pills-tab" role="tablist">
+            <a class="nav-item nav-link fresh-tab active" data-toggle="tab" href="#nav-fresh" aria-selected="true">Fresh</a>
+            <a class="nav-item nav-link hot-tab" data-toggle="tab" href="#nav-hot" aria-selected="false">Hot</a>
+            <a class="nav-item nav-link top-tab" data-toggle="tab" href="#nav-top" aria-selected="false">Top</a>
+        </div>
+        <hr>
+    </nav>
+
     <div id="search-results">
         <div class="tab-cats tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-fresh" role="tabpanel" aria-labelledby="nav-fresh-tab">
-                <?php draw_post_preview('I am a man in my early thirties and I have been with the same woman since I was 13. Ask me anything.', 'Glaurung', 'Celerabrating our 19th anniversary together this week.', '6922', '36', '556'); ?>    
+                <?php draw_post_preview('I am a man in my early thirties and I have been with the same woman since I was 13. Ask me anything.', 'Glaurung', 'Celerabrating our 19th anniversary together this week.', '6922', '36', '556'); ?>
                 <?php draw_post_preview('I just got out of prison. Ask me anything.', 'bernas634', 'Donec bibendum sollicitudin semper. Integer et mi eget leo convallis tempor aliquam nec justo. Donec hendrerit ipsum ut neque bibendum, in cursus est tempus. Pellentesque sem erat, consequat cursus nibh sit amet, ultrices ultrices eros. Nam lacinia viverra nisl sit amet porttitor. Nam imperdiet, orci sit amet iaculis facilisis, mi erat molestie justo, a egestas dui velit vel nulla. Quisque commodo erat eget nibh venenatis tincidunt. Integer condimentum mollis nisl consequat accumsan. Curabitur cursus velit lorem, ac mattis est interdum id. Nunc lacinia velit dui, et luctus nulla laoreet ornare.', '50k', '360', '1230'); ?>
                 <?php draw_post_preview('I am a 105-Year-Old Woman. AMA', 'WorldVexillologist', 'For clarification, I am her 2x great-grand nephew who will be answering these questions when Im at her house sometime after January 6th, 2020 (Most likely Jan 11, the dates not final). The answers will be direct quotes from her.', '34k', '40', '130'); ?>
             </div>

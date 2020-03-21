@@ -90,7 +90,7 @@
 
 /* ----------========== MEDIA QUERIES ==========---------- */
 
-@media (max-width: 576px) {
+@media (max-width: 575px) {
     .card-deck .card {
         margin: 0;
     }

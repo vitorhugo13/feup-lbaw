@@ -42,13 +42,6 @@
 }
 
 /* ----------========== MAIN CONTENT ==========---------- */
-/* #main {
-    background-color: var(--background-strong);
-
-    width: 75em;
-    margin: 0 auto;
-} */
-
 #main .tab-content {
     padding: 0.5em 1.5em;
 }
@@ -119,16 +112,12 @@ table .data-date span {
 
 /* ----------========== MEDIA QUERIES ==========---------- */
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
     #main {
         margin-left: 0;
     }
 }
-/*@media (max-width: 82em) {
-    #main {
-        width: 70em;
-    }
-} */
+
 @media (max-width: 72em) {
     /* #main {
         width: 60em;
@@ -137,11 +126,7 @@ table .data-date span {
         padding: 0.7em 1.4em;
     }
 }
-/* @media (max-width: 62em) {
-    #main {
-        width: 100%;
-    }
-} */
+
 @media (max-width: 32em) {
     #content {
         padding: 1em 0.5em;

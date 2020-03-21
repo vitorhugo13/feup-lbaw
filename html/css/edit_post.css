@@ -151,13 +151,13 @@
 
 /* ----------========== Media Queries ==========---------- */
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
     #content {
         width: 60em;
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
     #content {
         width: 40em;
     }
@@ -167,13 +167,13 @@
     }  
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     #content {
         width: 35em;
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 575px) {
     #content {
         width: 95%;
         padding: 1.5em 0.5em;
