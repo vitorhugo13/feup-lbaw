@@ -5,13 +5,16 @@ include_once(__DIR__ . '/../templates/post_elems.php');
 
 ?>
 
-<?php doc_start('LAMA', ['common', 'home', 'post_elems','search', 'sidebar','feed'], ['top', 'sidebar']); ?>
+<?php doc_start('LAMA', ['common', 'home', 'post_elems', 'search', 'sidebar', 'feed'], ['top', 'sidebar']); ?>
 <?php draw_header(); ?>
 
+<h1>Personal Feed</h1>
 <div class="wrapper">
     <div id="sidebar" class="d-flex flex-column align-items-center">
         <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
-            <div class="align-items-left"> <p class="nav-title">Stared Categories</p></div>
+            <div class="align-items-left">
+                <p class="nav-title">Stared Categories</p>
+            </div>
             <div class="opt">
                 <div class="d-flex flex-column align-self-start" id="filters">
                     <div class="form-check">

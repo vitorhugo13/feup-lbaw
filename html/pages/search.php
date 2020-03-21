@@ -8,6 +8,7 @@ include_once(__DIR__ . '/../templates/post_elems.php');
 <?php doc_start('LAMA', ['common', 'home', 'search', 'post_elems', 'sidebar'], ['top', 'sidebar', 'filters']); ?>
 <?php draw_header(); ?>
 
+<h1>Search Results</h1>
 <div class="wrapper">
     <div id="sidebar" class="d-flex flex-column align-items-center">
         <div id="sidebar-navigation" class="d-flex flex-column align-items-center">

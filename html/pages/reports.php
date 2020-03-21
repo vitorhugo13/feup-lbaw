@@ -9,6 +9,7 @@ include_once(__DIR__ . '/../templates/report_elems.php');
 <?php doc_start('Reports', ['common', 'post_elems', 'sidebar', 'reports'], ['top', 'sidebar']); ?>
 <?php draw_header(); ?>
 
+<h1>Reports Table</h1>
 <section class="wrapper">
     <aside id="sidebar" class="d-flex flex-column align-items-center">
         <div id="sidebar-navigation" class="d-flex flex-column align-items-center">

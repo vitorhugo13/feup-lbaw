@@ -1,21 +1,17 @@
 <?php
 
-include_once(__DIR__.'/../templates/common.php');
+include_once(__DIR__ . '/../templates/common.php');
 
 ?>
 
-<?php doc_start('LAMA', ['edit_profile','common'], []); ?>
+<?php doc_start('LAMA', ['edit_profile', 'common'], []); ?>
 <?php draw_header(); ?>
 
-
+<h1>Edit Profile</h1>
 <div class="d-flex align-items-center flex-wrap justify-content-center">
-    
     <div class="edit-profile-info d-flex flex-column align-items-center flex-fill">
-        
-        <h3>Edit Profile</h3>
-                
-        <img src="../assets/team_photos/vitorhugo.jpg" class="img rounded-circle  " alt="Profile photo">  
-                
+        <img src="../assets/team_photos/vitorhugo.jpg" class="img rounded-circle  " alt="Profile photo">
+
         <form class="d-flex flex-column align-items-center" method="post" enctype="multipart/form-data">
             <button type="submit" class="btn">Change photo</button>
         </form>
@@ -24,16 +20,16 @@ include_once(__DIR__.'/../templates/common.php');
         <!--need to be changed when implementing this feature(this way due to A3)-->
         <textarea rows="5" cols="30" class="mt-3">Hello! My name's Vítor and i am currently taking LBAW's course at FEUP.</textarea>
         <button type="submit" class="mt-1 btn">Update bio</button>
-       
-                
+
+
     </div>
 
 
     <div class="form-box d-flex flex-column  align-items-center flex-grow-1">
-        <form> 
+        <form>
             <div class="form-input">
                 <span> <i class="fa fa-user"></i></span>
-                <input type="text"  value="vitorhugo_5">
+                <input type="text" value="vitorhugo_5">
             </div>
 
             <div class="form-input">

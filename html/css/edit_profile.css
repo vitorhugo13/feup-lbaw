@@ -1,6 +1,5 @@
-#content{
-    width: 80%;
-    margin: 0 auto;
+#content form{
+    width: 90%;
 }
 
 .edite-image {position: relative;}
@@ -18,12 +17,6 @@
     max-width: 160px;
     width: 70%;
     height: auto;
-}
-
-h3{
-    font-weight: 400;
-    color: var(--main-color);
-    align-self: start;
 }
 
 .edit-profile-info .btn{
@@ -143,30 +136,12 @@ h3{
     font-weight: 600;
 }
 
-#content form{
-    width: 90%;
-}
-
-@media (max-width: 72em) {
-    #content{
-        width:100%;
-    }
-}
-
-@media (max-width: 57em) {
-    #content{
-        width:100%;
-
-    }
-}
-
-@media (max-width: 32em) {
-    #content{
+@media (max-width: 991px) {
+    .edit-profile-info > textarea{
         width: 100%;
-        margin:0 auto;
     }
 
-    #content form{
+    #content form {
         width: 100%;
     }
 }

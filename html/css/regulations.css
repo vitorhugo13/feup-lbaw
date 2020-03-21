@@ -6,14 +6,6 @@
     border-radius: 5px;
 }
 
-h1{
-    color: var(--main-color);
-    font-weight: 400;
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 0.5em;
-}
-
 .rule{
     margin-left: 1.3em;
     font-size: 1.1em;
