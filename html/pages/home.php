@@ -62,7 +62,6 @@ include_once(__DIR__ . '/../templates/post_elems.php');
             <a class="nav-item nav-link hot-tab" data-toggle="tab" href="#nav-hot" aria-selected="false">Hot</a>
             <a class="nav-item nav-link top-tab" data-toggle="tab" href="#nav-top" aria-selected="false">Top</a>
         </div>
-        <hr>
     </nav>
 
     <div id="feed">

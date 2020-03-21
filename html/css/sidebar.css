@@ -35,12 +35,12 @@
     color: var(--main-color);
 }
 
-.filters hr {
+/* .filters hr {
     width: 90%;
     margin: -3px 0 0 0;
     border-top: 3px solid var(--background-strong);
     z-index: -1;
-}
+} */
 /* ----------- End of Filters for mobile ------------ */
 
 .tab-categories {
