@@ -9,9 +9,29 @@ Get a user three top categories*
 
 SELECT 
 
-SELECT main_comment, comment
-FROM "post", "thread", "reply", "comment", "content"
-WHERE "post".id = $post_id AND "thread".post = $post_id AND "comment".id = "content".id
+SELECT DISTINCT main_comment
+FROM "thread" JOIN "reply" ON("thread".id = "reply".thread)
+WHERE "thread".post = 19;
+
+
+SELECT comment
+FROM "thread" JOIN "reply" ON("thread".id = "reply".thread)
+WHERE "thread".post = 19;
+
+
+SELECT author, body, creation_time, upvotes, downvotes
+FROM "content" JOIN
+	(SELECT comment
+	FROM "thread" JOIN "reply" ON("thread".id = "reply".thread)
+	WHERE "thread".post = $post_id) AS "thread_comments" ON comment = "content".id
+WHERE "content".visible = True
+
+SELECT main_comment, author, body, creation_time, upvotes, downvotes
+FROM "content" JOIN
+	(SELECT DISTINCT main_comment
+     FROM "thread" JOIN "reply" ON("thread".id = "reply".thread)
+	 WHERE "thread".post = 19) AS "thread_main" ON main_comment = "content".id
+WHERE "content".visible = True
 
 
 
