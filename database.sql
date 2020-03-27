@@ -1,30 +1,30 @@
+----------------------- Drop Existing Tables --------------------------------
+
+DROP TABLE IF EXISTS "rating";
+DROP TABLE IF EXISTS "star_category";
+DROP TABLE IF EXISTS "star_post";
+DROP TABLE IF EXISTS "category_glory";
+DROP TABLE IF EXISTS "assigned_category";
+DROP TABLE IF EXISTS "post_category";
+DROP TABLE IF EXISTS "category";
+DROP TABLE IF EXISTS "user_notification";
+DROP TABLE IF EXISTS "notification";
+DROP TABLE IF EXISTS "contest";
+DROP TABLE IF EXISTS "report";
+DROP TABLE IF EXISTS "report_file";
+DROP TABLE IF EXISTS "reply";
+DROP TABLE IF EXISTS "thread";
+DROP TABLE IF EXISTS "comment";
+DROP TABLE IF EXISTS "post";
+DROP TABLE IF EXISTS "content";
+DROP TABLE IF EXISTS "user";
+
 ----------------------- Drop Existing Types --------------------------------
 
 DROP TYPE IF EXISTS ROLES;
 DROP TYPE IF EXISTS MOTIVES; 
 DROP TYPE IF EXISTS RATINGS;
 DROP TYPE IF EXISTS REASONS;
-
------------------------ Drop Existing Tables --------------------------------
-
-DROP TABLE IF EXISTS "user";
-DROP TABLE IF EXISTS "content";
-DROP TABLE IF EXISTS "post";
-DROP TABLE IF EXISTS "comment";
-DROP TABLE IF EXISTS "thread";
-DROP TABLE IF EXISTS "reply";
-DROP TABLE IF EXISTS "report";
-DROP TABLE IF EXISTS "contest";
-DROP TABLE IF EXISTS "report_file";
-DROP TABLE IF EXISTS "notification";
-DROP TABLE IF EXISTS "user_notification";
-DROP TABLE IF EXISTS "category";
-DROP TABLE IF EXISTS "post_category";
-DROP TABLE IF EXISTS "assigned_category";
-DROP TABLE IF EXISTS "category_glory";
-DROP TABLE IF EXISTS "star_post";
-DROP TABLE IF EXISTS "star_category";
-DROP TABLE IF EXISTS "rating";
 
 -------------------------------- Types --------------------------------
 
