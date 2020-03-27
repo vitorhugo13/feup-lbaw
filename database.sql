@@ -1,3 +1,32 @@
+----------------------- Drop Existing Types --------------------------------
+
+DROP TYPE IF EXISTS ROLES;
+DROP TYPE IF EXISTS MOTIVES; 
+DROP TYPE IF EXISTS RATINGS;
+DROP TYPE IF EXISTS REASONS;
+
+----------------------- Drop Existing Tables --------------------------------
+
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS content;
+DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS thread;
+DROP TABLE IF EXISTS reply;
+DROP TABLE IF EXISTS report_file;
+DROP TABLE IF EXISTS report;
+DROP TABLE IF EXISTS contest;
+DROP TABLE IF EXISTS report_file;
+DROP TABLE IF EXISTS notification;
+DROP TABLE IF EXISTS user_notification;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS post_category;
+DROP TABLE IF EXISTS assigned_category;
+DROP TABLE IF EXISTS category_glory;
+DROP TABLE IF EXISTS star_post;
+DROP TABLE IF EXISTS star_category;
+DROP TABLE IF EXISTS rating;
+
 -------------------------------- Types --------------------------------
 
 CREATE TYPE ROLES as ENUM ('Member', 'Blocked', 'Moderator', 'Administrator');
@@ -26,14 +55,14 @@ CREATE TABLE "content" (
     visible BOOLEAN NOT NULL DEFAULT TRUE, 
     tracking BOOLEAN NOT NULL DEFAULT TRUE, 
     creation_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-    upvotes INTEGER NOT NULL DEFAULT 0 CONSTRAINT NEGATIVE_UPVOTE CHECK (upvotes >= 0),
+    upvotes INTEGER NOT NULL DEFAULT 0 CONSTRAINT NEGATIVE_UPVOTE CHECK (upvotes   >= 0),
     downvotes INTEGER NOT NULL DEFAULT 0 CONSTRAINT NEGATIVE_DOWNVOTE CHECK (downvotes >= 0)
 );
 
 CREATE TABLE "post" (
     id INTEGER PRIMARY KEY REFERENCES "content" (id) ON UPDATE CASCADE ON DELETE CASCADE,
     title TEXT NOT NULL
-    commments INTEGER NOT NULL DEFAULT 0 CONSTRAINT NEGATIVE_COMMENTS CHECK (comments >= 0)
+    num_comments INTEGER NOT NULL DEFAULT 0 CONSTRAINT NEGATIVE_COMMENTS CHECK (comments >= 0)
 );
 
 CREATE TABLE "comment" (
@@ -51,12 +80,19 @@ CREATE TABLE "reply" (
     thread INTEGER NOT NULL REFERENCES "thread" (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE "report" (
+CREATE TABLE "report_file" (
     id SERIAL PRIMARY KEY,
     content INTEGER NOT NULL REFERENCES "content" (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    reason REASONS NOT NULL, 
-    time DATE NOT NULL DEFAULT CURRENT_DATE,
+    reviewer INTEGER REFERENCES "report" (id) ON UPDATE CASCADE ON DELETE SET NULL,
     sorted BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE "report" (
+    id SERIAL PRIMARY KEY,
+    file INTEGER NOT NULL REFERENCES "report_file" (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    author INTEGER REFERENCES "report" (id) ON UPDATE CASCADE ON DELETE SET NULL,
+    reason REASONS NOT NULL, 
+    time DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
 CREATE TABLE "contest" (
@@ -68,8 +104,10 @@ CREATE TABLE "contest" (
 
 CREATE TABLE "notification" (
     id SERIAL PRIMARY KEY,
+    content INTEGER REFERENCES "content" (id) ON UPDATE CASCADE ON DELETE CASCADE,
     time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     description TEXT NOT NULL,
+    count INTEGER DEFAULT 1 CONSTRAINT POSITIVE_COUNT CHECK (count >= 1),
     motive MOTIVES NOT NULL 
 );
 
@@ -121,6 +159,7 @@ CREATE TABLE "rating" (
     user_id INTEGER REFERENCES "user" (id) ON UPDATE CASCADE ON DELETE SET NULL,
     content INTEGER REFERENCES "content" (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (user_id, content),
-    rating RATINGS NOT NULL
+    rating RATINGS NOT NULL,
     time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
