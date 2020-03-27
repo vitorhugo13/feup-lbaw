@@ -7,25 +7,24 @@ DROP TYPE IF EXISTS REASONS;
 
 ----------------------- Drop Existing Tables --------------------------------
 
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS content;
-DROP TABLE IF EXISTS post;
-DROP TABLE IF EXISTS comment;
-DROP TABLE IF EXISTS thread;
-DROP TABLE IF EXISTS reply;
-DROP TABLE IF EXISTS report_file;
-DROP TABLE IF EXISTS report;
-DROP TABLE IF EXISTS contest;
-DROP TABLE IF EXISTS report_file;
-DROP TABLE IF EXISTS notification;
-DROP TABLE IF EXISTS user_notification;
-DROP TABLE IF EXISTS category;
-DROP TABLE IF EXISTS post_category;
-DROP TABLE IF EXISTS assigned_category;
-DROP TABLE IF EXISTS category_glory;
-DROP TABLE IF EXISTS star_post;
-DROP TABLE IF EXISTS star_category;
-DROP TABLE IF EXISTS rating;
+DROP TABLE IF EXISTS "user";
+DROP TABLE IF EXISTS "content";
+DROP TABLE IF EXISTS "post";
+DROP TABLE IF EXISTS "comment";
+DROP TABLE IF EXISTS "thread";
+DROP TABLE IF EXISTS "reply";
+DROP TABLE IF EXISTS "report";
+DROP TABLE IF EXISTS "contest";
+DROP TABLE IF EXISTS "report_file";
+DROP TABLE IF EXISTS "notification";
+DROP TABLE IF EXISTS "user_notification";
+DROP TABLE IF EXISTS "category";
+DROP TABLE IF EXISTS "post_category";
+DROP TABLE IF EXISTS "assigned_category";
+DROP TABLE IF EXISTS "category_glory";
+DROP TABLE IF EXISTS "star_post";
+DROP TABLE IF EXISTS "star_category";
+DROP TABLE IF EXISTS "rating";
 
 -------------------------------- Types --------------------------------
 
@@ -61,8 +60,8 @@ CREATE TABLE "content" (
 
 CREATE TABLE "post" (
     id INTEGER PRIMARY KEY REFERENCES "content" (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    title TEXT NOT NULL
-    num_comments INTEGER NOT NULL DEFAULT 0 CONSTRAINT NEGATIVE_COMMENTS CHECK (comments >= 0)
+    title TEXT NOT NULL,
+    num_comments INTEGER NOT NULL DEFAULT 0 CONSTRAINT NEGATIVE_COMMENTS CHECK (num_comments >= 0)
 );
 
 CREATE TABLE "comment" (
@@ -83,21 +82,21 @@ CREATE TABLE "reply" (
 CREATE TABLE "report_file" (
     id SERIAL PRIMARY KEY,
     content INTEGER NOT NULL REFERENCES "content" (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    reviewer INTEGER REFERENCES "report" (id) ON UPDATE CASCADE ON DELETE SET NULL,
+    reviewer INTEGER REFERENCES "user" (id) ON UPDATE CASCADE ON DELETE SET NULL,
     sorted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE "report" (
     id SERIAL PRIMARY KEY,
     file INTEGER NOT NULL REFERENCES "report_file" (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    author INTEGER REFERENCES "report" (id) ON UPDATE CASCADE ON DELETE SET NULL,
+    author INTEGER REFERENCES "user" (id) ON UPDATE CASCADE ON DELETE SET NULL,
     reason REASONS NOT NULL, 
     time DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
 CREATE TABLE "contest" (
     id SERIAL PRIMARY KEY,
-    report INTEGER NOT NULL REFERENCES "report" (id) ON UPDATE CASCADE ON DELETE CASCADE UNIQUE,
+    report INTEGER NOT NULL REFERENCES "report_file" (id) ON UPDATE CASCADE ON DELETE CASCADE UNIQUE,
     justification TEXT NOT NULL,
     time DATE NOT NULL DEFAULT CURRENT_DATE
 );
