@@ -111,3 +111,12 @@ FROM (SELECT report_file, content, body, time, justification
                                           WHERE author = $user_id AND rpf.id = "report_file".id)
                         AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "contest" ON report_file = "contest".report
       ORDER BY report_file) AS all_reports JOIN "comment" ON content = "comment".id
+
+----------------------------------------------------------------------------
+------------------------ Get a user's notifications ------------------------
+----------------------------------------------------------------------------
+
+SELECT
+FROM "notification" JOIN "user_notification" ON "notification".id = "user_notification".notification
+WHERE "user_notification".user_id = $user_id AND 
+
