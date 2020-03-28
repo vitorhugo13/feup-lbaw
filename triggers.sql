@@ -218,3 +218,25 @@ CREATE TRIGGER block_add_report
     WHEN EXISTS (SELECT id FROM "user" WHERE id = NEW.author AND role::text = 'Blocked')
     FOR EACH ROW
     EXECUTE PROCEDURE block_access();
+
+
+------------------------------
+-- ASSIGN CATEGORY TRIGGERS --
+------------------------------
+
+DROP TRIGGER IF EXISTS category_assignment ON assigned_category;
+DROP FUNCTION IF EXISTS cannot_assign();
+
+CREATE FUNCTION cannot_assign() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    RAISE EXCEPTION 'The user cannot be assigned to this category.';
+    RETURN OLD;
+END
+$BODY$
+
+CREATE TRIGGER category_assignment
+    BEFORE INSERT ON assigned_category
+    WHEN EXISTS (SELECT id FROM category_glory WHERE user_id = NEW.user_id AND category = NEW.category AND glory < 1) -- TODO: 1 is a temporary value
+    FOR EACH ROW
+    EXECUTE PROCEDURE cannot_assign();
