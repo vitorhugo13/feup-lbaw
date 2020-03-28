@@ -24,21 +24,21 @@ LIMIT 1;
 
 SELECT DISTINCT post 
 FROM "star_post"
-WHERE "star_post".user_id = $user_id AND "star_post".post_id = $post_id
+WHERE "star_post".user_id = $user_id AND "star_post".post_id = $post_id;
 
-SELECT author, body, creation_time, upvotes, downvotes, "thread".id AS thread
+SELECT author, body, creation_time, upvotes, downvotes, "thread_comments".id AS thread
 FROM "content" JOIN
-	(SELECT comment
+	(SELECT "thread".id, comment
 	FROM "thread" JOIN "reply" ON("thread".id = "reply".thread)
 	WHERE "thread".post = $post_id) AS "thread_comments" ON comment = "content".id
-WHERE "content".visible = True
+WHERE "content".visible = True;
 
-SELECT author, body, creation_time, upvotes, downvotes, "thread".id AS thread
+SELECT author, body, creation_time, upvotes, downvotes, "thread_main".id AS thread
 FROM "content" JOIN
-	(SELECT DISTINCT main_comment
+	(SELECT DISTINCT main_comment, "thread".id AS id
      FROM "thread" JOIN "reply" ON("thread".id = "reply".thread)
-	 WHERE "thread".post = 19) AS "thread_main" ON main_comment = "content".id
-WHERE "content".visible = True
+	 WHERE "thread".post = $post_id) AS "thread_main" ON main_comment = "content".id
+WHERE "content".visible = True;
 
 
 -- Get trending posts (NOT SURE IF IT WORKS THERE AREN'T ANY RATINGS YET)
