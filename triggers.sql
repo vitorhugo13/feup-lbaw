@@ -17,6 +17,11 @@ $BODY$
 BEGIN
     IF NEW.rating::text = 'upvote' THEN
         UPDATE content SET upvotes = upvotes + 1 WHERE id = NEW.content;
+        UPDATE user SET glory = glory + 1 WHERE id = (SELECT author FROM content WHERE id = NEW.content);
+        UPDATE category_glory SET glory = glory + 1 WHERE (
+                user_id = (SELECT author FROM content WHERE id = NEW.content) AND
+                category = (SELECT category FROM post_category WHERE post = NEW.content)
+            );
     END IF;
     IF NEW.rating::text = 'downvote' THEN
         UPDATE content SET downvotes = downvotes + 1 WHERE id = NEW.content;
