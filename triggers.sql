@@ -132,6 +132,11 @@ CREATE TRIGGER rem_category_post
 DROP TRIGGER IF EXISTS block_add_vote ON rating;
 DROP TRIGGER IF EXISTS block_rem_vote ON rating;
 DROP TRIGGER IF EXISTS block_update_vote ON rating;
+
+DROP TRIGGER IF EXISTS block_add_content ON content;
+DROP TRIGGER IF EXISTS block_rem_content ON content;
+DROP TRIGGER IF EXISTS block_update_content ON content;
+
 DROP FUNCTION IF EXISTS block_access();
 
 CREATE FUNCTION block_access() RETURNS TRIGGER AS
@@ -145,36 +150,36 @@ LANGUAGE plpgsql;
 
 CREATE TRIGGER block_add_vote
     BEFORE INSERT ON rating
-    WHEN EXISTS(SELECT id FROM "user" JOIN NEW WHERE NEW.user = id AND role::text = 'Blocked')
+    WHEN EXISTS (SELECT id FROM "user" WHERE id = NEW.user AND role::text = 'Blocked')
     FOR EACH ROW
     EXECUTE PROCEDURE block_access();
 
 CREATE TRIGGER block_rem_vote
     BEFORE DELETE ON rating
-    WHEN EXISTS(SELECT id FROM "user" JOIN OLD WHERE OLD.user = id AND role::text = 'Blocked')
+    WHEN EXISTS (SELECT id FROM "user" WHERE id = OLD.user AND role::text = 'Blocked')
     FOR EACH ROW
     EXECUTE PROCEDURE block_access();
 
 CREATE TRIGGER block_update_vote
     BEFORE UPDATE ON rating
-    WHEN EXISTS(SELECT id FROM "user" JOIN NEW WHERE NEW.user = id AND role::text = 'Blocked')
+    WHEN EXISTS (SELECT id FROM "user" WHERE id = NEW.user AND role::text = 'Blocked')
     FOR EACH ROW
     EXECUTE PROCEDURE block_access();
 
 CREATE TRIGGER block_add_content
     BEFORE INSERT ON content
-    WHEN EXISTS(SELECT id FROM "user" JOIN NEW WHERE NEW.author = id AND role::text = 'Blocked')
+    WHEN EXISTS (SELECT id FROM "user" WHERE id = NEW.author AND role::text = 'Blocked')
     FOR EACH ROW
     EXECUTE PROCEDURE block_access();
 
 CREATE TRIGGER block_update_content
     BEFORE UPDATE ON content
-    WHEN EXISTS(SELECT id FROM "user" JOIN NEW WHERE NEW.author = id AND role::text = 'Blocked')
+    WHEN EXISTS (SELECT id FROM "user" WHERE id = NEW.author AND role::text = 'Blocked')
     FOR EACH ROW
     EXECUTE PROCEDURE block_access();
 
 CREATE TRIGGER block_add_report
     BEFORE INSERT ON report
-    WHEN EXISTS(SELECT id FROM "user" JOIN NEW WHERE NEW.author = id AND role::text = 'Blocked')
+    WHEN EXISTS (SELECT id FROM "user" WHERE id = NEW.author AND role::text = 'Blocked')
     FOR EACH ROW
     EXECUTE PROCEDURE block_access();
