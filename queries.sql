@@ -116,7 +116,6 @@ FROM (SELECT report_file, content, body, time, justification
 ------------------------ Get a user's notifications ------------------------
 ----------------------------------------------------------------------------
 
-SELECT
+SELECT content, motive, count, description
 FROM "notification" JOIN "user_notification" ON "notification".id = "user_notification".notification
-WHERE "user_notification".user_id = $user_id AND 
-
+WHERE "user_notification".user_id = $user_id AND "notification".viewed = FALSE
