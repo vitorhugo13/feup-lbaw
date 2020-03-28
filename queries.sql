@@ -60,7 +60,7 @@ WHERE user_id = $user_id AND content = $post_id;
 
 SELECT username, bio, role, photo, glory, release_date
 FROM "user"
-WHERE "user".id = $user_id
+WHERE "user".id = $user_id;
 
 SELECT user_id, category, "category_glory".glory AS category_glory
 FROM "user", "category_glory"
