@@ -53,3 +53,9 @@ UNION
 SELECT thread.id, post, content.id, username, body, creation_time, upvotes, downvotes
 FROM thread JOIN reply ON ("thread".id="reply".thread) JOIN "content" ON (content.id="reply".comment) JOIN "user" ON (author="user".id)
 WHERE post=20;
+
+------------ FTS query ------------------
+
+SELECT 
+FROM (SELECT post.id
+             )
