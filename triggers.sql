@@ -25,6 +25,11 @@ BEGIN
     END IF;
     IF NEW.rating::text = 'downvote' THEN
         UPDATE content SET downvotes = downvotes + 1 WHERE id = NEW.content;
+        UPDATE user SET glory = glory - 1 WHERE id = (SELECT author FROM content WHERE id = NEW.content);
+        UPDATE category_glory SET glory = glory - 1 WHERE (
+                user_id = (SELECT author FROM content WHERE id = NEW.content) AND
+                category = (SELECT category FROM post_category WHERE post = NEW.content)
+            );
     END IF;
     RETURN NEW;
 END
@@ -42,9 +47,19 @@ $BODY$
 BEGIN
     IF OLD.rating::text = 'upvote' THEN
         UPDATE content SET upvotes = upvotes - 1 WHERE id = OLD.content;
+        UPDATE user SET glory = glory - 1 WHERE id = (SELECT author FROM content WHERE id = OLD.content);
+        UPDATE category_glory SET glory = glory - 1 WHERE (
+                user_id = (SELECT author FROM content WHERE id = OLD.content) AND
+                category = (SELECT category FROM post_category WHERE post = OLD.content)
+            );
     END IF;
     IF OLD.rating::text = 'downvote' THEN
         UPDATE content SET downvotes = downvotes - 1 WHERE id = OLD.content;
+        UPDATE user SET glory = glory + 1 WHERE id = (SELECT author FROM content WHERE id = OLD.content);
+        UPDATE category_glory SET glory = glory + 1 WHERE (
+                user_id = (SELECT author FROM content WHERE id = OLD.content) AND
+                category = (SELECT category FROM post_category WHERE post = OLD.content)
+            );
     END IF;
     RETURN OLD;
 END
@@ -62,16 +77,36 @@ $BODY$
 BEGIN
     IF OLD.rating::text = 'upvote' THEN
         UPDATE content SET upvotes = upvotes - 1 WHERE id = OLD.content;
+        UPDATE user SET glory = glory - 1 WHERE id = (SELECT author FROM content WHERE id = OLD.content);
+        UPDATE category_glory SET glory = glory - 1 WHERE (
+                user_id = (SELECT author FROM content WHERE id = OLD.content) AND
+                category = (SELECT category FROM post_category WHERE post = OLD.content)
+            );
     END IF;
     IF OLD.rating::text = 'downvote' THEN
         UPDATE content SET downvotes = downvotes - 1 WHERE id = OLD.content;
+        UPDATE user SET glory = glory + 1 WHERE id = (SELECT author FROM content WHERE id = OLD.content);
+        UPDATE category_glory SET glory = glory + 1 WHERE (
+                user_id = (SELECT author FROM content WHERE id = OLD.content) AND
+                category = (SELECT category FROM post_category WHERE post = OLD.content)
+            );
     END IF;
 
     IF NEW.rating::text = 'upvote' THEN
         UPDATE content SET upvotes = upvotes + 1 WHERE id = NEW.content;
+        UPDATE user SET glory = glory + 1 WHERE id = (SELECT author FROM content WHERE id = NEW.content);
+        UPDATE category_glory SET glory = glory + 1 WHERE (
+                user_id = (SELECT author FROM content WHERE id = NEW.content) AND
+                category = (SELECT category FROM post_category WHERE post = NEW.content)
+            );
     END IF;
     IF NEW.rating::text = 'downvote' THEN
         UPDATE content SET downvotes = downvotes + 1 WHERE id = NEW.content;
+        UPDATE user SET glory = glory - 1 WHERE id = (SELECT author FROM content WHERE id = NEW.content);
+        UPDATE category_glory SET glory = glory - 1 WHERE (
+                user_id = (SELECT author FROM content WHERE id = NEW.content) AND
+                category = (SELECT category FROM post_category WHERE post = NEW.content)
+            );
     END IF;
     RETURN NEW;
 END
@@ -132,6 +167,11 @@ CREATE TRIGGER rem_category_post
 DROP TRIGGER IF EXISTS block_add_vote ON rating;
 DROP TRIGGER IF EXISTS block_rem_vote ON rating;
 DROP TRIGGER IF EXISTS block_update_vote ON rating;
+
+DROP TRIGGER IF EXISTS block_add_content ON content;
+DROP TRIGGER IF EXISTS block_rem_content ON content;
+DROP TRIGGER IF EXISTS block_update_content ON content;
+
 DROP FUNCTION IF EXISTS block_access();
 
 CREATE FUNCTION block_access() RETURNS TRIGGER AS
@@ -145,36 +185,58 @@ LANGUAGE plpgsql;
 
 CREATE TRIGGER block_add_vote
     BEFORE INSERT ON rating
-    WHEN EXISTS(SELECT id FROM "user" JOIN NEW WHERE NEW.user = id AND role::text = 'Blocked')
+    WHEN EXISTS (SELECT id FROM "user" WHERE id = NEW.user AND role::text = 'Blocked')
     FOR EACH ROW
     EXECUTE PROCEDURE block_access();
 
 CREATE TRIGGER block_rem_vote
     BEFORE DELETE ON rating
-    WHEN EXISTS(SELECT id FROM "user" JOIN OLD WHERE OLD.user = id AND role::text = 'Blocked')
+    WHEN EXISTS (SELECT id FROM "user" WHERE id = OLD.user AND role::text = 'Blocked')
     FOR EACH ROW
     EXECUTE PROCEDURE block_access();
 
 CREATE TRIGGER block_update_vote
     BEFORE UPDATE ON rating
-    WHEN EXISTS(SELECT id FROM "user" JOIN NEW WHERE NEW.user = id AND role::text = 'Blocked')
+    WHEN EXISTS (SELECT id FROM "user" WHERE id = NEW.user AND role::text = 'Blocked')
     FOR EACH ROW
     EXECUTE PROCEDURE block_access();
 
 CREATE TRIGGER block_add_content
     BEFORE INSERT ON content
-    WHEN EXISTS(SELECT id FROM "user" JOIN NEW WHERE NEW.author = id AND role::text = 'Blocked')
+    WHEN EXISTS (SELECT id FROM "user" WHERE id = NEW.author AND role::text = 'Blocked')
     FOR EACH ROW
     EXECUTE PROCEDURE block_access();
 
 CREATE TRIGGER block_update_content
     BEFORE UPDATE ON content
-    WHEN EXISTS(SELECT id FROM "user" JOIN NEW WHERE NEW.author = id AND role::text = 'Blocked')
+    WHEN EXISTS (SELECT id FROM "user" WHERE id = NEW.author AND role::text = 'Blocked')
     FOR EACH ROW
     EXECUTE PROCEDURE block_access();
 
 CREATE TRIGGER block_add_report
     BEFORE INSERT ON report
-    WHEN EXISTS(SELECT id FROM "user" JOIN NEW WHERE NEW.author = id AND role::text = 'Blocked')
+    WHEN EXISTS (SELECT id FROM "user" WHERE id = NEW.author AND role::text = 'Blocked')
     FOR EACH ROW
     EXECUTE PROCEDURE block_access();
+
+
+------------------------------
+-- ASSIGN CATEGORY TRIGGERS --
+------------------------------
+
+DROP TRIGGER IF EXISTS category_assignment ON assigned_category;
+DROP FUNCTION IF EXISTS cannot_assign();
+
+CREATE FUNCTION cannot_assign() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    RAISE EXCEPTION 'The user cannot be assigned to this category.';
+    RETURN OLD;
+END
+$BODY$
+
+CREATE TRIGGER category_assignment
+    BEFORE INSERT ON assigned_category
+    WHEN EXISTS (SELECT id FROM category_glory WHERE user_id = NEW.user_id AND category = NEW.category AND glory < 1) -- TODO: 1 is a temporary value
+    FOR EACH ROW
+    EXECUTE PROCEDURE cannot_assign();
