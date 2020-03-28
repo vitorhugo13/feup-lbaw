@@ -60,10 +60,10 @@ WHERE post = "content".id AND recent_rating > average_rating
 
 SELECT username, bio, role, photo, glory, release_date
 FROM "user"
-WHERE "user".id = $user_id
+WHERE "user".id = $user_id;
 
 SELECT user_id, category, "category_glory".glory AS category_glory
 FROM "user", "category_glory"
 WHERE "user".id = $user_id AND "category_glory".user_id = $user_id 
 ORDER BY category_glory
-LIMIT 3
+LIMIT 3;
