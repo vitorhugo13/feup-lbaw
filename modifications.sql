@@ -40,13 +40,21 @@ UPDATE "user"
 INSERT INTO content(author, body)
     VALUES ($author, $body);
 
+--new post--
+INSERT INTO post(id, title)
+    VALUES ($id, $title);
+
+--new comment--
+INSERT INTO comment(id)
+    VALUES ($id);
+
 --delete content--
 DELETE FROM content
     WHERE id = $id;
 
 --new report--
-INSERT INTO report(content_id, reason)
-    VALUES($contentid, $reason);
+INSERT INTO report(report_file, author, reason) 
+    VALUES($report_file, $author, $reason);
 
 --star post--
 INSERT INTO star_post(user_id, post_id)
@@ -76,3 +84,16 @@ UPDATE rating
 --delete rating--
 DELETE FROM rating
     WHERE user_id = $user_id AND content_id = $content_id;
+
+--update report file--
+UPDATE report_file
+    SET reviewer = $reviewer
+    WHERE id = $id;
+
+--delete post--
+DELETE FROM post 
+    WHERE id = $id;
+
+--delete comment--
+DELETE FROM comment 
+    WHERE id = $id;
