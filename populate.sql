@@ -1478,16 +1478,16 @@ insert into post_category (post, category) values (100, 42);
 
 
 -- insert assigned_category (10 moderators)
-insert into assigned_category (user_id, category) values (10, 10);
-insert into assigned_category (user_id, category) values (11, 11);
-insert into assigned_category (user_id, category) values (12, 12);
-insert into assigned_category (user_id, category) values (13, 13);
-insert into assigned_category (user_id, category) values (14, 14);
-insert into assigned_category (user_id, category) values (15, 15);
-insert into assigned_category (user_id, category) values (16, 16);
-insert into assigned_category (user_id, category) values (17, 17);
-insert into assigned_category (user_id, category) values (18, 18);
-insert into assigned_category (user_id, category) values (19, 19);
+-- insert into assigned_category (user_id, category) values (10, 10);
+-- insert into assigned_category (user_id, category) values (11, 11);
+-- insert into assigned_category (user_id, category) values (12, 12);
+-- insert into assigned_category (user_id, category) values (13, 13);
+-- insert into assigned_category (user_id, category) values (14, 14);
+-- insert into assigned_category (user_id, category) values (15, 15);
+-- insert into assigned_category (user_id, category) values (16, 16);
+-- insert into assigned_category (user_id, category) values (17, 17);
+-- insert into assigned_category (user_id, category) values (18, 18);
+-- insert into assigned_category (user_id, category) values (19, 19);
 
 
 -- insert star_post 
@@ -2748,7 +2748,7 @@ insert into user_notification (user_id, notification) values (100, 100);
 insert into user_notification (user_id, notification) values (60, 64);
 insert into user_notification (user_id, notification) values (32, 41);
 insert into user_notification (user_id, notification) values (66, 73);
-insert into user_notification (user_id, notification) values (60, 30);
+insert into user_notification (user_id, notification) values (60, 31);
 insert into user_notification (user_id, notification) values (83, 14);
 insert into user_notification (user_id, notification) values (5, 53);
 insert into user_notification (user_id, notification) values (49, 4);
@@ -2782,7 +2782,7 @@ insert into user_notification (user_id, notification) values (63, 81);
 insert into user_notification (user_id, notification) values (11, 100);
 insert into user_notification (user_id, notification) values (1, 7);
 insert into user_notification (user_id, notification) values (77, 58);
-insert into user_notification (user_id, notification) values (20, 51);
+insert into user_notification (user_id, notification) values (20, 52);
 insert into user_notification (user_id, notification) values (23, 77);
 insert into user_notification (user_id, notification) values (12, 83);
 insert into user_notification (user_id, notification) values (29, 18);

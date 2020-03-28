@@ -19,16 +19,16 @@ BEGIN
         UPDATE content SET upvotes = upvotes + 1 WHERE id = NEW.content;
         UPDATE "user" SET glory = glory + 1 WHERE id = (SELECT author FROM content WHERE id = NEW.content);
         UPDATE category_glory SET glory = glory + 1 WHERE (
-                user_id = (SELECT author FROM content WHERE id = NEW.content) AND
-                category = (SELECT category FROM post_category WHERE post = NEW.content)
+                user_id IN (SELECT author FROM content WHERE id = NEW.content) AND
+                category IN (SELECT category FROM post_category WHERE post = NEW.content)
             );
     END IF;
     IF NEW.rating::text = 'downvote' THEN
         UPDATE content SET downvotes = downvotes + 1 WHERE id = NEW.content;
         UPDATE "user" SET glory = glory - 1 WHERE id = (SELECT author FROM content WHERE id = NEW.content);
         UPDATE category_glory SET glory = glory - 1 WHERE (
-                user_id = (SELECT author FROM content WHERE id = NEW.content) AND
-                category = (SELECT category FROM post_category WHERE post = NEW.content)
+                user_id IN (SELECT author FROM content WHERE id = NEW.content) AND
+                category IN (SELECT category FROM post_category WHERE post = NEW.content)
             );
     END IF;
     RETURN NEW;
@@ -182,7 +182,7 @@ DROP FUNCTION IF EXISTS block_add_report();
 CREATE FUNCTION block_add_vote() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF EXISTS (SELECT id FROM "user" WHERE id = NEW.user AND role::text = 'Blocked') THEN 
+    IF EXISTS (SELECT id FROM "user" WHERE id = NEW.user_id AND role::text = 'Blocked') THEN 
         RAISE EXCEPTION 'A blocked user cannot perform this action.';
     END IF;
     RETURN NEW;
@@ -279,7 +279,7 @@ DROP FUNCTION IF EXISTS cannot_assign();
 CREATE FUNCTION cannot_assign() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF NOT EXISTS (SELECT id FROM category_glory WHERE user_id = NEW.user_id AND category = NEW.category AND glory > 1) THEN 
+    IF NOT EXISTS (SELECT user_id FROM category_glory WHERE user_id = NEW.user_id AND category = NEW.category AND glory > 1) THEN 
         RAISE EXCEPTION 'The user cannot be assigned to this category.';
     END IF;
     RETURN NEW;
