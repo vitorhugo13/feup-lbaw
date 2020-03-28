@@ -2522,22 +2522,22 @@ insert into rating (user_id, content, rating, time) values (89, 194, 'downvote',
 -- insert report_file (20)
 insert into report_file (id, content, reviewer) values (1, 1, 18);
 insert into report_file (id, content, reviewer) values (2, 2, 10);
-insert into report_file (id, content, reviewer) values (3, 3, 11);
-insert into report_file (id, content, reviewer) values (4, 4, 13);
+insert into report_file (id, content, reviewer) values (3, 3, null);
+insert into report_file (id, content, reviewer) values (4, 4, null);
 insert into report_file (id, content, reviewer) values (5, 5, 12);
-insert into report_file (id, content, reviewer) values (6, 6, 12);
+insert into report_file (id, content, reviewer) values (6, 6, null);
 insert into report_file (id, content, reviewer) values (7, 7, 15);
 insert into report_file (id, content, reviewer) values (8, 8, 10);
 insert into report_file (id, content, reviewer) values (9, 9, 13);
 insert into report_file (id, content, reviewer) values (10, 10, 12);
 insert into report_file (id, content, reviewer) values (11, 11, 19);
 insert into report_file (id, content, reviewer) values (12, 12, 14);
-insert into report_file (id, content, reviewer) values (13, 13, 14);
+insert into report_file (id, content, reviewer) values (13, 13, null);
 insert into report_file (id, content, reviewer) values (14, 14, 17);
 insert into report_file (id, content, reviewer) values (15, 15, 11);
 insert into report_file (id, content, reviewer) values (16, 16, 17);
-insert into report_file (id, content, reviewer) values (17, 17, 18);
-insert into report_file (id, content, reviewer) values (18, 18, 10);
+insert into report_file (id, content, reviewer) values (17, 17, null);
+insert into report_file (id, content, reviewer) values (18, 18, null);
 insert into report_file (id, content, reviewer) values (19, 19, 13);
 insert into report_file (id, content, reviewer) values (20, 20, 14);
 
