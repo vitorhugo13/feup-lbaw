@@ -2517,3 +2517,97 @@ insert into rating (user_id, content, rating, time) values (10, 161, 'upvote', '
 insert into rating (user_id, content, rating, time) values (39, 155, 'upvote', '2020-01-20 08:15:57');
 insert into rating (user_id, content, rating, time) values (25, 326, 'downvote', '2019-08-30 06:46:26');
 insert into rating (user_id, content, rating, time) values (89, 194, 'downvote', '2019-04-06 06:35:13');
+
+
+-- insert report_file (20)
+insert into report_file (id, content, reviewer) values (1, 1, 18);
+insert into report_file (id, content, reviewer) values (2, 2, 10);
+insert into report_file (id, content, reviewer) values (3, 3, null);
+insert into report_file (id, content, reviewer) values (4, 4, null);
+insert into report_file (id, content, reviewer) values (5, 5, 12);
+insert into report_file (id, content, reviewer) values (6, 6, null);
+insert into report_file (id, content, reviewer) values (7, 7, 15);
+insert into report_file (id, content, reviewer) values (8, 8, 10);
+insert into report_file (id, content, reviewer) values (9, 9, 13);
+insert into report_file (id, content, reviewer) values (10, 10, 12);
+insert into report_file (id, content, reviewer) values (11, 11, 19);
+insert into report_file (id, content, reviewer) values (12, 12, 14);
+insert into report_file (id, content, reviewer) values (13, 13, null);
+insert into report_file (id, content, reviewer) values (14, 14, 17);
+insert into report_file (id, content, reviewer) values (15, 15, 11);
+insert into report_file (id, content, reviewer) values (16, 16, 17);
+insert into report_file (id, content, reviewer) values (17, 17, null);
+insert into report_file (id, content, reviewer) values (18, 18, null);
+insert into report_file (id, content, reviewer) values (19, 19, 13);
+insert into report_file (id, content, reviewer) values (20, 20, 14);
+
+
+-- insert reports (60)
+insert into report (id, file, author, reason, time) values (1, 9, 16, 'Harassment', '2020-03-27 18:43:41');
+insert into report (id, file, author, reason, time) values (2, 4, 31, 'Harmful', '2020-03-27 15:34:04');
+insert into report (id, file, author, reason, time) values (3, 19, 53, 'Terrorism', '2020-03-27 15:27:08');
+insert into report (id, file, author, reason, time) values (4, 11, 77, 'Wrong Category', '2020-03-27 00:40:43');
+insert into report (id, file, author, reason, time) values (5, 11, 11, 'Harassment', '2020-03-27 04:21:55');
+insert into report (id, file, author, reason, time) values (6, 15, 28, 'Offensive', '2020-03-27 16:22:48');
+insert into report (id, file, author, reason, time) values (7, 19, 18, 'Sexually Explicit', '2020-03-27 22:45:32');
+insert into report (id, file, author, reason, time) values (8, 9, 81, 'Violent', '2020-03-27 20:20:41');
+insert into report (id, file, author, reason, time) values (9, 9, 93, 'Harmful', '2020-03-27 04:54:43');
+insert into report (id, file, author, reason, time) values (10, 19, 28, 'Violent', '2020-03-27 06:06:47');
+insert into report (id, file, author, reason, time) values (11, 11, 11, 'Spam', '2020-03-27 03:14:47');
+insert into report (id, file, author, reason, time) values (12, 19, 97, 'Harmful', '2020-03-27 06:20:56');
+insert into report (id, file, author, reason, time) values (13, 6, 1, 'Spam', '2020-03-27 02:18:52');
+insert into report (id, file, author, reason, time) values (14, 19, 40, 'Violent', '2020-03-27 22:50:19');
+insert into report (id, file, author, reason, time) values (15, 13, 62, 'Wrong Category', '2020-03-27 12:21:42');
+insert into report (id, file, author, reason, time) values (16, 19, 79, 'Sexually Explicit', '2020-03-27 04:45:18');
+insert into report (id, file, author, reason, time) values (17, 13, 100, 'Offensive', '2020-03-27 12:43:33');
+insert into report (id, file, author, reason, time) values (18, 17, 84, 'Spam', '2020-03-27 19:11:26');
+insert into report (id, file, author, reason, time) values (19, 1, 43, 'Wrong Category', '2020-03-27 20:56:33');
+insert into report (id, file, author, reason, time) values (20, 8, 97, 'Harmful', '2020-03-27 21:39:34');
+insert into report (id, file, author, reason, time) values (21, 8, 90, 'Repulsive', '2020-03-27 20:38:10');
+insert into report (id, file, author, reason, time) values (22, 18, 15, 'Violent', '2020-03-27 08:10:41');
+insert into report (id, file, author, reason, time) values (23, 12, 76, 'Spam', '2020-03-27 09:15:11');
+insert into report (id, file, author, reason, time) values (24, 8, 47, 'Spam', '2020-03-27 04:53:48');
+insert into report (id, file, author, reason, time) values (25, 13, 22, 'Sexually Explicit', '2020-03-27 03:01:13');
+insert into report (id, file, author, reason, time) values (26, 12, 35, 'Repulsive', '2020-03-27 05:57:05');
+insert into report (id, file, author, reason, time) values (27, 1, 77, 'Wrong Category', '2020-03-27 02:24:09');
+insert into report (id, file, author, reason, time) values (28, 19, 14, 'Wrong Category', '2020-03-27 00:58:49');
+insert into report (id, file, author, reason, time) values (29, 1, 20, 'Harmful', '2020-03-27 12:39:17');
+insert into report (id, file, author, reason, time) values (30, 3, 29, 'Terrorism', '2020-03-27 04:27:41');
+insert into report (id, file, author, reason, time) values (31, 14, 54, 'Harassment', '2020-03-27 01:33:46');
+insert into report (id, file, author, reason, time) values (32, 14, 30, 'Harmful', '2020-03-27 15:22:29');
+insert into report (id, file, author, reason, time) values (33, 4, 33, 'Harassment', '2020-03-27 03:45:49');
+insert into report (id, file, author, reason, time) values (34, 16, 10, 'Offensive', '2020-03-27 13:00:52');
+insert into report (id, file, author, reason, time) values (35, 16, 8, 'Sexually Explicit', '2020-03-27 15:25:34');
+insert into report (id, file, author, reason, time) values (36, 3, 52, 'Sexually Explicit', '2020-03-27 06:55:32');
+insert into report (id, file, author, reason, time) values (37, 7, 17, 'Harmful', '2020-03-27 00:24:29');
+insert into report (id, file, author, reason, time) values (38, 6, 51, 'Harassment', '2020-03-27 15:17:13');
+insert into report (id, file, author, reason, time) values (39, 6, 5, 'Repulsive', '2020-03-27 06:28:15');
+insert into report (id, file, author, reason, time) values (40, 3, 36, 'Wrong Category', '2020-03-27 02:00:36');
+insert into report (id, file, author, reason, time) values (41, 10, 84, 'Terrorism', '2020-03-27 10:25:29');
+insert into report (id, file, author, reason, time) values (42, 9, 37, 'Harmful', '2020-03-27 03:51:43');
+insert into report (id, file, author, reason, time) values (43, 13, 83, 'Harmful', '2020-03-27 01:46:47');
+insert into report (id, file, author, reason, time) values (44, 12, 23, 'Violent', '2020-03-27 13:57:02');
+insert into report (id, file, author, reason, time) values (45, 20, 28, 'Harassment', '2020-03-27 07:21:46');
+insert into report (id, file, author, reason, time) values (46, 19, 39, 'Spam', '2020-03-27 10:30:14');
+insert into report (id, file, author, reason, time) values (47, 6, 89, 'Wrong Category', '2020-03-27 11:55:19');
+insert into report (id, file, author, reason, time) values (48, 18, 15, 'Harassment', '2020-03-27 07:34:51');
+insert into report (id, file, author, reason, time) values (49, 11, 84, 'Terrorism', '2020-03-27 21:22:32');
+insert into report (id, file, author, reason, time) values (50, 18, 10, 'Violent', '2020-03-27 10:46:23');
+insert into report (id, file, author, reason, time) values (51, 20, 40, 'Terrorism', '2020-03-27 02:28:21');
+insert into report (id, file, author, reason, time) values (52, 11, 65, 'Wrong Category', '2020-03-27 09:19:21');
+insert into report (id, file, author, reason, time) values (53, 14, 50, 'Offensive', '2020-03-27 01:57:36');
+insert into report (id, file, author, reason, time) values (54, 12, 85, 'Harassment', '2020-03-27 07:14:50');
+insert into report (id, file, author, reason, time) values (55, 2, 64, 'Violent', '2020-03-27 00:27:10');
+insert into report (id, file, author, reason, time) values (56, 12, 17, 'Offensive', '2020-03-27 05:20:23');
+insert into report (id, file, author, reason, time) values (57, 5, 49, 'Spam', '2020-03-27 13:48:35');
+insert into report (id, file, author, reason, time) values (58, 2, 53, 'Offensive', '2020-03-27 05:35:31');
+insert into report (id, file, author, reason, time) values (59, 1, 88, 'Spam', '2020-03-27 06:00:34');
+insert into report (id, file, author, reason, time) values (60, 1, 70, 'Harassment', '2020-03-27 12:03:23');
+
+
+-- insert contest (5)
+insert into contest (id, report, justification, time) values (1, 11, 'Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.', '2020-03-29 16:27:53');
+insert into contest (id, report, justification, time) values (2, 5, 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.', '2020-03-29 00:27:52');
+insert into contest (id, report, justification, time) values (3, 15, 'Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', '2020-03-29 06:16:55');
+insert into contest (id, report, justification, time) values (4, 2, 'Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.', '2020-03-29 09:32:45');
+insert into contest (id, report, justification, time) values (5, 7, 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.', '2020-03-29 07:14:02');
