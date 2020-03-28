@@ -26,3 +26,6 @@ SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
     INSERT INTO comment(id) VALUES (currval(content_id_seq));
 
 COMMIT;
+
+
+-- T03 --
