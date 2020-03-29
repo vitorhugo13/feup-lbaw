@@ -1,26 +1,11 @@
-See comments in a post *
-See trending posts *
-See a post page *
-Get posts from a given category *
-Get posts with a given username *
-Get posts with a given string in the title *
-Get a user three top categories*
+---------------------------------------------------------------------------
+----------------------------- Get a post page -----------------------------
+---------------------------------------------------------------------------
 
-
-
--- See post page
-
-SELECT DISTINCT title, body, creation_time, upvotes, downvotes, num_comments, 
-				(CASE 
-				 WHEN ("content".author = "user".id) THEN
-				 "user".username 
-				 WHEN ("content".author IS NULL) THEN
-				 'anon'
-				 END) AS username
-FROM content JOIN post ON "content".id = "post".id, "user"
-WHERE post.id=$post_id AND "content".visible = True
-ORDER BY username
-LIMIT 1;
+SELECT title, body, creation_time, upvotes, downvotes, num_comments, username
+FROM (SELECT DISTINCT title, body, creation_time, upvotes, downvotes, num_comments, author AS id
+		FROM content, post
+		WHERE "content".id = "post".id AND post.id=$post_id AND "content".visible = True) AS visible_post LEFT JOIN "user" ON visible_post.id="user".id;
 
 SELECT DISTINCT post 
 FROM "star_post"
@@ -40,23 +25,38 @@ FROM "content" JOIN
 	 WHERE "thread".post = $post_id) AS "thread_main" ON main_comment = "content".id
 WHERE "content".visible = True;
 
+----------------------------------------------------------------------------
+------------- Selecting info for post preview (trending posts) -------------
+----------------------------------------------------------------------------
 
--- Get trending posts (NOT SURE IF IT WORKS THERE AREN'T ANY RATINGS YET)
+SELECT post
+FROM ((SELECT "post".id AS post, COUNT("rating".user_id) AS rating
+		FROM ("post" JOIN "content" ON "post".id = "content".id) JOIN "rating" ON "content".id = "rating".content
+		WHERE ("rating".time > CURRENT_TIMESTAMP - '50 day'::interval) AND "content".visible = TRUE
+		GROUP BY "post".id) AS post_ratings JOIN "content" ON "content".id = post),
+		(SELECT AVG(ratings) AS avg_rating
+		FROM ((SELECT COUNT("rating".user_id) AS ratings
+		FROM ("post" JOIN "content" ON "post".id = "content".id) JOIN "rating" ON "content".id = "rating".content
+		WHERE ("rating".time > CURRENT_TIMESTAMP - '50 day'::interval) AND "content".visible = TRUE
+		GROUP BY "post".id)) AS all_ratings) AS average
+WHERE rating > avg_rating
 
-SELECT title, username, body, upvotes, downvotes, num_comments
-FROM (SELECT "post".id AS post, title, num_comments, COUNT(DISTINCT "rating".user_id) AS recent_rating
-      FROM "post", "content", "rating"
-      WHERE ("rating".time > CURRENT_TIMESTAMP - '1 day'::interval) AND "content".visible = TRUE
-      GROUP BY post) AS "posts_recent_ratings", "content", "user", "rating",
-	 (SELECT AVG(ratings) AS average_rating
-	  FROM (SELECT COUNT(DISTINCT "rating".user_id) AS ratings
-		    FROM "post", "content", "rating"
-		    WHERE ("rating".time > CURRENT_TIMESTAMP - '1 day'::interval) AND "content".visible = TRUE
-		    GROUP BY post) AS "num_ratings") AS "average_rating"
-WHERE post = "content".id AND recent_rating > average_rating
+SELECT title, body, creation_time, upvotes, downvotes, num_comments, username
+FROM (SELECT DISTINCT title, body, creation_time, upvotes, downvotes, num_comments, author AS id
+		FROM content, post
+		WHERE "content".id = "post".id AND post.id=$post_id AND "content".visible = True) AS visible_post LEFT JOIN "user" ON visible_post.id="user".id;
 
+SELECT CASE WHEN COUNT(post) = 1 THEN TRUE ELSE FALSE END
+FROM "star_post"
+WHERE user_id = $user_id AND post = $post_id;
 
--- Get user profile information (GLORY ALSO NOT SURE IF IT WORKS)
+SELECT rating
+FROM "rating"
+WHERE user_id = $user_id AND content = $post_id;
+
+----------------------------------------------------------------------------
+------ Get user profile information (GLORY ALSO NOT SURE IF IT WORKS) ------
+----------------------------------------------------------------------------
 
 SELECT username, bio, role, photo, glory, release_date
 FROM "user"
@@ -66,4 +66,56 @@ SELECT user_id, category, "category_glory".glory AS category_glory
 FROM "user", "category_glory"
 WHERE "user".id = $user_id AND "category_glory".user_id = $user_id 
 ORDER BY category_glory
-LIMIT 3;
+LIMIT 3
+
+----------------------------------------------------------------------------
+-------- Get reports for a moderator (posts, comments and contests) --------
+----------------------------------------------------------------------------
+
+SELECT report_file, title, time
+FROM (SELECT report_file, content, body, time, reason
+      FROM((SELECT id AS report_file, content
+                  FROM "report_file" AS rpf
+                  WHERE NOT EXISTS (SELECT DISTINCT "report_file".id
+                                          FROM "report_file" JOIN "report" ON "report_file".id = "report".file
+                                          WHERE author = $user_id AND rpf.id = "report_file".id)
+                        AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "report" ON report_file = "report".file
+      ORDER BY report_file) AS all_reports JOIN "post" ON content = "post".id
+
+SELECT report_file, body, time, reason
+FROM (SELECT report_file, content, body, time, reason
+      FROM((SELECT id AS report_file, content
+                  FROM "report_file" AS rpf
+                  WHERE NOT EXISTS (SELECT DISTINCT "report_file".id
+                                          FROM "report_file" JOIN "report" ON "report_file".id = "report".file
+                                          WHERE author = $user_id AND rpf.id = "report_file".id)
+                        AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "report" ON report_file = "report".file
+      ORDER BY report_file) AS all_reports JOIN "comment" ON content = "comment".id
+
+SELECT report_file, title, time, justification
+FROM (SELECT report_file, content, body, time, justification
+      FROM((SELECT id AS report_file, content
+                  FROM "report_file" AS rpf
+                  WHERE NOT EXISTS (SELECT DISTINCT "report_file".id
+                                          FROM "report_file" JOIN "report" ON "report_file".id = "report".file
+                                          WHERE author = $user_id AND rpf.id = "report_file".id)
+                        AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "contest" ON report_file = "contest".report
+      ORDER BY report_file) AS all_reports JOIN "post" ON content = "post".id
+
+SELECT report_file, body, time, justification
+FROM (SELECT report_file, content, body, time, justification
+      FROM((SELECT id AS report_file, content
+                  FROM "report_file" AS rpf
+                  WHERE NOT EXISTS (SELECT DISTINCT "report_file".id
+                                          FROM "report_file" JOIN "report" ON "report_file".id = "report".file
+                                          WHERE author = $user_id AND rpf.id = "report_file".id)
+                        AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "contest" ON report_file = "contest".report
+      ORDER BY report_file) AS all_reports JOIN "comment" ON content = "comment".id
+
+----------------------------------------------------------------------------
+------------------------ Get a user's notifications ------------------------
+----------------------------------------------------------------------------
+
+SELECT content, motive, count, description
+FROM "notification" JOIN "user_notification" ON "notification".id = "user_notification".notification
+WHERE "user_notification".user_id = $user_id AND "notification".viewed = FALSE
