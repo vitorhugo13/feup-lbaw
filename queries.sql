@@ -4,24 +4,28 @@
 
 SELECT title, body, creation_time, upvotes, downvotes, num_comments, username
 FROM (SELECT DISTINCT title, body, creation_time, upvotes, downvotes, num_comments, author AS id
-		FROM content, post
-		WHERE "content".id = "post".id AND post.id=$post_id AND "content".visible = True) AS visible_post LEFT JOIN "user" ON visible_post.id="user".id;
+	FROM content, post
+	WHERE "content".id = "post".id AND post.id=$post_id AND "content".visible = True) AS visible_post LEFT JOIN "user" ON visible_post.id="user".id;
 
-SELECT DISTINCT post 
+SELECT CASE WHEN COUNT(post) = 1 THEN TRUE ELSE FALSE END
 FROM "star_post"
-WHERE "star_post".user_id = $user_id AND "star_post".post_id = $post_id;
+WHERE user_id = $user_id AND "star_post".post = $post_id;
+
+SELECT rating
+FROM "rating"
+WHERE user_id = $user_id AND content = $post_id;
 
 SELECT author, body, creation_time, upvotes, downvotes, "thread_comments".id AS thread
 FROM "content" JOIN
 	(SELECT "thread".id, comment
-	FROM "thread" JOIN "reply" ON("thread".id = "reply".thread)
-	WHERE "thread".post = $post_id) AS "thread_comments" ON comment = "content".id
+	 FROM "thread" JOIN "reply" ON("thread".id = "reply".thread)
+	 WHERE "thread".post = $post_id) AS "thread_comments" ON comment = "content".id
 WHERE "content".visible = True;
 
 SELECT author, body, creation_time, upvotes, downvotes, "thread_main".id AS thread
 FROM "content" JOIN
 	(SELECT DISTINCT main_comment, "thread".id AS id
-     FROM "thread" JOIN "reply" ON("thread".id = "reply".thread)
+       FROM "thread" JOIN "reply" ON("thread".id = "reply".thread)
 	 WHERE "thread".post = $post_id) AS "thread_main" ON main_comment = "content".id
 WHERE "content".visible = True;
 
@@ -31,14 +35,14 @@ WHERE "content".visible = True;
 
 SELECT post
 FROM ((SELECT "post".id AS post, COUNT("rating".user_id) AS rating
-		FROM ("post" JOIN "content" ON "post".id = "content".id) JOIN "rating" ON "content".id = "rating".content
-		WHERE ("rating".time > CURRENT_TIMESTAMP - '50 day'::interval) AND "content".visible = TRUE
-		GROUP BY "post".id) AS post_ratings JOIN "content" ON "content".id = post),
-		(SELECT AVG(ratings) AS avg_rating
-		FROM ((SELECT COUNT("rating".user_id) AS ratings
-		FROM ("post" JOIN "content" ON "post".id = "content".id) JOIN "rating" ON "content".id = "rating".content
-		WHERE ("rating".time > CURRENT_TIMESTAMP - '50 day'::interval) AND "content".visible = TRUE
-		GROUP BY "post".id)) AS all_ratings) AS average
+	 FROM ("post" JOIN "content" ON "post".id = "content".id) JOIN "rating" ON "content".id = "rating".content
+	 WHERE ("rating".time > CURRENT_TIMESTAMP - '50 day'::interval) AND "content".visible = TRUE
+	 GROUP BY "post".id) AS post_ratings JOIN "content" ON "content".id = post),
+	 (SELECT AVG(ratings) AS avg_rating
+	  FROM ((SELECT COUNT("rating".user_id) AS ratings
+	  FROM ("post" JOIN "content" ON "post".id = "content".id) JOIN "rating" ON "content".id = "rating".content
+	  WHERE ("rating".time > CURRENT_TIMESTAMP - '50 day'::interval) AND "content".visible = TRUE
+	  GROUP BY "post".id)) AS all_ratings) AS average
 WHERE rating > avg_rating
 
 SELECT title, body, creation_time, upvotes, downvotes, num_comments, username
@@ -72,45 +76,45 @@ LIMIT 3
 -------- Get reports for a moderator (posts, comments and contests) --------
 ----------------------------------------------------------------------------
 
-SELECT report_file, title, time
+SELECT report_file, title, time, reason
 FROM (SELECT report_file, content, body, time, reason
       FROM((SELECT id AS report_file, content
-                  FROM "report_file" AS rpf
-                  WHERE NOT EXISTS (SELECT DISTINCT "report_file".id
-                                          FROM "report_file" JOIN "report" ON "report_file".id = "report".file
-                                          WHERE author = $user_id AND rpf.id = "report_file".id)
-                        AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "report" ON report_file = "report".file
+            FROM "report_file" AS rpf
+            WHERE NOT EXISTS (SELECT DISTINCT "report_file".id
+                              FROM "report_file" JOIN "report" ON "report_file".id = "report".file
+                              WHERE author = $user_id AND rpf.id = "report_file".id)
+				      AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "report" ON report_file = "report".file
       ORDER BY report_file) AS all_reports JOIN "post" ON content = "post".id
 
 SELECT report_file, body, time, reason
 FROM (SELECT report_file, content, body, time, reason
       FROM((SELECT id AS report_file, content
-                  FROM "report_file" AS rpf
-                  WHERE NOT EXISTS (SELECT DISTINCT "report_file".id
-                                          FROM "report_file" JOIN "report" ON "report_file".id = "report".file
-                                          WHERE author = $user_id AND rpf.id = "report_file".id)
-                        AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "report" ON report_file = "report".file
+            FROM "report_file" AS rpf
+            WHERE NOT EXISTS (SELECT DISTINCT "report_file".id
+                              FROM "report_file" JOIN "report" ON "report_file".id = "report".file
+                              WHERE author = $user_id AND rpf.id = "report_file".id)
+                  AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "report" ON report_file = "report".file
       ORDER BY report_file) AS all_reports JOIN "comment" ON content = "comment".id
 
 SELECT report_file, title, time, justification
 FROM (SELECT report_file, content, body, time, justification
       FROM((SELECT id AS report_file, content
-                  FROM "report_file" AS rpf
-                  WHERE NOT EXISTS (SELECT DISTINCT "report_file".id
-                                          FROM "report_file" JOIN "report" ON "report_file".id = "report".file
-                                          WHERE author = $user_id AND rpf.id = "report_file".id)
-                        AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "contest" ON report_file = "contest".report
-      ORDER BY report_file) AS all_reports JOIN "post" ON content = "post".id
+            FROM "report_file" AS rpf
+            WHERE NOT EXISTS (SELECT DISTINCT "report_file".id
+                              FROM "report_file" JOIN "report" ON "report_file".id = "report".file
+                              WHERE author = $user_id AND rpf.id = "report_file".id)
+                  AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "contest" ON report_file = "contest".report
+ORDER BY report_file) AS all_reports JOIN "post" ON content = "post".id
 
 SELECT report_file, body, time, justification
 FROM (SELECT report_file, content, body, time, justification
       FROM((SELECT id AS report_file, content
-                  FROM "report_file" AS rpf
-                  WHERE NOT EXISTS (SELECT DISTINCT "report_file".id
-                                          FROM "report_file" JOIN "report" ON "report_file".id = "report".file
-                                          WHERE author = $user_id AND rpf.id = "report_file".id)
-                        AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "contest" ON report_file = "contest".report
-      ORDER BY report_file) AS all_reports JOIN "comment" ON content = "comment".id
+            FROM "report_file" AS rpf
+            WHERE NOT EXISTS (SELECT DISTINCT "report_file".id
+                              FROM "report_file" JOIN "report" ON "report_file".id = "report".file
+                              WHERE author = $user_id AND rpf.id = "report_file".id)
+                  AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "contest" ON report_file = "contest".report
+ORDER BY report_file) AS all_reports JOIN "comment" ON content = "comment".id
 
 ----------------------------------------------------------------------------
 ------------------------ Get a user's notifications ------------------------
