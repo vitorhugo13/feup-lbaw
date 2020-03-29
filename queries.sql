@@ -128,14 +128,14 @@ WHERE "user_notification".user_id = $user_id AND "notification".viewed = FALSE
 ------------------------ Search on title, username and tag ------------------------
 -----------------------------------------------------------------------------------
 
-SELECT post_info.id, ts_rank(post_info.document, to_tsquery('enligsh', $search)) AS rank
+SELECT post_info.id, ts_rank(post_info.document, to_tsquery('english', $search)) AS rank
 FROM (SELECT post.id AS id,
        setweight(to_tsvector('english', "post".title), 'A') ||
-       setweight(to_tsvector('simple', "user".username), 'C') ||
+       setweight(to_tsvector('simple', coalesce("user".username, '')), 'C') ||
        setweight(to_tsvector('english', coalesce(string_agg(category.title, ' '))), 'B') as document
       FROM post
        JOIN content ON (post.id = content.id)
-       JOIN "user" ON (content.author = "user".id)
+       LEFT JOIN "user" ON (content.author = "user".id)
        JOIN post_category ON (post.id = post_category.post)
        JOIN category ON (post_category.category = category.id)
       GROUP BY post.id, "user".id) AS post_info
