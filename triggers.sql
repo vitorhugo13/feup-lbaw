@@ -284,26 +284,3 @@ CREATE TRIGGER block_add_report
     FOR EACH ROW
     EXECUTE PROCEDURE block_add_report();
 
-
-------------------------------
--- ASSIGN CATEGORY TRIGGERS --
-------------------------------
-
-DROP TRIGGER IF EXISTS category_assignment ON assigned_category;
-DROP FUNCTION IF EXISTS cannot_assign();
-
-CREATE FUNCTION cannot_assign() RETURNS TRIGGER AS
-$BODY$
-BEGIN
-    IF NOT EXISTS (SELECT user_id FROM category_glory WHERE user_id = NEW.user_id AND category = NEW.category AND glory > 1) THEN 
-        RAISE EXCEPTION 'The user cannot be assigned to this category.';
-    END IF;
-    RETURN NEW;
-END
-$BODY$
-LANGUAGE plpgsql;
-
-CREATE TRIGGER category_assignment
-    BEFORE INSERT ON assigned_category
-    FOR EACH ROW
-    EXECUTE PROCEDURE cannot_assign();
