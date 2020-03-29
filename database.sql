@@ -4,7 +4,6 @@ DROP TABLE IF EXISTS "rating";
 DROP TABLE IF EXISTS "star_category";
 DROP TABLE IF EXISTS "star_post";
 DROP TABLE IF EXISTS "category_glory";
-DROP TABLE IF EXISTS "assigned_category";
 DROP TABLE IF EXISTS "post_category";
 DROP TABLE IF EXISTS "category";
 DROP TABLE IF EXISTS "user_notification";
