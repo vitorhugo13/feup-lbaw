@@ -206,73 +206,13 @@ CREATE INDEX rating_time ON "rating" USING btree ("time");
 
 CREATE INDEX report_time ON "report" USING btree ("time");
 
-CREATE INDEX report_time ON "report" USING btree ("time");
-
 CREATE INDEX glory_category ON "category_glory" USING btree ("glory");
 
 CREATE INDEX title_search ON post USING gist (setweight(to_tsvector('english', title), 'A'));
 
-CREATE INDEX username_search ON user USING gist (setweight(to_tsvector('simple', "user".username), 'C'));
+CREATE INDEX username_search ON "user" USING gist (setweight(to_tsvector('simple', "user".username), 'C'));
 
 CREATE INDEX category_search ON category USING gist (setweight(to_tsvector('english', category.title), 'B'));
-
-
--------------------------------- Triggers --------------------------------
-
-CREATE TRIGGER add_vote 
-    AFTER INSERT ON rating
-    FOR EACH ROW
-    EXECUTE PROCEDURE add_vote();
-CREATE TRIGGER rem_vote 
-    AFTER DELETE ON rating
-    FOR EACH ROW
-    EXECUTE PROCEDURE rem_vote();
-CREATE TRIGGER update_vote 
-    AFTER UPDATE ON rating
-    FOR EACH ROW
-    EXECUTE PROCEDURE update_vote();
-
-CREATE TRIGGER add_category_post
-    AFTER INSERT ON post_category
-    FOR EACH ROW
-    EXECUTE PROCEDURE add_category_post();
-CREATE TRIGGER rem_category_post
-    AFTER DELETE ON post_category
-    FOR EACH ROW
-    EXECUTE PROCEDURE rem_category_post();
-
-CREATE TRIGGER create_cat_glory
-    AFTER INSERT ON post_category
-    FOR EACH ROW
-    EXECUTE PROCEDURE create_cat_glory();
-
-CREATE TRIGGER block_add_vote
-    BEFORE INSERT ON rating
-    FOR EACH ROW
-    EXECUTE PROCEDURE block_add_vote();
-CREATE TRIGGER block_update_vote
-    BEFORE UPDATE ON rating
-    FOR EACH ROW
-    EXECUTE PROCEDURE block_add_vote();
-CREATE TRIGGER block_rem_vote
-    BEFORE DELETE ON rating
-    FOR EACH ROW
-    EXECUTE PROCEDURE block_rem_vote();
-
-CREATE TRIGGER block_add_content
-    BEFORE INSERT ON content
-    FOR EACH ROW
-    EXECUTE PROCEDURE block_add_content();
-CREATE TRIGGER block_update_content
-    BEFORE UPDATE ON content
-    FOR EACH ROW
-    EXECUTE PROCEDURE block_update_content();
-
-CREATE TRIGGER block_add_report
-    BEFORE INSERT ON report
-    FOR EACH ROW
-    EXECUTE PROCEDURE block_add_report();
-
 
 -------------------------------- Functions --------------------------------
 
@@ -476,3 +416,59 @@ BEGIN
 END
 $BODY$
 LANGUAGE plpgsql;
+
+-------------------------------- Triggers --------------------------------
+
+CREATE TRIGGER add_vote 
+    AFTER INSERT ON rating
+    FOR EACH ROW
+    EXECUTE PROCEDURE add_vote();
+CREATE TRIGGER rem_vote 
+    AFTER DELETE ON rating
+    FOR EACH ROW
+    EXECUTE PROCEDURE rem_vote();
+CREATE TRIGGER update_vote 
+    AFTER UPDATE ON rating
+    FOR EACH ROW
+    EXECUTE PROCEDURE update_vote();
+
+CREATE TRIGGER add_category_post
+    AFTER INSERT ON post_category
+    FOR EACH ROW
+    EXECUTE PROCEDURE add_category_post();
+CREATE TRIGGER rem_category_post
+    AFTER DELETE ON post_category
+    FOR EACH ROW
+    EXECUTE PROCEDURE rem_category_post();
+
+CREATE TRIGGER create_cat_glory
+    AFTER INSERT ON post_category
+    FOR EACH ROW
+    EXECUTE PROCEDURE create_cat_glory();
+
+CREATE TRIGGER block_add_vote
+    BEFORE INSERT ON rating
+    FOR EACH ROW
+    EXECUTE PROCEDURE block_add_vote();
+CREATE TRIGGER block_update_vote
+    BEFORE UPDATE ON rating
+    FOR EACH ROW
+    EXECUTE PROCEDURE block_add_vote();
+CREATE TRIGGER block_rem_vote
+    BEFORE DELETE ON rating
+    FOR EACH ROW
+    EXECUTE PROCEDURE block_rem_vote();
+
+CREATE TRIGGER block_add_content
+    BEFORE INSERT ON content
+    FOR EACH ROW
+    EXECUTE PROCEDURE block_add_content();
+CREATE TRIGGER block_update_content
+    BEFORE UPDATE ON content
+    FOR EACH ROW
+    EXECUTE PROCEDURE block_update_content();
+
+CREATE TRIGGER block_add_report
+    BEFORE INSERT ON report
+    FOR EACH ROW
+    EXECUTE PROCEDURE block_add_report();
