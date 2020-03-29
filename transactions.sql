@@ -1,28 +1,30 @@
--- T01 --
--- Insert a new post --
+-- T01 - create a post
 BEGIN TRANSACTION;
 SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
 
-    -- insert content --
-    INSERT INTO content(id, author, body) VALUES($id, $author, $content);
-
-    -- insert post --
-    -- (how does currval works) https://dba.stackexchange.com/questions/3281/how-do-i-use-currval-in-postgresql-to-get-the-last-inserted-id/3284 --
+    INSERT INTO content(author, body) VALUES($author, $content);
     INSERT INTO post(id, title) VALUES (currval(content_id_seq), $title);
 
 COMMIT;
 
 
-
--- TO2 --
--- Insert a new comment --
+-- T02 - comment a post
 BEGIN TRANSACTION;
 SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
 
-    -- insert content --
-    INSERT INTO content(id, author, body) VALUES($id, $author, $content);
-
-    -- insert post --
+    INSERT INTO content(author, body) VALUES ($author, $body);
     INSERT INTO comment(id) VALUES (currval(content_id_seq));
+    INSERT INTO thread(post, main_comment) VALUES ($post, currval(comment_id_seq));
 
 COMMIT;
+
+-- T03 - reply to a comment
+BEGIN TRANSACTION;
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
+
+    INSERT INTO content(author, body) VALUES ($author, $body);
+    INSERT INTO comment(id) VALUES (currval(content_id_seq));
+    INSERT INTO reply(comment, thread) VALUES (currval(comment_id_seq), $thread);
+
+COMMIT;
+
