@@ -145,6 +145,8 @@ DROP FUNCTION IF EXISTS add_category_post();
 DROP TRIGGER IF EXISTS rem_category_post ON post_category;
 DROP FUNCTION IF EXISTS rem_category_post();
 
+DROP TRIGGER IF EXISTS create_cat_glory ON post_category;
+DROP FUNCTION IF EXISTS create_cat_glory();
 
 CREATE FUNCTION add_category_post() RETURNS TRIGGER AS
 $BODY$
@@ -175,6 +177,26 @@ CREATE TRIGGER rem_category_post
     FOR EACH ROW
     EXECUTE PROCEDURE rem_category_post();
 
+CREATE FUNCTION create_cat_glory() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF( NOT EXISTS ( SELECT user_id
+                     FROM category_glory
+                          JOIN NEW ON (category_glory.category = NEW.category)
+                          JOIN content ON (content.id = NEW.post)
+                     WHERE category_glory.category = NEW.category)) THEN
+        INSERT INTO category_glory
+                SELECT author, NEW.category
+                FROM NEW JOIN content ON (NEW.post = content.id);
+    END IF;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER create_cat_glory
+    BEFORE INSERT ON post_category
+    FOR EACH ROW
+    EXECUTE PROCEDURE create_cat_glory();
 
 ---------------------------
 -- BLOCKED USER TRIGGERS --
