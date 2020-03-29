@@ -130,12 +130,6 @@ CREATE TABLE "post_category" (
     PRIMARY KEY (post, category)
 );
 
-CREATE TABLE "assigned_category" (
-    user_id INTEGER REFERENCES "user" (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    category INTEGER REFERENCES "category" (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    PRIMARY KEY (user_id, category)
-);
-
 CREATE TABLE "category_glory" (
     user_id INTEGER REFERENCES "user" (id) ON UPDATE CASCADE ON DELETE CASCADE,
     category INTEGER REFERENCES "category" (id) ON UPDATE CASCADE ON DELETE CASCADE,

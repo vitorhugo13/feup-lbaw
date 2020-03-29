@@ -1477,17 +1477,17 @@ insert into post_category (post, category) values (99, 14);
 insert into post_category (post, category) values (100, 42);
 
 
--- insert assigned_category (10 moderators)
--- insert into assigned_category (user_id, category) values (10, 10);
--- insert into assigned_category (user_id, category) values (11, 11);
--- insert into assigned_category (user_id, category) values (12, 12);
--- insert into assigned_category (user_id, category) values (13, 13);
--- insert into assigned_category (user_id, category) values (14, 14);
--- insert into assigned_category (user_id, category) values (15, 15);
--- insert into assigned_category (user_id, category) values (16, 16);
--- insert into assigned_category (user_id, category) values (17, 17);
--- insert into assigned_category (user_id, category) values (18, 18);
--- insert into assigned_category (user_id, category) values (19, 19);
+insert assigned_category (10 moderators)
+insert into assigned_category (user_id, category) values (10, 10);
+insert into assigned_category (user_id, category) values (11, 11);
+insert into assigned_category (user_id, category) values (12, 12);
+insert into assigned_category (user_id, category) values (13, 13);
+insert into assigned_category (user_id, category) values (14, 14);
+insert into assigned_category (user_id, category) values (15, 15);
+insert into assigned_category (user_id, category) values (16, 16);
+insert into assigned_category (user_id, category) values (17, 17);
+insert into assigned_category (user_id, category) values (18, 18);
+insert into assigned_category (user_id, category) values (19, 19);
 
 
 -- insert star_post 
