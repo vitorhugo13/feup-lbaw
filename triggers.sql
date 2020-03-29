@@ -295,7 +295,7 @@ DROP FUNCTION IF EXISTS cannot_assign();
 CREATE FUNCTION cannot_assign() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF NOT EXISTS (SELECT user_id FROM category_glory WHERE user_id = NEW.user_id AND category = NEW.category AND glory > 1) THEN 
+    IF NOT EXISTS (SELECT user_id FROM category_glory WHERE user_id = NEW.user_id AND category = NEW.category AND glory > 1000) THEN 
         RAISE EXCEPTION 'The user cannot be assigned to this category.';
     END IF;
     RETURN NEW;
