@@ -85,6 +85,7 @@ FROM (SELECT report_file, content, body, time, reason
                               WHERE author = $user_id AND rpf.id = "report_file".id)
 				      AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "report" ON report_file = "report".file
       ORDER BY report_file) AS all_reports JOIN "post" ON content = "post".id
+ORDER BY time DESC;
 
 SELECT report_file, body, time, reason
 FROM (SELECT report_file, content, body, time, reason
@@ -95,6 +96,7 @@ FROM (SELECT report_file, content, body, time, reason
                               WHERE author = $user_id AND rpf.id = "report_file".id)
                   AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "report" ON report_file = "report".file
       ORDER BY report_file) AS all_reports JOIN "comment" ON content = "comment".id
+ORDER BY time DESC;
 
 SELECT report_file, title, time, justification
 FROM (SELECT report_file, content, body, time, justification
@@ -105,6 +107,7 @@ FROM (SELECT report_file, content, body, time, justification
                               WHERE author = $user_id AND rpf.id = "report_file".id)
                   AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "contest" ON report_file = "contest".report
 ORDER BY report_file) AS all_reports JOIN "post" ON content = "post".id
+ORDER BY time DESC;
 
 SELECT report_file, body, time, justification
 FROM (SELECT report_file, content, body, time, justification
@@ -115,6 +118,7 @@ FROM (SELECT report_file, content, body, time, justification
                               WHERE author = $user_id AND rpf.id = "report_file".id)
                   AND rpf.sorted = FALSE) AS valid_reports JOIN "content" ON content = "content".id) JOIN "contest" ON report_file = "contest".report
 ORDER BY report_file) AS all_reports JOIN "comment" ON content = "comment".id
+ORDER BY time DESC;
 
 ----------------------------------------------------------------------------
 ------------------------ Get a user's notifications ------------------------
