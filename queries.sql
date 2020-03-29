@@ -68,8 +68,8 @@ WHERE "user".username = $user_email;
 
 SELECT user_id, category, "category_glory".glory AS category_glory
 FROM "user", "category_glory"
-WHERE "user".id = $user_id AND "category_glory".user_id = $user_id 
-ORDER BY category_glory
+WHERE "user".id = $user_id AND "category_glory".user_id = $user_id  AND "category_glory".glory > 0
+ORDER BY category_glory DESC
 LIMIT 3
 
 ----------------------------------------------------------------------------

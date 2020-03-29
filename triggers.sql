@@ -180,21 +180,28 @@ CREATE TRIGGER rem_category_post
 CREATE FUNCTION create_cat_glory() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF( NOT EXISTS ( SELECT user_id
-                     FROM category_glory
-                          JOIN NEW ON (category_glory.category = NEW.category)
-                          JOIN content ON (content.id = NEW.post)
-                     WHERE category_glory.category = NEW.category)) THEN
+    IF( NOT EXISTS( SELECT *
+                     FROM (SELECT content.author AS author
+                            FROM content JOIN post_category ON (content.id = post_category.post)
+                            WHERE content.id = NEW.post) AS author_id
+                          JOIN category_glory ON (category_glory.user_id=author_id.author)
+                    WHERE category_glory.category=NEW.category)
+        AND NEW.post NOT IN (SELECT content.id 
+                             FROM content
+                                  JOIN post ON (content.id = post.id)
+                             WHERE author IS NULL AND content.id = NEW.post)) THEN
         INSERT INTO category_glory
                 SELECT author, NEW.category
-                FROM NEW JOIN content ON (NEW.post = content.id);
+                FROM content
+                WHERE content.id = NEW.post;
     END IF;
+    RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER create_cat_glory
-    BEFORE INSERT ON post_category
+    AFTER INSERT ON post_category
     FOR EACH ROW
     EXECUTE PROCEDURE create_cat_glory();
 
