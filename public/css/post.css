@@ -1,0 +1,229 @@
+@import 'constants.css';
+
+/* ----------========== POST ==========---------- */
+.post {
+    background-color: var(--background-strong);
+    width: 80%;
+    padding: 2em 2em;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.post > header > div:first-child {
+    margin-bottom: 1.5em;
+}
+
+.post >header > div .post-user > a:first-child {
+    margin-right: 1em;
+}
+
+.name-time {
+    margin-right: 0.5em;
+}
+
+.name-time a {
+    color: var(--main-color);
+    font-size: 0.9em;
+}
+
+.name-time span {
+    font-size: small;
+    font-weight: 300;
+    display: inline-block;
+}
+
+.post i {
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.post > header .dropdown-menu {
+    color: var(--background-strong);
+    background-color: var(--foreground);
+}
+
+.post > header .dropdown-menu > a {
+    cursor: pointer;
+}
+
+.post > header .dropdown-menu > a:hover {
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+.post > header > h4 {
+    font-weight: 500;
+}
+
+.post .post-body > p {
+    font-size: 0.9em;
+    font-weight: 400;
+}
+
+.post > footer {
+    margin-top: 1.5em;
+}
+
+.post > footer > div {
+    margin-right: 1.5em;
+    font-size: 0.9em;
+    font-weight: 300;
+}
+
+.post > footer > div > img {
+    margin-right: 0.15em
+}
+
+.post > footer > div:nth-child(2) > img {
+    transform: rotate(180deg);
+}
+
+/* ----------========== COMMENT SECTION ==========---------- */
+#comment-section {
+    background-color: var(--background-strong);
+    margin: auto;
+    margin-top: 1em;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    width: 80%;
+}
+
+#comment-section > header { 
+    margin-bottom: 1em;
+}
+
+/* ----------========== COMMENT AREA ==========---------- */
+
+#comment-section > header > span:first-child {
+    font-size: large;
+    font-weight: 500;
+}
+
+#comment-section > header > span:last-child {
+    font-size: medium;
+    font-weight: 300;
+}
+
+#comment-area textarea {
+    background-color: var(--background);
+    color: var(--foreground);
+    border-style: none;
+    width: 100%;
+
+    padding: 0.5em 1em;
+    margin-bottom: 0.4em;
+    border-radius: 5px;
+
+    resize: none;
+    overflow: hidden;
+    min-height: 6em;
+}
+
+#comment-area textarea:focus {
+    outline: 0 none;
+    border: solid 1px var(--foreground);
+}
+
+#comment-area button {
+    width: 6em;
+    padding: 0.3em 0.5em;
+    margin-left: 0.5em;
+    border: 0;
+    border-radius: 2px;
+    background-color: var(--main-color);
+    color: var(--background-strong);
+    font-weight: 600;
+}
+
+#comment-area button:first-child {
+    background-color: var(--background);
+    color: var(--main-color);
+    font-weight: 400;
+}
+
+#comment-area button:focus {
+    outline: 0 none;
+}
+
+/* ----------========== COMMENT THREAD ==========---------- */
+.thread {
+    background-color: var(--background);
+    border-radius: 5px;
+    padding: 0.3em 0.6em;
+}
+
+.thread .comment > header {
+    margin-bottom: 0.3em;
+}
+
+.thread .comment > header > div .dropdown {
+    cursor: pointer;
+}
+
+.thread .comment > header > div .dropdown-menu{
+    background-color: var(--foreground);
+    color: var(--background-strong);
+}
+
+.thread .comment > header > div > span{
+    font-size: 0.7em;
+    font-weight: 300;
+}
+
+.thread .comment > header > div > span:first-child{
+    font-size: 0.8em;
+    font-weight: 400;
+}
+
+.thread .comment > .comment-body > p {
+    font-size: 0.9em;
+    font-weight: 300;
+    margin-bottom: 0.7em;
+}
+
+.thread .comment > footer > .votes {
+    margin-right: 1.5em;
+    font-size: 0.8em;
+    font-weight: 300;
+}
+
+.thread .comment > footer > .votes > div > img {
+    margin-right: 0.4em;
+}
+
+.thread .comment > footer > .votes > div:nth-child(2) > img {
+    transform: rotate(180deg);
+}
+
+.thread .comment > footer > button {
+    background-color: var(--background-strong);
+    color: var(--foreground);
+    border: none;
+    border-radius: 2px;
+    font-size: small;
+    font-weight: 400;
+    padding: 0.4em 1em;
+}
+
+.thread .comment > footer > button:hover {
+    color: var(--accent-color);
+}
+
+.thread .replies .comment:first-child > header > div > span:first-child {
+    color: var(--main-color);
+}
+
+
+/* ----------========== MEDIA QUERIES ==========---------- */
+
+@media (max-width: 991px) {
+    .post, #comment-section {
+        width: 100%;
+    }
+}
+
+@media (max-width: 575px) {
+    .post, #comment-section {
+        padding: 1em;
+    }
+}

@@ -1,0 +1,141 @@
+@import 'constants.css';
+
+/* ----------========== SIDEBAR ==========---------- */
+
+#sidebar-navigation {
+    padding: 1.5em 1em;
+}
+
+#sidebar-navigation li {
+    width: 10em;
+}
+
+#sidebar-navigation p {
+    font-size: 1.0em;
+    font-weight: 400;
+    color: var(--main-color);
+}
+
+#sidebar-navigation a {
+    font-weight: 400;
+    color: var(--foreground);
+    border-left: solid var(--background);
+    border-radius: 0 0 0 0;
+
+    transition: color 200ms linear 0s;
+    -webkit-transition: color 200ms linear 0s;
+    -moz-transition: color 200ms linear 0s;
+}
+
+#sidebar-navigation a:hover {
+    color: var(--main-color);
+}
+
+#sidebar-navigation a:focus {
+    outline: none;
+}
+
+#sidebar-navigation a.active {
+    color: var(--main-color);
+    border-color: var(--main-color);
+    background-color: var(--background-strong);
+}
+
+/* ----------========== MAIN CONTENT ==========---------- */
+#main .tab-content {
+    padding: 0.5em 1.5em;
+}
+
+#main {
+    background-color: var(--background-strong);
+    position: relative;
+    border-radius: 5px;
+    margin-left: 17em;
+}
+
+/* ----------========== TABLES ==========---------- */
+
+table * {
+    color: var(--foreground);
+}
+
+.table thead th, .table tbody td {
+    border: none;
+}
+
+table.table thead {
+    border-bottom: 2px solid var(--main-color);
+    background-color: var(--background-strong);
+    text-align: left;
+}
+
+table tbody tr {
+    background-color: var(--background);
+}
+table tbody tr:nth-child(2n) {
+    background-color: var(--background-strong);
+}
+
+table td {
+    position: relative;
+}
+
+table .data-title span,
+table .data-date span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding-left: .75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.data-title {
+    width: 70%;
+    
+    font-weight: 300;
+    font-size: 0.9em;
+}
+.data-reason {
+    width: 14%;
+    font-weight: 400;
+    font-size: 1em;
+}
+.data-date {
+    text-align: ;
+    width: 14%;
+
+    font-weight: 300;
+    font-size: 0.9em;
+}
+
+/* ----------========== MEDIA QUERIES ==========---------- */
+
+@media (max-width: 991px) {
+    #main {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 72em) {
+    /* #main {
+        width: 60em;
+    } */
+    #main .tab-content {
+        padding: 0.7em 1.4em;
+    }
+}
+
+@media (max-width: 32em) {
+    #content {
+        padding: 1em 0.5em;
+    }
+    #main .tab-content {
+        padding: 0.4em;
+    }
+
+    table.table tbody td {
+        padding: 0.3em;
+    }
+}

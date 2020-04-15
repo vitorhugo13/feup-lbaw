@@ -1,0 +1,39 @@
+.reg-container{
+    /* width: 75%; */
+    /* margin: 1.5em auto; */
+    padding: 2em 1.5em;
+    background-color: var(--background-strong);
+    border-radius: 5px;
+}
+
+.rule{
+    margin-left: 1.3em;
+    font-size: 1.1em;
+    /* font-weight: 300;  */
+}
+
+.rule span{
+    font-weight: 500;
+    /* color:var(--main-color); */
+}
+
+.ty{
+    margin: 1em auto;
+    color: var(--foreground);
+}
+
+
+.img{   
+    height: auto;
+    margin: 0 auto 1em auto;
+}
+
+@media (max-width: 575px) { 
+    .reg-container{
+        padding: 1em;
+    }
+
+    .rule{
+        margin-left: 0;
+    }
+}
