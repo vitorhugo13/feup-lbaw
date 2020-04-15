@@ -51,9 +51,11 @@
         </div>
 
         <form method="POST" action="{{ route('login') }}">
+        {{ csrf_field() }}
+
           <div class="form-input">
             <span> <i class="fa fa-user"></i></span>
-            <input type="text" placeholder="Username" required>
+            <input type="text" name="username" placeholder="Username" required autofocus>
             @if ($errors->has('username'))
             <span class="error">
                 {{ $errors->first('username') }}
@@ -63,7 +65,7 @@
 
           <div class="form-input">
             <span> <i class="fa fa-lock"></i></span>
-            <input type="password" placeholder="Password" required>
+            <input type="password" name="password" placeholder="Password" required>
             @if ($errors->has('password'))
             <span class="error">
                 {{ $errors->first('password') }}
@@ -87,7 +89,7 @@
 
           <div class="google mb-3">
 
-            <a href="../pages/home.php" class="btn btn-block btn-social btn-google">Google</a>
+            <a href="" class="btn btn-block btn-social btn-google">Google</a>
 
           </div>
 

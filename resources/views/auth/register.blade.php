@@ -70,7 +70,7 @@
                   <h6><span>or register with</span></h6>
                                     
                   <div class="google mb-3">         
-                      <a href="../pages/home.php" class="btn btn-block btn-social btn-google"><i class="fab fa-google"></i>oogle</a>          
+                      <a href="" class="btn btn-block btn-social btn-google"><i class="fab fa-google"></i>oogle</a>          
                   </div>
                     
                   <div class="text-white">

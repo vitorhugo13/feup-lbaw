@@ -12,7 +12,7 @@
     <img src="{{ asset('images/sad_llama.svg') }}" width="170px" class="lama-img mt-2" alt="Lama photo">
     <h3 class="error-404">404 Page not found!</h3>
     <p class="error-404-p">The page you are looking for does not exist...</p>
-    <a href="{{ route('home') }}"><button type="submit" class="btn"><i class="fas fa-undo-alt"></i>   Return</button></a>
+    {{-- <a href="{{ route('home') }}"><button type="submit" class="btn"><i class="fas fa-undo-alt"></i>   Return</button></a> --}}
 </div>
 
 @endsection
