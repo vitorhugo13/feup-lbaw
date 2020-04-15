@@ -6,6 +6,7 @@
 
 @push('styles')
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/search.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -25,7 +26,7 @@
                 </div>
             </div>
             <div class="dropdown" style="margin-left: 1em">
-                <img class="rounded-circle dropdown-toggle" data-toggle="dropdown" src="../assets/default_profile.png" height="30">
+                <img class="rounded-circle dropdown-toggle" data-toggle="dropdown" src="{{asset('default_profile.png')}}" height="30">
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="">Profile</a>
                     <a class="dropdown-item" href="">Feed</a>
