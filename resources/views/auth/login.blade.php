@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.headerless')
 
 @section('content')
 
@@ -54,9 +54,9 @@
           <div class="form-input">
             <span> <i class="fa fa-user"></i></span>
             <input type="text" placeholder="Username" required>
-            @if ($errors->has('email'))
+            @if ($errors->has('username'))
             <span class="error">
-                {{ $errors->first('email') }}
+                {{ $errors->first('username') }}
             </span>
             @endif
           </div>
