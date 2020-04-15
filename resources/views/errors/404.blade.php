@@ -1,12 +1,11 @@
 @extends('layouts.main')
 {{-- TODO: the layout to be used must have the header and footer --}}
-@section('content')
 
 @push('styles')
-    <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     <link href="{{ asset('css/error_pages.css') }}" rel="stylesheet">
 @endpush
 
+@section('main-content')
 
 {{-- TODO: change the redirect to the homepage --}}
 <div class="error text-center">
@@ -15,3 +14,5 @@
     <p class="error-404-p">The page you are looking for does not exist...</p>
     <a href="{{ route('home') }}"><button type="submit" class="btn"><i class="fas fa-undo-alt"></i>   Return</button></a>
 </div>
+
+@endsection

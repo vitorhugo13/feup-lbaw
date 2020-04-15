@@ -1,12 +1,11 @@
 @extends('layouts.main')
-{{-- TODO: the layout to be used must have the header and footer --}}
-@section('content')
 
 @push('styles')
-    <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     <link href="{{ asset('css/team.css') }}" rel="stylesheet">
 @endpush
 
+
+@section('main-content')
 
 <div class="team-page text-center">
     <h1> LAMA TEAM </h1>
@@ -14,7 +13,7 @@
     <div class="row my-lg-5">
         <div class="col col-12 col-lg-6 mb-4">
             <article class="d-flex flex-column flex-md-row align-items-center">
-                <img src="{{ asset('image/team_photos/bernas.jpeg') }}" class="img rounded-circle mt-2" alt="Bernardo's photo">
+                <img src="{{ asset('images/team_photos/bernas.jpeg') }}" class="img rounded-circle mt-2" alt="Bernardo's photo">
                 <div class="text-center text-md-left mt-2 ml-md-2">
                     <h2>Bernardo Santos</h2>
                     <p>
@@ -42,7 +41,7 @@
         </div>
         <div class="col col-12 col-lg-6 mb-4">
             <article class="d-flex flex-column flex-md-row flex-md-row-reverse align-items-center">
-                <img src="{{ asset('image/team_photos/cajo.jpeg') }}" class="img rounded-circle mt-2" alt="Cajo's photo">
+                <img src="{{ asset('images/team_photos/cajo.jpg') }}" class="img rounded-circle mt-2" alt="Cajo's photo">
                 <div class="text-center text-md-right mt-2 mr-md-2">
                     <h2>Carlos Jorge</h2>
                     <p>
@@ -73,7 +72,7 @@
     <div class="row my-lg-5">
         <div class="col col-12 col-lg-6 mb-4">
             <article class="d-flex flex-column flex-md-row align-items-center">
-                <img src="{{ asset('image/team_photos/tito.jpeg') }}" class="img rounded-circle mt-2" alt="Tito's photo">
+                <img src="{{ asset('images/team_photos/tito.jpg') }}" class="img rounded-circle mt-2" alt="Tito's photo">
                 <div class="text-center text-md-left mt-2 ml-md-2">
                     <h2>Tito Griné</h2>
                     <p>
@@ -101,7 +100,7 @@
         </div>
         <div class="col col-12 col-lg-6 mb-4">
             <article class="d-flex flex-column flex-md-row flex-md-row-reverse align-items-center">
-                <img src="{{ asset('image/team_photos/vitorhugo.jpeg') }}" class="img rounded-circle mt-2" alt="Vitor's photo">
+                <img src="{{ asset('images/team_photos/vitorhugo.jpg') }}" class="img rounded-circle mt-2" alt="Vitor's photo">
                 <div class="text-center text-md-right mt-2 mr-md-2">
                     <h2>Vítor Gonçalves</h2>
                     <p>
@@ -129,3 +128,5 @@
         </div>
     </div>
 </div>
+
+@endsection

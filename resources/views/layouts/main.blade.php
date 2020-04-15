@@ -4,6 +4,10 @@
     <script src="{{asset('js/searchbar.js')}}" defer></script>
 @endpush
 
+@push('styles')
+    <link href="{{ asset('css/common.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
 
 <header>
@@ -52,7 +56,7 @@
         </ul>
         <ul>
             <li>About:</li>
-        <li><a href="{{url('team-page')}}">Team</a></li>
+        <li><a href="{{ route('team') }}">Team</a></li>
             <li><a href="{{url('regulations-page')}}">Regulations</a></li>
         </ul>
     </div>
