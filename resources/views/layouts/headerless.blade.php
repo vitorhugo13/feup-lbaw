@@ -15,7 +15,7 @@
         <!-- FontAwesome -->
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Heebo:100,300,400,500,700,800,900&display=swap" rel="stylesheet">
-        <link rel="icon" type="image/png" href="../assets/logo_tab.png">
+        <link rel="icon" type="image/png" href="../images/logo_tab.png">
 
         @stack('styles')
         @stack('scripts')
