@@ -7,7 +7,6 @@
     <link href="{{ asset('css/register.css') }}" rel="stylesheet">
 @endpush
 
-
 <div class="container-fluid">
   <div class="row">
       <div class="col-lg-6 col-md-6 d-none d-md-block image-container"></div>
@@ -15,14 +14,14 @@
       <div class="col-lg-6 col-md-6 form-container">
           <div class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
               <div class="logo mt-5 mb-3">
-                  <a href="./home.php"><img src={{ asset('images/lama_logo.svg') }} width="140px"></a>
+                  <a href=""><img src={{ asset('images/lama_logo.svg') }} width="140px"></a>
               </div>
 
               <div class="heading mb-3">
                   <h4>Create new account</h4>
               </div>
                   
-              <form action="../pages/home.php">
+              <form method="POST" action="{{ route('register') }}">
 
                   <div class="form-input">
                       <span> <i class="fa fa-user"></i></span>
