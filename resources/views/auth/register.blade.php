@@ -22,10 +22,11 @@
               </div>
                   
               <form method="POST" action="{{ route('register') }}">
+              {{ csrf_field() }}
 
                   <div class="form-input">
                       <span> <i class="fa fa-user"></i></span>
-                      <input type="text" placeholder="Username" required>
+                      <input type="text" name="username" placeholder="Username" required>
                       @if ($errors->has('name'))
                       <span class="error">
                           {{ $errors->first('name') }}
@@ -35,7 +36,7 @@
                     
                   <div class="form-input">
                       <span> <i class="fa fa-envelope"></i></span>
-                      <input type="email" placeholder="Email Address" required>
+                      <input type="email" name="email" placeholder="Email Address" required>
                       @if ($errors->has('email'))
                       <span class="error">
                           {{ $errors->first('email') }}
@@ -45,7 +46,7 @@
 
                   <div class="form-input">
                       <span> <i class="fa fa-lock"></i></span>
-                      <input type="password" placeholder="Password" required>
+                      <input type="password" name="password" placeholder="Password" required>
                       @if ($errors->has('password'))
                       <span class="error">
                           {{ $errors->first('password') }}
