@@ -16,6 +16,7 @@ Route::get('/', 'Auth\LoginController@home');
 // Static Pages
 // TODO: ask if this is the correct use of Route::view()
 Route::view('team', 'pages/team')->name('team');
+Route::view('regulations', 'pages/regulations')->name('regulations');
 
 // Cards
 Route::get('cards', 'CardController@list');

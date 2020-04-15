@@ -57,7 +57,7 @@
         <ul>
             <li>About:</li>
         <li><a href="{{ route('team') }}">Team</a></li>
-            <li><a href="{{url('regulations-page')}}">Regulations</a></li>
+            <li><a href="{{ route('regulations') }}">Regulations</a></li>
         </ul>
     </div>
 </footer>
