@@ -240,7 +240,7 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
     font-family: inherit;
     font-size: 90%;
     /* background: var(--foreground) url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 10px center; */
-    background: var(--foreground) url("../assets/search.svg") no-repeat 2px center;
+    background: var(--foreground) url("../images/search.svg") no-repeat 2px center;
     border: solid 2px transparent;
     -webkit-border-radius: 10em;
     -moz-border-radius: 10em;
@@ -261,7 +261,7 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
     box-sizing: content-box;
     font-family: inherit;
     font-size: 90%;
-    background: var(--foreground) url("../assets/search.svg") no-repeat 2px center;
+    background: var(--foreground) url("{{asset('images/search.svg') }}") no-repeat 2px center;
     border: solid 2px transparent;
     -webkit-border-radius: 10em;
     -moz-border-radius: 10em;
