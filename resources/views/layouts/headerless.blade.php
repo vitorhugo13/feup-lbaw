@@ -18,6 +18,7 @@
         <link rel="icon" type="image/png" href="../images/logo_tab.png">
 
         @stack('styles')
+        @stack('scripts')
     </head>
 
     <body>
