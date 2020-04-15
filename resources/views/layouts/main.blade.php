@@ -1,11 +1,15 @@
 @extends('layouts.headerless')
 
+@push('scripts')
+    <script src="{{asset('js/searchbar.js')}}" defer></script>
+@endpush
+
 @section('content')
 
 <header>
     <nav class="navbar">
-    <a class="navbar-brand" href="{{url(/home)}}"><img src="../assets/logo_text.svg" width="50" alt="LAMA logo" /></a>
-        <form class="expandable-search" action="{{url(/search)}}">
+    <a class="navbar-brand" href="{{url('home')}}"><img src="{{asset('images/logo_tab.png')}}" width="50" alt="LAMA logo" /></a>
+        <form class="expandable-search" action="{{url('search')}}">
             <input type="search" placeholder="Search" aria-label="Search" />
         </form>
         <div class="d-flex align-items-center">
@@ -24,13 +28,13 @@
                     <a class="dropdown-item" href="">Reports</a>
                     <a class="dropdown-item" href=""><i class="fas fa-ban"></i> 49:30:06</a>
                     <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{url(/logout)}}">Log Out</a>
+                <a class="dropdown-item" href="{{url('logout')}}">Log Out</a>
                 </div>
             </div>
         </div>
     </nav>
 </header>
-<form action="{{url(/search)}}" id="collapsed-search" class="d-flex flex-row justify-content-center">
+<form action="{{url('search')}}" id="collapsed-search" class="d-flex flex-row justify-content-center">
     <input type="search" placeholder="Search" aria-label="Search" />
 </form>
 
@@ -48,8 +52,8 @@
         </ul>
         <ul>
             <li>About:</li>
-        <li><a href="{{url(/team-page)}}">Team</a></li>
-            <li><a href="{{url(/regulations-page)}}">Regulations</a></li>
+        <li><a href="{{url('team-page')}}">Team</a></li>
+            <li><a href="{{url('regulations-page')}}">Regulations</a></li>
         </ul>
     </div>
 </footer>
