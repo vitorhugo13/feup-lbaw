@@ -1,6 +1,6 @@
-@extends('layouts.headerless')
+@extends('layouts.main')
 
-@section('content')
+@section('main-content')
 
 {{-- <form method="POST" action="{{ route('login') }}">
     {{ csrf_field() }}
