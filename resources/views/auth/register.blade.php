@@ -7,6 +7,12 @@
     <link href="{{ asset('css/register.css') }}" rel="stylesheet">
 @endpush
 
+
+@foreach ($errors->all() as $error)
+    {{ $error }}
+@endforeach
+
+
 <div class="container-fluid">
   <div class="row">
       <div class="col-lg-6 col-md-6 d-none d-md-block image-container"></div>
@@ -27,9 +33,9 @@
                   <div class="form-input">
                       <span> <i class="fa fa-user"></i></span>
                       <input type="text" name="username" placeholder="Username" required>
-                      @if ($errors->has('name'))
+                      @if ($errors->has('username'))
                       <span class="error">
-                          {{ $errors->first('name') }}
+                          {{ $errors->first('username') }}
                       </span>
                       @endif
                   </div>
@@ -56,7 +62,7 @@
 
                   <div class="form-input">
                       <span> <i class="fa fa-lock"></i></span>
-                      <input type="password" placeholder="Repeat Password" required>
+                      <input type="password" name="password_confirmation" placeholder="Repeat Password" required>
                   </div>
 
                     
