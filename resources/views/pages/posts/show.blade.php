@@ -42,6 +42,10 @@
         </div>
         <h4> {{ $post->title }}</h1>
             <div class="post-categories">
+                {{-- @foreach($post->categories as $category)
+                    <li>{{ $category->title }}</li>
+                @endforeach --}}
+                @each('partials.categories.normal_badge', $post->categories, 'category')
                 {{-- TODO: draw badges
                  draw_category_badge('Politics'); ?>
                  draw_category_badge('Gaming'); ?>

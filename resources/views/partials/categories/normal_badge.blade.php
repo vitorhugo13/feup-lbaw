@@ -1,5 +1,2 @@
-
-{{-- TODO: missing the link to the category, the category name --}}
-
-<a href="#" class="badge badge-pill category-badge">! <?=$name?></a>
-
+{{-- TODO: missing the link to the category --}}
+<a href="#" class="badge badge-pill category-badge">! {{ $category->title }}</a>

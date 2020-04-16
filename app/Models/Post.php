@@ -14,7 +14,7 @@ class Post extends Model
   * categories of a post (//TODO: hasMany(?) - pode ter só 1...)
   */
   public function categories(){
-    return $this->hasMany('App\Models\Category', 'id');
+    return $this->belongsToMany('App\Models\Category', 'post_category', 'post', 'category');
   }
 
   /*
