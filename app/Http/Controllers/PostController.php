@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Post;
+use App\Models\Content;
 
-class CardController extends Controller
+class PostController extends Controller
 {
     /**
      * Shows the card for a given id.
@@ -19,10 +20,11 @@ class CardController extends Controller
     public function show($id)
     {
       $post = Post::find($id);
+      $content = Content::find($id);
 
-      $this->authorize('show', $post);
+      // $this->authorize('show', $post);
 
-      return view('pages.posts.show', ['post' => $post]);
+      return view('pages.posts.show', ['post' => $post, 'content' => $content]);
     }
 
     /**

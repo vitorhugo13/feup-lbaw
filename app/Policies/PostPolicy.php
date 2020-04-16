@@ -12,7 +12,8 @@ class CardPolicy
 {
     use HandlesAuthorization;
 
-    public function show(User $user, Post $post)
+    // 
+    public function show(?User $user, Post $post)
     {
       // TODO: check if the post is visible
       return true;

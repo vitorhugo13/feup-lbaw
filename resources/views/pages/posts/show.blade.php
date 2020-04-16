@@ -42,20 +42,17 @@
         </div>
         <h4> {{ $post->title }}</h1>
             <div class="post-categories">
-                <?php draw_category_badge('Politics'); ?>
-                <?php draw_category_badge('Gaming'); ?>
-                <?php draw_category_badge('Ethics'); ?>
+                {{-- TODO: draw badges
+                 draw_category_badge('Politics'); ?>
+                 draw_category_badge('Gaming'); ?>
+                 draw_category_badge('Ethics'); ?> --}}
             </div>
     </header>
-    <div class="post-body">
-        <p>Last year I applied for a job to become a Global Whisky Ambassador for Grant’s Scotch Whisky. They advertised the role across multiple social media websites so they had a lot of attention from all over the world.</p>
-        <p>5000 people applied and I won.</p>
-        <p>Past year I have been travelling the world talking about whisky and I have just been nominated as Scotch Whisky Ambassador Of The Year by Icons of Whisky.</p>
-        <p>If you want to see some pictures and videos of my journey so far check out my IG @dannydyer</p>
-    </div>
+    {{-- TODO: make a partial to separate the content body into paragraphs --}}
+    <div class="post-body">{{ $content->body }} </div>
     <footer class="d-flex flex-row align-items-center">
-        <div class="upvotes"><img src="../assets/hoof_filled.svg" width="13" alt="uphoof" /> +2062</div>
-        <div class="downvotes"><img src="../assets/hoof_outline.svg" width="13" alt="downhoof" /> -407</div>
+        <div class="upvotes"><img src="{{ asset('images/hoof_filled.svg') }}" width="13" alt="uphoof" /> +{{ $content->upvotes }}</div>
+        <div class="downvotes"><img src="{{ asset('images/hoof_outline.svg') }}" width="13" alt="downhoof" /> -{{ $content->downvotes }}</div>
     </footer>
 </div>
 {{-- TODO: comment-section
@@ -71,3 +68,5 @@
 
 {{-- TODO: draw move moval --}}
 {{-- TODO: draw report modal --}}
+
+@endsection
