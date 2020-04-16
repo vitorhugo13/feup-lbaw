@@ -30,7 +30,7 @@ class Content extends Model
     'author', 'body',
   ];
 
-  public function author() {
+  public function owner() {
     return $this->belongsTo('App\Models\User', 'author');
   }
 
