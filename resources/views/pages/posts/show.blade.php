@@ -40,20 +40,13 @@
                 </div>
             </div>
         </div>
-        <h4> {{ $post->title }}</h1>
-            <div class="post-categories">
-                {{-- @foreach($post->categories as $category)
-                    <li>{{ $category->title }}</li>
-                @endforeach --}}
-                @each('partials.categories.normal_badge', $post->categories, 'category')
-                {{-- TODO: draw badges
-                 draw_category_badge('Politics'); ?>
-                 draw_category_badge('Gaming'); ?>
-                 draw_category_badge('Ethics'); ?> --}}
-            </div>
+        <h4>{{ $post->title }}</h4>
+        <div class="post-categories">
+            @each('partials.categories.normal_badge', $post->categories, 'category')
+        </div>
     </header>
     {{-- TODO: make a partial to separate the content body into paragraphs --}}
-    <div class="post-body">{{ $content->body }} </div>
+    <div class="post-body">{{ $content->body }}</div>
     <footer class="d-flex flex-row align-items-center">
         <div class="upvotes"><img src="{{ asset('images/hoof_filled.svg') }}" width="13" alt="uphoof" /> +{{ $content->upvotes }}</div>
         <div class="downvotes"><img src="{{ asset('images/hoof_outline.svg') }}" width="13" alt="downhoof" /> -{{ $content->downvotes }}</div>
