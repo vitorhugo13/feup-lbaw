@@ -12,7 +12,11 @@ class User extends Authenticatable
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
 
-    // Specifying this model's table
+    /**
+     * Model associated with table user
+     * 
+     * @var string
+     */
     protected $table = 'user';
 
     /**
@@ -37,14 +41,14 @@ class User extends Authenticatable
      * The posts this user has posted.
      */
     public function posts() {
-      return $this->hasOneThrough('App\Models\Post', 'App\Models\Content', 'author', 'id', 'id', 'id');
+      return $this->hasManyThrough('App\Models\Post', 'App\Models\Content', 'author', 'id', 'id', 'id');
     }
 
     /**
      * The comments this user owns.
      */
     public function comments() {
-        return $this->hasOneThrough('App\Models\Comment', 'App\Models\Content', 'author', 'id', 'id', 'id');
+        return $this->hasManyThrough('App\Models\Comment', 'App\Models\Content', 'author', 'id', 'id', 'id');
       }
 
     /**
@@ -58,6 +62,27 @@ class User extends Authenticatable
      * The ratings this user has made
      */
     public function ratings() {
-        return $this->belongsToMany('App\Models\Content', 'id');
+        return $this->belongsToMany('App\Models\Content', 'rating', 'user_id', 'content');
+    }
+
+    /**
+     * The posts this user has starred
+     */
+    public function starredPosts() {
+        return $this->belongsToMany('App\Models\Post', 'star_post', 'user_id', 'post');
+    }
+    
+    /**
+     * The categories this user has starred
+     */
+    public function starredCategories() {
+        return $this->belongsToMany('App\Models\Category', 'star_category', 'user_id', 'category');
+    }
+
+    /**
+     * The glory this user has on each category
+     */
+    public function categoryGlories() {
+        return $this->belongsToMany('App\Models\Category', 'category_glory', 'user_id', 'category');
     }
 }
