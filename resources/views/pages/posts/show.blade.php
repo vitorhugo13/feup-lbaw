@@ -18,9 +18,10 @@
     <header class="d-flex flex-column">
         <div class="d-flex flex-row align-items-center justify-content-between">
             <div class="post-user d-flex flex-row align-items-center justify-content-between">
-                <a href="#"><img class="rounded-circle" src="../assets/user.jpg" width="40"></a>
+                <a href="{{ $link }}"><img class="rounded-circle" src="{{ $photo }}" width="40"></a>
                 <div class="name-time">
-                    <a href="#">DanTheWhiskyMan</a>
+                    {{-- TODO: missing link to user profile --}}
+                <a href="{{ $link }}">{{ $username }}</a>
                     <span>&middot; 17h ago</span>
                 </div>
             </div>

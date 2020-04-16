@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Content;
 
 class PostController extends Controller
@@ -21,10 +22,29 @@ class PostController extends Controller
     {
       $post = Post::find($id);
       $content = Content::find($id);
+      $user = $content->owner;
+
+      if ($user == null) {
+        $username = 'anon';
+        $photo = asset('images/default_picture.png');
+        $link = '#';
+      }
+      else {
+        $username = $user->username;
+        // FIXME: this is only a temporary solution, pictures will not be in this folder
+        $photo = asset('images/'.$user->photo);
+        $link = 'users/'.$user->id;
+      }
 
       // $this->authorize('show', $post);
 
-      return view('pages.posts.show', ['post' => $post, 'content' => $content]);
+      return view('pages.posts.show', [
+        'post' => $post, 
+        'content' => $content, 
+        'username' => $username,
+        'photo' => $photo,
+        'link' => $link,
+        ]);
     }
 
     /**
