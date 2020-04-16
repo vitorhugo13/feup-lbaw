@@ -41,14 +41,14 @@ class User extends Authenticatable
      * The posts this user has posted.
      */
     public function posts() {
-      return $this->hasOneThrough('App\Models\Post', 'App\Models\Content', 'author', 'id', 'id', 'id');
+      return $this->hasManyThrough('App\Models\Post', 'App\Models\Content', 'author', 'id', 'id', 'id');
     }
 
     /**
      * The comments this user owns.
      */
     public function comments() {
-        return $this->hasOneThrough('App\Models\Comment', 'App\Models\Content', 'author', 'id', 'id', 'id');
+        return $this->hasManyThrough('App\Models\Comment', 'App\Models\Content', 'author', 'id', 'id', 'id');
       }
 
     /**
