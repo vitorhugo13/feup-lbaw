@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="dropdown" style="margin-left: 1em">
-                    <img class="rounded-circle dropdown-toggle" data-toggle="dropdown" src="../assets/default_profile.png" height="30">
+                    <img class="rounded-circle dropdown-toggle" data-toggle="dropdown" src="../assets/default_picture.png" height="30">
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="../pages/profile.php">Profile</a>
                         <a class="dropdown-item" href="../pages/feed.php">Feed</a>
