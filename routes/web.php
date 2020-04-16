@@ -18,6 +18,9 @@ Route::get('/', 'Auth\LoginController@home');
 Route::view('team', 'pages/team')->name('team');
 Route::view('regulations', 'pages/regulations')->name('regulations');
 
+// Posts
+Route::get('posts/{id}', 'PostController@show');
+
 // Cards
 // Route::get('cards', 'CardController@list');
 // Route::get('cards/{id}', 'CardController@show');

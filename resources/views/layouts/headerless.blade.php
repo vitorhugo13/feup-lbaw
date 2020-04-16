@@ -26,6 +26,8 @@
             // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
         </script>
         <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
+        
+        <script src="{{ asset('js/top.js') }}" defer></script>
 
         @stack('styles')
         @stack('scripts')
@@ -33,6 +35,8 @@
 
     <body>
         @yield('content')
+
+        <i id="to-top" class="fas fa-arrow-alt-circle-up"></i>
     </body>
 
 </html>
