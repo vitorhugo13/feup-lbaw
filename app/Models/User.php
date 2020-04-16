@@ -12,6 +12,7 @@ class User extends Authenticatable
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
 
+
     /**
      * Model associated with table user
      * 
@@ -26,6 +27,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username', 'email', 'password',
+    ];
+
+    protected $attributes = [
+        'glory' => 0,
+        'role' => 'Member',
+        'photo' => 'default_picture.png',
     ];
 
     /**
@@ -62,7 +69,7 @@ class User extends Authenticatable
      * The ratings this user has made
      */
     public function ratings() {
-        return $this->belongsToMany('App\Models\Content', 'rating', 'user_id', 'content');
+        return $this->belongsToMany('App\Models\Rating', 'rating', 'user_id', 'user_id');
     }
 
     /**

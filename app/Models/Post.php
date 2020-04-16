@@ -11,7 +11,7 @@ class Post extends Model
   protected $table = 'post';
 
   /*
-  * categories of a post (hasMany(?) - pode ter só 1...)
+  * categories of a post (//TODO: hasMany(?) - pode ter só 1...)
   */
   public function categories(){
     return $this->hasMany('App\Models\Category', 'id');

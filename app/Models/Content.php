@@ -33,4 +33,11 @@ class Content extends Model
   public function author() {
     return $this->belongsTo('App\Models\User', 'author');
   }
+
+  /**
+     * The ratings this user has made
+     */
+  public function ratings() {
+      return $this->belongsToMany('App\Models\Rating', 'rating', 'id', 'content_id');
+  }
 }
