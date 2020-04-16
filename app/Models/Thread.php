@@ -13,7 +13,7 @@ class Thread extends Model
   /*
   * post of a Thread
   */
-  public function threads(){
+  public function post(){
     return $this->belongsTo('App\Models\Post', 'id');
   }
 
@@ -23,5 +23,7 @@ class Thread extends Model
   public function comments(){
       return $this->hasMany('App\Models\Comment', 'id');
   }
+
+  //TODO: deal  with reply composition
     
 }
