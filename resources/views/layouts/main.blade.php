@@ -13,7 +13,7 @@
 
 <header>
     <nav class="navbar">
-    <a class="navbar-brand" href="{{url('home')}}"><img src="{{asset('images/logo_tab.png')}}" width="50" alt="LAMA logo" /></a>
+    <a class="navbar-brand" href="{{url('home')}}"><img src="{{asset('images/logo_text.svg')}}" width="50" alt="LAMA logo" /></a>
         <form class="expandable-search" action="{{url('search')}}">
             <input type="search" placeholder="Search" aria-label="Search" />
         </form>
