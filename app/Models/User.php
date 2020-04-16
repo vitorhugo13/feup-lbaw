@@ -12,7 +12,11 @@ class User extends Authenticatable
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
 
-    // Specifying this model's table
+    /**
+     * Model associated with table user
+     * 
+     * @var string
+     */
     protected $table = 'user';
 
     /**
@@ -58,6 +62,27 @@ class User extends Authenticatable
      * The ratings this user has made
      */
     public function ratings() {
-        return $this->belongsToMany('App\Models\Content', 'id');
+        return $this->belongsToMany('App\Models\Content', 'rating', 'user_id', 'content');
+    }
+
+    /**
+     * The posts this user has starred
+     */
+    public function starredPosts() {
+        return $this->belongsToMany('App\Models\Post', 'star_post', 'user_id', 'post');
+    }
+    
+    /**
+     * The categories this user has starred
+     */
+    public function starredCategories() {
+        return $this->belongsToMany('App\Models\Category', 'star_category', 'user_id', 'category');
+    }
+
+    /**
+     * The glory this user has on each category
+     */
+    public function categoryGlories() {
+        return $this->belongsToMany('App\Models\Category', 'category_glory', 'user_id', 'category');
     }
 }
