@@ -582,6 +582,8 @@ insert into "user" (id, username, email, password, bio) values (98, 'akolushev2p
 insert into "user" (id, username, email, password, bio) values (99, 'hhansen2q', 'kbeig2q@dailymail.co.uk', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.');
 insert into "user" (id, username, email, password, bio) values (100, 'abomfield2r', 'bkleinerman2r@domainmarket.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat.');
 
+select setval('user_id_seq', 100);
+
 
 -- insert content (400 in which 20 have anonymous authors)
 insert into content (id, author, body, creation_time) values (1, null, 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.', '2020-02-08 23:58:01');
@@ -984,6 +986,8 @@ insert into content (id, author, body, creation_time) values (397, 79, 'Duis con
 insert into content (id, author, body, creation_time) values (398, 9, 'Praesent id massa id nisl venenatis lacinia.', '2019-07-27 05:53:09');
 insert into content (id, author, body, creation_time) values (399, 11, 'Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.', '2019-06-07 04:39:08');
 insert into content (id, author, body, creation_time) values (400, 25, 'Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.', '2020-03-21 18:07:40');
+
+select setval('content_id_seq', 400);
 
 
 -- insert posts (100)
@@ -1494,6 +1498,8 @@ insert into thread (id, post, main_comment) values (98, 48, 198);
 insert into thread (id, post, main_comment) values (99, 68, 199);
 insert into thread (id, post, main_comment) values (100, 74, 200);
 
+select setval('thread_id_seq', 100);
+
 
 -- insert replies (200)
 insert into reply (comment, thread) values (201, 47);
@@ -1749,6 +1755,8 @@ insert into category (id, title) values (47, 'Fears');
 insert into category (id, title) values (48, 'Fetishes');
 insert into category (id, title) values (49, 'Cringe');
 insert into category (id, title) values (50, 'Other');
+
+select setval('category_id_seq', 50);
 
 
 -- insert post_category
@@ -3005,6 +3013,8 @@ insert into report_file (id, content, reviewer) values (18, 18, null);
 insert into report_file (id, content, reviewer) values (19, 19, 13);
 insert into report_file (id, content, reviewer) values (20, 20, 14);
 
+select setval('report_file_id_seq', 20);
+
 
 -- insert reports (60)
 insert into report (id, file, author, reason, time) values (1, 9, 16, 'Harassment', '2020-03-27 18:43:41');
@@ -3068,6 +3078,8 @@ insert into report (id, file, author, reason, time) values (58, 2, 53, 'Offensiv
 insert into report (id, file, author, reason, time) values (59, 1, 88, 'Spam', '2020-03-27 06:00:34');
 insert into report (id, file, author, reason, time) values (60, 1, 70, 'Harassment', '2020-03-27 12:03:23');
 
+select setval('report_id_seq', 60);
+
 
 -- insert contest (5)
 insert into contest (id, report, justification, time) values (1, 11, 'Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.', '2020-03-29 16:27:53');
@@ -3075,6 +3087,8 @@ insert into contest (id, report, justification, time) values (2, 5, 'Praesent id
 insert into contest (id, report, justification, time) values (3, 15, 'Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', '2020-03-29 06:16:55');
 insert into contest (id, report, justification, time) values (4, 2, 'Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.', '2020-03-29 09:32:45');
 insert into contest (id, report, justification, time) values (5, 7, 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.', '2020-03-29 07:14:02');
+
+select setval('contest_id_seq', 5);
 
 
 -- insert notifications
@@ -3178,6 +3192,8 @@ insert into notification (id, content, time, description, motive) values (97, 20
 insert into notification (id, content, time, description, motive) values (98, 397, '2019-08-01 21:24:34', 'ornare imperdiet sapien urna pretium nisl ut', 'Rating');
 insert into notification (id, content, time, description, motive) values (99, 206, '2019-07-21 02:08:26', 'eu sapien cursus vestibulum proin eu mi', 'New Comment');
 insert into notification (id, content, time, description, motive) values (100, 2, '2019-07-31 04:15:21', 'amet sapien dignissim vestibulum vestibulum ante ipsum primis in', 'Community Post');
+
+select setval('notification_id_seq', 100);
 
 
 -- insert user_notification
