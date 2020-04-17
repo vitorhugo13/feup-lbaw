@@ -4,11 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Post extends Content
 {
 
   public $timestamps  = false;
   protected $table = 'post';
+
+  public function content()
+  {
+    return $this->belongsTo('App\Models\Content', 'id', 'id');
+  }
 
   /*
   * categories of a post (//TODO: hasMany(?) - pode ter só 1...)
@@ -21,7 +26,7 @@ class Post extends Model
   * threads of a post
   */
   public function threads(){
-    return $this->hasMany('App\Models\Thread', 'id');
+    return $this->hasMany('App\Models\Thread', 'post');
   }
 
   /*
@@ -31,6 +36,4 @@ class Post extends Model
     return $this->belongsToMany('App\Models\User');
   }
 
-
-    
 }

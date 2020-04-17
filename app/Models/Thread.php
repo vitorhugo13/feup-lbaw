@@ -11,19 +11,17 @@ class Thread extends Model
   protected $table = 'thread';
 
   /*
-  * post of a Thread
+  * main comment of a Thread
   */
-  public function post(){
-    return $this->belongsTo('App\Models\Post', 'id');
+  public function comment(){  
+      return $this->hasOne('App\Models\Comment', 'id', 'main_comment');
   }
 
   /*
-  * comments of a thread
+  * replys to the comment of a Thread
   */
-  public function comments(){
-      return $this->hasMany('App\Models\Comment', 'id');
-  }
+  public function replies() {
+    return $this->belongsToMany('App\Models\Comment', 'reply', 'thread', 'comment');
 
-  //TODO: deal  with reply composition
-    
+  }
 }

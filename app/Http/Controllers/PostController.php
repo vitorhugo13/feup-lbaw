@@ -40,11 +40,15 @@ class PostController extends Controller
 
       return view('pages.posts.show', [
         'post' => $post, 
-        'content' => $content, 
         'username' => $username,
         'photo' => $photo,
         'link' => $link,
         ]);
+    }
+
+
+    public function showForm() {
+      return view('pages.posts.update');
     }
 
     /**

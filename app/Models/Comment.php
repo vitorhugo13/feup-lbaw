@@ -4,16 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Comment extends Content
 {
 
   public $timestamps  = false;
   protected $table = 'comment';
 
-  /*
-  * thread of comment
-  */
-  public function thread(){
-    return $this->belongsTo('App\Models\Thread', 'id');
+  public function content() {
+    return $this->belongsTo('App\Models\Content', 'id', 'id');
   }
 }

@@ -20,6 +20,7 @@ Route::view('regulations', 'pages/regulations')->name('regulations');
 
 // Posts
 Route::get('posts/{id}', 'PostController@show');
+Route::get('posts', 'PostController@showForm');
 
 // Cards
 // Route::get('cards', 'CardController@list');

@@ -35,6 +35,7 @@ DROP TRIGGER IF EXISTS update_vote ON rating;
 
 DROP TRIGGER IF EXISTS add_category_post ON post_category;
 DROP TRIGGER IF EXISTS rem_category_post ON post_category;
+DROP TRIGGER IF EXISTS update_category_post ON post_category;
 DROP TRIGGER IF EXISTS create_cat_glory ON post_category;
 
 DROP TRIGGER IF EXISTS block_add_vote ON rating;
@@ -49,6 +50,7 @@ DROP FUNCTION IF EXISTS update_vote();
 
 DROP FUNCTION IF EXISTS add_category_post();
 DROP FUNCTION IF EXISTS rem_category_post();
+DROP FUNCTION IF EXISTS update_category_post();
 DROP FUNCTION IF EXISTS create_cat_glory();
 
 DROP FUNCTION IF EXISTS block_add_vote();
@@ -327,6 +329,16 @@ END
 $BODY$
 LANGUAGE plpgsql;
 
+CREATE FUNCTION update_category_post() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    UPDATE category SET num_posts = num_posts - 1 WHERE id = OLD.category;
+    UPDATE category SET num_posts = num_posts + 1 WHERE id = NEW.category;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
 CREATE FUNCTION create_cat_glory() RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -396,6 +408,10 @@ CREATE TRIGGER rem_category_post
     AFTER DELETE ON post_category
     FOR EACH ROW
     EXECUTE PROCEDURE rem_category_post();
+CREATE TRIGGER update_category_post
+    AFTER UPDATE ON post_category
+    FOR EACH ROW
+    EXECUTE PROCEDURE update_category_post();
 
 CREATE TRIGGER create_cat_glory
     AFTER INSERT ON post_category
