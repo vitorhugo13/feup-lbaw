@@ -8,11 +8,6 @@
 @endpush
 
 
-@foreach ($errors->all() as $error)
-    {{ $error }}
-@endforeach
-
-
 <div class="container-fluid">
   <div class="row">
       <div class="col-lg-6 col-md-6 d-none d-md-block image-container"></div>
@@ -32,7 +27,7 @@
 
                   <div class="form-input">
                       <span> <i class="fa fa-user"></i></span>
-                      <input type="text" name="username" placeholder="Username" required>
+                  <input type="text" name="username" placeholder="Username" value="{{ old('username') }}" required>
                       @if ($errors->has('username'))
                       <span class="error">
                           {{ $errors->first('username') }}
@@ -42,7 +37,7 @@
                     
                   <div class="form-input">
                       <span> <i class="fa fa-envelope"></i></span>
-                      <input type="email" name="email" placeholder="Email Address" required>
+                      <input type="email" name="email" placeholder="Email Address" value="{{ old('email') }}" required>
                       @if ($errors->has('email'))
                       <span class="error">
                           {{ $errors->first('email') }}
