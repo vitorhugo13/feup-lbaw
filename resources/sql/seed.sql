@@ -36,6 +36,12 @@ DROP TRIGGER IF EXISTS update_vote ON rating;
 DROP TRIGGER IF EXISTS add_category_post ON post_category;
 DROP TRIGGER IF EXISTS rem_category_post ON post_category;
 DROP TRIGGER IF EXISTS update_category_post ON post_category;
+
+DROP TRIGGER IF EXISTS add_reply ON reply;
+DROP TRIGGER IF EXISTS rem_reply ON reply;
+DROP TRIGGER IF EXISTS add_thread ON thread;
+DROP TRIGGER IF EXISTS rem_thread ON thread;
+
 DROP TRIGGER IF EXISTS create_cat_glory ON post_category;
 
 DROP TRIGGER IF EXISTS block_add_vote ON rating;
@@ -51,6 +57,12 @@ DROP FUNCTION IF EXISTS update_vote();
 DROP FUNCTION IF EXISTS add_category_post();
 DROP FUNCTION IF EXISTS rem_category_post();
 DROP FUNCTION IF EXISTS update_category_post();
+
+DROP FUNCTION IF EXISTS add_reply();
+DROP FUNCTION IF EXISTS rem_reply();
+DROP FUNCTION IF EXISTS add_thread();
+DROP FUNCTION IF EXISTS rem_thread();
+
 DROP FUNCTION IF EXISTS create_cat_glory();
 
 DROP FUNCTION IF EXISTS block_add_vote();
@@ -339,6 +351,50 @@ END
 $BODY$
 LANGUAGE plpgsql;
 
+CREATE FUNCTION add_reply() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    UPDATE post
+    SET num_comments = num_comments + 1 
+    WHERE id IN (SELECT post FROM thread WHERE id = NEW.thread );
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE FUNCTION rem_reply() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    UPDATE post
+    SET num_comments = num_comments - 1 
+    WHERE id IN (SELECT post FROM thread WHERE id = OLD.thread );
+    RETURN OLD;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE FUNCTION add_thread() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    UPDATE post
+    SET num_comments = num_comments + 1 
+    WHERE id = NEW.post;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE FUNCTION rem_thread() RETURNS TRIGGER AS
+$BODY$
+DECLARE num_replies INTEGER; 
+BEGIN
+    SELECT COUNT(comment) INTO num_replies FROM reply WHERE thread = OLD.id;
+    UPDATE post SET num_comments = num_comments - 1 - num_replies WHERE id = OLD.post;
+    RETURN OLD;
+END
+$BODY$
+LANGUAGE plpgsql;
+
 CREATE FUNCTION create_cat_glory() RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -412,6 +468,23 @@ CREATE TRIGGER update_category_post
     AFTER UPDATE ON post_category
     FOR EACH ROW
     EXECUTE PROCEDURE update_category_post();
+
+CREATE TRIGGER add_reply
+    AFTER INSERT ON reply
+    FOR EACH ROW
+    EXECUTE PROCEDURE add_reply();
+CREATE TRIGGER rem_reply
+    AFTER DELETE ON reply
+    FOR EACH ROW
+    EXECUTE PROCEDURE rem_reply();
+CREATE TRIGGER add_thread
+    AFTER INSERT ON thread
+    FOR EACH ROW
+    EXECUTE PROCEDURE add_thread();
+CREATE TRIGGER rem_thread
+    BEFORE DELETE ON thread
+    FOR EACH ROW
+    EXECUTE PROCEDURE rem_thread();
 
 CREATE TRIGGER create_cat_glory
     AFTER INSERT ON post_category
