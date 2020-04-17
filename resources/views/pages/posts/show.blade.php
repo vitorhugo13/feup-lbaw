@@ -21,15 +21,17 @@
                 <a href="{{ $link }}"><img class="rounded-circle" src="{{ $photo }}" width="40"></a>
                 <div class="name-time">
                     {{-- TODO: missing link to user profile --}}
-                <a href="{{ $link }}">{{ $username }}</a>
-                @include('partials.content.time', ['creation_time' => $content->creation_time])
+                    <a href="{{ $link }}">{{ $username }}</a>
+                    @include('partials.content.time', ['creation_time' => $content->creation_time])
                 </div>
             </div>
             <div class="d-flex flex-row align-items-center">
+                {{-- TODO: check if the current user has the post starred or not --}}
                 <i class="far fa-star mr-3"></i>
                 <div class="dropdown d-flex align-items-center">
                     <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
                     <div class="dropdown-menu dropdown-menu-right">
+                        {{-- TODO: these options will not all be presented to all users --}}
                         <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
                         <a class="dropdown-item" href="edit_post.php">Edit</a>
                         <a class="dropdown-item" href="#">Mute</a>
@@ -49,20 +51,20 @@
     {{-- TODO: make a partial to separate the content body into paragraphs --}}
     <div class="post-body">{{ $content->body }}</div>
     <footer class="d-flex flex-row align-items-center">
+        {{-- TODO: check if the user has rated the post --}}
         <div class="upvotes"><img src="{{ asset('images/hoof_filled.svg') }}" width="13" alt="uphoof" /> +{{ $content->upvotes }}</div>
         <div class="downvotes"><img src="{{ asset('images/hoof_outline.svg') }}" width="13" alt="downhoof" /> -{{ $content->downvotes }}</div>
     </footer>
 </div>
-{{-- TODO: comment-section
 
-    <div id="comment-section">
+<div id="comment-section">
+    {{-- TODO: get the number of comments --}}
     <header><span>Comments</span><span> &middot; </span><span>1230</span></header>
-    @include('partials.comment_area')
+    @include('partials.posts.comment_area')
     <div id="comments">
-        draw_thread(['AbhorrentCards', '15h ago', 'Does an Escalade pull of you off the plane everytime you land?', '104', '2', '1'], [['DanTheWhiskyMan', '14h ago', 'Yes I only accept Escalades or Continentals ;)', '10', '0']]); ?>
-        draw_thread(['afihavok', '16h ago', 'Redditors: this is an AMA, please be wary of proof until...sees username...K, were good.', '261', '24', '2'], [['DanTheWhiskyMan', '14h ago', 'It was almost intentional ;)', '1', '2'], ['delinquent', '12h ago', 'I love self evident names.', '74', '12']]); ?>
+        @each('partials.posts.thread', $post->threads, 'thread')
     </div>
-</div> --}}
+</div>
 
 {{-- TODO: draw move moval --}}
 {{-- TODO: draw report modal --}}

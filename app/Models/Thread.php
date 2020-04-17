@@ -18,12 +18,17 @@ class Thread extends Model
   }
 
   /*
-  * comments of a thread
+  * main comment of a Thread
   */
-  public function comments(){
-      return $this->hasMany('App\Models\Comment', 'id');
+  public function comment(){  
+      return $this->hasOne('App\Models\Comment', 'id', 'main_comment');
   }
 
-  //TODO: deal  with reply composition
-    
+  /*
+  * replys to the comment of a Thread
+  */
+  public function replies() {
+      return $this->hasMany('App\Models\Reply', 'thread');
+  }
+
 }
