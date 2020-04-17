@@ -10,7 +10,7 @@ class Content extends Model
   /**
    * Content uses timestamps to register creation time and last modification time
    */
-  public $timestamps  = true;
+  public $timestamps  = false;
   const CREATED_AT = 'creation_time';
   //TODO: it may create error because there is no updated_at
   

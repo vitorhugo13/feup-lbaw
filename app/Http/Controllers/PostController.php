@@ -57,7 +57,6 @@ class PostController extends Controller
       $post = Post::find($id);
       //$user = $post->content->owner;
 
-
       return view('pages.posts.update', ['categories' => Category::all(), 'post' => $post]);
     }
 
@@ -95,6 +94,20 @@ class PostController extends Controller
 
       return $post;
     }
+
+  public function edit(Request $request, $id)
+  {
+    $post = Post::find($id);
+
+    //$this->authorize('edit', $post);
+
+    $post->title = $request->input('title');
+    $post->content->body = $request->input('body');
+    $post->save();
+    $post->content->save();
+
+    return $post;
+  }
 
     public function delete(Request $request, $id)
     {

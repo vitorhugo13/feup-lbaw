@@ -2,8 +2,12 @@
         <header class="d-flex flex-row align-items-center justify-content-between">
             <div class="name-time">
                 {{-- TODO: missing link to user profile --}}
-                {{-- TODO: handle the anonymous user case --}}
-                <span>{{ $comment->content->owner->username }}</span>
+                @if ($comment->content->owner == null)
+                    <span>anon</span>
+                @else
+                    <span>{{ $comment->content->owner->username }}</span>
+                @endif
+
                 @include('partials.content.time', ['creation_time' => $comment->content->creation_time])
             </div>
             <div class="d-flex flex-row">
