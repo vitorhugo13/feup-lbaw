@@ -8,6 +8,7 @@
 @push('scripts')
     <script src="{{ asset('js/comment.js') }}" defer></script>
     <script src="{{ asset('js/textarea.js') }}" defer></script>
+    <script src="{{ asset('js/api/star.js') }}" defer></script>
 @endpush
 
 
@@ -23,11 +24,16 @@
                     {{-- TODO: missing link to user profile --}}
                     <a href="{{ $link }}">{{ $username }}</a>
                     @include('partials.content.time', ['creation_time' => $post->content->creation_time])
-                </div>
+                </div>  
             </div>
             <div class="d-flex flex-row align-items-center">
                 {{-- TODO: check if the current user has the post starred or not --}}
-                <i class="far fa-star mr-3"></i>
+                @if ($starred)
+                    <i class="fas fa-star mr-3"></i>
+                @else
+                    <i class="far fa-star mr-3"></i>
+                @endif
+
                 <div class="dropdown d-flex align-items-center">
                     <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
                     <div class="dropdown-menu dropdown-menu-right">

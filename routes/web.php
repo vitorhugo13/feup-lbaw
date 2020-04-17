@@ -34,6 +34,7 @@ Route::post('posts', 'PostController@create')->name('create');
 // Route::put('api/cards/{card_id}/', 'ItemController@create');
 // Route::post('api/item/{id}', 'ItemController@update');
 // Route::delete('api/item/{id}', 'ItemController@delete');
+Route::get('api/posts/{id}/stars', 'PostController@star');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

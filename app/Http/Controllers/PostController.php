@@ -25,6 +25,7 @@ class PostController extends Controller
       $content = Content::find($id);
       $user = $content->owner;
 
+      // TODO: this can be checked in the post view
       if ($user == null) {
         $username = 'anon';
         $photo = asset('images/default_picture.png');
@@ -39,8 +40,17 @@ class PostController extends Controller
 
       // $this->authorize('show', $post);
 
+      $starred = false;
+      foreach (Auth::user()->starredPosts as $starred_post) {
+        if ($starred_post->id == $id) {
+          $starred = true;
+          break;
+        }
+      }
+
       return view('pages.posts.show', [
-        'post' => $post, 
+        'post' => $post,
+        'starred' => $starred,
         'username' => $username,
         'photo' => $photo,
         'link' => $link,
@@ -104,5 +114,33 @@ class PostController extends Controller
       $post->delete();
 
       return $post;
+    }
+
+
+    public function star($id)
+    {
+
+      return response()->json(['error' => 'Sorry User not found.']);
+      // TODO: check user authorization
+
+      if (Auth::user() == null)
+        return response()->json(['error' => 'Not authenticated']);
+
+      $starred = false;
+      foreach (Auth::user()->starredPosts as $starred_post) {
+        if ($starred_post->id == $id) {
+          $starred = true;
+          break;
+        }
+      }
+
+      if ($starred) {
+        DB::table('star_post')->where('post', '=', $id)->where('user_id', '=', Auth::user()->id)->delete();
+      }
+      else {
+        DB::table('star_post')->insert(['post' => $id, 'user_id' => Auth::user()->id]);
+      }
+
+      return json_encode(['success' => 'Success']);
     }
 }
