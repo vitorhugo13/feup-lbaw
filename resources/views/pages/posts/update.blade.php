@@ -7,11 +7,17 @@
 
 @push('scripts')
     <script src="{{ asset('js/textarea.js') }}" defer></script>
+    <script src="{{ asset('js/edit_post.js') }}" defer></script>
 @endpush
 
 @section('main-content')
 
-<form class="row m-2 m-lg-0" method="POST" action="{{ route('create') }}">
+<form class="row m-2 m-lg-0" method="POST" 
+@if ($post == null)
+    action="{{ route('create') }}"
+@else
+    action="{{ url('posts/'.$post->id) }}" 
+@endif >
 {{ csrf_field() }}
     <section id="categories-tab" class="col-12 col-lg-4">
         <header>Post Categories</header>
@@ -23,6 +29,7 @@
                 @endforeach
             </select>
             <div class="input-group-append">
+
                 <button class="btn btn-outline-secondary" type="button">Add</button>
             </div>
         </div>
@@ -30,8 +37,8 @@
             @if ($post != null)
                 @each('partials.categories.move_badge', $post->categories, 'category')
             @endif
-            {{--TODO: @each('partials.category_move_badge', $categories, 'category') --}}
         </footer>
+        <input type="hidden" id="categories" name="categories" value="">
     </section>
 
     <section id="text-tab" class="col-12 col-lg-7 ml-0 ml-lg-3 mt-4 mt-lg-0">
@@ -40,7 +47,7 @@
             @if ($post == null)
                 placeholder="Title"
             @else
-                value={{ $post->title}}
+                value='{{ $post->title}}'
             @endif />
             <textarea id="post-body" name="body" placeholder="What is this post about?">@if ($post != null){{ $post->content->body}}@endif 
             </textarea>

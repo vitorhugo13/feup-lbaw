@@ -59,7 +59,7 @@ class PostController extends Controller
 
 
     public function showCreateForm() {
-      return view('pages.posts.update', ['categories' => Category::all(), 'post' => null]);
+      return view('pages.posts.update', ['categories' => Category::orderBy('title')->get(), 'post' => null]);
     }
 
     public function showEditForm($id)
@@ -67,8 +67,7 @@ class PostController extends Controller
       $post = Post::find($id);
       //$user = $post->content->owner;
 
-
-      return view('pages.posts.update', ['categories' => Category::all(), 'post' => $post]);
+      return view('pages.posts.update', ['categories' => Category::orderBy('title')->get(), 'post' => $post]);
     }
 
     /**
@@ -94,17 +93,43 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
-      $post = new Post();
+      $post = new Post;
 
       $this->authorize('create', $post);
 
       $post->author = Auth::user()->id;
-      $post->title = $request->input('title');
-      $post->body = $request->input('body');
-      $post->save();
 
-      return $post;
+    $post->title = $request->input('title');
+    $post->content->body = $request->input('body');
+    $post->save();
+    $post->content->save();
+
+    return $request;
     }
+
+  public function edit(Request $request, $id)
+  {
+    $post = Post::find($id);
+
+    //$this->authorize('edit', $post);
+
+    $categories = explode(',', $request->input('categories'));
+
+    DB::table('post_category')->where('post', $id)->delete();
+
+    foreach ($categories as $category) {
+      $category_id = DB::table('category')->where('title', $category)->value('id');
+      
+      DB::table('post_category')->insert(['post' => $id, 'category' => $category_id]);
+    }
+
+    $post->title = $request->input('title');
+    $post->content->body = $request->input('body');
+    $post->save();
+    $post->content->save();
+
+    return $request;
+  }
 
     public function delete(Request $request, $id)
     {
@@ -116,6 +141,7 @@ class PostController extends Controller
       return $post;
     }
 
+<<<<<<< HEAD
 
     public function star($id)
     {
@@ -142,5 +168,15 @@ class PostController extends Controller
       }
 
       return json_encode(['success' => 'Success']);
+=======
+    public function star(Request $request){
+
+      //TODO: validate 
+      //TODO: update/insert database
+
+      $input = $request->all();
+      return response()->json(['success' => 'Got Simple Ajax Request.']);
+      
+>>>>>>> a688451ff3b4de192597c777c6e991f779da3439
     }
 }
