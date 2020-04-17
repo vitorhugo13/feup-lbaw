@@ -22,7 +22,7 @@
                 <div class="name-time">
                     {{-- TODO: missing link to user profile --}}
                     <a href="{{ $link }}">{{ $username }}</a>
-                    @include('partials.content.time', ['creation_time' => $content->creation_time])
+                    @include('partials.content.time', ['creation_time' => $post->content->creation_time])
                 </div>
             </div>
             <div class="d-flex flex-row align-items-center">
@@ -49,17 +49,17 @@
         </div>
     </header>
     {{-- TODO: make a partial to separate the content body into paragraphs --}}
-    <div class="post-body">{{ $content->body }}</div>
+    <div class="post-body">{{ $post->content->body }}</div>
     <footer class="d-flex flex-row align-items-center">
         {{-- TODO: check if the user has rated the post --}}
-        <div class="upvotes"><img src="{{ asset('images/hoof_filled.svg') }}" width="13" alt="uphoof" /> +{{ $content->upvotes }}</div>
-        <div class="downvotes"><img src="{{ asset('images/hoof_outline.svg') }}" width="13" alt="downhoof" /> -{{ $content->downvotes }}</div>
+        <div class="upvotes"><img src="{{ asset('images/hoof_filled.svg') }}" width="13" alt="uphoof" /> +{{ $post->content->upvotes }}</div>
+        <div class="downvotes"><img src="{{ asset('images/hoof_outline.svg') }}" width="13" alt="downhoof" /> -{{ $post->content->downvotes }}</div>
     </footer>
 </div>
 
 <div id="comment-section">
     {{-- TODO: get the number of comments --}}
-    <header><span>Comments</span><span> &middot; </span><span>1230</span></header>
+<header><span>Comments</span><span> &middot; </span><span>{{ $post->num_comments }}</span></header>
     @include('partials.posts.comment_area')
     <div id="comments">
         @each('partials.posts.thread', $post->threads, 'thread')
