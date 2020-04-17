@@ -7,6 +7,7 @@
 
 @push('scripts')
     <script src="{{ asset('js/textarea.js') }}" defer></script>
+    <script src="{{ asset('js/edit_post.js') }}" defer></script>
 @endpush
 
 @section('main-content')
@@ -28,6 +29,7 @@
                 @endforeach
             </select>
             <div class="input-group-append">
+
                 <button class="btn btn-outline-secondary" type="button">Add</button>
             </div>
         </div>
