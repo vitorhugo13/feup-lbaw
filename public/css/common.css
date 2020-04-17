@@ -85,6 +85,27 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
     margin: auto;
 }
 
+/* ----------========== Guest Buttons ==========---------- */
+#log-buttons a {
+    color: var(--main-color);
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+#log-buttons a:last-child {
+    font-weight: 400;
+}
+
+#log-buttons a:hover {
+    color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    #log-buttons :nth-child(2) {
+        display: none;
+    }
+}
+
 /* ----------========== NOTIFICATIONS ==========---------- */
 
 .notification-menu {

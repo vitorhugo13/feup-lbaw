@@ -67,6 +67,6 @@
 </div>
 
 {{-- TODO: draw move moval --}}
-{{-- TODO: draw report modal --}}
+@include('partials.content.report_modal')
 
 @endsection
