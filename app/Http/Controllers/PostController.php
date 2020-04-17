@@ -46,6 +46,11 @@ class PostController extends Controller
         ]);
     }
 
+
+    public function showForm() {
+      return view('pages.posts.update');
+    }
+
     /**
      * Shows all cards.
      *
