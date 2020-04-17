@@ -22,7 +22,7 @@
                 <div class="name-time">
                     {{-- TODO: missing link to user profile --}}
                 <a href="{{ $link }}">{{ $username }}</a>
-                    <span>&middot; 17h ago</span>
+                @include('partials.content.time', ['creation_time' => $content->creation_time])
                 </div>
             </div>
             <div class="d-flex flex-row align-items-center">
