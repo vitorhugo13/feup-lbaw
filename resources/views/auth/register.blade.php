@@ -7,7 +7,7 @@
     <link href="{{ asset('css/register.css') }}" rel="stylesheet">
 @endpush
 
-
+{{-- TODO: css for the errors --}}
 <div class="container-fluid">
   <div class="row">
       <div class="col-lg-6 col-md-6 d-none d-md-block image-container"></div>
