@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+//TODO : do not allow username 'anon'
+
 class RegisterController extends Controller
 {
     /*

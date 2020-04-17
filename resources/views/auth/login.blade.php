@@ -36,6 +36,7 @@
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 @endpush
 
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-6 col-md-6 form-container">
