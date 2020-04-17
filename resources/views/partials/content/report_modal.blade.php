@@ -9,6 +9,7 @@
             </div>
             <div class="modal-body">
                 <select class="custom-select" id="report-reason">
+                    {{-- TODO: find a way to list all the report reasons --}}
                     <option selected>Choose...</option>
                     <option value="1">Harassement</option>
                     <option value="2">Wrong category</option>
