@@ -10,6 +10,11 @@ class Category extends Model
   public $timestamps  = false;
   protected $table = 'category';
 
+
+  public function list(){
+    return Category::all()->get();
+  }
+
   /*
   * posts of this category
   */
