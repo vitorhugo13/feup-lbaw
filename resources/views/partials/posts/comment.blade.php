@@ -3,8 +3,8 @@
             <div class="name-time">
                 {{-- TODO: missing link to user profile --}}
                 {{-- TODO: handle the anonymous user case --}}
-                <span>{{ $comment->content }}</span>
-                @include('partials.content.time', ['creation_time' => $comment])
+                <span>{{ $comment->content->owner->username }}</span>
+                @include('partials.content.time', ['creation_time' => $comment->content->creation_time])
             </div>
             <div class="d-flex flex-row">
                 <div class="dropdown">
@@ -21,12 +21,12 @@
             </div>
         </header>
         <div class="comment-body">
-            <p>{{ $comment }}</p>
+            <p>{{ $comment->content->body }}</p>
         </div>
         <footer class="d-flex flex-row align-items-center justify-content-between">
             <div class="votes d-flex flex-row align-items-center justify-content-between">
-                <div class="upvotes mr-3"><img src="{{ asset('images/hoof_filled.svg') }}" width="11" alt="downhoof"/></i>+{{ $comment }}</div>
-                <div class="downvotes mr-3"><img src="{{ asset('images/hoof_outline.svg') }}" width="11" alt="downhoof"/></i>-{{ $comment }}</div>
+                <div class="upvotes mr-3"><img src="{{ asset('images/hoof_filled.svg') }}" width="11" alt="downhoof"/></i>+{{ $comment->content->upvotes }}</div>
+                <div class="downvotes mr-3"><img src="{{ asset('images/hoof_outline.svg') }}" width="11" alt="downhoof"/></i>-{{ $comment->content->downvotes }}</div>
             </div>
             <button class="reply-btn d-flex align-items-center"><span>Reply</span></button>
         </footer>

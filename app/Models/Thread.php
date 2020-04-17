@@ -11,13 +11,6 @@ class Thread extends Model
   protected $table = 'thread';
 
   /*
-  * post of a Thread
-  */
-  public function post(){
-    return $this->belongsTo('App\Models\Post', 'id');
-  }
-
-  /*
   * main comment of a Thread
   */
   public function comment(){  
@@ -28,7 +21,7 @@ class Thread extends Model
   * replys to the comment of a Thread
   */
   public function replies() {
-      return $this->hasMany('App\Models\Reply', 'thread');
-  }
+    return $this->belongsToMany('App\Models\Comment', 'reply', 'thread', 'comment');
 
+  }
 }

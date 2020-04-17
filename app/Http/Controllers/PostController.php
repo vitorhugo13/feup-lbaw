@@ -40,7 +40,6 @@ class PostController extends Controller
 
       return view('pages.posts.show', [
         'post' => $post, 
-        'content' => $content, 
         'username' => $username,
         'photo' => $photo,
         'link' => $link,
