@@ -130,4 +130,14 @@ class PostController extends Controller
 
       return $post;
     }
+
+    public function star(Request $request){
+
+      //TODO: validate 
+      //TODO: update/insert database
+
+      $input = $request->all();
+      return response()->json(['success' => 'Got Simple Ajax Request.']);
+      
+    }
 }
