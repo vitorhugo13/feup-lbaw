@@ -23,6 +23,7 @@ Route::get('posts/{id}', 'PostController@show');
 Route::get('posts', 'PostController@showCreateForm');
 Route::get('posts/{id}/edit', 'PostController@showEditForm');
 Route::post('posts', 'PostController@create')->name('create');
+Route::post('posts/{id}', 'PostController@edit');
 
 // Cards
 // Route::get('cards', 'CardController@list');

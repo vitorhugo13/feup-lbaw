@@ -11,7 +11,12 @@
 
 @section('main-content')
 
-<form class="row m-2 m-lg-0" method="POST" action="{{ route('create') }}">
+<form class="row m-2 m-lg-0" method="POST" 
+@if ($post == null)
+    action="{{ route('create') }}"
+@else
+    action="{{ url('posts/'.$post->id) }}" 
+@endif >
 {{ csrf_field() }}
     <section id="categories-tab" class="col-12 col-lg-4">
         <header>Post Categories</header>
@@ -40,7 +45,7 @@
             @if ($post == null)
                 placeholder="Title"
             @else
-                value={{ $post->title}}
+                value='{{ $post->title}}'
             @endif />
             <textarea id="post-body" name="body" placeholder="What is this post about?">@if ($post != null){{ $post->content->body}}@endif 
             </textarea>
