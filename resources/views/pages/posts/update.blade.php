@@ -9,10 +9,10 @@
     <script src="{{ asset('js/textarea.js') }}" defer></script>
 @endpush
 
-
 @section('main-content')
 
-<form class="row m-2 m-lg-0" action="../pages/post.php">
+<form class="row m-2 m-lg-0" method="POST" action="{{ route('posts/create') }}">
+{{ csrf_field() }}
     <section id="categories-tab" class="col-12 col-lg-4">
         <header>Post Categories</header>
         <div class="input-group">
