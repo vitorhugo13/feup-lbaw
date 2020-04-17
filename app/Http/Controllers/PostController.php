@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Content;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -47,8 +48,17 @@ class PostController extends Controller
     }
 
 
-    public function showForm() {
-      return view('pages.posts.update');
+    public function showCreateForm() {
+      return view('pages.posts.update', ['categories' => Category::all(), 'post' => null]);
+    }
+
+    public function showEditForm($id)
+    {
+      $post = Post::find($id);
+      //$user = $post->content->owner;
+
+
+      return view('pages.posts.update', ['categories' => Category::all(), 'post' => $post]);
     }
 
     /**
