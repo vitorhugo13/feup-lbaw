@@ -37,8 +37,8 @@
             @if ($post != null)
                 @each('partials.categories.move_badge', $post->categories, 'category')
             @endif
-            {{--TODO: @each('partials.category_move_badge', $categories, 'category') --}}
         </footer>
+        <input type="hidden" id="categories" name="categories" value="">
     </section>
 
     <section id="text-tab" class="col-12 col-lg-7 ml-0 ml-lg-3 mt-4 mt-lg-0">
