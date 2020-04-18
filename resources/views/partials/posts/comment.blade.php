@@ -35,6 +35,6 @@
             <div class="upvotes mr-3"><img src="{{ asset('images/hoof_filled.svg') }}" width="11" alt="downhoof"/></i>+{{ $comment->content->upvotes }}</div>
             <div class="downvotes mr-3"><img src="{{ asset('images/hoof_outline.svg') }}" width="11" alt="downhoof"/></i>-{{ $comment->content->downvotes }}</div>
         </div>
-        <button class="reply-btn d-flex align-items-center"><span>Reply</span></button>
+        <button class="reply-btn d-flex align-items-center" data-id="{{ $thread_id }}"><span>Reply</span></button>
     </footer>
 </div>
