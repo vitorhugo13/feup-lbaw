@@ -14,11 +14,17 @@ function updateVote(elem, num){
         val.innerText = 0
 }
 
-let upvote = document.getElementsByClassName('upvotes')[0]
-let downvote = document.getElementsByClassName('downvotes')[0]
+let upvotes = document.getElementsByClassName('upvotes')
+let downvotes = document.getElementsByClassName('downvotes')
 
-upvote.addEventListener('click', function (event) {
-    let id = star.getAttribute('data-id')
+Array.from(upvotes).forEach(element => { element.addEventListener('click', upvote) })
+Array.from(downvotes).forEach(element => { element.addEventListener('click', downvote) })
+
+function upvote(event) {
+    let id = event.currentTarget.getAttribute('data-id')
+
+    let upvote = event.currentTarget
+    let downvote = event.currentTarget.parentNode.getElementsByClassName('downvotes')[0]
 
     let upvoted = upvote.classList.contains('selected')
     let downvoted = downvote.classList.contains('selected')
@@ -64,10 +70,13 @@ upvote.addEventListener('click', function (event) {
             }
         })
     })
-});
+}
 
-downvote.addEventListener('click', function (event) {
-    let id = star.getAttribute('data-id')
+function downvote (event) {
+    let id = event.currentTarget.getAttribute('data-id')
+
+    let downvote = event.currentTarget
+    let upvote = event.currentTarget.parentNode.getElementsByClassName('upvotes')[0]
 
     let upvoted = upvote.classList.contains('selected')
     let downvoted = downvote.classList.contains('selected')
@@ -112,5 +121,5 @@ downvote.addEventListener('click', function (event) {
             }
         })
     })
-});
+}
 

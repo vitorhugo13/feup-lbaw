@@ -60,8 +60,8 @@
     <footer class="d-flex flex-row align-items-center">
         {{-- TODO: check if the user has rated the post --}}
         {{--TODO: ajax for number of upvotes--}}
-        <div class="upvotes @if($rating == 'upvote') selected @endif"><img src="{{ asset('images/hoof_filled.svg') }}" width="13" alt="uphoof" /> +<span>{{ $post->content->upvotes }}</span></div>
-        <div class="downvotes @if($rating == 'downvote') selected @endif"><img src="{{ asset('images/hoof_outline.svg') }}" width="13" alt="downhoof" /> -<span>{{ $post->content->downvotes }}</span></div>
+        <div class="upvotes @if($rating == 'upvote') selected @endif" data-id="{{ $post->id }}"><img src="{{ asset('images/hoof_filled.svg') }}" width="13" alt="uphoof" /> +<span>{{ $post->content->upvotes }}</span></div>
+        <div class="downvotes @if($rating == 'downvote') selected @endif" data-id="{{ $post->id }}"><img src="{{ asset('images/hoof_outline.svg') }}" width="13" alt="downhoof" /> -<span>{{ $post->content->downvotes }}</span></div>
     </footer>
 </div>
 
