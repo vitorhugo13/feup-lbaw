@@ -20,12 +20,15 @@ class PostController extends Controller
    * @return Response
    */
   public function show($id)
-  {
+  { 
+    // FIXME: validate params
     $post = Post::find($id);
-    $content = Content::find($id);
-    $user = $content->owner;
+    
+    if (!$post->content->visible)
+      return abort(404);
 
     // TODO: this can be checked in the post view
+    $user = $post->content->owner;
     if ($user == null) {
       $username = 'anon';
       $photo = asset('images/default_picture.png');
@@ -37,7 +40,6 @@ class PostController extends Controller
       $link = '../users/' . $user->id;
     }
 
-    // $this->authorize('show', $post);
 
     $starred = false;
     if (Auth::user() != null) {
@@ -61,14 +63,14 @@ class PostController extends Controller
 
   public function showCreateForm()
   {
+    $this->authorize('create', Post::class);
     return view('pages.posts.update', ['categories' => Category::orderBy('title')->get(), 'post' => null]);
   }
 
   public function showEditForm($id)
   {
     $post = Post::find($id);
-    //$user = $post->content->owner;
-
+    $this->authorize('edit', $post);
     return view('pages.posts.update', ['categories' => Category::orderBy('title')->get(), 'post' => $post]);
   }
 
@@ -79,16 +81,14 @@ class PostController extends Controller
    */
   public function create(Request $request)
   {
-    //$this->authorize('create', $post);
-    
+    $this->authorize('create');
+
     $content = new Content;
-    
     $content->author = Auth::user()->id;
     $content->body = $request->input('body');
     $content->save();
     
     $post = new Post;
-
     $post->id = $content->id;
     $post->title = $request->input('title');
     $post->save();
@@ -109,8 +109,7 @@ class PostController extends Controller
   public function edit(Request $request, $id)
   {
     $post = Post::find($id);
-
-    //$this->authorize('edit', $post);
+    $this->authorize('edit', $post);
 
     $categories = explode(',', $request->input('categories'));
 
