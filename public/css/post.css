@@ -78,6 +78,11 @@
     transform: rotate(180deg);
 }
 
+/* ----------========== VOTE SECTION ==========---------- */
+.selected {
+    filter: brightness(0) saturate(100%) invert(86%) sepia(39%) saturate(770%) hue-rotate(77deg) brightness(96%) contrast(110%)  
+}
+
 /* ----------========== COMMENT SECTION ==========---------- */
 #comment-section {
     background-color: var(--background-strong);

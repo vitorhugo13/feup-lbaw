@@ -31,8 +31,9 @@ Route::get('users/{id}', 'UserController@showProfile');
 //API
 Route::post('api/posts/{id}/stars','PostController@star');
 Route::delete('api/posts/{id}/stars','PostController@unstar');
-Route::post('api/contents/{id}/votes', 'PostController@upvote');
-Route::delete('api/contents/{id}/votes', 'PostController@downvote');
+Route::post('api/contents/{id}/votes', 'PostController@add');
+Route::delete('api/contents/{id}/votes', 'PostController@remove');
+Route::put('api/contents/{id}/votes', 'PostController@update');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

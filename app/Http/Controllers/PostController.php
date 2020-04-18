@@ -153,15 +153,45 @@ class PostController extends Controller
     return response()->json(['success' => 'Deleted successfully']);
   }
 
-  public function addVote(Request $request, $id)
-  {
 
-    return response()->json(['success' => 'Vote successful']);
+
+  /* ====================== RATING FUNCTIONS =============================*/
+
+  public function add(Request $request, $id)
+  {
+    if (Auth::user() == null)
+      return response()->json(['error' => 'Not authenticated'], 404);
+
+    DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);   
+   
+
+    return response()->json(['success' => 'Voted successfully. Type: ' . $request->input('type') ]);
   }
   
-  public function removeVote(Request $request, $id)
+  public function remove(Request $request, $id)
   {
+    if (Auth::user() == null)
+      return response()->json(['error' => 'Not authenticated'], 404);
 
-    return response()->json(['success' => 'Remove vote successful']);
+    DB::table('rating')->where('rating', $request->input('type'))->where('content', $id)->where('user_id', Auth::user()->id)->delete();
+    
+    return response()->json(['success' => 'Removed vote successfully. Type: ' . $request->input('type')]);
+  }
+
+  public function update(Request $request, $id)
+  {
+    if (Auth::user() == null)
+      return response()->json(['error' => 'Not authenticated'], 404);
+
+    if( $request->input('type') == 'upvote'){
+      DB::table('rating')->where('rating', 'downvote')->where('content', $id)->where('user_id', Auth::user()->id)->delete();
+      DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);    
+    }
+    else{
+      DB::table('rating')->where('rating', 'upvote')->where('content', $id)->where('user_id', Auth::user()->id)->delete();
+      DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);
+    }
+
+    return response()->json(['success' => 'Updated vote successfully. Type: ' . $request->input('type')]);
   }
 }
