@@ -1,5 +1,10 @@
 @import 'constants.css';
 
+
+.upvotes:hover, .downvotes:hover {
+    cursor: pointer;
+}
+
 /* ----------========== CATEGORIES ==========---------- */
 .post-categories {
     margin: 0.2em 0 1.6em 0;
