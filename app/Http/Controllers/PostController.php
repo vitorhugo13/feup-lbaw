@@ -73,9 +73,12 @@ class PostController extends Controller
    *
    * @return Post The post created.
    */
+
+
+  //FIXME: it is necessary to verify if the post has at least 1 category
   public function create(Request $request)
   {
-    $this->authorize('create');
+    $this->authorize('create', Post::class);
 
     $content = new Content;
     $content->author = Auth::user()->id;
