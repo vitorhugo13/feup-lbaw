@@ -8,6 +8,7 @@ class Rating extends Model
 {
 
   public $timestamps  = false;
+  protected $table = 'rating';
 
   
   public function content()

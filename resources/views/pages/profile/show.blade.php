@@ -5,8 +5,10 @@
     <link href="{{ asset('css/post_elems.css') }}" rel="stylesheet">
 @endpush
 
-
-
+@push('scripts')
+    <script src="{{ asset('js/api/star.js') }}" defer></script>
+    <script src="{{ asset('js/api/rating.js') }}" defer></script>
+@endpush
 
 @section('main-content')
   
@@ -66,6 +68,7 @@
 </section>
 
 <div class="post-section">
+    {{-- FIXME: count only the visible posts --}}
     <p class="number-posts ml-1 mb-2"> <strong>Posts</strong> ({{count($user->posts)}})</p>
     @each('partials.posts.preview', $user->posts, 'post')
 </div>

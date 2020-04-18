@@ -22,26 +22,16 @@ class PostController extends Controller
    * @return Response
    */
   public function show($id)
-  {
+  { 
+    // FIXME: validate params
     $post = Post::find($id);
-    $content = Content::find($id);
-    $user = $content->owner;
-
-    // TODO: this can be checked in the post view
-    if ($user == null) {
-      $username = 'anon';
-      $photo = asset('images/default_picture.png');
-      $link = '';
-    } else {
-      $username = $user->username;
-      // FIXME: this is only a temporary solution, pictures will not be in this folder
-      $photo = asset('images/' . $user->photo);
-      $link = '../users/' . $user->id;
-    }
-
-    // $this->authorize('show', $post);
+    
+    if (!$post->content->visible)
+      return abort(404);
 
     $starred = false;
+    $rating = '';
+
     if (Auth::user() != null) {
       foreach (Auth::user()->starredPosts as $starred_post) {
         if ($starred_post->id == $id) {
@@ -49,28 +39,34 @@ class PostController extends Controller
         break;
         }
       }
+      foreach (Auth::user()->ratings as $vote) {
+        if ($vote->content == $id) {
+          $rating = $vote->rating;
+          break;
+        }
+      }
+      
     }
 
     return view('pages.posts.show', [
       'post' => $post,
+      'author' => $post->content->owner,
       'starred' => $starred,
-      'username' => $username,
-      'photo' => $photo,
-      'link' => $link,
+      'rating' => $rating
     ]);
   }
 
 
   public function showCreateForm()
   {
+    $this->authorize('create', Post::class);
     return view('pages.posts.update', ['categories' => Category::orderBy('title')->get(), 'post' => null]);
   }
 
   public function showEditForm($id)
   {
     $post = Post::find($id);
-    //$user = $post->content->owner;
-
+    $this->authorize('edit', $post);
     return view('pages.posts.update', ['categories' => Category::orderBy('title')->get(), 'post' => $post]);
   }
 
@@ -79,23 +75,24 @@ class PostController extends Controller
    *
    * @return Post The post created.
    */
+
+
+  //FIXME: it is necessary to verify if the post has at least 1 category
   public function create(Request $request)
   {
     $categories = array_filter(explode(',', $request->input('categories')));
 
     if (empty($categories) || $request->input('title') !== '' || $request->input('body') !== '')
       return redirect()->back()->withInput(Input::all());
+      
+    $this->authorize('create', Post::class);
 
-    //$this->authorize('create', $post);
-    
     $content = new Content;
-    
     $content->author = Auth::user()->id;
     $content->body = $request->input('body');
     $content->save();
     
     $post = new Post;
-
     $post->id = $content->id;
     $post->title = $request->input('title');
     $post->save();
@@ -119,8 +116,7 @@ class PostController extends Controller
       return redirect()->back()->withInput(Input::all());
 
     $post = Post::find($id);
-
-    //$this->authorize('edit', $post);
+    $this->authorize('edit', $post);
 
     DB::table('post_category')->where('post', $id)->delete();
 
@@ -149,6 +145,9 @@ class PostController extends Controller
   }
 
 
+
+  /* ================= STAR/UNSTAR ============= */
+
   public function star($id)
   {
     // TODO: check user authorization
@@ -174,15 +173,45 @@ class PostController extends Controller
     return response()->json(['success' => 'Deleted successfully']);
   }
 
-  public function addVote(Request $request, $id)
-  {
 
-    return response()->json(['success' => 'Vote successful']);
+
+  /* ====================== RATING FUNCTIONS =============================*/
+
+  public function add(Request $request, $id)
+  {
+    if (Auth::user() == null)
+      return response()->json(['error' => 'Not authenticated'], 404);
+
+    DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);   
+   
+
+    return response()->json(['success' => 'Voted successfully. Type: ' . $request->input('type') ]);
   }
   
-  public function removeVote(Request $request, $id)
+  public function remove(Request $request, $id)
   {
+    if (Auth::user() == null)
+      return response()->json(['error' => 'Not authenticated'], 404);
 
-    return response()->json(['success' => 'Remove vote successful']);
+    DB::table('rating')->where('rating', $request->input('type'))->where('content', $id)->where('user_id', Auth::user()->id)->delete();
+    
+    return response()->json(['success' => 'Removed vote successfully. Type: ' . $request->input('type')]);
+  }
+
+  public function update(Request $request, $id)
+  {
+    if (Auth::user() == null)
+      return response()->json(['error' => 'Not authenticated'], 404);
+
+    if( $request->input('type') == 'upvote'){
+      DB::table('rating')->where('rating', 'downvote')->where('content', $id)->where('user_id', Auth::user()->id)->delete();
+      DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);    
+    }
+    else{
+      DB::table('rating')->where('rating', 'upvote')->where('content', $id)->where('user_id', Auth::user()->id)->delete();
+      DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);
+    }
+
+    return response()->json(['success' => 'Updated vote successfully. Type: ' . $request->input('type')]);
   }
 }

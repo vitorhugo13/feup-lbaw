@@ -1,5 +1,14 @@
 @import 'constants.css';
 
+
+.upvotes:hover, .downvotes:hover {
+    cursor: pointer;
+}
+
+.selected {
+    filter: brightness(0) saturate(100%) invert(86%) sepia(39%) saturate(770%) hue-rotate(77deg) brightness(96%) contrast(110%)  
+}
+
 /* ----------========== CATEGORIES ==========---------- */
 .post-categories {
     margin: 0.2em 0 1.6em 0;
