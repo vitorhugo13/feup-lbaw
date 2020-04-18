@@ -46,9 +46,6 @@ class PostController extends Controller
       
     }
 
-    
-
-
     return view('pages.posts.show', [
       'post' => $post,
       'author' => $post->content->owner,
