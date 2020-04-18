@@ -1,27 +1,14 @@
 'use strict'
 
-function encodeForAjax(data) {
-    return Object.keys(data).map(function (k) {
-        // replace instances of certain characters by escape sequences 
-        // representing the utf-8 encoding of the character
-        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-        // the join method creates and returns a new string by concatenating
-        // all of the elements in an array separated bt commas or the specified 
-        // separator string, in this case '&'
-    }).join('&')
-}
-
-// TODO: check if the post is starred by the user
-// TODO: change the icon accordingly
 let star = document.querySelector('.fa-star')
 
-star.addEventListener('click', function (event) {
+star.addEventListener('click', function () {
     let id = star.getAttribute('data-id')
+    let starred = star.classList.contains('fas')
 
     fetch('../api/posts/' + id + '/stars', {
-        method: 'POST',
+        method: starred ? 'DELETE' : 'POST',
         headers: {
-            'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'Accept': 'application/json'
         }

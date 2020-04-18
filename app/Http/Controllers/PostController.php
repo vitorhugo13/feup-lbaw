@@ -115,7 +115,7 @@ class PostController extends Controller
     return $request;
   }
 
-  public function delete(Request $request, $id)
+  public function delete($id)
   {
     $post = Post::find($id);
 
@@ -133,20 +133,33 @@ class PostController extends Controller
     if (Auth::user() == null)
       return response()->json(['error' => 'Not authenticated'], 404);
 
-    $starred = false;
-    foreach (Auth::user()->starredPosts as $starred_post) {
-      if ($starred_post->id == $id) {
-        $starred = true;
-        break;
-      }
-    }
+    DB::table('star_post')->insert(['post' => $id, 'user_id' => Auth::user()->id]);
 
-    if ($starred) {
-      DB::table('star_post')->where('post', $id)->where('user_id', Auth::user()->id)->delete();
-    } else {
-      DB::table('star_post')->insert(['post' => $id, 'user_id' => Auth::user()->id]);
-    }
+    return response()->json(['success' => 'Starred post successfully']);
+  }
 
-    return response()->json(['success' => 'Success']);
+
+  public function unstar($id)
+  {
+    // TODO: check user authorization
+
+    if (Auth::user() == null)
+      return response()->json(['error' => 'Not authenticated'], 404);
+
+    DB::table('star_post')->where('post', $id)->where('user_id', Auth::user()->id)->delete();
+
+    return response()->json(['success' => 'Deleted successfully']);
+  }
+
+  public function addVote(Request $request, $id)
+  {
+
+    return response()->json(['success' => 'Vote successful']);
+  }
+  
+  public function removeVote(Request $request, $id)
+  {
+
+    return response()->json(['success' => 'Remove vote successful']);
   }
 }

@@ -28,18 +28,11 @@ Route::post('posts/{id}', 'PostController@edit');
 //User
 Route::get('users/{id}', 'UserController@showProfile');
 
-
-// Cards
-// Route::get('cards', 'CardController@list');
-// Route::get('cards/{id}', 'CardController@show');
-
 //API
-// Route::put('api/cards', 'CardController@create');
-// Route::delete('api/cards/{card_id}', 'CardController@delete');
-// Route::put('api/cards/{card_id}/', 'ItemController@create');
-// Route::post('api/item/{id}', 'ItemController@update');
-// Route::delete('api/item/{id}', 'ItemController@delete');
 Route::post('api/posts/{id}/stars','PostController@star');
+Route::delete('api/posts/{id}/stars','PostController@unstar');
+Route::post('api/contents/{id}/votes', 'PostController@upvote');
+Route::delete('api/contents/{id}/votes', 'PostController@downvote');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

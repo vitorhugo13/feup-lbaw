@@ -21,7 +21,7 @@
                     <a class="dropdown-item" href="">Profile</a>
                     <a class="dropdown-item" href="">Feed</a>
                     <a class="dropdown-item" href="">Reports</a>
-                    <a class="dropdown-item" href=""><i class="fas fa-ban"></i> 49:30:06</a>
+                    <a class="dropdown-item" href="{{ url('../users/' . Auth::user()->id . "#blocked") }}"><i class="fas fa-ban"></i> 49:30:06</a>
                     <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
                 </div>
