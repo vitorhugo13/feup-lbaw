@@ -10,6 +10,7 @@
     <script src="{{ asset('js/textarea.js') }}" defer></script>
     <script src="{{ asset('js/api/star.js') }}" defer></script>
     <script src="{{ asset('js/api/rating.js') }}" defer></script>
+    <script src="{{ asset('js/api/comment.js') }}" defer></script>
 @endpush
 
 
@@ -28,19 +29,19 @@
                 </div>  
             </div>
             <div class="d-flex flex-row align-items-center">
-                {{-- TODO: check if the current user has the post starred or not --}}
+                @auth
                 @if ($starred)
-                    <i class="fas fa-star mr-3" data-id="{{ $post->id }}"></i>
+                    <i class="fas fa-star" data-id="{{ $post->id }}"></i>
                 @else
-                    <i class="far fa-star mr-3" data-id="{{ $post->id }}"></i>
+                    <i class="far fa-star" data-id="{{ $post->id }}"></i>
                 @endif
 
-                <div class="dropdown d-flex align-items-center">
+                <div class="dropdown d-flex align-items-center ml-3">
                     <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
                     <div class="dropdown-menu dropdown-menu-right">
                         {{-- TODO: these options will not all be presented to all users --}}
                         <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
-                        <a class="dropdown-item" href="edit_post.php">Edit</a>
+                        <a class="dropdown-item" href="{{ route('edit', $post->id) }}">Edit</a>
                         <a class="dropdown-item" href="#">Mute</a>
                         <a class="dropdown-item" data-toggle="modal" data-target="#move-modal">Move</a>
                         <a class="dropdown-item" href="#">Block User</a>
@@ -48,6 +49,7 @@
                         <a class="dropdown-item" href="#">Delete</a>
                     </div>
                 </div>
+                @endauth
             </div>
         </div>
         <h4>{{ $post->title }}</h4>
@@ -68,7 +70,7 @@
 <div id="comment-section">
     {{-- TODO: get the number of comments --}}
 <header><span>Comments</span><span> &middot; </span><span>{{ $post->num_comments }}</span></header>
-    @include('partials.posts.comment_area')
+    @include('partials.posts.comment_area', ['id' => $post->id])
     <div id="comments">
         @each('partials.posts.thread', $post->threads, 'thread')
     </div>

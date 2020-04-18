@@ -21,19 +21,24 @@ Route::view('regulations', 'pages/regulations')->name('regulations');
 // Posts
 Route::get('posts/{id}', 'PostController@show');
 Route::get('posts', 'PostController@showCreateForm');
-Route::get('posts/{id}/edit', 'PostController@showEditForm');
+Route::get('posts/{id}/edit', 'PostController@showEditForm')->name('edit');
 Route::post('posts', 'PostController@create')->name('create');
 Route::post('posts/{id}', 'PostController@edit');
 
 //User
 Route::get('users/{id}', 'UserController@showProfile');
 
-//API
+//API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
 Route::delete('api/posts/{id}/stars','PostController@unstar');
 Route::post('api/contents/{id}/votes', 'PostController@add');
 Route::delete('api/contents/{id}/votes', 'PostController@remove');
 Route::put('api/contents/{id}/votes', 'PostController@update');
+//API Comments
+Route::post('/api/comments', 'CommentController@create'); //TODO: change A7
+Route::get('/api/comments/{id}', 'CommentController@show');
+Route::put('/api/comments/{id}', 'CommentController@edit');
+Route::delete('/api/comments/{id}', 'CommentController@delete');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

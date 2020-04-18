@@ -20,12 +20,15 @@ class PostController extends Controller
    * @return Response
    */
   public function show($id)
-  {
+  { 
+    // FIXME: validate params
     $post = Post::find($id);
-    $content = Content::find($id);
-    $user = $content->owner;
+    
+    if (!$post->content->visible)
+      return abort(404);
 
     // TODO: this can be checked in the post view
+    $user = $post->content->owner;
     if ($user == null) {
       $username = 'anon';
       $photo = asset('images/default_picture.png');
@@ -37,7 +40,6 @@ class PostController extends Controller
       $link = '../users/' . $user->id;
     }
 
-    // $this->authorize('show', $post);
 
     $starred = false;
     if (Auth::user() != null) {
@@ -61,14 +63,14 @@ class PostController extends Controller
 
   public function showCreateForm()
   {
+    $this->authorize('create', Post::class);
     return view('pages.posts.update', ['categories' => Category::orderBy('title')->get(), 'post' => null]);
   }
 
   public function showEditForm($id)
   {
     $post = Post::find($id);
-    //$user = $post->content->owner;
-
+    $this->authorize('edit', $post);
     return view('pages.posts.update', ['categories' => Category::orderBy('title')->get(), 'post' => $post]);
   }
 
@@ -79,25 +81,35 @@ class PostController extends Controller
    */
   public function create(Request $request)
   {
+    $this->authorize('create');
+
+    $content = new Content;
+    $content->author = Auth::user()->id;
+    $content->body = $request->input('body');
+    $content->save();
+    
     $post = new Post;
-
-    $this->authorize('create', $post);
-
-    $post->author = Auth::user()->id;
-
+    $post->id = $content->id;
     $post->title = $request->input('title');
-    $post->content->body = $request->input('body');
     $post->save();
-    $post->content->save();
 
-    return $post;
+    $categories = explode(',', $request->input('categories'));
+
+    DB::table('post_category')->where('post', $post->id)->delete();
+
+    foreach ($categories as $category) {
+      $category_id = DB::table('category')->where('title', $category)->value('id');
+
+      DB::table('post_category')->insert(['post' => $post->id, 'category' => $category_id]);
+    }
+
+    return redirect('posts/'.$post->id);
   }
 
   public function edit(Request $request, $id)
   {
     $post = Post::find($id);
-
-    //$this->authorize('edit', $post);
+    $this->authorize('edit', $post);
 
     $categories = explode(',', $request->input('categories'));
 
@@ -114,7 +126,7 @@ class PostController extends Controller
     $post->save();
     $post->content->save();
 
-    return $request;
+    return redirect('posts/'.$id);
   }
 
   public function delete($id)
