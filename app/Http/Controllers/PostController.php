@@ -28,29 +28,19 @@ class PostController extends Controller
       return abort(404);
 
     $starred = false;
-    $rating = '';
-
     if (Auth::user() != null) {
       foreach (Auth::user()->starredPosts as $starred_post) {
         if ($starred_post->id == $id) {
           $starred = true;
         break;
         }
-      }
-      foreach (Auth::user()->ratings as $vote) {
-        if ($vote->content == $id) {
-          $rating = $vote->rating;
-          break;
-        }
-      }
-      
+      }      
     }
 
     return view('pages.posts.show', [
       'post' => $post,
       'author' => $post->content->owner,
-      'starred' => $starred,
-      'rating' => $rating
+      'starred' => $starred
     ]);
   }
 

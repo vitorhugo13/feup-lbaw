@@ -15,24 +15,12 @@
     </header>
     <div class="content">
         <!--TODO: newlines/ format text-->
-        <p>{{$post->content->body}}</p>
+        <p>{{ $post->content->body }}</p>
     </div>
     <footer>
         <div class="votes">
-            @auth
-            @php 
-                $rating = App\Models\Rating::where('user_id', Auth::user()->id)->where('content', $post->id)->first();
-                $rating = ($rating == null) ? '' : $rating->rating;
-            @endphp
-            @endauth
-            @guest
-            @php
-                $rating = '';
-            @endphp
-            @endguest
-            <div class="upvotes @if ($rating == 'upvote') selected @endif" data-id="{{ $post->id }}"><img src="{{asset('images/hoof_filled.svg')}}" width="13" alt="uphoof" />+<span>{{ $post->content->upvotes }}</span></div>
-            <div class="downvotes @if ($rating == 'downvote') selected @endif" data-id="{{ $post->id }}"><img src="{{asset('images/hoof_outline.svg')}}" width="13" alt="downhoof" />-<span>{{ $post->content->downvotes }}</span></div>
+            @include('partials.content.rating', ['content' => $post->content])
         </div>
-    <div class="comments"><i class="far fa-comment"></i>{{$post->num_comments}}</div>
+    <div class="comments"><i class="far fa-comment"></i>{{ $post->num_comments }}</div>
     </footer>
 </div>

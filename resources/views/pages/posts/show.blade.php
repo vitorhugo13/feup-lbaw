@@ -58,10 +58,7 @@
     {{-- TODO: make a partial to separate the content body into paragraphs --}}
     <div class="post-body">{{ $post->content->body }}</div>
     <footer class="d-flex flex-row align-items-center">
-        {{-- TODO: check if the user has rated the post --}}
-        {{--TODO: ajax for number of upvotes--}}
-        <div class="upvotes @if($rating == 'upvote') selected @endif" data-id="{{ $post->id }}"><img src="{{ asset('images/hoof_filled.svg') }}" width="13" alt="uphoof" /> +<span>{{ $post->content->upvotes }}</span></div>
-        <div class="downvotes @if($rating == 'downvote') selected @endif" data-id="{{ $post->id }}"><img src="{{ asset('images/hoof_outline.svg') }}" width="13" alt="downhoof" /> -<span>{{ $post->content->downvotes }}</span></div>
+        @include('partials.content.rating', ['content' => $post->content])
     </footer>
 </div>
 
@@ -79,5 +76,6 @@
 
 {{-- TODO: draw move moval --}}
 @include('partials.content.report_modal')
+{{-- @include('partials.posts.move_modal') --}}
 
 @endsection
