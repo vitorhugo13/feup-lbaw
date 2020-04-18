@@ -15,13 +15,13 @@ use App\Models\User;
 
 class CommentController extends Controller
 {
-  public function show($id) {
+  public function show(Request $request, $id) {
     $comment = Comment::find($id);
 
     if($comment == null)
       return abort(404, 'No comment with id=' . $id);
 
-    return view('partials.posts.comment', ['comment' => $comment]);
+    return view('partials.posts.comment', ['comment' => $comment, 'thread_id' => $request->input('thread_id')]);
   }
 
   /**
@@ -50,11 +50,13 @@ class CommentController extends Controller
       $thread->main_comment = $comment->id;
       $thread->post = $request->input('post_id');
       $thread->save();
+
+      $thread_id = $thread->id;
     } else {
       DB::table('reply')->insert(['comment' => $comment->id, 'thread' => $thread_id]);
     }
 
-    return response()->json(['id' => $comment->id], 200);
+    return response()->json(['id' => $comment->id, 'thread_id' => $thread_id], 200);
   }
 
   public function edit(Request $request, $id)
