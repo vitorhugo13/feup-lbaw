@@ -72,5 +72,6 @@
 
 {{-- TODO: draw move moval --}}
 @include('partials.content.report_modal')
+{{-- @include('partials.posts.move_modal') --}}
 
 @endsection
