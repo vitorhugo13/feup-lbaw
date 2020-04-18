@@ -30,8 +30,8 @@
                 $rating = '';
             @endphp
             @endguest
-            <div class="upvotes @if($rating == 'upvote') selected @endif" data-id="{{ $post->id }}"><img src="{{asset('images/hoof_filled.svg')}}" width="13" alt="uphoof" />+<span>{{$post->content->upvotes}}</span></div>
-            <div class="downvotes @if($rating == 'upvote') selected @endif" data-id="{{ $post->id }}"><img src="{{asset('images/hoof_outline.svg')}}" width="13" alt="downhoof" />-<span>{{$post->content->downvotes}}</span></div>
+            <div class="upvotes @if ($rating == 'upvote') selected @endif" data-id="{{ $post->id }}"><img src="{{asset('images/hoof_filled.svg')}}" width="13" alt="uphoof" />+<span>{{ $post->content->upvotes }}</span></div>
+            <div class="downvotes @if ($rating == 'downvote') selected @endif" data-id="{{ $post->id }}"><img src="{{asset('images/hoof_outline.svg')}}" width="13" alt="downhoof" />-<span>{{ $post->content->downvotes }}</span></div>
         </div>
     <div class="comments"><i class="far fa-comment"></i>{{$post->num_comments}}</div>
     </footer>
