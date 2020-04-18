@@ -128,7 +128,7 @@
     margin-top: auto;
 }
 
-#post-buttons button {
+#post-buttons button, #post-buttons a{
     width: 8em;
     padding: 0.5em 1.5em;
     margin-left: 0.5em;
@@ -139,13 +139,13 @@
     font-weight: 600;
 }
 
-#post-buttons button:first-child {
+#post-buttons button:first-child, #post-buttons a:first-child {
     background-color: var(--background);
     color: var(--main-color);
     font-weight: 400;
 }
 
-#post-buttons button:focus {
+#post-buttons button:focus, #post-buttons a:focus {
     outline: 0 none;
 }
 

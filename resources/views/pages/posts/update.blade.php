@@ -52,7 +52,7 @@
             @endif />
             <textarea id="post-body" name="body" placeholder="What is this post about?">@if($post != null){{ old('body', ''.$post->content->body) }}@else{{ old('body', '') }}@endif</textarea>
             <div id="post-buttons" class="d-flex flex-row justify-content-end">
-                <button class="btn btn-secondary">Cancel</button>
+                <a class="btn btn-secondary" href="{{ URL::previous() }}">Cancel</a>
                 <button class="btn btn-primary" type="submit">Post</button>
             </div>
         </div>

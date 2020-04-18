@@ -6,12 +6,7 @@
                 by <a class="author" href="{{url('users/' . $post->content->owner->id)}}">{{$post->content->owner->username}}</a>
             </span>
         </div>
-        <!--TODO: check if user has starred the post-->
-        <label class="checkbox-label">
-            <input type="checkbox" id="star-category">
-            <i class="unchecked far fa-star"></i>
-            <i class="checked fas fa-star"></i> 
-        </label>
+        @include('partials.posts.star', ['post' => $post])
     </header>
     <div class="content">
         <!--TODO: newlines/ format text-->
