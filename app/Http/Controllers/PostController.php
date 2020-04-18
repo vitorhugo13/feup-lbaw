@@ -140,6 +140,9 @@ class PostController extends Controller
   }
 
 
+
+  /* ================= STAR/UNSTAR ============= */
+
   public function star($id)
   {
     // TODO: check user authorization
