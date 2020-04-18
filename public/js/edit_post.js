@@ -11,7 +11,7 @@ function updateCategories() {
 function addSelectedCategory(){
     let selectedCategory = dropdownCategories.options[dropdownCategories.selectedIndex].innerHTML;
 
-    if(categoriesList.includes(selectedCategory))
+    if(categoriesList.includes(selectedCategory) || dropdownCategories.selectedIndex == 0)
         return;
 
     let badge = document.createElement('span')

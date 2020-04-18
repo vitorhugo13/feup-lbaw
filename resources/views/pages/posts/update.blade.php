@@ -44,9 +44,8 @@
 
     <section id="text-tab" class="col-12 col-lg-7 ml-0 ml-lg-3 mt-4 mt-lg-0">
         <div class="d-flex flex-column justify-content-start align-items-stretch form-group">
-            <input type="text" name="title" id="post-title" 
+            <input type="text" name="title" id="post-title" placeholder="Title"
             @if ($post == null)
-                placeholder="Title"
                 value = "{{ old('title', '') }}"
             @else
                 value = "{{ old('title', ''.$post->title) }}"

@@ -93,7 +93,7 @@ function addThreadToPage(id, threadID) {
                 commentSection.append(thread)
                 incrementNumComments()
                 clearContentArea()
-                refreshReplyListeners()
+                refreshButtonListeners()
             })
     })
 }
@@ -116,7 +116,7 @@ function addReplyToPage(id, threadID) {
                 incrementNumComments()
                 clearContentArea()
                 cancelReply()
-                refreshReplyListeners()
+                refreshButtonListeners()
             })
     })
 }
@@ -139,14 +139,25 @@ function replyClicked(ev) {
     postBtn.setAttribute('data-thread-id', threadID)
 }
 
-function refreshReplyListeners() {
+function deleteComment(event) {
+    let commentID = event.currentTarget.getAttribute('data-comment-id')
+
+    console.log('Deleting comment ' + commentID)
+}
+
+function refreshButtonListeners() {
     let replyBtns = document.getElementsByClassName('reply-btn')
+    let deleteBtns = document.getElementsByClassName('delete-btn')
 
     Array.from(replyBtns).forEach(reply => {
         reply.addEventListener('click', replyClicked)
-    });
+    })
+
+    Array.from(deleteBtns).forEach(deleteBtn => {
+        deleteBtn.addEventListener('click', deleteComment)
+    })
 }
 
-refreshReplyListeners()
+refreshButtonListeners()
 cancelBtn.addEventListener('click', clearContentArea)
 postBtn.addEventListener('click', addThread)

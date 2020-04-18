@@ -22,9 +22,7 @@
                     </div>
                 </div>
                 <div class="selected-categories">
-                    <?php draw_category_move_badge('Politics'); ?>
-                    <?php draw_category_move_badge('Gaming'); ?>
-                    <?php draw_category_move_badge('Ethics'); ?>
+                    @each('partials.categories.move_badge', $post_categories, 'category')
                 </div>
             </div>
             <div class="modal-footer">

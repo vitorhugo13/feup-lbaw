@@ -17,7 +17,6 @@
                     <a class="dropdown-item" href="#">Delete</a>
                 @else
                     <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
-                    <a class="dropdown-item" href="#">Block User</a>
                 @endif
                 @break
             @default

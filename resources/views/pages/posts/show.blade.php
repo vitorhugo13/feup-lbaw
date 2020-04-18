@@ -76,6 +76,7 @@
 
 {{-- TODO: draw move moval --}}
 @include('partials.content.report_modal')
-{{-- @include('partials.posts.move_modal') --}}
+@include('partials.posts.move_modal', ['post_categories' => $post->categories])
+@include('partials.comment.delete_modal')
 
 @endsection

@@ -21,7 +21,7 @@
                     <a class="dropdown-item" href="#">Mute</a>
                     <a class="dropdown-item" href="#">Block User</a>
                     <a class="dropdown-item" href="#">Resolve</a>
-                    <a class="dropdown-item" href="#">Delete</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#delete-modal">Delete</a>
                 </div>
             </div>
         </div>
