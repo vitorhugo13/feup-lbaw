@@ -26,7 +26,7 @@ Route::post('posts', 'PostController@create')->name('create');
 Route::post('posts/{id}', 'PostController@edit');
 
 //User
-Route::get('users/{id}', 'UserController@showProfile');
+Route::get('users/{id}', 'UserController@showProfile')->name('profile');
 
 //API
 Route::post('api/posts/{id}/stars','PostController@star');

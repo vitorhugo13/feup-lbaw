@@ -28,17 +28,17 @@ class PostController extends Controller
       return abort(404);
 
     // TODO: this can be checked in the post view
-    $user = $post->content->owner;
-    if ($user == null) {
-      $username = 'anon';
-      $photo = asset('images/default_picture.png');
-      $link = '';
-    } else {
-      $username = $user->username;
-      // FIXME: this is only a temporary solution, pictures will not be in this folder
-      $photo = asset('images/' . $user->photo);
-      $link = '../users/' . $user->id;
-    }
+    // $user = $post->content->owner;
+    // if ($user == null) {
+    //   $username = 'anon';
+    //   $photo = asset('images/default_picture.png');
+    //   $link = '';
+    // } else {
+    //   $username = $user->username;
+    //   // FIXME: this is only a temporary solution, pictures will not be in this folder
+    //   $photo = asset('images/' . $user->photo);
+    //   $link = '../users/' . $user->id;
+    // }
 
 
     $starred = false;
@@ -53,10 +53,8 @@ class PostController extends Controller
 
     return view('pages.posts.show', [
       'post' => $post,
-      'starred' => $starred,
-      'username' => $username,
-      'photo' => $photo,
-      'link' => $link,
+      'author' => $post->content->owner,
+      'starred' => $starred
     ]);
   }
 
