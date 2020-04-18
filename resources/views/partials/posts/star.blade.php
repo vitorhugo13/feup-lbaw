@@ -1,7 +1,3 @@
-@push('scripts')
-    <script src="{{ asset('js/api/star.js') }}" defer></script>
-@endpush
-
 @auth
 @php $author = $post->content->owner; @endphp
 @if ($author == null || Auth::user()->id != $author->id)

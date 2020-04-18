@@ -5,6 +5,11 @@
     <link href="{{ asset('css/post_elems.css') }}" rel="stylesheet">
 @endpush
 
+@push('scripts')
+    <script src="{{ asset('js/api/star.js') }}" defer></script>
+    <script src="{{ asset('js/api/rating.js') }}" defer></script>
+@endpush
+
 @section('main-content')
   
 <section class="row justify-content-center">
