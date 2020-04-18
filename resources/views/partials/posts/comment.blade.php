@@ -32,8 +32,9 @@
     </div>
     <footer class="d-flex flex-row align-items-center justify-content-between">
         <div class="votes d-flex flex-row align-items-center justify-content-between">
-            <div class="upvotes mr-3"><img src="{{ asset('images/hoof_filled.svg') }}" width="11" alt="downhoof"/></i>+{{ $comment->content->upvotes }}</div>
-            <div class="downvotes mr-3"><img src="{{ asset('images/hoof_outline.svg') }}" width="11" alt="downhoof"/></i>-{{ $comment->content->downvotes }}</div>
+            <!--TODO: do for the comments what we have done to posts-->
+            <div class="upvotes mr-3 {{--@if($rating == 'upvote') selected @endif--}}"><img src="{{ asset('images/hoof_filled.svg') }}" width="11" alt="downhoof"/></i>+<span>{{ $comment->content->upvotes }}</span></div>
+            <div class="downvotes mr-3 {{--@if($rating == 'downvote') selected @endif--}}"><img src="{{ asset('images/hoof_outline.svg') }}" width="11" alt="downhoof"/></i>-<span>{{ $comment->content->downvotes }}</span></div>
         </div>
         <button class="reply-btn d-flex align-items-center"><span>Reply</span></button>
     </footer>

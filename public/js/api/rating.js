@@ -6,6 +6,14 @@ function encodeForAjax(data) {
     }).join('&')
 }
 
+function updateVote(elem, num){
+    let val = elem.querySelector('span')
+    val.innerText = Number(val.innerText) + num;
+    
+    if(Number(val.innerText) < 0)
+        val.innerText = 0
+}
+
 let upvote = document.getElementsByClassName('upvotes')[0]
 let downvote = document.getElementsByClassName('downvotes')[0]
 
@@ -42,13 +50,17 @@ upvote.addEventListener('click', function (event) {
             console.log(data['success'])
             if (action == 'DELETE') {
                 upvote.classList.remove('selected')
+                updateVote(upvote, -1)
             } 
             else if(action == 'POST') {
-                upvote.classList.add('selected')                
+                upvote.classList.add('selected')
+                updateVote(upvote, 1)                
             }
             else if(action == 'PUT'){
                 downvote.classList.remove('selected');
                 upvote.classList.add('selected')
+                updateVote(downvote, -1)
+                updateVote(upvote, 1)
             }
         })
     })
@@ -86,13 +98,17 @@ downvote.addEventListener('click', function (event) {
             console.log(data['success'])
             if (action == 'DELETE') {
                 downvote.classList.remove('selected')
+                updateVote(downvote, -1)
             }
             else if (action == 'POST') {
                 downvote.classList.add('selected')
+                updateVote(downvote, 1)
             }
             else if (action == 'PUT') {
                 upvote.classList.remove('selected');
                 downvote.classList.add('selected')
+                updateVote(upvote, -1)
+                updateVote(downvote, 1)
             }
         })
     })
