@@ -10,6 +10,8 @@
 
                 @include('partials.content.time', ['creation_time' => $comment->content->creation_time])
             </div>
+
+            @auth
             <div class="d-flex flex-row">
                 <div class="dropdown">
                     <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
@@ -23,6 +25,7 @@
                     </div>
                 </div>
             </div>
+            @endauth
         </header>
         <div class="comment-body">
             <p>{{ $comment->content->body }}</p>

@@ -22,10 +22,12 @@ class PostController extends Controller
   public function show($id)
   {
     $post = Post::find($id);
-    $content = Content::find($id);
-    $user = $content->owner;
+    
+    if (!$post->content->visible)
+      return abort(404, 'There is no post with id: ', [$id]);
 
     // TODO: this can be checked in the post view
+    $user = $post->content->owner;
     if ($user == null) {
       $username = 'anon';
       $photo = asset('images/default_picture.png');
@@ -37,7 +39,6 @@ class PostController extends Controller
       $link = '../users/' . $user->id;
     }
 
-    // $this->authorize('show', $post);
 
     $starred = false;
     if (Auth::user() != null) {
@@ -61,6 +62,7 @@ class PostController extends Controller
 
   public function showCreateForm()
   {
+    $this->authorize('create');
     return view('pages.posts.update', ['categories' => Category::orderBy('title')->get(), 'post' => null]);
   }
 
@@ -79,9 +81,8 @@ class PostController extends Controller
    */
   public function create(Request $request)
   {
+    $this->authorize('create');
     $post = new Post;
-
-    $this->authorize('create', $post);
 
     $post->author = Auth::user()->id;
 
