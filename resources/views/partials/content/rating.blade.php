@@ -1,3 +1,7 @@
+@push('scripts')
+    <script src="{{ asset('js/api/rating.js') }}" defer></script>
+@endpush
+
 @auth
 @php 
     $rating = App\Models\Rating::where('user_id', Auth::user()->id)->where('content', $content->id)->first();
