@@ -49,8 +49,7 @@
             @else
                 value='{{ $post->title}}'
             @endif />
-            <textarea id="post-body" name="body" placeholder="What is this post about?">@if ($post != null){{ $post->content->body}}@endif 
-            </textarea>
+            <textarea id="post-body" name="body" placeholder="What is this post about?">@if($post != null){{ $post->content->body}}@endif</textarea>
             <div id="post-buttons" class="d-flex flex-row justify-content-end">
                 <button class="btn btn-secondary">Cancel</button>
                 <button class="btn btn-primary" type="submit">Post</button>

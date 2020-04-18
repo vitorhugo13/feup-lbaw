@@ -82,16 +82,28 @@ class PostController extends Controller
   public function create(Request $request)
   {
     $this->authorize('create');
+
+    $content = new Content;
+    $content->author = Auth::user()->id;
+    $content->body = $request->input('body');
+    $content->save();
+    
     $post = new Post;
-
-    $post->author = Auth::user()->id;
-
+    $post->id = $content->id;
     $post->title = $request->input('title');
-    $post->content->body = $request->input('body');
     $post->save();
-    $post->content->save();
 
-    return $post;
+    $categories = explode(',', $request->input('categories'));
+
+    DB::table('post_category')->where('post', $post->id)->delete();
+
+    foreach ($categories as $category) {
+      $category_id = DB::table('category')->where('title', $category)->value('id');
+
+      DB::table('post_category')->insert(['post' => $post->id, 'category' => $category_id]);
+    }
+
+    return redirect('posts/'.$post->id);
   }
 
   public function edit(Request $request, $id)
@@ -115,7 +127,7 @@ class PostController extends Controller
     $post->save();
     $post->content->save();
 
-    return $request;
+    return redirect('posts/'.$id);
   }
 
   public function delete($id)
