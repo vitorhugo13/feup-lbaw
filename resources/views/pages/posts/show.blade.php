@@ -29,9 +29,9 @@
             <div class="d-flex flex-row align-items-center">
                 {{-- TODO: check if the current user has the post starred or not --}}
                 @if ($starred)
-                    <i class="fas fa-star mr-3"></i>
+                    <i class="fas fa-star mr-3" data-id="{{ $post->id }}"></i>
                 @else
-                    <i class="far fa-star mr-3"></i>
+                    <i class="far fa-star mr-3" data-id="{{ $post->id }}"></i>
                 @endif
 
                 <div class="dropdown d-flex align-items-center">

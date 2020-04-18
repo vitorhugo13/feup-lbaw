@@ -74,12 +74,8 @@
             @endif
           </div>
 
-          <div class="row mb-3">
-            <div class="col-6 d-flex">
-            </div>
-            <div class="col-6 text-right">
-              <a href="#" class="forget-link">Forgot password</a>
-            </div>
+          <div class="mb-3 text-right">
+            <a href="#" class="forget-link">Forgot password</a>
           </div>
 
           <div class="text-center mb-3">
