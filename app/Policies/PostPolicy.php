@@ -14,20 +14,20 @@ class PostPolicy
 
     public function create(User $user)
     {
-      // Any user can create a new card
-      // TODO: check if the user is not blocked
-      return Auth::check() && $user->role != 'Blocked';
+      return $user->role != 'Blocked';
     }
 
     public function delete(User $user, Post $post)
     {
       // Only a card owner can delete it
-      return $user->id == $post->author;
+      return $user->id == $post->content->author;
     }
 
     public function edit(User $user, Post $post)
     {
-        // TODO: also check if the user is not blocked
-        return $user->id == $post->author;
+        return $user->id == $post->content->author && $user->role != 'Blocked';
     }
+
+    // TODO: rating policy
+    // TODO: star policy
 }

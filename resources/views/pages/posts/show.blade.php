@@ -39,7 +39,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         {{-- TODO: these options will not all be presented to all users --}}
                         <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
-                        <a class="dropdown-item" href={{ route('edit', $post->id) }}>Edit</a>
+                        <a class="dropdown-item" href="{{ route('edit', $post->id) }}">Edit</a>
                         <a class="dropdown-item" href="#">Mute</a>
                         <a class="dropdown-item" data-toggle="modal" data-target="#move-modal">Move</a>
                         <a class="dropdown-item" href="#">Block User</a>

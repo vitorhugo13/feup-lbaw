@@ -20,11 +20,12 @@ class PostController extends Controller
    * @return Response
    */
   public function show($id)
-  {
+  { 
+    // FIXME: validate params
     $post = Post::find($id);
     
     if (!$post->content->visible)
-      return abort(404, 'There is no post with id: ', [$id]);
+      return abort(404);
 
     // TODO: this can be checked in the post view
     $user = $post->content->owner;
@@ -62,15 +63,14 @@ class PostController extends Controller
 
   public function showCreateForm()
   {
-    $this->authorize('create');
+    $this->authorize('create', Post::class);
     return view('pages.posts.update', ['categories' => Category::orderBy('title')->get(), 'post' => null]);
   }
 
   public function showEditForm($id)
   {
     $post = Post::find($id);
-    //$user = $post->content->owner;
-
+    $this->authorize('edit', $post);
     return view('pages.posts.update', ['categories' => Category::orderBy('title')->get(), 'post' => $post]);
   }
 
@@ -109,8 +109,7 @@ class PostController extends Controller
   public function edit(Request $request, $id)
   {
     $post = Post::find($id);
-
-    //$this->authorize('edit', $post);
+    $this->authorize('edit', $post);
 
     $categories = explode(',', $request->input('categories'));
 
