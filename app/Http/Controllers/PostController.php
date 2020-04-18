@@ -40,10 +40,12 @@ class PostController extends Controller
     // $this->authorize('show', $post);
 
     $starred = false;
-    foreach (Auth::user()->starredPosts as $starred_post) {
-      if ($starred_post->id == $id) {
-        $starred = true;
+    if (Auth::user() != null) {
+      foreach (Auth::user()->starredPosts as $starred_post) {
+        if ($starred_post->id == $id) {
+          $starred = true;
         break;
+        }
       }
     }
 
