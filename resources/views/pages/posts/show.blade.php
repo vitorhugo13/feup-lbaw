@@ -66,7 +66,7 @@
 <div id="comment-section">
     {{-- TODO: get the number of comments --}}
 <header><span>Comments</span><span> &middot; </span><span>{{ $post->num_comments }}</span></header>
-    @include('partials.posts.comment_area')
+    @include('partials.posts.comment_area', ['id' => $post->id])
     <div id="comments">
         @each('partials.posts.thread', $post->threads, 'thread')
     </div>
