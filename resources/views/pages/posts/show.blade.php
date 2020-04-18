@@ -21,36 +21,34 @@
     <header class="d-flex flex-column">
         <div class="d-flex flex-row align-items-center justify-content-between">
             <div class="post-user d-flex flex-row align-items-center justify-content-between">
-                <a href="{{ $link }}"><img class="rounded-circle" src="{{ $photo }}" width="40"></a>
+                {{-- TODO: this photo path is temporary --}}
+                {{-- FIXME: for some reason route('profile' , $author->id) was not working --}}
+                @if ($author != null)
+                    <a href="{{ url('users/' . $author->id) }}"><img class="rounded-circle" src="{{ asset('images/' . $author->photo) }}" width="40"></a>
+                @else
+                    <a><img class="rounded-circle" src="{{ asset('images/default_picture.png') }}" width="40"></a>
+                @endif
                 <div class="name-time">
-                    {{-- TODO: missing link to user profile --}}
-                    <a href="{{ $link }}">{{ $username }}</a>
+                    @if ($author != null)
+                        <a href="{{ url('users/' . $author->id) }}">{{ $author->username }}</a>
+                    @else
+                        <a>anon</a>
+                    @endif
                     @include('partials.content.time', ['creation_time' => $post->content->creation_time])
                 </div>  
             </div>
+            @auth
             <div class="d-flex flex-row align-items-center">
-                @auth
-                @if ($starred)
-                    <i class="fas fa-star" data-id="{{ $post->id }}"></i>
-                @else
-                    <i class="far fa-star" data-id="{{ $post->id }}"></i>
+                @if ($author == null || Auth::user()->id != $author->id)
+                    @if ($starred)
+                        <i class="fas fa-star" data-id="{{ $post->id }}"></i>
+                    @else
+                        <i class="far fa-star" data-id="{{ $post->id }}"></i>
+                    @endif
                 @endif
-
-                <div class="dropdown d-flex align-items-center ml-3">
-                    <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        {{-- TODO: these options will not all be presented to all users --}}
-                        <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
-                        <a class="dropdown-item" href="{{ route('edit', $post->id) }}">Edit</a>
-                        <a class="dropdown-item" href="#">Mute</a>
-                        <a class="dropdown-item" data-toggle="modal" data-target="#move-modal">Move</a>
-                        <a class="dropdown-item" href="#">Block User</a>
-                        <a class="dropdown-item" href="#">Resolve</a>
-                        <a class="dropdown-item" href="#">Delete</a>
-                    </div>
-                </div>
-                @endauth
+                @include('partials.posts.options', ['author' => $author])
             </div>
+            @endauth
         </div>
         <h4>{{ $post->title }}</h4>
         <div class="post-categories">

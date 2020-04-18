@@ -66,6 +66,7 @@
 </section>
 
 <div class="post-section">
+    {{-- FIXME: count only the visible posts --}}
     <p class="number-posts ml-1 mb-2"> <strong>Posts</strong> ({{count($user->posts)}})</p>
     @each('partials.posts.preview', $user->posts, 'post')
 </div>
