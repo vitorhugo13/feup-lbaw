@@ -29,20 +29,9 @@ class PostController extends Controller
     if (!$post->content->visible)
       return abort(404);
 
-    $starred = false;
-    if (Auth::user() != null) {
-      foreach (Auth::user()->starredPosts as $starred_post) {
-        if ($starred_post->id == $id) {
-          $starred = true;
-        break;
-        }
-      }      
-    }
-
     return view('pages.posts.show', [
       'post' => $post,
       'author' => $post->content->owner,
-      'starred' => $starred
     ]);
   }
 

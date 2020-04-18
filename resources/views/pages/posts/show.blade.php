@@ -39,13 +39,7 @@
             </div>
             @auth
             <div class="d-flex flex-row align-items-center">
-                @if ($author == null || Auth::user()->id != $author->id)
-                    @if ($starred)
-                        <i class="fas fa-star" data-id="{{ $post->id }}"></i>
-                    @else
-                        <i class="far fa-star" data-id="{{ $post->id }}"></i>
-                    @endif
-                @endif
+                @include('partials.posts.star', ['post' => $post])
                 @include('partials.posts.options', ['author' => $author])
             </div>
             @endauth
