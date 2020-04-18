@@ -1,10 +1,10 @@
 'use strict'
-// URL '/api/comments'
-
+let commentArea = document.getElementById('comment-area')
 let contentArea = document.getElementById('comment-content')
 let cancelBtn = document.getElementById('cancel-btn')
 let postBtn = document.getElementById('post-btn')
 let commentSection = document.getElementById('comments')
+let replyBtns = document.getElementsByClassName('reply-btn')
 
 function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {
@@ -16,9 +16,12 @@ function clearContentArea() {
     contentArea.value = ''
 }
 
+function cancelReply() {
+    commentSection.insertBefore(commentArea)
+}
+
 function addThread() {
     let postID = postBtn.getAttribute('data-id')
-    console.log('POST ID: ' + postID)
     let request = {
         'body': contentArea.value,
         'thread': -1,
@@ -34,10 +37,8 @@ function addThread() {
         },
         body: encodeForAjax(request)
     }).then(response => {
-        console.log(response)
         if (response['status'] == 200)
             response.json().then(data => {
-                console.log(data)
                 addThreadToPage(data['id'])
             })
     })
@@ -58,7 +59,6 @@ function addThreadToPage(id) {
             'Accept': 'text/html'
         }
     }).then(response => {
-        console.log(response)
         if(response['status'] == 200)
             response.text().then(data => {
                 thread.append(comment)
@@ -70,5 +70,23 @@ function addThreadToPage(id) {
     })
 }
 
+function addReply() {
+    console.log('Adding reply...')
+}
+
+function replyClicked(ev) {
+    let threadID = ev.target.getAttribute('data-id')
+    let thread = document.querySelector('.thread[data-id="' + threadID + '"]')
+
+    thread.parentNode.insertBefore(commentArea, thread.nextSibling)
+
+    cancelBtn.removeEventListener('click', clearContentArea)
+    postBtn.removeEventListener('click', addThread)
+
+    cancelBtn.addEventListener('click', cancelReply)
+    postBtn.addEventListener('click', addReply)
+}
+
 cancelBtn.addEventListener('click', clearContentArea)
 postBtn.addEventListener('click', addThread)
+replyBtns.addEventListener('click', replyClicked)

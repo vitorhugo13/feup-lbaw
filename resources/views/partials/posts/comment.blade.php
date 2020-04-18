@@ -36,6 +36,6 @@
             <div class="upvotes mr-3 {{--@if($rating == 'upvote') selected @endif--}}"><img src="{{ asset('images/hoof_filled.svg') }}" width="11" alt="downhoof"/></i>+<span>{{ $comment->content->upvotes }}</span></div>
             <div class="downvotes mr-3 {{--@if($rating == 'downvote') selected @endif--}}"><img src="{{ asset('images/hoof_outline.svg') }}" width="11" alt="downhoof"/></i>-<span>{{ $comment->content->downvotes }}</span></div>
         </div>
-        <button class="reply-btn d-flex align-items-center"><span>Reply</span></button>
+        <button class="reply-btn d-flex align-items-center" data-id="{{ $thread_id }}"><span>Reply</span></button>
     </footer>
 </div>
