@@ -63,7 +63,11 @@
 </div>
 
 <div id="comment-section">
-<header><span>Comments</span><span> &middot; </span><span>{{ $post->num_comments }}</span></header>
+    <header>
+        <span>Comments</span>
+        <span> &middot; </span>
+        <span id="num-comments">{{ $post->num_comments }}</span>
+    </header>
     @include('partials.posts.comment_area', ['id' => $post->id])
     <div id="comments">
         @each('partials.posts.thread', $post->threads, 'thread')

@@ -29,7 +29,6 @@
                 @endforeach
             </select>
             <div class="input-group-append">
-
                 <button class="btn btn-outline-secondary" type="button">Add</button>
             </div>
         </div>
@@ -46,10 +45,11 @@
             <input type="text" name="title" id="post-title" 
             @if ($post == null)
                 placeholder="Title"
+                value = "{{ old('title', '') }}"
             @else
-                value='{{ $post->title}}'
+                value = "{{ old('title', ''.$post->title) }}"
             @endif />
-            <textarea id="post-body" name="body" placeholder="What is this post about?">@if($post != null){{ $post->content->body}}@endif</textarea>
+            <textarea id="post-body" name="body" placeholder="What is this post about?">@if($post != null){{ old('body', ''.$post->content->body) }}@else{{ old('body', '') }}@endif</textarea>
             <div id="post-buttons" class="d-flex flex-row justify-content-end">
                 <button class="btn btn-secondary">Cancel</button>
                 <button class="btn btn-primary" type="submit">Post</button>

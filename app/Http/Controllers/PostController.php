@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\Content;
 use App\Models\Category;
 
+use Illuminate\Support\Facades\Input;
+
 class PostController extends Controller
 {
   /**
@@ -68,6 +70,11 @@ class PostController extends Controller
   //FIXME: it is necessary to verify if the post has at least 1 category
   public function create(Request $request)
   {
+    $categories = array_filter(explode(',', $request->input('categories')));
+
+    if (empty($categories) || $request->input('title') !== '' || $request->input('body') !== '')
+      return redirect()->back()->withInput(Input::all());
+      
     $this->authorize('create', Post::class);
 
     $content = new Content;
@@ -79,8 +86,6 @@ class PostController extends Controller
     $post->id = $content->id;
     $post->title = $request->input('title');
     $post->save();
-
-    $categories = explode(',', $request->input('categories'));
 
     DB::table('post_category')->where('post', $post->id)->delete();
 
@@ -95,10 +100,13 @@ class PostController extends Controller
 
   public function edit(Request $request, $id)
   {
+    $categories = array_filter(explode(',', $request->input('categories')));
+
+    if(empty($categories) || $request->input('title') !== '' || $request->input('body') !== '')
+      return redirect()->back()->withInput(Input::all());
+
     $post = Post::find($id);
     $this->authorize('edit', $post);
-
-    $categories = explode(',', $request->input('categories'));
 
     DB::table('post_category')->where('post', $id)->delete();
 

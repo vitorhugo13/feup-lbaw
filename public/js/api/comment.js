@@ -4,11 +4,16 @@ let contentArea = document.getElementById('comment-content')
 let cancelBtn = document.getElementById('cancel-btn')
 let postBtn = document.getElementById('post-btn')
 let commentSection = document.getElementById('comments')
+let numComments = document.getElementById('num-comments')
 
 function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
     }).join('&')
+}
+
+function incrementNumComments() {
+    numComments.innerHTML = parseInt(numComments.innerHTML) + 1
 }
 
 function clearContentArea() {
@@ -45,10 +50,8 @@ function addComment(threadID) {
         },
         body: encodeForAjax(request)
     }).then(response => {
-        console.log(response)
         if (response['status'] == 200)
             response.json().then(data => {
-                console.log(data)
                 if (threadID == -1)
                     addThreadToPage(data['id'], data['thread_id'])
                 else
@@ -88,6 +91,7 @@ function addThreadToPage(id, threadID) {
                 comment.outerHTML = data
                 thread.append(replies)
                 commentSection.append(thread)
+                incrementNumComments()
                 clearContentArea()
                 refreshReplyListeners()
             })
@@ -109,7 +113,9 @@ function addReplyToPage(id, threadID) {
             response.text().then(data => {
                 replies.append(comment)
                 comment.outerHTML = data
+                incrementNumComments()
                 clearContentArea()
+                cancelReply()
                 refreshReplyListeners()
             })
     })
