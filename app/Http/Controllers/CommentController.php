@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Post;
-use App\Models\User;
+use App\Models\Comment;
 use App\Models\Content;
-use App\Models\Thread;
+use App\Models\Post;
 use App\Models\Reply;
+use App\Models\Thread;
+use App\Models\User;
 
 class CommentController extends Controller
 {
@@ -46,14 +47,14 @@ class CommentController extends Controller
     $thread_id = $request->input('thread');
     if($thread_id == -1){
       $thread = new Thread;
-      $thread->comment = $comment->$id;
+      $thread->main_comment = $comment->id;
       $thread->post = $request->input('post_id');
       $thread->save();
     } else {
       DB::table('reply')->insert(['comment' => $comment->id, 'thread' => $thread_id]);
     }
 
-    return response()->json(['comment' => $comment, 'thread' => $thread], 200);
+    return response()->json(['id' => $comment->id], 200);
   }
 
   public function edit(Request $request, $id)

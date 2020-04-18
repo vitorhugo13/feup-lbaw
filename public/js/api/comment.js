@@ -19,7 +19,7 @@ function clearContentArea() {
 function addThread() {
     let postID = postBtn.getAttribute('data-id')
     console.log('POST ID: ' + postID)
-    request = {
+    let request = {
         'body': contentArea.value,
         'thread': -1,
         'post_id': postID
@@ -34,36 +34,38 @@ function addThread() {
         },
         body: encodeForAjax(request)
     }).then(response => {
-        if (response['status' == 200])
+        console.log(response)
+        if (response['status'] == 200)
             response.json().then(data => {
                 console.log(data)
-                addThreadToPage(data)
+                addThreadToPage(data['id'])
             })
     })
 }
 
-function addThreadToPage(data) {
+function addThreadToPage(id) {
     let thread = document.createElement('div')
     let comment = document.createElement('div')
     let replies = document.createElement('div')
 
     thread.classList.add('thread', 'my-4')
-    comment.classList.add('comment', 'p-3')
     replies.classList.add('replies', 'ml-5')
 
-    fetch('../api/comments/' + data, {
+    fetch('../api/comments/' + id, {
         method: 'GET',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'Accept': 'text/html'
         }
     }).then(response => {
+        console.log(response)
         if(response['status'] == 200)
-            response.text().then()(data => {
-                comment.innerHTML = data
+            response.text().then(data => {
                 thread.append(comment)
+                comment.outerHTML = data
                 thread.append(replies)
                 commentSection.append(thread)
+                clearContentArea()
             })
     })
 }
