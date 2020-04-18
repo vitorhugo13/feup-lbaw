@@ -11,8 +11,6 @@ use App\Models\User;
 use App\Models\Content;
 use App\Models\Category;
 
-use Illuminate\Support\Facades\Input;
-
 class PostController extends Controller
 {
   /**
@@ -82,9 +80,9 @@ class PostController extends Controller
   {
     $categories = array_filter(explode(',', $request->input('categories')));
 
-    if (empty($categories) || $request->input('title') !== '' || $request->input('body') !== '')
-      return redirect()->back()->withInput(Input::all());
-      
+    if(empty($categories) || $request->input('title') == null || $request->input('body') == null)
+      return redirect()->back()->withInput();
+
     $this->authorize('create', Post::class);
 
     $content = new Content;
@@ -112,8 +110,8 @@ class PostController extends Controller
   {
     $categories = array_filter(explode(',', $request->input('categories')));
 
-    if(empty($categories) || $request->input('title') !== '' || $request->input('body') !== '')
-      return redirect()->back()->withInput(Input::all());
+    if(empty($categories) || $request->input('title') == null || $request->input('body') == null)
+      return redirect()->back()->withInput();
 
     $post = Post::find($id);
     $this->authorize('edit', $post);

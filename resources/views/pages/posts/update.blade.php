@@ -33,9 +33,11 @@
             </div>
         </div>
         <footer id="selected-categories" class="d-flex flex-row flex-wrap">
-            @if ($post != null)
-                @each('partials.categories.move_badge', $post->categories, 'category')
-            @endif
+        @if (!(old('categories') == null))
+            @each('partials.categories.category_badge', array_filter(explode(',', old('categories'))), 'category')
+        @elseif ($post != null)
+            @each('partials.categories.move_badge', $post->categories, 'category')
+        @endif
         </footer>
         <input type="hidden" id="categories" name="categories" value="">
     </section>
