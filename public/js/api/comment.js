@@ -23,15 +23,16 @@ function cancelReply() {
     postBtn.removeEventListener('click', addReply)
 
     postBtn.addEventListener('click', addThread)
+    postBtn.removeAttribute('data-thread-id')
 }
 
-function addThread() {
-    if(contentArea.value == '') return;
+function addComment(threadID) {
+    if (contentArea.value == '') return;
 
-    let postID = postBtn.getAttribute('data-id')
+    let postID = postBtn.getAttribute('data-post-id')
     let request = {
         'body': contentArea.value,
-        'thread': -1,
+        'thread': threadID,
         'post_id': postID
     }
 
@@ -44,11 +45,25 @@ function addThread() {
         },
         body: encodeForAjax(request)
     }).then(response => {
+        console.log(response)
         if (response['status'] == 200)
             response.json().then(data => {
-                addThreadToPage(data['id'], data['thread_id'])
+                console.log(data)
+                if (threadID == -1)
+                    addThreadToPage(data['id'], data['thread_id'])
+                else
+                    addReplyToPage(data['id'], data['thread_id'])
             })
     })
+}
+
+function addThread() {
+    addComment(-1)
+}
+
+function addReply(event) {
+    let threadID = event.currentTarget.getAttribute('data-thread-id')
+    addComment(threadID)
 }
 
 function addThreadToPage(id, threadID) {
@@ -79,9 +94,25 @@ function addThreadToPage(id, threadID) {
     })
 }
 
-function addReply() {
-    console.log('Adding reply...')
-    //
+function addReplyToPage(id, threadID) {
+    let comment = document.createElement('div')
+    let replies = document.querySelector('.thread[data-id="' + threadID + '"] .replies')
+
+    fetch('../api/comments/' + id + '?thread_id=' + threadID, {
+        method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept': 'text/html'
+        }
+    }).then(response => {
+        if (response['status'] == 200)
+            response.text().then(data => {
+                replies.append(comment)
+                comment.outerHTML = data
+                clearContentArea()
+                refreshReplyListeners()
+            })
+    })
 }
 
 function replyClicked(ev) {
@@ -99,6 +130,7 @@ function replyClicked(ev) {
 
     cancelBtn.addEventListener('click', cancelReply)
     postBtn.addEventListener('click', addReply)
+    postBtn.setAttribute('data-thread-id', threadID)
 }
 
 function refreshReplyListeners() {
