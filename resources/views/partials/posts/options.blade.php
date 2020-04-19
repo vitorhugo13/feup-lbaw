@@ -33,7 +33,12 @@
                 @if ($author != null && Auth::user()->id == $author->id)
                     <a class="dropdown-item" href="{{ route('edit', $post->id) }}">Edit</a>
                     <a class="dropdown-item" href="#">Mute</a>
-                    <a class="dropdown-item" href="#">Delete</a>
+                    <a class="dropdown-item">
+                        <form method="POST" action="{{ route('delete', $post->id) }}" onclick='submit()'>
+                        @csrf @method('DELETE')
+                        Delete
+                        </form>
+                    </a>
                 @else
                     <a class="dropdown-item">
                         <form method="POST" action="{{ route('delete', $post->id) }}" onclick='submit()'>
