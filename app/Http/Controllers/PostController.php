@@ -24,7 +24,7 @@ class PostController extends Controller
     // FIXME: validate params
     $post = Post::find($id);
     
-    if (!$post->content->visible)
+    if ($post == null || !$post->content->visible)
       return abort(404);
 
     return view('pages.posts.show', [
@@ -111,12 +111,11 @@ class PostController extends Controller
 
   public function delete($id)
   {
-    $post = Post::find($id);
+    Content::find($id)->delete();
+   
+    //$this->authorize('delete', $content);
 
-    $this->authorize('delete', $post);
-    $post->delete();
-
-    return $post;
+    return redirect('team');
   }
 
 

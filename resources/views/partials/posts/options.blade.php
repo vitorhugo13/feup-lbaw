@@ -4,7 +4,12 @@
         @switch(Auth::user()->role)
             @case('Blocked')
                 @if ($author != null && Auth::user()->id == $author->id)
-                    <a class="dropdown-item" href="#">Delete</a>
+                    <a class="dropdown-item">
+                        <form method="POST" action="{{ route('delete', $post->id) }}" onclick='submit()'>
+                        @csrf @method('DELETE')
+                        Delete
+                        </form>
+                    </a>
                     <a class="dropdown-item" href="#">Mute</a>
                 @else
                     <a class="dropdown-item" href="#">Block User</a>
@@ -14,7 +19,12 @@
                 @if ($author != null && Auth::user()->id == $author->id)
                     <a class="dropdown-item" href="{{ route('edit', $post->id) }}">Edit</a>
                     <a class="dropdown-item" href="#">Mute</a>
-                    <a class="dropdown-item" href="#">Delete</a>
+                    <a class="dropdown-item">
+                        <form method="POST" action="{{ route('delete', $post->id) }}" onclick='submit()'>
+                        @csrf @method('DELETE')
+                        Delete
+                        </form>
+                    </a>
                 @else
                     <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
                 @endif
@@ -25,7 +35,12 @@
                     <a class="dropdown-item" href="#">Mute</a>
                     <a class="dropdown-item" href="#">Delete</a>
                 @else
-                    <a class="dropdown-item" href="#">Delete</a>
+                    <a class="dropdown-item">
+                        <form method="POST" action="{{ route('delete', $post->id) }}" onclick='submit()'>
+                        @csrf @method('DELETE')
+                        Delete
+                        </form>
+                    </a>
                     <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
                     <a class="dropdown-item" href="#">Resolve</a>
                     <a class="dropdown-item" data-toggle="modal" data-target="#move-modal">Move</a>

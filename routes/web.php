@@ -22,6 +22,7 @@ Route::view('regulations', 'pages/regulations')->name('regulations');
 Route::get('posts/{id}', 'PostController@show');
 Route::get('posts', 'PostController@showCreateForm');
 Route::get('posts/{id}/edit', 'PostController@showEditForm')->name('edit');
+Route::delete('posts/{id}', 'PostController@delete')->name('delete');
 Route::post('posts', 'PostController@create')->name('create');
 Route::post('posts/{id}', 'PostController@edit');
 
@@ -34,6 +35,7 @@ Route::delete('api/posts/{id}/stars','PostController@unstar');
 Route::post('api/contents/{id}/votes', 'PostController@add');
 Route::delete('api/contents/{id}/votes', 'PostController@remove');
 Route::put('api/contents/{id}/votes', 'PostController@update');
+
 //API Comments
 Route::post('/api/comments', 'CommentController@create'); //TODO: change A7
 Route::get('/api/comments/{id}', 'CommentController@show');
