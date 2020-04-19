@@ -1,0 +1,11 @@
+@import 'constants.css';
+
+span.error{
+    color: var(--error-color) !important;
+    font-size: 0.8em;
+    font-weight: 400;
+    padding-bottom: 0.5em;
+    float: left;
+    width: 100%;
+    text-align: left;
+}

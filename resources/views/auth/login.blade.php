@@ -2,38 +2,10 @@
 
 @section('content')
 
-{{-- <form method="POST" action="{{ route('login') }}">
-    {{ csrf_field() }}
-
-    <label for="email">E-mail</label>
-    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
-    @if ($errors->has('email'))
-        <span class="error">
-          {{ $errors->first('email') }}
-        </span>
-    @endif
-
-    <label for="password" >Password</label>
-    <input id="password" type="password" name="password" required>
-    @if ($errors->has('password'))
-        <span class="error">
-            {{ $errors->first('password') }}
-        </span>
-    @endif
-
-    <label>
-        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-    </label>
-
-    <button type="submit">
-        Login
-    </button>
-    <a class="button button-outline" href="{{ route('register') }}">Register</a>
-</form> --}}
-
 @push('styles')
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/errors.css') }}" rel="stylesheet">
 @endpush
 
 
@@ -57,22 +29,23 @@
           <div class="form-input">
             <span> <i class="fa fa-user"></i></span>
             <input type="text" name="username" placeholder="Username" required autofocus>
-            @if ($errors->has('username'))
-            <span class="error">
-                {{ $errors->first('username') }}
-            </span>
-            @endif
           </div>
 
           <div class="form-input">
             <span> <i class="fa fa-lock"></i></span>
             <input type="password" name="password" placeholder="Password" required>
-            @if ($errors->has('password'))
+          </div>
+
+          @if ($errors->has('username'))
+            <span class="error">
+                {{ $errors->first('username') }}
+            </span>
+          @endif
+          @if ($errors->has('password'))
             <span class="error">
                 {{ $errors->first('password') }}
             </span>
-            @endif
-          </div>
+          @endif
 
           <div class="mb-3 text-right">
             <a href="#" class="forget-link">Forgot password</a>

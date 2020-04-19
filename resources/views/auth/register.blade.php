@@ -5,6 +5,7 @@
 @push('styles')
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     <link href="{{ asset('css/register.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/errors.css') }}" rel="stylesheet">
 @endpush
 
 {{-- TODO: css for the errors --}}
@@ -28,31 +29,18 @@
                   <div class="form-input">
                       <span> <i class="fa fa-user"></i></span>
                   <input type="text" name="username" placeholder="Username" value="{{ old('username') }}" required>
-                      @if ($errors->has('username'))
-                      <span class="error">
-                          {{ $errors->first('username') }}
-                      </span>
-                      @endif
+                      
                   </div>
                     
                   <div class="form-input">
                       <span> <i class="fa fa-envelope"></i></span>
                       <input type="email" name="email" placeholder="Email Address" value="{{ old('email') }}" required>
-                      @if ($errors->has('email'))
-                      <span class="error">
-                          {{ $errors->first('email') }}
-                      </span>
-                      @endif
                   </div>
 
                   <div class="form-input">
                       <span> <i class="fa fa-lock"></i></span>
                       <input type="password" name="password" placeholder="Password" required>
-                      @if ($errors->has('password'))
-                      <span class="error">
-                          {{ $errors->first('password') }}
-                      </span>
-                      @endif
+                      
                   </div>
 
                   <div class="form-input">
@@ -61,9 +49,25 @@
                   </div>
 
                     
-                  <div class="row mb-3">
+                  {{-- <div class="row mb-3">
                       <div class="col-6 d-flex"></div>
-                  </div>
+                  </div> --}}
+
+                @if ($errors->has('username'))
+                      <span class="error">
+                          {{ $errors->first('username') }}
+                      </span>
+                @endif
+                @if ($errors->has('email'))
+                      <span class="error">
+                          {{ $errors->first('email') }}
+                      </span>
+                @endif
+                @if ($errors->has('password'))
+                      <span class="error">
+                          {{ $errors->first('password') }}
+                      </span>
+                @endif
 
                   <div class="text-center mb-3">
                       <button type="submit" class="btn">Register</button>
