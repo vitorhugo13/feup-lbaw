@@ -17,6 +17,8 @@ Route::get('/', 'Auth\LoginController@home');
 // TODO: ask if this is the correct use of Route::view()
 Route::view('team', 'pages/team')->name('team');
 Route::view('regulations', 'pages/regulations')->name('regulations');
+Route::view('404', 'errors/404')->name('404');
+Route::view('403', 'errors/403')->name('403');
 
 // Posts
 Route::get('posts/{id}', 'PostController@show');
