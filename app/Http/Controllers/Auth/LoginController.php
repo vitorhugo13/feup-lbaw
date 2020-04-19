@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'team';
+    protected $redirectTo = 'users/' . Auth::user();
 
     /**
      * Create a new controller instance.

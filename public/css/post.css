@@ -1,6 +1,7 @@
 @import 'constants.css';
 
 /* ----------========== POST ==========---------- */
+
 .post {
     background-color: var(--background-strong);
     width: 80%;
@@ -9,11 +10,11 @@
     border-radius: 5px;
 }
 
-.post > header > div:first-child {
+.post>header>div:first-child {
     margin-bottom: 1.5em;
 }
 
-.post >header > div .post-user > a:first-child {
+.post>header>div .post-user>a:first-child {
     margin-right: 1em;
 }
 
@@ -37,48 +38,51 @@
     cursor: pointer;
 }
 
-.post > header .dropdown-menu {
+.post>header .dropdown-menu {
     color: var(--background-strong);
     background-color: var(--foreground);
 }
 
-.post > header .dropdown-menu > a {
+.post>header .dropdown-menu>a {
     cursor: pointer;
 }
 
-.post > header .dropdown-menu > a:hover {
+.post>header .dropdown-menu>a:hover {
     background-color: var(--background);
     color: var(--foreground);
 }
 
-.post > header > h4 {
+.post>header>h4 {
     font-weight: 500;
 }
 
-.post .post-body > p {
+.post .post-body {
     font-size: 0.9em;
     font-weight: 400;
+    white-space: pre-wrap;
 }
 
-.post > footer {
+.post>footer {
     margin-top: 1.5em;
 }
 
-.post > footer > div {
+.post>footer>div {
     margin-right: 1.5em;
     font-size: 0.9em;
     font-weight: 300;
 }
 
-.post > footer > div > img {
+.post>footer>div>img {
     margin-right: 0.15em
 }
 
-.post > footer > div:nth-child(2) > img {
+.post>footer>div:nth-child(2)>img {
     transform: rotate(180deg);
 }
 
+
 /* ----------========== COMMENT SECTION ==========---------- */
+
 #comment-section {
     background-color: var(--background-strong);
     margin: auto;
@@ -88,18 +92,19 @@
     width: 80%;
 }
 
-#comment-section > header { 
+#comment-section>header {
     margin-bottom: 1em;
 }
 
+
 /* ----------========== COMMENT AREA ==========---------- */
 
-#comment-section > header > span:first-child {
+#comment-section>header>span:first-child {
     font-size: large;
     font-weight: 500;
 }
 
-#comment-section > header > span:last-child {
+#comment-section>header>span:last-child {
     font-size: medium;
     font-weight: 300;
 }
@@ -109,11 +114,9 @@
     color: var(--foreground);
     border-style: none;
     width: 100%;
-
     padding: 0.5em 1em;
     margin-bottom: 0.4em;
     border-radius: 5px;
-
     resize: none;
     overflow: hidden;
     min-height: 6em;
@@ -145,57 +148,91 @@
     outline: 0 none;
 }
 
+
 /* ----------========== COMMENT THREAD ==========---------- */
+
 .thread {
     background-color: var(--background);
     border-radius: 5px;
     padding: 0.3em 0.6em;
 }
 
-.thread .comment > header {
+.thread .comment>header {
     margin-bottom: 0.3em;
 }
 
-.thread .comment > header > div .dropdown {
+.thread .comment>header>div .dropdown {
     cursor: pointer;
 }
 
-.thread .comment > header > div .dropdown-menu{
+.thread .comment>header>div .dropdown-menu {
     background-color: var(--foreground);
     color: var(--background-strong);
 }
 
-.thread .comment > header > div > span{
+.thread .comment>header>div>span {
     font-size: 0.7em;
     font-weight: 300;
 }
 
-.thread .comment > header > div > span:first-child{
+.thread .comment>header>div>span:first-child {
     font-size: 0.8em;
     font-weight: 400;
 }
 
-.thread .comment > .comment-body > p {
+.thread .comment>.comment-body {
     font-size: 0.9em;
     font-weight: 300;
     margin-bottom: 0.7em;
+    white-space: pre-wrap;
 }
 
-.thread .comment > footer > .votes {
+.thread .comment>textarea.comment-body {
+    background-color: var(--background-strong);
+    color: var(--foreground);
+    font-weight: 300;
+    border: none;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    resize: none;
+    /* Hide scrollbar for IE and Edge */
+    -ms-overflow-style: none;
+    /* Hide scrollbar for Mozila */
+    scrollbar-width: none;
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+.thread .comment>textarea.comment-body::-webkit-scrollbar {
+    display: none;
+}
+
+.thread .comment>textarea.comment-body:focus {
+    border: 1px solid var(--main-color);
+    outline: 0 none;
+}
+
+.thread .comment>footer>.votes {
     margin-right: 1.5em;
     font-size: 0.8em;
     font-weight: 300;
 }
 
-.thread .comment > footer > .votes > div > img {
+.thread .comment>footer>.votes>div>img {
     margin-right: 0.4em;
 }
 
-.thread .comment > footer > .votes > div:nth-child(2) > img {
+.thread .comment>footer>.votes>div:nth-child(2)>img {
     transform: rotate(180deg);
 }
 
-.thread .comment > footer > button {
+.thread .comment>footer button {
     background-color: var(--background-strong);
     color: var(--foreground);
     border: none;
@@ -205,11 +242,11 @@
     padding: 0.4em 1em;
 }
 
-.thread .comment > footer > button:hover {
+.thread .comment>footer button:hover {
     color: var(--accent-color);
 }
 
-.thread .replies .comment:first-child > header > div > span:first-child {
+.thread .replies .comment:first-child>header>div>span:first-child {
     color: var(--main-color);
 }
 
@@ -217,13 +254,15 @@
 /* ----------========== MEDIA QUERIES ==========---------- */
 
 @media (max-width: 991px) {
-    .post, #comment-section {
+    .post,
+    #comment-section {
         width: 100%;
     }
 }
 
 @media (max-width: 575px) {
-    .post, #comment-section {
+    .post,
+    #comment-section {
         padding: 1em;
     }
 }

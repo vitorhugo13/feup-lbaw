@@ -49,7 +49,7 @@
         </div>
     </header>
     {{-- TODO: make a partial to separate the content body into paragraphs --}}
-    <div class="post-body">{{ $post->content->body }}</div>
+    <p class="post-body">{{ $post->content->body }}</p>
     <footer class="d-flex flex-row align-items-center">
         @include('partials.content.rating', ['content' => $post->content])
     </footer>
