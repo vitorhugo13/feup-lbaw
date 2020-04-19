@@ -12,7 +12,7 @@ use App\Models\Content;
 use App\Models\Category;
 use Illuminate\Support\Facades\Validator;
 
-class PostController extends Controller
+class PostController extends ContentController
 {
 
   private function validateID($id)
@@ -42,6 +42,8 @@ class PostController extends Controller
     if (!$post->content->visible)
       return abort(404);
 
+    $this->authorize('show', $post->content);
+
     return view('pages.posts.show', [
       'post' => $post,
       'author' => $post->content->owner,
@@ -51,7 +53,7 @@ class PostController extends Controller
 
   public function showCreateForm()
   {
-    $this->authorize('create', Post::class);
+    $this->authorize('create', Content::class);
     return view('pages.posts.update', ['post' => null]);
   }
 
@@ -60,8 +62,7 @@ class PostController extends Controller
     $this->validateID($id);
 
     $post = Post::find($id);
-
-    $this->authorize('edit', $post);
+    $this->authorize('edit', $post->content);
     return view('pages.posts.update', ['post' => $post]);
   }
 
@@ -82,7 +83,7 @@ class PostController extends Controller
     if($validator->fails())
       return redirect()->back()->withInput();
 
-    $this->authorize('create', Post::class);
+    $this->authorize('create', Content::class);
 
     $content = new Content;
     $content->author = Auth::user()->id;
@@ -121,7 +122,7 @@ class PostController extends Controller
       return redirect()->back()->withInput();
 
     $post = Post::find($id);
-    $this->authorize('edit', $post);
+    $this->authorize('edit', $post->content);
 
     $categories = array_filter(explode(',', $request->input('categories')));
 
@@ -143,11 +144,9 @@ class PostController extends Controller
 
   public function delete($id)
   {
-    $this->validateID($id);
-
-    Content::find($id)->delete();
-   
-    //$this->authorize('delete', $content);
+    $content = Content::find($id);   
+    $this->authorize('delete', $content);
+    $content->delete();
 
     return redirect('team');
   }
@@ -160,8 +159,8 @@ class PostController extends Controller
   {
     $this->validateID($id);
 
-    if (Auth::user() == null)
-      return response()->json(['error' => 'Not authenticated'], 404);
+    $post = Post::find($id);
+    $this->authorize('star', $post);
 
     DB::table('star_post')->insert(['post' => $id, 'user_id' => Auth::user()->id]);
 
@@ -172,9 +171,8 @@ class PostController extends Controller
   public function unstar($id)
   {
     $this->validateID($id);
-
-    if (Auth::user() == null)
-      return response()->json(['error' => 'Not authenticated'], 404);
+    $post = Post::find($id);
+    $this->authorize('star', $post);
 
     DB::table('star_post')->where('post', $id)->where('user_id', Auth::user()->id)->delete();
 
@@ -188,9 +186,8 @@ class PostController extends Controller
   public function add(Request $request, $id)
   {
     $this->validateID($id);
-
-    if (Auth::user() == null)
-      return response()->json(['error' => 'Not authenticated'], 404);
+    $content = Content::find($id);
+    $this->authorize('rating', $content);
 
     DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);   
    
@@ -202,8 +199,8 @@ class PostController extends Controller
   {
     $this->validateID($id);
 
-    if (Auth::user() == null)
-      return response()->json(['error' => 'Not authenticated'], 404);
+    $content = Content::find($id);
+    $this->authorize('rating', $content);
 
     DB::table('rating')->where('rating', $request->input('type'))->where('content', $id)->where('user_id', Auth::user()->id)->delete();
     
@@ -214,8 +211,8 @@ class PostController extends Controller
   {
     $this->validateID($id);
 
-    if (Auth::user() == null)
-      return response()->json(['error' => 'Not authenticated'], 404);
+    $content = Content::find($id);
+    $this->authorize('rating', $content);
 
     if( $request->input('type') == 'upvote'){
       DB::table('rating')->where('rating', 'downvote')->where('content', $id)->where('user_id', Auth::user()->id)->delete();

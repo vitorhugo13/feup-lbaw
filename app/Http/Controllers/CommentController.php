@@ -14,7 +14,7 @@ use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
-class CommentController extends Controller
+class CommentController extends ContentController
 {
   private function validateID($id)
   {
@@ -29,9 +29,11 @@ class CommentController extends Controller
   }
 
   public function show(Request $request, $id) {
-    $this->validateID($this);
+    // $this->validateID($this);
 
     $comment = Comment::find($id);
+
+    $this->authorize('show', $comment->content);
 
     return view('partials.posts.comment', ['comment' => $comment, 'thread_id' => $request->input('thread_id')]);
   }
@@ -43,14 +45,14 @@ class CommentController extends Controller
    */
   public function create(Request $request)
   {
-    $validator = Validator::make($request, [
-      'body' => 'required|string',
-    ]);
+    // $validator = Validator::make($request, [
+    //   'body' => 'required|string',
+    // ]);
 
-    if ($validator->fails())
-      return response()->json(['error' => 'Body is empty'], 404);
-
-    // $this->authorize('create', $post);
+    // if ($validator->fails())
+    //   return response()->json(['error' => 'Body is empty'], 404);
+      
+    $this->authorize('create', Content::class);
     $content = new Content;
     
     $content->author = Auth::user()->id;
@@ -81,10 +83,11 @@ class CommentController extends Controller
   public function edit(Request $request, $id)
   {
     $newBody = $request->input('body');
-    if($newBody == null)
+    if ($newBody == null)
       return response()->json(['error' => 'Bad request'], 404);
-
+    
     $comment = Content::find($id);
+    $this->authorize('edit', $comment);
     if ($comment == null)
       return response()->json(['error' => 'Comment with id' . $id . ' not found'], 404);
 
@@ -109,6 +112,11 @@ class CommentController extends Controller
     //the database will cascade the deletions and delete all of these:
     // comment, reply, thread (if it was main comment)
     $content = Content::find($id);
+
+    if($content == null)
+      return response()->json(['error' => 'Comment with id' . $id . ' not found'], 404);
+
+    $this->authorize('delete', $content);
 
     $post_id = Thread::where('main_comment', $id)->first()->post; 
     $content->delete();
