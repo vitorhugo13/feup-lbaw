@@ -176,8 +176,10 @@ function confirmDeletion() {
             'Accept': 'application/json'
         }
     }).then(response => {
+        console.log(response)
         if (response['status'] == 200)
             response.json().then(data => {
+                console.log(data)
                 removeCommentFromPage()
                 decreaseNumComments(data.num)
             })

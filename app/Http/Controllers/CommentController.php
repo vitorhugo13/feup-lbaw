@@ -119,14 +119,14 @@ class CommentController extends ContentController
     $this->authorize('delete', $content);
 
     $thread = Thread::where('main_comment', $id)->first();
-    if($thread == null)
-      $numComments = 1;
-    else {
-      $post_id = $thread->post; 
-      $numComments = Post::find($post_id)->num_comments;
+    if($thread == null) {
+      $reply = DB::table('reply')->where('comment', $id)->first();
+      $thread = Thread::where('id', $reply->thread)->first();
     }
     
+    $post_id = $thread->post; 
     $content->delete();
+    $numComments = Post::find($post_id)->num_comments;    
 
     return response()->json(['success' => "Deleted comment successfully", 'num' => $numComments], 200);
   }
