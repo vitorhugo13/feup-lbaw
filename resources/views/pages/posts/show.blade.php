@@ -39,7 +39,7 @@
             @auth
             <div class="d-flex flex-row align-items-center">
                 @include('partials.posts.star', ['post' => $post])
-                @include('partials.posts.options', ['author' => $author])
+                @include('partials.posts.options', ['author' => $author, 'post' => $post])
             </div>
             @endauth
         </div>
