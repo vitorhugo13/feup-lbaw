@@ -5,6 +5,8 @@ let cancelBtn = document.getElementById('cancel-btn')
 let postBtn = document.getElementById('post-btn')
 let commentSection = document.getElementById('comments')
 let numComments = document.getElementById('num-comments')
+let confirmDeleteBtn = document.getElementById('confirm-delete')
+let commentID = -1
 
 function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {
@@ -140,9 +142,35 @@ function replyClicked(ev) {
 }
 
 function deleteComment(event) {
-    let commentID = event.currentTarget.getAttribute('data-comment-id')
+    commentID = event.currentTarget.getAttribute('data-comment-id')
+}
 
-    console.log('Deleting comment ' + commentID)
+function confirmDeletion() {
+    if(commentID == -1) return
+
+    fetch('../api/comments/' + commentID, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response['status'] == 200)
+            response.json().then(data => {
+                removeCommentFromPage()
+            })
+    })      
+}
+
+function removeCommentFromPage() {
+    let comment = document.querySelector('.comment[data-comment-id="' + commentID + '"]')
+    
+    if(comment.parentElement.classList.contains('thread'))
+        comment.parentElement.remove()
+    else
+        comment.remove()
+    
+    commentID = -1
 }
 
 function refreshButtonListeners() {
@@ -161,3 +189,4 @@ function refreshButtonListeners() {
 refreshButtonListeners()
 cancelBtn.addEventListener('click', clearContentArea)
 postBtn.addEventListener('click', addThread)
+confirmDeleteBtn.addEventListener('click', confirmDeletion)

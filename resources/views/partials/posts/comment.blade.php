@@ -1,4 +1,4 @@
-<div class="comment p-3">
+<div class="comment p-3" data-comment-id="{{ $comment->id }}">
     <header class="d-flex flex-row align-items-center justify-content-between">
         <div class="name-time">
             {{-- TODO: missing link to user profile --}}
@@ -21,7 +21,7 @@
                     <a class="dropdown-item" href="#">Mute</a>
                     <a class="dropdown-item" href="#">Block User</a>
                     <a class="dropdown-item" href="#">Resolve</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#delete-modal">Delete</a>
+                    <a class="dropdown-item delete-btn" data-toggle="modal" data-target="#delete-modal" data-comment-id="{{ $comment->id }}">Delete</a>
                 </div>
             </div>
         </div>
