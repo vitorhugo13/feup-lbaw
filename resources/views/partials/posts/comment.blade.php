@@ -1,4 +1,4 @@
-<div class="comment p-3">
+<div class="comment p-3" data-comment-id="{{ $comment->id }}">
     <header class="d-flex flex-row align-items-center justify-content-between">
         <div class="name-time">
             {{-- TODO: missing link to user profile --}}
@@ -15,13 +15,14 @@
         <div class="d-flex flex-row">
             <div class="dropdown">
                 <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
+                {{-- TODO: permissions for this dropdown --}}
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
                     <a class="dropdown-item" href="#">Edit</a>
                     <a class="dropdown-item" href="#">Mute</a>
                     <a class="dropdown-item" href="#">Block User</a>
                     <a class="dropdown-item" href="#">Resolve</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#delete-modal">Delete</a>
+                    <a class="dropdown-item delete-btn" data-toggle="modal" data-target="#delete-modal" data-comment-id="{{ $comment->id }}">Delete</a>
                 </div>
             </div>
         </div>

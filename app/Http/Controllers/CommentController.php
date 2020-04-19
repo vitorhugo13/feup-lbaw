@@ -66,6 +66,16 @@ class CommentController extends Controller
 
   public function delete($id)
   {
-    
+    //By deleting the content with the same id as the comment,
+    //the database will cascade the deletions and delete all of these:
+    // comment, reply, thread (if it was main comment)
+    $content = Content::find($id);
+
+    if($content == null)
+      return response()->json(['error' => 'Comment with id' . $id . ' not found'], 404);
+
+    $content->delete();
+
+    return response()->json(['success' => "Deleted comment successfully"], 200);
   }
 }
