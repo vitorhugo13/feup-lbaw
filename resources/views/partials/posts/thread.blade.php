@@ -4,6 +4,5 @@
         @foreach ($thread->replies as $reply)
             @include('partials.posts.comment', ['comment' => $reply, 'thread_id' => $thread->id])
         @endforeach
-        {{-- @each('partials.posts.comment', $thread->replies, 'comment') --}}
     </div>
 </div>

@@ -61,7 +61,18 @@ class CommentController extends Controller
 
   public function edit(Request $request, $id)
   {
-    
+    $newBody = $request->input('body');
+    if($newBody == null)
+      return response()->json(['error' => 'Bad request'], 404);
+
+    $comment = Content::find($id);
+    if ($comment == null)
+      return response()->json(['error' => 'Comment with id' . $id . ' not found'], 404);
+
+    $comment->body = $newBody;
+    $comment->save();
+
+    return response()->json(['success' => "Edited comment successfully"], 200);
   }
 
   public function delete($id)

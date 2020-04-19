@@ -33,6 +33,21 @@ function cancelReply() {
     postBtn.removeAttribute('data-thread-id')
 }
 
+function cancelEdit(comID, threadID, content) {
+    let commentBody = document.querySelector('.comment[data-comment-id="' + comID + '"] .comment-body')
+    let commentFooter = document.querySelector('.comment[data-comment-id="' + comID + '"] footer')
+    let btnSpan = document.querySelector('.comment[data-comment-id="' + comID + '"] footer > span')
+    let replyBtn = document.createElement('button')
+
+    commentBody.outerHTML = '<p class="comment-body">' + content + '</p>'
+    btnSpan.remove()
+    commentFooter.append(replyBtn)
+    replyBtn.outerHTML = '<button class="reply-btn d-flex align-items-center" data-id="' + threadID + '" data-comment-id="' + comID + '"><span>Reply</span></button>'
+
+    let newBtn = document.querySelector('.comment[data-comment-id="' + comID + '"] footer .reply-btn')
+    newBtn.addEventListener('click', replyClicked)
+}
+
 function addComment(threadID) {
     if (contentArea.value == '') return;
 
@@ -173,9 +188,63 @@ function removeCommentFromPage() {
     commentID = -1
 }
 
+function editComment(event) {
+    let comID = event.currentTarget.getAttribute('data-comment-id')
+    let threadID = event.currentTarget.getAttribute('data-thread-id')
+    let commentBody = document.querySelector('.comment[data-comment-id="' + comID + '"] .comment-body')
+    let replyButton = document.querySelector('.reply-btn[data-comment-id="' + comID + '"]')
+    let commentFooter = document.querySelector('.comment[data-comment-id="' + comID + '"] footer')
+    let cancelBtn = document.createElement('button')
+    let confirmBtn = document.createElement('button')
+    let btnSpan = document.createElement('span')
+    let oldContent = commentBody.textContent
+
+    commentBody.outerHTML = '<textarea class="comment-body" placeholder="You are editing your post..." oninput="auto_grow(this)">' + commentBody.textContent + '</textarea>'
+
+    cancelBtn.innerHTML = 'Cancel'
+    cancelBtn.classList.add('cancel-edit-btn', 'mr-2')
+    cancelBtn.setAttribute('data-comment-id', comID)
+    cancelBtn.setAttribute('data-thread-id', threadID)
+    confirmBtn.innerHTML = 'Confirm'
+    confirmBtn.classList.add('confirm-edit-btn')
+    confirmBtn.setAttribute('data-comment-id', comID)
+    confirmBtn.setAttribute('data-thread-id', threadID)
+    
+    btnSpan.append(cancelBtn)
+    btnSpan.append(confirmBtn)
+    commentFooter.append(btnSpan)
+    replyButton.remove()
+
+    cancelBtn.addEventListener('click', ev => cancelEdit(comID, threadID, oldContent))
+    confirmBtn.addEventListener('click', confirmEdit)
+}
+
+function confirmEdit(event) {
+    let comID = event.currentTarget.getAttribute('data-comment-id')
+    let threadID = event.currentTarget.getAttribute('data-thread-id')
+    let content = document.querySelector('.comment[data-comment-id="' + comID + '"] .comment-body').value
+    if (comID == null || content == '') return
+
+    fetch('../api/comments/' + comID, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept': 'application/json'
+        },
+        body: 'body=' + content
+    }).then(response => {
+        if (response['status'] == 200)
+            response.json().then(data => {
+                cancelEdit(comID, threadID, content)
+            })
+    }) 
+}
+
 function refreshButtonListeners() {
     let replyBtns = document.getElementsByClassName('reply-btn')
-    let deleteBtns = document.getElementsByClassName('delete-btn')
+    let deleteBtns = document.getElementsByClassName('delete-comment-btn')
+    let editBtns = document.getElementsByClassName('edit-comment-btn')
 
     Array.from(replyBtns).forEach(reply => {
         reply.addEventListener('click', replyClicked)
@@ -183,6 +252,10 @@ function refreshButtonListeners() {
 
     Array.from(deleteBtns).forEach(deleteBtn => {
         deleteBtn.addEventListener('click', deleteComment)
+    })
+
+    Array.from(editBtns).forEach(editBtn => {
+        editBtn.addEventListener('click', editComment)
     })
 
     //from rating.js

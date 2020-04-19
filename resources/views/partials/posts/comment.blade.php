@@ -18,11 +18,11 @@
                 {{-- TODO: permissions for this dropdown --}}
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
-                    <a class="dropdown-item" href="#">Edit</a>
+                    <a class="dropdown-item edit-comment-btn" data-thread-id="{{ $thread_id }}" data-comment-id="{{ $comment->id }}">Edit</a>
                     <a class="dropdown-item" href="#">Mute</a>
                     <a class="dropdown-item" href="#">Block User</a>
                     <a class="dropdown-item" href="#">Resolve</a>
-                    <a class="dropdown-item delete-btn" data-toggle="modal" data-target="#delete-modal" data-comment-id="{{ $comment->id }}">Delete</a>
+                    <a class="dropdown-item delete-comment-btn" data-toggle="modal" data-target="#delete-modal" data-comment-id="{{ $comment->id }}">Delete</a>
                 </div>
             </div>
         </div>
@@ -33,6 +33,6 @@
         <div class="votes d-flex flex-row align-items-center justify-content-between">
             @include('partials.content.rating', ['content' => $comment->content])
         </div>
-        <button class="reply-btn d-flex align-items-center" data-id="{{ $thread_id }}"><span>Reply</span></button>
+        <button class="reply-btn d-flex align-items-center" data-id="{{ $thread_id }}" data-comment-id="{{ $comment->id }}"><span>Reply</span></button>
     </footer>
 </div>

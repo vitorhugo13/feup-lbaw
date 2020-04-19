@@ -37,7 +37,7 @@ Route::delete('api/contents/{id}/votes', 'PostController@remove');
 Route::put('api/contents/{id}/votes', 'PostController@update');
 
 //API Comments
-Route::post('/api/comments', 'CommentController@create'); //TODO: change A7
+Route::post('/api/comments', 'CommentController@create');
 Route::get('/api/comments/{id}', 'CommentController@show');
 Route::put('/api/comments/{id}', 'CommentController@edit');
 Route::delete('/api/comments/{id}', 'CommentController@delete');
