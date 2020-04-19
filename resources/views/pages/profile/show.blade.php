@@ -21,7 +21,7 @@
             <div class="dropdown col-1">
                 <div data-toggle="dropdown"><i class="fas fa-ellipsis-v"></i></div>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="../pages/profile.php">Promote</a>
+                    <a class="dropdown-item" href="#">Promote</a>
                     <a class="dropdown-item" href="#">Demote</a>
                     <a class="dropdown-item" href="#">Report</a>
                     <a class="dropdown-item" href="#">Block</a>
@@ -32,7 +32,7 @@
         </div>
         <!--TODO: newlines/ format text-->
         <p class="bio text-left">{{$user->bio}} </p>
-        <a class="edit-button" href="./edit_profile.php"><strong>Edit profile</strong></a>
+        <a class="edit-button" href="#"><strong>Edit profile</strong></a>
 
         @if($user->release_date > 0)
             <div id="blocked" class="mt-5">

@@ -143,12 +143,12 @@ class PostController extends ContentController
   }
 
   public function delete($id)
-  {
+  {    
     $content = Content::find($id);   
     $this->authorize('delete', $content);
     $content->delete();
 
-    return redirect('team');
+    return redirect('users/' . Auth::user()->id);
   }
 
 
