@@ -58,6 +58,7 @@ function addComment(threadID) {
         },
         body: encodeForAjax(request)
     }).then(response => {
+        console.log(response)
         if (response['status'] == 200)
             response.json().then(data => {
                 if (threadID == -1)

@@ -13,13 +13,15 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 
-class CommentController extends Controller
+class CommentController extends ContentController
 {
   public function show(Request $request, $id) {
     $comment = Comment::find($id);
 
     if($comment == null)
       return abort(404, 'No comment with id=' . $id);
+
+    $this->authorize('show', $comment->content);
 
     return view('partials.posts.comment', ['comment' => $comment, 'thread_id' => $request->input('thread_id')]);
   }
@@ -31,7 +33,8 @@ class CommentController extends Controller
    */
   public function create(Request $request)
   {
-    // $this->authorize('create', $post);
+    $this->authorize('create', Content::class);
+
     $content = new Content;
     
     $content->author = Auth::user()->id;
@@ -61,7 +64,9 @@ class CommentController extends Controller
 
   public function edit(Request $request, $id)
   {
-    
+      // TODO: check if the comment
+      $comment = Comment::find($id);
+      $this->authorize('edit', $comment->content);
   }
 
   public function delete($id)
@@ -73,6 +78,8 @@ class CommentController extends Controller
 
     if($content == null)
       return response()->json(['error' => 'Comment with id' . $id . ' not found'], 404);
+
+    $this->authorize('delete', $content);
 
     $post_id = Thread::where('main_comment', $id)->first()->post; 
     $content->delete();

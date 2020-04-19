@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Content;
-use App\Models\Category;
 
-class PostController extends Controller
+class PostController extends ContentController
 {
   /**
    * Shows the card for a given id.
@@ -20,12 +19,14 @@ class PostController extends Controller
    * @return Response
    */
   public function show($id)
-  { 
+  {
     // FIXME: validate params
     $post = Post::find($id);
     
     if ($post == null || !$post->content->visible)
       return abort(404);
+
+    $this->authorize('show', $post->content);
 
     return view('pages.posts.show', [
       'post' => $post,
@@ -36,14 +37,14 @@ class PostController extends Controller
 
   public function showCreateForm()
   {
-    $this->authorize('create', Post::class);
+    $this->authorize('create', Content::class);
     return view('pages.posts.update', ['post' => null]);
   }
 
   public function showEditForm($id)
   {
     $post = Post::find($id);
-    $this->authorize('edit', $post);
+    $this->authorize('edit', $post->content);
     return view('pages.posts.update', ['post' => $post]);
   }
 
@@ -60,7 +61,7 @@ class PostController extends Controller
     if(empty($categories) || $request->input('title') == null || $request->input('body') == null)
       return redirect()->back()->withInput();
 
-    $this->authorize('create', Post::class);
+    $this->authorize('create', Content::class);
 
     $content = new Content;
     $content->author = Auth::user()->id;
@@ -91,7 +92,7 @@ class PostController extends Controller
       return redirect()->back()->withInput();
 
     $post = Post::find($id);
-    $this->authorize('edit', $post);
+    $this->authorize('edit', $post->content);
 
     DB::table('post_category')->where('post', $id)->delete();
 
@@ -111,9 +112,10 @@ class PostController extends Controller
 
   public function delete($id)
   {
-    Content::find($id)->delete();
+    $content = Content::find($id);
    
-    //$this->authorize('delete', $content);
+    $this->authorize('delete', $content);
+    $content->delete();
 
     return redirect('team');
   }
@@ -124,10 +126,9 @@ class PostController extends Controller
 
   public function star($id)
   {
-    // TODO: check user authorization
-
-    if (Auth::user() == null)
-      return response()->json(['error' => 'Not authenticated'], 404);
+    // TODO: check if post exists
+    $post = Post::find($id);
+    $this->authorize('star', $post);
 
     DB::table('star_post')->insert(['post' => $id, 'user_id' => Auth::user()->id]);
 
@@ -137,10 +138,9 @@ class PostController extends Controller
 
   public function unstar($id)
   {
-    // TODO: check user authorization
-
-    if (Auth::user() == null)
-      return response()->json(['error' => 'Not authenticated'], 404);
+    // TODO: check if post exists
+    $post = Post::find($id);
+    $this->authorize('star', $post);
 
     DB::table('star_post')->where('post', $id)->where('user_id', Auth::user()->id)->delete();
 
@@ -153,8 +153,10 @@ class PostController extends Controller
 
   public function add(Request $request, $id)
   {
-    if (Auth::user() == null)
-      return response()->json(['error' => 'Not authenticated'], 404);
+    
+    // TODO: check if post exists
+    $content = Content::find($id);
+    $this->authorize('rating', $content);
 
     DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);   
    
@@ -164,8 +166,9 @@ class PostController extends Controller
   
   public function remove(Request $request, $id)
   {
-    if (Auth::user() == null)
-      return response()->json(['error' => 'Not authenticated'], 404);
+    // TODO: check if post exists
+    $content = Content::find($id);
+    $this->authorize('rating', $content);
 
     DB::table('rating')->where('rating', $request->input('type'))->where('content', $id)->where('user_id', Auth::user()->id)->delete();
     
@@ -174,8 +177,9 @@ class PostController extends Controller
 
   public function update(Request $request, $id)
   {
-    if (Auth::user() == null)
-      return response()->json(['error' => 'Not authenticated'], 404);
+    // TODO: check if post exists
+    $content = Content::find($id);
+    $this->authorize('rating', $content);
 
     if( $request->input('type') == 'upvote'){
       DB::table('rating')->where('rating', 'downvote')->where('content', $id)->where('user_id', Auth::user()->id)->delete();
