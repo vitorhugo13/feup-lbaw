@@ -29,7 +29,7 @@ class CommentController extends ContentController
   }
 
   public function show(Request $request, $id) {
-    $this->validateID($this);
+    // $this->validateID($this);
 
     $comment = Comment::find($id);
 
@@ -45,12 +45,12 @@ class CommentController extends ContentController
    */
   public function create(Request $request)
   {
-    $validator = Validator::make($request, [
-      'body' => 'required|string',
-    ]);
+    // $validator = Validator::make($request, [
+    //   'body' => 'required|string',
+    // ]);
 
-    if ($validator->fails())
-      return response()->json(['error' => 'Body is empty'], 404);
+    // if ($validator->fails())
+    //   return response()->json(['error' => 'Body is empty'], 404);
       
     $this->authorize('create', Content::class);
     $content = new Content;
