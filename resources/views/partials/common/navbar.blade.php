@@ -21,7 +21,9 @@
                     <a class="dropdown-item" href="{{ url('../users', Auth::user()->id) }}">Profile</a> {{-- FIXME:route was not working --}}
                     <a class="dropdown-item" href="">Feed</a>
                     <a class="dropdown-item" href="">Reports</a>
+                    @if (Auth::user()->role == 'Blocked')
                     <a class="dropdown-item" href="{{ url('../users/' . Auth::user()->id . "#blocked") }}"><i class="fas fa-ban"></i> 49:30:06</a>
+                    @endif
                     <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
                 </div>
