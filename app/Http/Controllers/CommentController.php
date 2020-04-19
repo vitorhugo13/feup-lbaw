@@ -12,14 +12,26 @@ use App\Models\Post;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class CommentController extends ContentController
 {
-  public function show(Request $request, $id) {
-    $comment = Comment::find($id);
+  private function validateID($id)
+  {
+    $data = ['id' => $id];
 
-    if($comment == null)
-      return abort(404, 'No comment with id=' . $id);
+    $validator = Validator::make($data, [
+      'id' => 'required|integer|exists:content',
+    ]);
+
+    if ($validator->fails())
+      return abort(404, 'No comment with id ' . $id);
+  }
+
+  public function show(Request $request, $id) {
+    $this->validateID($this);
+
+    $comment = Comment::find($id);
 
     $this->authorize('show', $comment->content);
 
@@ -33,8 +45,14 @@ class CommentController extends ContentController
    */
   public function create(Request $request)
   {
-    $this->authorize('create', Content::class);
+    $validator = Validator::make($request, [
+      'body' => 'required|string',
+    ]);
 
+    if ($validator->fails())
+      return response()->json(['error' => 'Body is empty'], 404);
+      
+    $this->authorize('create', Content::class);
     $content = new Content;
     
     $content->author = Auth::user()->id;
@@ -71,6 +89,15 @@ class CommentController extends ContentController
 
   public function delete($id)
   {
+    $data = ['id' => $id];
+
+    $validator = Validator::make($data, [
+      'id' => 'required|integer|exists:content',
+    ]);
+
+    if ($validator->fails())
+      return response()->json(['error' => 'Comment with id' . $id . ' not found'], 404);
+
     //By deleting the content with the same id as the comment,
     //the database will cascade the deletions and delete all of these:
     // comment, reply, thread (if it was main comment)

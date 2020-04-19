@@ -9,9 +9,24 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Content;
+use App\Models\Category;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends ContentController
 {
+
+  private function validateID($id)
+  {
+    $data = ['id' => $id];
+
+    $validator = Validator::make($data, [
+      'id' => 'required|integer|exists:content',
+    ]);
+
+    if ($validator->fails())
+      return abort(404);
+  }
+
   /**
    * Shows the card for a given id.
    *
@@ -20,10 +35,11 @@ class PostController extends ContentController
    */
   public function show($id)
   {
-    // FIXME: validate params
+    $this->validateID($id);
+
     $post = Post::find($id);
     
-    if ($post == null || !$post->content->visible)
+    if (!$post->content->visible)
       return abort(404);
 
     $this->authorize('show', $post->content);
@@ -43,6 +59,8 @@ class PostController extends ContentController
 
   public function showEditForm($id)
   {
+    $this->validateID($id);
+
     $post = Post::find($id);
     $this->authorize('edit', $post->content);
     return view('pages.posts.update', ['post' => $post]);
@@ -56,9 +74,13 @@ class PostController extends ContentController
   //FIXME: it is necessary to verify if the post has at least 1 category
   public function create(Request $request)
   {
-    $categories = array_filter(explode(',', $request->input('categories')));
+    $validator = Validator::make($request->all(), [
+      'title' => 'required|string',
+      'body' => 'required|string',
+      'categories' => 'required|string'
+    ]);
 
-    if(empty($categories) || $request->input('title') == null || $request->input('body') == null)
+    if($validator->fails())
       return redirect()->back()->withInput();
 
     $this->authorize('create', Content::class);
@@ -73,6 +95,8 @@ class PostController extends ContentController
     $post->title = $request->input('title');
     $post->save();
 
+    $categories = array_filter(explode(',', $request->input('categories')));
+
     DB::table('post_category')->where('post', $post->id)->delete();
 
     foreach ($categories as $category) {
@@ -86,13 +110,21 @@ class PostController extends ContentController
 
   public function edit(Request $request, $id)
   {
-    $categories = array_filter(explode(',', $request->input('categories')));
+    $this->validateID($id);
 
-    if(empty($categories) || $request->input('title') == null || $request->input('body') == null)
+    $validator = Validator::make($request->all(), [
+      'title' => 'required|string',
+      'body' => 'required|string',
+      'categories' => 'required|string'
+    ]);
+
+    if ($validator->fails())
       return redirect()->back()->withInput();
 
     $post = Post::find($id);
     $this->authorize('edit', $post->content);
+
+    $categories = array_filter(explode(',', $request->input('categories')));
 
     DB::table('post_category')->where('post', $id)->delete();
 
@@ -112,8 +144,7 @@ class PostController extends ContentController
 
   public function delete($id)
   {
-    $content = Content::find($id);
-   
+    $content = Content::find($id);   
     $this->authorize('delete', $content);
     $content->delete();
 
@@ -126,7 +157,8 @@ class PostController extends ContentController
 
   public function star($id)
   {
-    // TODO: check if post exists
+    $this->validateID($id);
+
     $post = Post::find($id);
     $this->authorize('star', $post);
 
@@ -138,7 +170,7 @@ class PostController extends ContentController
 
   public function unstar($id)
   {
-    // TODO: check if post exists
+    $this->validateID($id);
     $post = Post::find($id);
     $this->authorize('star', $post);
 
@@ -153,8 +185,7 @@ class PostController extends ContentController
 
   public function add(Request $request, $id)
   {
-    
-    // TODO: check if post exists
+    $this->validateID($id);
     $content = Content::find($id);
     $this->authorize('rating', $content);
 
@@ -166,7 +197,8 @@ class PostController extends ContentController
   
   public function remove(Request $request, $id)
   {
-    // TODO: check if post exists
+    $this->validateID($id);
+
     $content = Content::find($id);
     $this->authorize('rating', $content);
 
@@ -177,7 +209,8 @@ class PostController extends ContentController
 
   public function update(Request $request, $id)
   {
-    // TODO: check if post exists
+    $this->validateID($id);
+
     $content = Content::find($id);
     $this->authorize('rating', $content);
 
