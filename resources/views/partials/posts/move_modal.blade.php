@@ -11,11 +11,9 @@
                 <div class="input-group">
                     <select class="custom-select">
                         <option selected>Add new category...</option>
-                        <option value="1">College</option>
-                        <option value="2">World</option>
-                        <option value="3">Economics</option>
-                        <option value="3">Cinema</option>
-                        <option value="3">Music</option>
+                        @foreach (App\Models\Category::orderBy('title')->get() as $category)
+                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                        @endforeach
                     </select>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button">Add</button>

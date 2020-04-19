@@ -37,14 +37,14 @@ class PostController extends Controller
   public function showCreateForm()
   {
     $this->authorize('create', Post::class);
-    return view('pages.posts.update', ['categories' => Category::orderBy('title')->get(), 'post' => null]);
+    return view('pages.posts.update', ['post' => null]);
   }
 
   public function showEditForm($id)
   {
     $post = Post::find($id);
     $this->authorize('edit', $post);
-    return view('pages.posts.update', ['categories' => Category::orderBy('title')->get(), 'post' => $post]);
+    return view('pages.posts.update', ['post' => $post]);
   }
 
   /**
