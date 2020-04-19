@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
 class PostController extends Controller
 {
 
-  public function validateID($id)
+  private function validateID($id)
   {
     $data = ['id' => $id];
 
@@ -213,7 +213,7 @@ class PostController extends Controller
   public function update(Request $request, $id)
   {
     $this->validateID($id);
-    
+
     if (Auth::user() == null)
       return response()->json(['error' => 'Not authenticated'], 404);
 
