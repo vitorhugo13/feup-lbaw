@@ -20,8 +20,11 @@ class UserController extends Controller
     public function showProfile($id)
     {
         $user = User::find($id);
+        if ($user == null)
+            return abort(404);
 
-        // $this->authorize('show', $post);
+
+        //TODO: $this->authorize('show', $post);
 
         return view('pages.profile.show', [    
             'user' => $user,   
