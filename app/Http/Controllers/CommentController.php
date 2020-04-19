@@ -21,7 +21,7 @@ class CommentController extends ContentController
     $data = ['id' => $id];
 
     $validator = Validator::make($data, [
-      'id' => 'required|integer|exists:content',
+      'id' => 'required|integer|exists:comment',
     ]);
 
     if ($validator->fails())
@@ -102,7 +102,7 @@ class CommentController extends ContentController
     $data = ['id' => $id];
 
     $validator = Validator::make($data, [
-      'id' => 'required|integer|exists:content',
+      'id' => 'required|integer|exists:comment',
     ]);
 
     if ($validator->fails())
@@ -118,10 +118,15 @@ class CommentController extends ContentController
 
     $this->authorize('delete', $content);
 
-    $post_id = Thread::where('main_comment', $id)->first()->post; 
+    $thread = Thread::where('main_comment', $id)->first();
+    if($thread == null)
+      $numComments = 1;
+    else {
+      $post_id = $thread->post; 
+      $numComments = Post::find($post_id)->num_comments;
+    }
+    
     $content->delete();
-
-    $numComments = Post::find($post_id)->num_comments;
 
     return response()->json(['success' => "Deleted comment successfully", 'num' => $numComments], 200);
   }
