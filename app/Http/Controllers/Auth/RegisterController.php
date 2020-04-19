@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'regulations';
+    protected $redirectTo = 'team';
 
     /**
      * Create a new controller instance.
@@ -50,7 +50,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|string|max:255|unique:user',
+            'username' => 'required|string|max:255|unique:user|not_regex:/anon/',
             'email' => 'required|string|email|max:255|unique:user',
             'password' => 'required|string|min:6|confirmed',
         ]);

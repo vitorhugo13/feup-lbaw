@@ -12,14 +12,26 @@ use App\Models\Post;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
-  public function show(Request $request, $id) {
-    $comment = Comment::find($id);
+  private function validateID($id)
+  {
+    $data = ['id' => $id];
 
-    if($comment == null)
-      return abort(404, 'No comment with id=' . $id);
+    $validator = Validator::make($data, [
+      'id' => 'required|integer|exists:content',
+    ]);
+
+    if ($validator->fails())
+      return abort(404, 'No comment with id ' . $id);
+  }
+
+  public function show(Request $request, $id) {
+    $this->validateID($this);
+
+    $comment = Comment::find($id);
 
     return view('partials.posts.comment', ['comment' => $comment, 'thread_id' => $request->input('thread_id')]);
   }
@@ -31,6 +43,13 @@ class CommentController extends Controller
    */
   public function create(Request $request)
   {
+    $validator = Validator::make($request, [
+      'body' => 'required|string',
+    ]);
+
+    if ($validator->fails())
+      return response()->json(['error' => 'Body is empty'], 404);
+
     // $this->authorize('create', $post);
     $content = new Content;
     
@@ -77,16 +96,25 @@ class CommentController extends Controller
 
   public function delete($id)
   {
+    $data = ['id' => $id];
+
+    $validator = Validator::make($data, [
+      'id' => 'required|integer|exists:content',
+    ]);
+
+    if ($validator->fails())
+      return response()->json(['error' => 'Comment with id' . $id . ' not found'], 404);
+
     //By deleting the content with the same id as the comment,
     //the database will cascade the deletions and delete all of these:
     // comment, reply, thread (if it was main comment)
     $content = Content::find($id);
 
-    if($content == null)
-      return response()->json(['error' => 'Comment with id' . $id . ' not found'], 404);
-
+    $post_id = Thread::where('main_comment', $id)->first()->post; 
     $content->delete();
 
-    return response()->json(['success' => "Deleted comment successfully"], 200);
+    $numComments = Post::find($post_id)->num_comments;
+
+    return response()->json(['success' => "Deleted comment successfully", 'num' => $numComments], 200);
   }
 }

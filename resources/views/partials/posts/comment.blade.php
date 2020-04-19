@@ -13,18 +13,7 @@
 
         @auth
         <div class="d-flex flex-row">
-            <div class="dropdown">
-                <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
-                {{-- TODO: permissions for this dropdown --}}
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
-                    <a class="dropdown-item edit-comment-btn" data-thread-id="{{ $thread_id }}" data-comment-id="{{ $comment->id }}">Edit</a>
-                    <a class="dropdown-item" href="#">Mute</a>
-                    <a class="dropdown-item" href="#">Block User</a>
-                    <a class="dropdown-item" href="#">Resolve</a>
-                    <a class="dropdown-item delete-comment-btn" data-toggle="modal" data-target="#delete-modal" data-comment-id="{{ $comment->id }}">Delete</a>
-                </div>
-            </div>
+            @include('partials.comment.options', ['author' => $comment->content->owner, 'comment' => $comment])
         </div>
         @endauth
     </header>

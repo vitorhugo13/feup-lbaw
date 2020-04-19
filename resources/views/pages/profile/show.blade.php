@@ -33,12 +33,16 @@
         <!--TODO: newlines/ format text-->
         <p class="bio text-left">{{$user->bio}} </p>
         <a class="edit-button" href="./edit_profile.php"><strong>Edit profile</strong></a>
-        <div id="blocked" class="mt-5">
-        <!--TODO: check if user if blocked or not -->
-            <p class="blocked-text mb-1">You are blocked for:</p>
-            <p class="remaining-time">49h 30m 06s</p>
-            <button class="contest-button"><i class="fas fa-exclamation-circle"></i><strong> Contest</strong></button>
-        </div>
+
+        @if($user->release_date > 0)
+            <div id="blocked" class="mt-5">
+            <!--TODO: display remaining time -->
+                <p class="blocked-text mb-1">You are blocked for:</p>
+                <p class="remaining-time">49h 30m 06s</p>
+                <button class="contest-button"><i class="fas fa-exclamation-circle"></i><strong> Contest</strong></button>
+            </div>
+        @endif
+        
     </article>
     <article class="points-info col-12 col-lg-6 d-flex flex-column justify-content-around align-items-stretch ml-0 ml-lg-4 mt-4 mt-lg-0">
         <div class="glory-points d-flex flex-column justify-content-center align-self-center d-flex flex-column align-items-center">

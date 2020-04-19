@@ -10,9 +10,23 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Content;
 use App\Models\Category;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
+
+  private function validateID($id)
+  {
+    $data = ['id' => $id];
+
+    $validator = Validator::make($data, [
+      'id' => 'required|integer|exists:content',
+    ]);
+
+    if ($validator->fails())
+      return abort(404);
+  }
+
   /**
    * Shows the card for a given id.
    *
@@ -20,11 +34,12 @@ class PostController extends Controller
    * @return Response
    */
   public function show($id)
-  { 
-    // FIXME: validate params
+  {
+    $this->validateID($id);
+
     $post = Post::find($id);
     
-    if ($post == null || !$post->content->visible)
+    if (!$post->content->visible)
       return abort(404);
 
     return view('pages.posts.show', [
@@ -42,7 +57,10 @@ class PostController extends Controller
 
   public function showEditForm($id)
   {
+    $this->validateID($id);
+
     $post = Post::find($id);
+
     $this->authorize('edit', $post);
     return view('pages.posts.update', ['post' => $post]);
   }
@@ -55,9 +73,13 @@ class PostController extends Controller
   //FIXME: it is necessary to verify if the post has at least 1 category
   public function create(Request $request)
   {
-    $categories = array_filter(explode(',', $request->input('categories')));
+    $validator = Validator::make($request->all(), [
+      'title' => 'required|string',
+      'body' => 'required|string',
+      'categories' => 'required|string'
+    ]);
 
-    if(empty($categories) || $request->input('title') == null || $request->input('body') == null)
+    if($validator->fails())
       return redirect()->back()->withInput();
 
     $this->authorize('create', Post::class);
@@ -72,6 +94,8 @@ class PostController extends Controller
     $post->title = $request->input('title');
     $post->save();
 
+    $categories = array_filter(explode(',', $request->input('categories')));
+
     DB::table('post_category')->where('post', $post->id)->delete();
 
     foreach ($categories as $category) {
@@ -85,13 +109,21 @@ class PostController extends Controller
 
   public function edit(Request $request, $id)
   {
-    $categories = array_filter(explode(',', $request->input('categories')));
+    $this->validateID($id);
 
-    if(empty($categories) || $request->input('title') == null || $request->input('body') == null)
+    $validator = Validator::make($request->all(), [
+      'title' => 'required|string',
+      'body' => 'required|string',
+      'categories' => 'required|string'
+    ]);
+
+    if ($validator->fails())
       return redirect()->back()->withInput();
 
     $post = Post::find($id);
     $this->authorize('edit', $post);
+
+    $categories = array_filter(explode(',', $request->input('categories')));
 
     DB::table('post_category')->where('post', $id)->delete();
 
@@ -111,6 +143,8 @@ class PostController extends Controller
 
   public function delete($id)
   {
+    $this->validateID($id);
+
     Content::find($id)->delete();
    
     //$this->authorize('delete', $content);
@@ -124,7 +158,7 @@ class PostController extends Controller
 
   public function star($id)
   {
-    // TODO: check user authorization
+    $this->validateID($id);
 
     if (Auth::user() == null)
       return response()->json(['error' => 'Not authenticated'], 404);
@@ -137,7 +171,7 @@ class PostController extends Controller
 
   public function unstar($id)
   {
-    // TODO: check user authorization
+    $this->validateID($id);
 
     if (Auth::user() == null)
       return response()->json(['error' => 'Not authenticated'], 404);
@@ -153,6 +187,8 @@ class PostController extends Controller
 
   public function add(Request $request, $id)
   {
+    $this->validateID($id);
+
     if (Auth::user() == null)
       return response()->json(['error' => 'Not authenticated'], 404);
 
@@ -164,6 +200,8 @@ class PostController extends Controller
   
   public function remove(Request $request, $id)
   {
+    $this->validateID($id);
+
     if (Auth::user() == null)
       return response()->json(['error' => 'Not authenticated'], 404);
 
@@ -174,6 +212,8 @@ class PostController extends Controller
 
   public function update(Request $request, $id)
   {
+    $this->validateID($id);
+
     if (Auth::user() == null)
       return response()->json(['error' => 'Not authenticated'], 404);
 

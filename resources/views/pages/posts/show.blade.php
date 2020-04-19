@@ -6,7 +6,6 @@
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('js/comment.js') }}" defer></script>
     <script src="{{ asset('js/textarea.js') }}" defer></script>
     <script src="{{ asset('js/api/rating.js') }}" defer></script>
     <script src="{{ asset('js/api/star.js') }}" defer></script>
@@ -40,7 +39,7 @@
             @auth
             <div class="d-flex flex-row align-items-center">
                 @include('partials.posts.star', ['post' => $post])
-                @include('partials.posts.options', ['author' => $author])
+                @include('partials.posts.options', ['author' => $author, 'post' => $post])
             </div>
             @endauth
         </div>
