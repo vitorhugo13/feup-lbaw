@@ -28,9 +28,7 @@
         </div>
         @endauth
     </header>
-    <div class="comment-body">
-        <p>{{ $comment->content->body }}</p>
-    </div>
+    <p class="comment-body">{{ $comment->content->body }}</p>
     <footer class="d-flex flex-row align-items-center justify-content-between">
         <div class="votes d-flex flex-row align-items-center justify-content-between">
             @include('partials.content.rating', ['content' => $comment->content])

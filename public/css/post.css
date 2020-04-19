@@ -55,9 +55,10 @@
     font-weight: 500;
 }
 
-.post .post-body > p {
+.post .post-body {
     font-size: 0.9em;
     font-weight: 400;
+    white-space: pre-wrap;
 }
 
 .post > footer {
@@ -175,10 +176,11 @@
     font-weight: 400;
 }
 
-.thread .comment > .comment-body > p {
+.thread .comment > .comment-body {
     font-size: 0.9em;
     font-weight: 300;
     margin-bottom: 0.7em;
+    white-space: pre-wrap;
 }
 
 .thread .comment > footer > .votes {

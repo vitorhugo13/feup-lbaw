@@ -184,6 +184,9 @@ function refreshButtonListeners() {
     Array.from(deleteBtns).forEach(deleteBtn => {
         deleteBtn.addEventListener('click', deleteComment)
     })
+
+    //from rating.js
+    refreshVoteListeners()
 }
 
 refreshButtonListeners()

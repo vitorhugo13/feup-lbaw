@@ -14,11 +14,13 @@ function updateVote(elem, num){
         val.innerText = 0
 }
 
-let upvotes = document.getElementsByClassName('upvotes')
-let downvotes = document.getElementsByClassName('downvotes')
+function refreshVoteListeners() {
+    let upvotes = document.getElementsByClassName('upvotes')
+    let downvotes = document.getElementsByClassName('downvotes')
 
-Array.from(upvotes).forEach(element => { element.addEventListener('click', upvote) })
-Array.from(downvotes).forEach(element => { element.addEventListener('click', downvote) })
+    Array.from(upvotes).forEach(element => { element.addEventListener('click', upvote) })
+    Array.from(downvotes).forEach(element => { element.addEventListener('click', downvote) })
+}
 
 function upvote(event) {
     let id = event.currentTarget.getAttribute('data-id')
@@ -123,3 +125,4 @@ function downvote (event) {
     })
 }
 
+refreshVoteListeners()
