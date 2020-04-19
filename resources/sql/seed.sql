@@ -510,7 +510,7 @@ CREATE TRIGGER block_rem_vote
 
 
 -- insert user (100)
-insert into "user" (id, username, email, password, bio) values (1, 'wstrawbridge0', 'rlonghorn0@booking.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.');
+insert into "user" (id, username, email, password, bio) values (1, 'Miles Davis', 'rlonghorn0@booking.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.');
 insert into "user" (id, username, email, password, bio) values (2, 'mdevon1', 'tcokely1@t-online.de', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', '');
 insert into "user" (id, username, email, password, bio) values (3, 'bvanson2', 'rcreese2@admin.ch', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.');
 insert into "user" (id, username, email, password, bio) values (4, 'rramelet3', 'mperring3@loc.gov', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Sed ante. Vivamus tortor.');
