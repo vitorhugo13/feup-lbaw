@@ -20,7 +20,7 @@ class PostController extends ContentController
     $data = ['id' => $id];
 
     $validator = Validator::make($data, [
-      'id' => 'required|integer|exists:content',
+      'id' => 'required|integer|exists:post',
     ]);
 
     if ($validator->fails())
