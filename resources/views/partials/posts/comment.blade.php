@@ -15,6 +15,7 @@
         <div class="d-flex flex-row">
             <div class="dropdown">
                 <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
+                {{-- TODO: permissions for this dropdown --}}
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
                     <a class="dropdown-item" href="#">Edit</a>
