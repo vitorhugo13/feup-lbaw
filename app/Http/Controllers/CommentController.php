@@ -74,8 +74,11 @@ class CommentController extends Controller
     if($content == null)
       return response()->json(['error' => 'Comment with id' . $id . ' not found'], 404);
 
+    $post_id = Thread::where('main_comment', $id)->first()->post; 
     $content->delete();
 
-    return response()->json(['success' => "Deleted comment successfully"], 200);
+    $numComments = Post::find($post_id)->num_comments;
+
+    return response()->json(['success' => "Deleted comment successfully", 'num' => $numComments], 200);
   }
 }

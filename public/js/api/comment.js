@@ -1,4 +1,5 @@
 'use strict'
+
 let commentArea = document.getElementById('comment-area')
 let contentArea = document.getElementById('comment-content')
 let cancelBtn = document.getElementById('cancel-btn')
@@ -8,14 +9,19 @@ let numComments = document.getElementById('num-comments')
 let confirmDeleteBtn = document.getElementById('confirm-delete')
 let commentID = -1
 
+
 function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
     }).join('&')
 }
 
-function incrementNumComments() {
-    numComments.innerHTML = parseInt(numComments.innerHTML) + 1
+function updateNumComments(val) {
+    numComments.innerHTML = parseInt(numComments.innerHTML) + val
+}
+
+function decreaseNumComments(val){
+    numComments.innerHTML = val
 }
 
 function clearContentArea() {
@@ -93,7 +99,7 @@ function addThreadToPage(id, threadID) {
                 comment.outerHTML = data
                 thread.append(replies)
                 commentSection.append(thread)
-                incrementNumComments()
+                updateNumComments(1)
                 clearContentArea()
                 refreshButtonListeners()
             })
@@ -115,7 +121,7 @@ function addReplyToPage(id, threadID) {
             response.text().then(data => {
                 replies.append(comment)
                 comment.outerHTML = data
-                incrementNumComments()
+                updateNumComments(1)
                 clearContentArea()
                 cancelReply()
                 refreshButtonListeners()
@@ -158,6 +164,7 @@ function confirmDeletion() {
         if (response['status'] == 200)
             response.json().then(data => {
                 removeCommentFromPage()
+                decreaseNumComments(data.num)
             })
     })      
 }
@@ -165,11 +172,12 @@ function confirmDeletion() {
 function removeCommentFromPage() {
     let comment = document.querySelector('.comment[data-comment-id="' + commentID + '"]')
     
-    if(comment.parentElement.classList.contains('thread'))
+    if(comment.parentElement.classList.contains('thread')){
         comment.parentElement.remove()
+    }
     else
         comment.remove()
-    
+
     commentID = -1
 }
 
