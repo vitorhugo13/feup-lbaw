@@ -7,10 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Post;
-use App\Models\User;
 use App\Models\Content;
-use App\Models\Category;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\MessageBag;
 
 class PostController extends ContentController
 {
@@ -80,8 +79,10 @@ class PostController extends ContentController
       'categories' => 'required|string'
     ]);
 
-    if($validator->fails())
-      return redirect()->back()->withInput();
+    $errors = $validator->errors();
+
+    if ($validator->fails())
+      return redirect()->back()->withInput()->withErrors($errors);
 
     $this->authorize('create', Content::class);
 
@@ -106,7 +107,7 @@ class PostController extends ContentController
     }
 
     $request->session()->flash('alert-success', "Posted with success!");
-    return redirect('posts/'.$post->id);
+    return redirect('posts/'.$post->id)->with('alert-success', "Post successfully created!");
   }
 
   public function edit(Request $request, $id)
@@ -119,8 +120,10 @@ class PostController extends ContentController
       'categories' => 'required|string'
     ]);
 
+    $errors = $validator->errors();
+
     if ($validator->fails())
-      return redirect()->back()->withInput();
+      return redirect()->back()->withInput()->withErrors($errors);
 
     $post = Post::find($id);
     $this->authorize('edit', $post->content);
@@ -140,7 +143,7 @@ class PostController extends ContentController
     $post->save();
     $post->content->save();
 
-    return redirect('posts/'.$id);
+    return redirect('posts/'.$id)->with('alert-success', "Post successfully updated!");
   }
 
   public function delete($id)
@@ -149,10 +152,8 @@ class PostController extends ContentController
     $this->authorize('delete', $content);
     $content->delete();
 
-    return redirect('users/' . Auth::user()->id);
+    return redirect('users/' . Auth::user()->id)->with('alert-success', "Post successfully deleted!");
   }
-
-
 
   /* ================= STAR/UNSTAR ============= */
 

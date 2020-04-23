@@ -1,6 +1,6 @@
 'use strict';
 
-setTimeout(removeAlerts, 2500)
+setTimeout(removeAlerts, 6000)
 function removeAlerts() {
     document.getElementById('alert-section').remove()
 }
