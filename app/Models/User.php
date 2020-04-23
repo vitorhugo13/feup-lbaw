@@ -32,7 +32,7 @@ class User extends Authenticatable
     protected $attributes = [
         'glory' => 0,
         'role' => 'Member',
-        'photo' => 'default_picture.png',
+        'photo' => 'storage/uploads/avatars/default.png',
     ];
 
     /**

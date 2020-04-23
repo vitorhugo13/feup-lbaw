@@ -31,7 +31,7 @@ Route::post('posts/{id}', 'PostController@edit');
 //User
 Route::get('users/{id}', 'UserController@showProfile')->name('profile');
 Route::get('users/{id}/edit', 'UserController@showEditProfile');
-Route::post('users/{id}/edit/photo', 'UserController@changePhoto');
+Route::post('users/{id}/edit/photo', 'UserController@changePhoto')->name('changePhoto');
 Route::post('users/{id}/edit/bio', 'UserController@changeBio');
 Route::post('users/{id}/edit/credentials', 'UserController@changeCredentials');
 

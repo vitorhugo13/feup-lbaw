@@ -48,11 +48,6 @@
                       <input type="password" name="password_confirmation" placeholder="Repeat Password" required>
                   </div>
 
-                    
-                  {{-- <div class="row mb-3">
-                      <div class="col-6 d-flex"></div>
-                  </div> --}}
-
                 @if ($errors->has('username'))
                       <span class="error">
                           {{ $errors->first('username') }}
