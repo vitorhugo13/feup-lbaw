@@ -28,12 +28,26 @@
         {{-- <script type="text/javascript" src={{ asset('js/app.js') }} defer></script> --}}
         
         <script src="{{ asset('js/top.js') }}" defer></script>
+        <script src="{{ asset('js/alerts.js') }}" defer></script>
 
         @stack('styles')
         @stack('scripts')
     </head>
 
     <body>
+        <div id="alert-section" class="row d-flex justify-content-center sticky-top">
+            @foreach(['danger', 'warning', 'success', 'info'] as $msg)
+                @if(Session::has('alert-' . $msg))
+                <div class="alert alert-{{ $msg }} alert-dismissible fade show" role="alert" style="position:fixed; top: 0px; z-index:99;">
+                    {{ Session::get('alert-' . $msg) }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif
+            @endforeach
+        </div>
+
         @yield('content')
 
         <i id="to-top" class="fas fa-arrow-alt-circle-up"></i>
