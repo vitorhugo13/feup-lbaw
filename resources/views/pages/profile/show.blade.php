@@ -32,7 +32,7 @@
         </div>
         <!--TODO: newlines/ format text-->
         <p class="bio text-left">{{$user->bio}} </p>
-        <a class="edit-button" href="#"><strong>Edit profile</strong></a>
+        <a class="edit-button" href="{{url('users/' . $user->id . '/edit')}}"><strong>Edit profile</strong></a>
 
         @if($user->release_date > 0)
             <div id="blocked" class="mt-5">
