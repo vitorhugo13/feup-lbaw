@@ -85,7 +85,7 @@ CREATE TABLE "user" (
     bio TEXT,
     glory INTEGER NOT NULL DEFAULT 0,
     role ROLES NOT NULL DEFAULT 'Member',
-    photo TEXT NOT NULL DEFAULT 'default_picture.png',
+    photo TEXT NOT NULL DEFAULT 'storage/uploads/avatars/default.png',
     release_date TIMESTAMP CONSTRAINT INVALID_RELEASE_DATE CHECK (release_date > CURRENT_TIMESTAMP OR release_date IS NULL)
 );
 

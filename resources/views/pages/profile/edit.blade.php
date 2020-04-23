@@ -9,14 +9,13 @@
 <h1>Edit Profile</h1>
 <div class="d-flex align-items-center flex-wrap justify-content-center">
     <div class="edit-profile-info d-flex flex-column align-items-center flex-fill">
-        <!--TODO: change photo-->
-        <img src="{{asset('images/' . $user->photo)}}" class="img rounded-circle  " alt="Profile photo">
-
-        <form class="d-flex flex-column align-items-center" method="post" action="{{ url('users/'  . $user->id . '/edit/photo') }}" enctype="multipart/form-data">
-            {{ csrf_field() }}
+        
+        <form class="d-flex flex-column align-items-center" method="post" action="{{ route('changePhoto', $user->id) }}" enctype="multipart/form-data">
+            @csrf
+            <img src="{{ asset($user->photo) }}" class="img rounded-circle" alt="Profile photo">
+            <input type="file" name="avatar">
             <button type="submit" class="btn">Change photo</button>
         </form>
-
 
         <form class="d-flex flex-column align-items-center" method="POST" action="{{ url('users/' . $user->id.'/edit/bio') }}" >
             {{ csrf_field() }}

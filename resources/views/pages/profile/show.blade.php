@@ -15,7 +15,7 @@
 <section class="row justify-content-center">
     <article class="user-info col-12 col-lg-5 d-flex flex-column justify-content-center align-items-center">
     <!--TODO: change directory -->
-    <img src="{{asset('images/' . $user->photo)}}" class="img rounded-circle" alt="Profile photo">
+    <img src="{{ asset($user->photo) }}" class="img rounded-circle" alt="Profile photo">
         <div class="username d-flex flex-row align-items-center mt-3">
         <p>{{ $user-> username}}</p>
             <div class="dropdown col-1">
