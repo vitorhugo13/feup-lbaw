@@ -179,6 +179,7 @@ class UserController extends Controller
 
             $old_password = $request->input('old_pass');
             $hasher = app('hash');
+            //FIXME: the following condition may not be right - user->password is not yet the new password
             if (!$hasher->check($old_password, $user->password)) {
                 return redirect()->back();
                 
