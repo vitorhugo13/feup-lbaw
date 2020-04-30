@@ -16,6 +16,7 @@
         
         <form class="d-flex flex-column align-items-center" method="post" action="{{ route('changePhoto', $user->id) }}" enctype="multipart/form-data">
             @csrf
+            {{-- FIXME: when uploading a picture, cut it so its always a square --}}
             <img src="{{ asset($user->photo) }}" class="img rounded-circle" alt="Profile photo">
             <input type="file" name="avatar">
             <button type="submit" class="btn">Change photo</button>

@@ -75,6 +75,7 @@ function addComment(threadID) {
         body: encodeForAjax(request)
     }).then(response => {
         if (response['status'] == 200)
+            console.log(response);
             response.json().then(data => {
                 if (threadID == -1)
                     addThreadToPage(data['id'], data['thread_id'])

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\Content;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\MessageBag;
 
 class PostController extends ContentController
 {
@@ -70,7 +69,7 @@ class PostController extends ContentController
    *
    * @return Post The post created.
    */
-  //FIXME: it is necessary to verify if the post has at least 1 category
+ 
   public function create(Request $request)
   {
     $validator = Validator::make($request->all(), [
@@ -152,7 +151,7 @@ class PostController extends ContentController
     $this->authorize('delete', $content);
     $content->delete();
 
-    // TODO: where to be redirected when you delete a post?
+  
     return redirect('users/' . Auth::user()->id)->with('alert-success', "Post successfully deleted!");
   }
 
@@ -182,51 +181,4 @@ class PostController extends ContentController
     return response()->json(['success' => 'Deleted successfully']);
   }
 
-
-
-  /* ====================== RATING FUNCTIONS =============================*/
-  // FIXME: the rating functions should be on the content controller 
-
-  public function add(Request $request, $id)
-  {
-    $this->validateID($id);
-    $content = Content::find($id);
-    $this->authorize('rating', $content);
-
-    DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);   
-   
-
-    return response()->json(['success' => 'Voted successfully. Type: ' . $request->input('type') ]);
-  }
-  
-  public function remove(Request $request, $id)
-  {
-    $this->validateID($id);
-
-    $content = Content::find($id);
-    $this->authorize('rating', $content);
-
-    DB::table('rating')->where('rating', $request->input('type'))->where('content', $id)->where('user_id', Auth::user()->id)->delete();
-    
-    return response()->json(['success' => 'Removed vote successfully. Type: ' . $request->input('type')]);
-  }
-
-  public function update(Request $request, $id)
-  {
-    $this->validateID($id);
-
-    $content = Content::find($id);
-    $this->authorize('rating', $content);
-
-    if( $request->input('type') == 'upvote'){
-      DB::table('rating')->where('rating', 'downvote')->where('content', $id)->where('user_id', Auth::user()->id)->delete();
-      DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);    
-    }
-    else{
-      DB::table('rating')->where('rating', 'upvote')->where('content', $id)->where('user_id', Auth::user()->id)->delete();
-      DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);
-    }
-
-    return response()->json(['success' => 'Updated vote successfully. Type: ' . $request->input('type')]);
-  }
 }
