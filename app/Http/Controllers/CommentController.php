@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
 use App\Models\Content;
 use App\Models\Post;
-use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
@@ -29,13 +28,17 @@ class CommentController extends ContentController
   }
 
   public function show(Request $request, $id) {
-    // $this->validateID($this);
+    $this->validateID($id);
 
     $comment = Comment::find($id);
 
+    $username = $request->input('author_name');
+
+    $author = $username == 'anon' ? null : User::where('username', $username)->first();
+
     $this->authorize('show', $comment->content);
 
-    return view('partials.posts.comment', ['comment' => $comment, 'thread_id' => $request->input('thread_id')]);
+    return view('partials.posts.comment', ['comment' => $comment, 'thread_id' => $request->input('thread_id'), 'author' => $author]);
   }
 
   /**

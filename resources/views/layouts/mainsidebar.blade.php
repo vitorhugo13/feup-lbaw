@@ -1,12 +1,21 @@
 @extends('layouts.main')
 
+
+@push('styles')
+    <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('js/api/sidebar.js') }}" defer></script>
+@endpush
+
+
 @section('main-content')
     <div class="wraper">
-        <div class="overlay">
 
-            @yield('side-bar')
-            @yield('content-body')
+        @yield('side-bar')
+        @yield('content-body')
                 
-        </div>
+        <div class="overlay"></div>
     </div>
 @endsection

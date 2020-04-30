@@ -12,10 +12,7 @@
     <script src="{{ asset('js/api/comment.js') }}" defer></script>
 @endpush
 
-
 @section('main-content')
-
-
 <div class="post">
     <header class="d-flex flex-column">
         <div class="d-flex flex-row align-items-center justify-content-between">
@@ -63,7 +60,9 @@
     </header>
     @include('partials.posts.comment_area', ['id' => $post->id])
     <div id="comments">
-        @each('partials.posts.thread', $post->threads, 'thread')
+        @foreach($post->threads as $thread)
+            @include('partials.posts.thread', ['thread' => $thread, 'author' => $author])
+        @endforeach
     </div>
 </div>
 
