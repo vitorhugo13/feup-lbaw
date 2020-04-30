@@ -60,7 +60,9 @@
     </header>
     @include('partials.posts.comment_area', ['id' => $post->id])
     <div id="comments">
-        @each('partials.posts.thread', $post->threads, 'thread')
+        @foreach($post->threads as $thread)
+            @include('partials.posts.thread', ['thread' => $thread, 'author' => $author])
+        @endforeach
     </div>
 </div>
 

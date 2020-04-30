@@ -246,10 +246,6 @@
     color: var(--accent-color);
 }
 
-.thread .replies .comment:first-child>header>div>span:first-child {
-    color: var(--main-color);
-}
-
 
 /* ----------========== MEDIA QUERIES ==========---------- */
 

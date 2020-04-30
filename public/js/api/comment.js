@@ -8,6 +8,7 @@ let commentSection = document.getElementById('comments')
 let numComments = document.getElementById('num-comments')
 let confirmDeleteBtn = document.getElementById('confirm-delete')
 let commentID = -1
+let author = document.querySelector('.name-time>a').innerHTML
 
 
 function encodeForAjax(data) {
@@ -102,7 +103,7 @@ function addThreadToPage(id, threadID) {
     thread.setAttribute('data-id', threadID)
     replies.classList.add('replies', 'ml-5')
 
-    fetch('../api/comments/' + id + '?thread_id=' + threadID , {
+    fetch('../api/comments/' + id + '?thread_id=' + threadID + '&author_name=' + author , {
         method: 'GET',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -118,15 +119,18 @@ function addThreadToPage(id, threadID) {
                 updateNumComments(1)
                 clearContentArea()
                 refreshButtonListeners()
+                let pos = thread.getBoundingClientRect()
+                window.scrollTo(0, pos.top)
             })
     })
+
 }
 
 function addReplyToPage(id, threadID) {
     let comment = document.createElement('div')
     let replies = document.querySelector('.thread[data-id="' + threadID + '"] .replies')
 
-    fetch('../api/comments/' + id + '?thread_id=' + threadID, {
+    fetch('../api/comments/' + id + '?thread_id=' + threadID + '&author_name=' + author, {
         method: 'GET',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),

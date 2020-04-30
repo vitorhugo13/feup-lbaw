@@ -30,7 +30,6 @@
                 </div>
             </div>
         </div>
-        <!--TODO: newlines/ format text-->
         <p class="bio text-left">{{$user->bio}} </p>
         <a class="edit-button" href="{{url('users/' . $user->id . '/edit')}}"><strong>Edit profile</strong></a>
 
@@ -47,27 +46,17 @@
     <article class="points-info col-12 col-lg-6 d-flex flex-column justify-content-around align-items-stretch ml-0 ml-lg-4 mt-4 mt-lg-0">
         <div class="glory-points d-flex flex-column justify-content-center align-self-center d-flex flex-column align-items-center">
         <img src="{{asset('images/gold_llama.svg')}}" alt="photo">
-            <p>&diams; <?= $user->glory . (($user->glory == 1) ? ' point' : ' points') ?> &diams;</p>
+            <p class="user-points">&diams; <span class="number_points"> <?= $user->glory ?> </span>  <span><?=(($user->glory == 1) ? ' point' : ' points') ?> </span> &diams;</p>
         </div>
+
+        @if(count($categories) > 0)
         <hr>
         <div class="top-categories">
-         <!--TODO: query to get top categories-->
             <h3>Top Categories</h3>
-            <div class="top-category d-flex justify-content-between">
-                <span><i class="fas fa-medal mr-2"></i> ! Sports</span>
-                <span>8567</span>
-            </div>
-
-            <div class="top-category d-flex justify-content-between">
-                <span><i class="fas fa-medal mr-2"></i> ! Economy</span>
-                <span>2103</span>
-            </div>
-
-            <div class="top-category d-flex justify-content-between">
-                <span><i class="fas fa-medal mr-2"></i> ! Music</span>
-                <span>783</span>
-            </div>
+            @each('partials.profile.category', $categories, 'category')     
         </div>
+        @endif
+
     </article>
 </section>
 
