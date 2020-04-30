@@ -70,7 +70,7 @@ class PostController extends ContentController
    *
    * @return Post The post created.
    */
-  //FIXME: it is necessary to verify if the post has at least 1 category
+ 
   public function create(Request $request)
   {
     $validator = Validator::make($request->all(), [
@@ -152,7 +152,7 @@ class PostController extends ContentController
     $this->authorize('delete', $content);
     $content->delete();
 
-    // TODO: where to be redirected when you delete a post?
+  
     return redirect('users/' . Auth::user()->id)->with('alert-success', "Post successfully deleted!");
   }
 

@@ -30,7 +30,6 @@
                 </div>
             </div>
         </div>
-        <!--TODO: newlines/ format text-->
         <p class="bio text-left">{{$user->bio}} </p>
         <a class="edit-button" href="{{url('users/' . $user->id . '/edit')}}"><strong>Edit profile</strong></a>
 

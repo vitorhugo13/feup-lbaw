@@ -16,7 +16,6 @@ class UserController extends Controller
 {
 
     //TODO: validate the ids everywhere in this controller
-    //TODO: if we use for example /users/x and if x is not a number there is an error
     //TODO: we can only edit a profile if we are logged in that account
     private function validateID($id)
     {
