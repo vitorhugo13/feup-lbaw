@@ -5,7 +5,10 @@
             @if ($comment->content->owner == null)
                 <span>anon</span>
             @else
-                <span>{{ $comment->content->owner->username }}</span>
+                <span
+                @if ($author != null && $comment->content->owner->id == $author->id)
+                    style="color: var(--main-color);"
+                @endif>{{ $comment->content->owner->username }}</span>
             @endif
 
             @include('partials.content.time', ['creation_time' => $comment->content->creation_time])
