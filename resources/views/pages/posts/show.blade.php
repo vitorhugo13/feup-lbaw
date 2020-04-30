@@ -12,7 +12,7 @@
     <script src="{{ asset('js/api/comment.js') }}" defer></script>
 @endpush
 
-
+@section('main-content')
 <div class="post">
     <header class="d-flex flex-column">
         <div class="d-flex flex-row align-items-center justify-content-between">
