@@ -10,6 +10,9 @@ use App\Models\Content;
 use Illuminate\Support\Facades\Validator;
 
 
+use App\Notifications\Rating;
+
+
 class ContentController extends Controller
 {
 
@@ -38,10 +41,11 @@ class ContentController extends Controller
 
         DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);
 
+        // notify the content author
+        $content->owner->notify(new Rating($content->id, Auth::user()->id));
 
         return response()->json(['success' => 'Voted successfully. Type: ' . $request->input('type')]);
     }
-
 
     public function remove(Request $request, $id)
     {
@@ -54,7 +58,6 @@ class ContentController extends Controller
 
         return response()->json(['success' => 'Removed vote successfully. Type: ' . $request->input('type')]);
     }
-
 
     public function update(Request $request, $id)
     {

@@ -13,6 +13,8 @@ use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
+use App\Notifications\NewComment;
+
 class CommentController extends ContentController
 {
   private function validateID($id)
@@ -75,6 +77,10 @@ class CommentController extends ContentController
     } else {
       DB::table('reply')->insert(['comment' => $comment->id, 'thread' => $thread_id]);
     }
+
+    // notify the post owner
+    // $post = Post::find($request->input('post_id'));
+    // $post->content->owner->notify(new NewComment($post->id, Auth::user()->id, $comment->id));
 
     return response()->json(['id' => $comment->id, 'thread_id' => $thread_id], 200);
   }

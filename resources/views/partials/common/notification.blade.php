@@ -1,1 +1,3 @@
-<a class="dropdown-item text-wrap notification" href="">{{ $notification->type }}</a>
+<div class="dropdown-item text-wrap notification">
+    {{ $notification->type }}
+</div>
