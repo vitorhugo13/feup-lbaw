@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
+
 
 use App\Models\User;
 
@@ -35,18 +37,19 @@ class UserController extends Controller
      */
     public function showProfile($id)
     {
+        $this->validateID($id);
 
-        //TODO: validator
-        
         $user = User::find($id);
         if ($user == null)
             return abort(404);
 
+        $categories = DB::table("category_glory")->where("user_id", $id)->where("glory", '>', 0)->orderBy("glory",'DESC')->take(3)->get();
 
         //TODO: $this->authorize('show', $post);
 
         return view('pages.profile.show', [    
-            'user' => $user,   
+            'user' => $user,
+            'categories' => $categories, 
         ]);
     }
 

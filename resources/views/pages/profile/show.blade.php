@@ -49,25 +49,15 @@
         <img src="{{asset('images/gold_llama.svg')}}" alt="photo">
             <p class="user-points">&diams; <span class="number_points"> <?= $user->glory ?> </span>  <span><?=(($user->glory == 1) ? ' point' : ' points') ?> </span> &diams;</p>
         </div>
+
+        @if(count($categories) > 0)
         <hr>
         <div class="top-categories">
-         <!--TODO: query to get top categories-->
             <h3>Top Categories</h3>
-            <div class="top-category d-flex justify-content-between">
-                <span><i class="fas fa-medal mr-2"></i> ! Sports</span>
-                <span>8567</span>
-            </div>
-
-            <div class="top-category d-flex justify-content-between">
-                <span><i class="fas fa-medal mr-2"></i> ! Economy</span>
-                <span>2103</span>
-            </div>
-
-            <div class="top-category d-flex justify-content-between">
-                <span><i class="fas fa-medal mr-2"></i> ! Music</span>
-                <span>783</span>
-            </div>
+            @each('partials.profile.category', $categories, 'category')     
         </div>
+        @endif
+
     </article>
 </section>
 
