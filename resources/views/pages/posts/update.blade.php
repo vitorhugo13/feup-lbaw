@@ -3,12 +3,12 @@
 @push('styles')
     <link href="{{ asset('css/edit_post.css') }}" rel="stylesheet">
     <link href="{{ asset('css/post_elems.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/errors.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
     <script src="{{ asset('js/textarea.js') }}" defer></script>
     <script src="{{ asset('js/edit_post.js') }}" defer></script>
-    <link href="{{ asset('css/errors.css') }}" rel="stylesheet">
 @endpush
 
 @section('main-content')

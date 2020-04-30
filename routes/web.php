@@ -28,6 +28,9 @@ Route::delete('posts/{id}', 'PostController@delete')->name('delete');
 Route::post('posts', 'PostController@create')->name('create');
 Route::post('posts/{id}', 'PostController@edit');
 
+// Categories
+Route::get('categories', 'CategoryController@show');
+
 //User
 Route::get('users/{id}', 'UserController@showProfile')->name('profile');
 Route::get('users/{id}/edit', 'UserController@showEditProfile');
@@ -44,6 +47,9 @@ Route::delete('api/posts/{id}/stars','PostController@unstar');
 Route::post('api/contents/{id}/votes', 'PostController@add');
 Route::delete('api/contents/{id}/votes', 'PostController@remove');
 Route::put('api/contents/{id}/votes', 'PostController@update');
+
+Route::post('api/categories/{id}/stars', 'CategoryController@star');
+Route::delete('api/categories/{id}/stars', 'CategoryController@unstar');
 
 //API Comments
 Route::post('/api/comments', 'CommentController@create');
