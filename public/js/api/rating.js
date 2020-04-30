@@ -6,6 +6,15 @@ function encodeForAjax(data) {
     }).join('&')
 }
 
+function updatePoints(num){
+    let val = document.querySelector('.number_points');
+
+    if(val != null){
+       val.innerText = Number(val.innerText) + num;
+    }
+         
+}
+
 function updateVote(elem, num){
     let val = elem.querySelector('span')
     val.innerText = Number(val.innerText) + num;
@@ -59,16 +68,19 @@ function upvote(event) {
             if (action == 'DELETE') {
                 upvote.classList.remove('selected')
                 updateVote(upvote, -1)
+                updatePoints(-1)
             } 
             else if(action == 'POST') {
                 upvote.classList.add('selected')
-                updateVote(upvote, 1)                
+                updateVote(upvote, 1) 
+                updatePoints(1)
             }
             else if(action == 'PUT'){
                 downvote.classList.remove('selected');
                 upvote.classList.add('selected')
                 updateVote(downvote, -1)
                 updateVote(upvote, 1)
+                updatePoints(2)
             }
         })
     })
@@ -110,16 +122,19 @@ function downvote (event) {
             if (action == 'DELETE') {
                 downvote.classList.remove('selected')
                 updateVote(downvote, -1)
+                updatePoints(1)
             }
             else if (action == 'POST') {
                 downvote.classList.add('selected')
                 updateVote(downvote, 1)
+                updatePoints(-1)
             }
             else if (action == 'PUT') {
                 upvote.classList.remove('selected');
                 downvote.classList.add('selected')
                 updateVote(upvote, -1)
                 updateVote(downvote, 1)
+                updatePoints(-2)
             }
         })
     })

@@ -47,7 +47,7 @@
     <article class="points-info col-12 col-lg-6 d-flex flex-column justify-content-around align-items-stretch ml-0 ml-lg-4 mt-4 mt-lg-0">
         <div class="glory-points d-flex flex-column justify-content-center align-self-center d-flex flex-column align-items-center">
         <img src="{{asset('images/gold_llama.svg')}}" alt="photo">
-            <p>&diams; <?= $user->glory . (($user->glory == 1) ? ' point' : ' points') ?> &diams;</p>
+            <p class="user-points">&diams; <span class="number_points"> <?= $user->glory ?> </span>  <span><?=(($user->glory == 1) ? ' point' : ' points') ?> </span> &diams;</p>
         </div>
         <hr>
         <div class="top-categories">

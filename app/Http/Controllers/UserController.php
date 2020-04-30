@@ -13,7 +13,9 @@ use App\Models\User;
 class UserController extends Controller
 {
 
-    // TODO: validate the ids everywhere in this controller
+    //TODO: validate the ids everywhere in this controller
+    //TODO: if we use for example /users/x and if x is not a number there is an error
+    //TODO: we can only edit a profile if we are logged in that account
     private function validateID($id)
     {
         $data = ['id' => $id];
@@ -33,6 +35,9 @@ class UserController extends Controller
      */
     public function showProfile($id)
     {
+
+        //TODO: validator
+        
         $user = User::find($id);
         if ($user == null)
             return abort(404);
@@ -74,7 +79,10 @@ class UserController extends Controller
     public function changePhoto(Request $request, $id)
     {
         // TODO: check if the user exists
+        // TODO: only .jpg and .png photos
+        // TODO: if we do "Change photo" without any file it's returning error
         // FIXME: no restrictions to the uploaded file
+        // FIXME: photos have to be "cut", so all photo have the same width*length
         $avatar = $request->file('avatar');
         $extension = $avatar->getClientOriginalExtension();
 
@@ -110,8 +118,6 @@ class UserController extends Controller
 
     }
 
-    //TODO: verificar o que se passa com o back with input
-    //nao está a fazer nada a cena das credenciais ...
 
     public function changeCredentials( Request $request, $id)
     {
@@ -181,8 +187,7 @@ class UserController extends Controller
             $hasher = app('hash');
             //FIXME: the following condition may not be right - user->password is not yet the new password
             if (!$hasher->check($old_password, $user->password)) {
-                return redirect()->back();
-                
+                return redirect()->back();  
             }
             
             $user->password = bcrypt($request->input('password'));
