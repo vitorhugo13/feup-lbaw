@@ -9,12 +9,15 @@
         <div class="d-flex align-items-center">
                         
             @auth
+            {{-- TODO: user notifications --}}
             <div class="dropdown d-flex align-items-center">
-                {{-- TODO: user notifications --}}
                 <span class="badge badge-pill badge-light mr-2">3</span>
                 <i class="fas fa-bell" data-toggle="dropdown"></i>
-                <div class="dropdown-menu dropdown-menu-right notification-menu"></div>
+                <div class="dropdown-menu dropdown-menu-right notification-menu">
+                    @each('partials.common.notification', Auth::user()->notifications, 'notification')
+                </div>
             </div>
+
             <div class="dropdown" style="margin-left: 1em">
                 {{-- FIXME: the image path is temporary --}}
                 <img class="rounded-circle dropdown-toggle" data-toggle="dropdown" src="{{ asset(Auth::user()->photo) }}" height="30">

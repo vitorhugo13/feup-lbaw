@@ -41,9 +41,11 @@ Route::view('home', 'pages/home')->name('home');
 //API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
 Route::delete('api/posts/{id}/stars','PostController@unstar');
-Route::post('api/contents/{id}/votes', 'PostController@add');
-Route::delete('api/contents/{id}/votes', 'PostController@remove');
-Route::put('api/contents/{id}/votes', 'PostController@update');
+
+// API Rating
+Route::post('api/contents/{id}/votes', 'ContentController@add');
+Route::delete('api/contents/{id}/votes', 'ContentController@remove');
+Route::put('api/contents/{id}/votes', 'ContentController@update');
 
 //API Comments
 Route::post('/api/comments', 'CommentController@create');
