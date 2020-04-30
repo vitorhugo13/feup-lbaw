@@ -35,6 +35,8 @@ Route::post('users/{id}/edit/photo', 'UserController@changePhoto')->name('change
 Route::post('users/{id}/edit/bio', 'UserController@changeBio');
 Route::post('users/{id}/edit/credentials', 'UserController@changeCredentials');
 
+// Homepage
+Route::view('home', 'pages/home')->name('home');
 
 //API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
