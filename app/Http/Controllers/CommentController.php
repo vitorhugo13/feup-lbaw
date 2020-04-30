@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
 use App\Models\Content;
 use App\Models\Post;
-use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;

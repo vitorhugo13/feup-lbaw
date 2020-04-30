@@ -1,11 +1,13 @@
 <header>
     <nav class="navbar">
-    <a class="navbar-brand" href="{{url('home')}}"><img src="{{asset('images/logo_text.svg')}}" width="50" alt="LAMA logo" /></a>
-        <form class="expandable-search" action="{{url('search')}}">
+    <a class="navbar-brand" href="{{ route('home') }}"><img src="{{asset('images/logo_text.svg')}}" width="50" alt="LAMA logo" /></a>
+        {{-- TODO: change the action --}}
+        <form class="expandable-search" action="{{url('search')}}"> 
             <input type="search" placeholder="Search" aria-label="Search" />
         </form>
+
         <div class="d-flex align-items-center">
-            
+                        
             @auth
             <div class="dropdown d-flex align-items-center">
                 {{-- TODO: user notifications --}}
@@ -40,6 +42,7 @@
         </div>
     </nav>
 </header>
+
 {{-- TODO: change the search url --}}
 <form action="{{url('search')}}" id="collapsed-search" class="d-flex flex-row justify-content-center">
     <input type="search" placeholder="Search" aria-label="Search" />

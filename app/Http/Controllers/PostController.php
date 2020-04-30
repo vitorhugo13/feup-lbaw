@@ -152,6 +152,7 @@ class PostController extends ContentController
     $this->authorize('delete', $content);
     $content->delete();
 
+    // TODO: where to be redirected when you delete a post?
     return redirect('users/' . Auth::user()->id)->with('alert-success', "Post successfully deleted!");
   }
 
@@ -184,6 +185,7 @@ class PostController extends ContentController
 
 
   /* ====================== RATING FUNCTIONS =============================*/
+  // FIXME: the rating functions should be on the content controller 
 
   public function add(Request $request, $id)
   {
