@@ -11,7 +11,7 @@
                 @endif>{{ $comment->content->owner->username }}</span>
             @endif
 
-            @include('partials.content.time', ['creation_time' => $comment->content->creation_time])
+            &middot; @include('partials.content.time', ['creation_time' => $comment->content->creation_time])
         </div>
 
         @auth

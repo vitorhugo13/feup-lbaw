@@ -1,4 +1,4 @@
-<span>&middot; <?php 
+<span> <?php 
         $diff = time() - strtotime($creation_time);
         
         if ($diff < 60) {

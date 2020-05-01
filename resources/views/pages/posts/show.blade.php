@@ -30,8 +30,8 @@
                     @else
                         <a>anon</a>
                     @endif
-                    @include('partials.content.time', ['creation_time' => $post->content->creation_time])
-                </div>  
+                    &middot; @include('partials.content.time', ['creation_time' => $post->content->creation_time])
+                </div>
             </div>
             @auth
             <div class="d-flex flex-row align-items-center">
