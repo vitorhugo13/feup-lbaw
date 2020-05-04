@@ -27,9 +27,7 @@
             </ul>
         </div>
         <a href={{ route('create') }}><i class="fas fa-plus"></i><strong> New Post</strong></a>
-        @if(Auth::user()->role == 'Administrator')
-            <a href="#"><i class="fas fa-plus"></i><strong> New Category</strong></a>
-        @endif
+       
         <div id="side-toggle">
             <i class="fas fa-bars active" id="angle-right"></i>
             <i class="fas fa-bars" id="angle-left"></i>
@@ -50,5 +48,8 @@
         </section>
 
     </main>
+
+    @include('partials.categories.new_category_modal')
+
 </section>
 @endsection
