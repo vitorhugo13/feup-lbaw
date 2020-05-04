@@ -1,7 +1,8 @@
 @extends('layouts.headerless')
 
 @push('scripts')
-    <script src="{{asset('js/searchbar.js')}}" defer></script>
+    <script src="{{ asset('js/searchbar.js') }}" defer></script>
+    <script src="{{ asset('js/api/notifications.js') }}" defer></script>
 @endpush
 
 @push('styles')
