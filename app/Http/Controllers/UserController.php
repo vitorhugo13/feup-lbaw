@@ -1,17 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Support\MessageBag;
 
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 use App\Models\User;
+
 
 class UserController extends Controller
 {
@@ -78,25 +82,55 @@ class UserController extends Controller
 
     /*===================== EDIT PROFILE ============================ */
 
+
+
     //TODO: CHANGE POLICIES -> everyone is capable of edit profile of other users :'(
-    public function changePhoto(Request $request, $id)
+    public function changePhoto(Request $request, $id, MessageBag $mb)
     {
         // TODO: check if the user exists
         // TODO: only .jpg and .png photos
         // TODO: if we do "Change photo" without any file it's returning error
+        // TODO: consider creating a disk in filesystems.php for uploads, may be a good idea, dont know :)
         // FIXME: no restrictions to the uploaded file
         // FIXME: photos have to be "cut", so all photo have the same width*length
-        $avatar = $request->file('avatar');
-        $extension = $avatar->getClientOriginalExtension();
 
-        // TODO: consider creating a disk in filesystems.php for uploads, may be a good idea, dont know :)
-        Storage::disk('public')->put('uploads/avatars/' . $id . '.' . $extension, File::get($avatar));
+        $this->validateID($id);
 
         $user = User::find($id);
+        if ($user == null)
+            return abort(404);
+        
+        $avatar = $request->file('avatar');
+
+        if($avatar == null){
+            $mb->add('avatar', 'Please select a photo...');
+            return redirect()->back()->withErrors($mb);
+        }
+
+        $extension = $avatar->getClientOriginalExtension();
+
+        if ($extension != 'jpg' && $extension != 'jpeg' && $extension != 'jpeg'){
+            $mb->add('avatar', 'Only .jpg .jpeg or .png allowed.');
+            return redirect()->back()->withErrors($mb);
+        }
+
+        //TODO: crop da imagem 
+        //TODO: apagar a foto de perfil anterior se existir
+        Storage::disk('public')->put('uploads/avatars/' . $id . '.' . $extension, File::get($avatar));
+
         $user->photo = asset('storage/uploads/avatars/' . $id . '.' . $extension);
         $user->save();
+        
 
         return redirect()->route('profile', $id)->with('alert-success', 'Profile picture changed successfuly!');
+    }
+
+    //FIXME: not working(500 - internal error)
+    public function deletePhoto()
+    {
+        $id = Auth::user()->id;
+
+        return response()->json(['success' => "Deleted photo successfully", 'id' =>$id], 200);
     }
 
     public function changeBio(Request $request, $id)
@@ -175,7 +209,7 @@ class UserController extends Controller
             $users = User::where('username', $request->input('username'))->get();
 
             if (count($users) > 0) {
-                $mb->add('username', 'Username already taken');
+                $mb->add('username', 'Username "' . $request->input('username') . '" already taken');
                 return redirect()->back()->withErrors($mb);
             }
 
@@ -187,7 +221,7 @@ class UserController extends Controller
             $users = User::where('email', $request->input('email'))->get();
 
             if (count($users) > 0) {
-                $mb->add('email', 'Email already taken');
+                $mb->add('email', 'Email already associated with another account');
                 return redirect()->back()->withErrors($mb);
             }
 
@@ -214,4 +248,14 @@ class UserController extends Controller
 
         return redirect('users/' . $id)->with('alert-success', "Profile successfully edited!");
     }
+
+    public function getNotifications(Request $request) {
+
+        $notifications = Auth::user()->notifications;
+
+        
+
+        return response()->json(['success' => "Retrieved notifications", 'notifications' => $notifications], 200);
+    }
+
 }

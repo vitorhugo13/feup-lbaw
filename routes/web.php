@@ -38,12 +38,17 @@ Route::post('users/{id}/edit/photo', 'UserController@changePhoto')->name('change
 Route::post('users/{id}/edit/bio', 'UserController@changeBio');
 Route::post('users/{id}/edit/credentials', 'UserController@changeCredentials');
 
+Route::post('api/notifications', 'UserController@getNotifications');
+
 // Homepage
 Route::view('home', 'pages/home')->name('home');
 
 //API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
 Route::delete('api/posts/{id}/stars','PostController@unstar');
+
+//API Profile
+Route::post('api/delete/photo', 'UserController@deletePhoto');
 
 // API Rating
 Route::post('api/contents/{id}/votes', 'ContentController@add');
