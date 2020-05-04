@@ -42,6 +42,8 @@ class ContentController extends Controller
         DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);
 
         // notify the content author
+        // TODO: support disable notifications
+        // TODO: the owner does not receive notifications when he rates his own contents
         $content->owner->notify(new Rating($content->id, Auth::user()->id));
 
         return response()->json(['success' => 'Voted successfully. Type: ' . $request->input('type')]);

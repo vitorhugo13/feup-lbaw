@@ -10,9 +10,9 @@ class NewComment extends Notification
 {
     use Queueable;
 
-    private $content_id;
-    private $user_id;
-    private $comment_id;
+    private $content_id;    // the post or comment that received the reply
+    private $user_id;       // the user to be notified
+    private $comment_id;    // the new comment
 
     /**
      * Create a new notification instance.

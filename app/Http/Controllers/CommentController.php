@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\Comment;
 use App\Models\Content;
 use App\Models\Post;
 use App\Models\Thread;
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;
 
 use App\Notifications\NewComment;
+
 
 class CommentController extends ContentController
 {
@@ -56,6 +58,8 @@ class CommentController extends ContentController
 
     // if ($validator->fails())
     //   return response()->json(['error' => 'Body is empty'], 404);
+
+    $post = Post::find($request->input('post_id'));   // posts where the comment was made
       
     $this->authorize('create', Content::class);
     $content = new Content;
@@ -80,11 +84,16 @@ class CommentController extends ContentController
       $thread_id = $thread->id;
     } else {
       DB::table('reply')->insert(['comment' => $comment->id, 'thread' => $thread_id]);
+
+      // notify the owner of the main comment
+      $main_comment = Thread::find($thread_id)->comment;
+      if ($main_comment->content->tracking && $main_comment->content->author != Auth::user()->id)
+        $main_comment->content->owner->notify(new NewComment($post->id, Auth::user()->id, $comment->id));
     }
 
-    // notify the post owner
-    // $post = Post::find($request->input('post_id'));
-    // $post->content->owner->notify(new NewComment($post->id, Auth::user()->id, $comment->id));
+    // notify the author
+    if ($post->content->tracking && $post->content->author != Auth::user()->id)
+      $post->content->owner->notify(new NewComment($post->id, Auth::user()->id, $comment->id));
 
     return response()->json(['id' => $comment->id, 'thread_id' => $thread_id], 200);
   }
