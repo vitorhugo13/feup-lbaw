@@ -59,6 +59,9 @@ Route::get('/api/comments/{id}', 'CommentController@show');
 Route::put('/api/comments/{id}', 'CommentController@edit');
 Route::delete('/api/comments/{id}', 'CommentController@delete');
 
+// API Category
+Route::post('api/categories', 'CategoryController@create')->name('create_category');
+
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');

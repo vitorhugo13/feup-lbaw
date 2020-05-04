@@ -1,25 +1,28 @@
 <div class="modal fade" id="new_category_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <form class="modal-content" method="POST" action="{{ route('create_category') }}">
+        {{ csrf_field() }}
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Report reason</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">New category</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <select class="custom-select" id="report-reason">
-                    {{-- TODO: find a way to list all the report reasons --}}
-                    <option selected>Choose...</option>
-                    <option value="1">Harassement</option>
-                    <option value="2">Wrong category</option>
-                    <option value="3">Explicit content</option>
-                </select>
+            <div id="category-input" class="modal-body">
+                <input type="text" name="name" id="new-category-name" placeholder="New Category Name"
+                @if ($errors->has('name'))
+                    value = "{{ old('name') }}"
+                @endif />
+                @if ($errors->has('name'))
+                <span class="error">
+                    {{ $errors->first('name') }}
+                </span>
+                @endif
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Report</button>
+                <button class="btn btn-primary" type="submit">Create</button>
             </div>
-        </div>
+        </form>
     </div>
 </div>

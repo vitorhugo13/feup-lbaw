@@ -27,7 +27,9 @@
             </ul>
         </div>
         <a href={{ route('create') }}><i class="fas fa-plus"></i><strong> New Post</strong></a>
-       
+        @if(Auth::check() && Auth::user()->role == 'Administrator')
+            <a data-toggle="modal" data-target="#new_category_modal" style="cursor: pointer;"><i class="fas fa-plus"></i><strong> New Category</strong></a>
+        @endif
         <div id="side-toggle">
             <i class="fas fa-bars active" id="angle-right"></i>
             <i class="fas fa-bars" id="angle-left"></i>

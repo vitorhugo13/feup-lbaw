@@ -7,11 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Comment;
-use App\Models\Content;
-use App\Models\Post;
-use App\Models\Thread;
-use App\Models\User;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends ContentController
@@ -32,6 +28,26 @@ class CategoryController extends ContentController
     public function show()
     {
         $categories = Category::all();
+
+        return view('pages.categories', ['categories' => $categories]);
+    }
+
+    public function create(Request $request)
+    {
+        $categories = Category::all();
+
+        $data = ['name' => $request->input('name')];
+
+        $validator = Validator::make($data, [
+            'name' => 'required|string|unique:category,title'
+        ]);
+
+        $errors = $validator->errors();
+
+        if ($validator->fails())
+            return redirect()->back()->withInput()->withErrors($errors);
+
+        DB::table('category')->insert(['title' => $request->input('name')]);
 
         return view('pages.categories', ['categories' => $categories]);
     }

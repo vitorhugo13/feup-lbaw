@@ -4,7 +4,7 @@
                 <header class="d-flex flex-row justify-content-between">
                     <h5 class="card-title">! {{ $category->title }}</h5>
                     <aside>
-                        @if(Auth::user()->role == 'Administrator')
+                        @if(Auth::check() && Auth::user()->role == 'Administrator')
                             <i class="fas fa-pen"></i>
                         @endif
                         @include('partials.categories.star', ['category' => $category])
