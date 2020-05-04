@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-use Illuminate\Validation\Rule;
+
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends ContentController
@@ -27,7 +27,7 @@ class CategoryController extends ContentController
 
     public function show()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('title', 'ASC')->get();
 
         return view('pages.categories', ['categories' => $categories]);
     }
@@ -50,6 +50,33 @@ class CategoryController extends ContentController
         DB::table('category')->insert(['title' => $request->input('name')]);
 
         return view('pages.categories', ['categories' => $categories]);
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $categories = Category::all();
+
+        $data = ['name' => $request->input('name')];
+
+        $validator = Validator::make($data, [
+            'name' => 'required|string|unique:category,title'
+        ]);
+
+        $errors = $validator->errors();
+
+        if ($validator->fails())
+            return redirect()->back()->withInput()->withErrors($errors);
+
+        $category = Category::find($id);
+
+        $category->title = $request->input('name');
+
+        return view('pages.categories', ['categories' => $categories]);
+    }
+
+    public function order($criteria, $order)
+    {
+        return response()->json(['deck' => view('partials.categories.category_deck', ['categories' => Category::orderBy($criteria, $order)->get()])->render()]);
     }
 
 

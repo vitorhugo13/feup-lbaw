@@ -59,7 +59,7 @@
     font-size: 1.1em;
 }
 
-#feed section:first-child .category-card {
+#feed .community-section .category-card {
     border: solid 2px var(--foreground);
 }
 
