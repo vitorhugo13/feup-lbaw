@@ -115,6 +115,7 @@ function downvote (event) {
     }).then(response => {
         if (response['status'] != 200) {
             console.log(response);
+            response.json().then(data => console.log(data));
             return;
         }
         response.json().then(data => {
