@@ -179,7 +179,7 @@ class UserController extends Controller
             $users = User::where('username', $request->input('username'))->get();
 
             if (count($users) > 0) {
-                $mb->add('username', 'Username already taken');
+                $mb->add('username', 'Username "' . $request->input('username') . '" already taken');
                 return redirect()->back()->withErrors($mb);
             }
 
@@ -191,7 +191,7 @@ class UserController extends Controller
             $users = User::where('email', $request->input('email'))->get();
 
             if (count($users) > 0) {
-                $mb->add('email', 'Email already taken');
+                $mb->add('email', 'Email already associated with another account');
                 return redirect()->back()->withErrors($mb);
             }
 
