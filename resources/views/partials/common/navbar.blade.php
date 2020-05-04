@@ -13,8 +13,7 @@
             <div class="dropdown d-flex align-items-center">
                 <span class="badge badge-pill badge-light mr-2">3</span>
                 <i class="fas fa-bell" data-toggle="dropdown"></i>
-                <div class="dropdown-menu dropdown-menu-right notification-menu">
-                    @each('partials.common.notification', Auth::user()->notifications, 'notification')
+                <div id="notification-tray" class="dropdown-menu dropdown-menu-right notification-menu">
                 </div>
             </div>
 

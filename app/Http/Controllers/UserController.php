@@ -1,17 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Support\MessageBag;
 
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 use App\Models\User;
+
 
 class UserController extends Controller
 {
@@ -214,4 +218,14 @@ class UserController extends Controller
 
         return redirect('users/' . $id)->with('alert-success', "Profile successfully edited!");
     }
+
+    public function getNotifications(Request $request) {
+
+        $notifications = Auth::user()->notifications;
+
+        
+
+        return response()->json(['success' => "Retrieved notifications", 'notifications' => $notifications], 200);
+    }
+
 }
