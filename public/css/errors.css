@@ -9,3 +9,9 @@ span.error{
     width: 100%;
     text-align: left;
 }
+
+.error2{
+    color: var(--error-color) !important;
+    font-size: 0.8em;
+    font-weight: 400;
+}
