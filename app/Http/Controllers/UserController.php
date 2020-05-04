@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\MessageBag;
 
-
 use App\Models\User;
 
 class UserController extends Controller
@@ -78,25 +77,55 @@ class UserController extends Controller
 
     /*===================== EDIT PROFILE ============================ */
 
+
+
     //TODO: CHANGE POLICIES -> everyone is capable of edit profile of other users :'(
-    public function changePhoto(Request $request, $id)
+    public function changePhoto(Request $request, $id, MessageBag $mb)
     {
         // TODO: check if the user exists
         // TODO: only .jpg and .png photos
         // TODO: if we do "Change photo" without any file it's returning error
+        // TODO: consider creating a disk in filesystems.php for uploads, may be a good idea, dont know :)
         // FIXME: no restrictions to the uploaded file
         // FIXME: photos have to be "cut", so all photo have the same width*length
-        $avatar = $request->file('avatar');
-        $extension = $avatar->getClientOriginalExtension();
 
-        // TODO: consider creating a disk in filesystems.php for uploads, may be a good idea, dont know :)
-        Storage::disk('public')->put('uploads/avatars/' . $id . '.' . $extension, File::get($avatar));
+        $this->validateID($id);
 
         $user = User::find($id);
+        if ($user == null)
+            return abort(404);
+        
+        $avatar = $request->file('avatar');
+
+        if($avatar == null){
+            $mb->add('avatar', 'Please select a photo...');
+            return redirect()->back()->withErrors($mb);
+        }
+
+        $extension = $avatar->getClientOriginalExtension();
+
+        if ($extension != 'jpg' && $extension != 'jpeg' && $extension != 'jpeg'){
+            $mb->add('avatar', 'Only .jpg .jpeg or .png allowed.');
+            return redirect()->back()->withErrors($mb);
+        }
+
+        //TODO: crop da imagem 
+        //TODO: apagar a foto de perfil anterior se existir
+        Storage::disk('public')->put('uploads/avatars/' . $id . '.' . $extension, File::get($avatar));
+
         $user->photo = asset('storage/uploads/avatars/' . $id . '.' . $extension);
         $user->save();
+        
 
         return redirect()->route('profile', $id)->with('alert-success', 'Profile picture changed successfuly!');
+    }
+
+    //FIXME: not working(500 - internal error)
+    public function deletePhoto()
+    {
+        $id = Auth::user()->id;
+
+        return response()->json(['success' => "Deleted photo successfully", 'id' =>$id], 200);
     }
 
     public function changeBio(Request $request, $id)

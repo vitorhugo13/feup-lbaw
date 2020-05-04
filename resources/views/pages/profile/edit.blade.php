@@ -3,27 +3,39 @@
 @push('styles')
     <link href="{{ asset('css/edit_profile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/errors.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/constants.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
     <script src="{{ asset('js/password.js') }}" defer></script>
+    <script src="{{ asset('js/api/delete_photo.js') }}" defer></script>
 @endpush
 
 @section('main-content')
 
 <h1>Edit Profile</h1>
 <div class="d-flex align-items-center flex-wrap justify-content-center">
+
     <div class="edit-profile-info d-flex flex-column align-items-center flex-fill">
         
-        <form class="d-flex flex-column align-items-center" method="post" action="{{ route('changePhoto', $user->id) }}" enctype="multipart/form-data">
-            @csrf
-            {{-- FIXME: when uploading a picture, cut it so its always a square --}}
+        <form class="d-flex flex-column align-items-center change-photo" method="post" action="{{ route('changePhoto', $user->id) }}" enctype="multipart/form-data">
+            {{ csrf_field() }}
             <img src="{{ asset($user->photo) }}" class="img rounded-circle" alt="Profile photo">
             <input type="file" name="avatar">
-            <button type="submit" class="btn">Change photo</button>
+
+            @if ($errors->has('avatar'))
+                <span class="error3">
+                    {{ $errors->first('avatar') }}
+                </span>
+            @endif
+
+            <div class="mt-2">
+                <a class="btn" id="btn-2"> Delete photo</a>
+                <button type="submit" class="btn" id="btn-3" >Change photo</button>
+            </div>
         </form>
 
-        <form class="d-flex flex-column align-items-center" method="POST" action="{{ url('users/' . $user->id.'/edit/bio') }}" >
+        <form class="d-flex flex-column align-items-center " method="POST" action="{{ url('users/' . $user->id.'/edit/bio') }}" >
             {{ csrf_field() }}
             
             <textarea rows="5" cols="30" class="mt-3" name="body">{{$user-> bio == null ? 'Write something about yourself' : $user->bio }}</textarea>
@@ -35,7 +47,6 @@
             @endif
             <button type="submit" class="mt-1 btn">Update bio</button>
         </form>
-
 
     </div>
 
