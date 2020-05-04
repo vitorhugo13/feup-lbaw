@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS "category_glory" CASCADE;
 DROP TABLE IF EXISTS "post_category" CASCADE;
 DROP TABLE IF EXISTS "category" CASCADE;
 DROP TABLE IF EXISTS "user_notification" CASCADE;
-DROP TABLE IF EXISTS "notification" CASCADE;
+DROP TABLE IF EXISTS "notifications" CASCADE;
 DROP TABLE IF EXISTS "contest" CASCADE;
 DROP TABLE IF EXISTS "report" CASCADE;
 DROP TABLE IF EXISTS "report_file" CASCADE;
@@ -143,19 +143,25 @@ CREATE TABLE "contest" (
     time DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
-CREATE TABLE "notification" (
+CREATE TABLE "notifications" (
     id SERIAL PRIMARY KEY,
-    content INTEGER REFERENCES "content" (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    description TEXT NOT NULL,
-    viewed BOOLEAN NOT NULL DEFAULT FALSE,
-    count INTEGER NOT NULL DEFAULT 1 CONSTRAINT POSITIVE_COUNT CHECK (count >= 1),
-    motive MOTIVES NOT NULL 
+    notifiable_id INTEGER,
+    notifiable_type TEXT,
+    type TEXT NOT NULL,
+    data TEXT NOT NULL,
+    read_at TIMESTAMP,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    count INTEGER DEFAULT 1 CONSTRAINT POSITIVE_COUNT CHECK (count >= 1),
+    content INTEGER REFERENCES "content" (id) ON UPDATE CASCADE ON DELETE CASCADE
+    -- description TEXT,
+    -- viewed BOOLEAN DEFAULT FALSE,
+    -- motive MOTIVES 
 );
 
 CREATE TABLE "user_notification" (
     user_id INTEGER REFERENCES "user" (id) ON UPDATE CASCADE ON DELETE CASCADE, 
-    notification INTEGER REFERENCES "notification" (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    notification INTEGER REFERENCES "notifications" (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (user_id, notification)
 );
 
@@ -3123,106 +3129,106 @@ select setval('contest_id_seq', 5);
 
 
 -- insert notifications
-insert into notification (id, content, time, description, motive) values (1, 379, '2019-11-22 18:56:46', 'donec semper sapien a libero nam dui', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (2, 94, '2019-07-04 21:57:03', 'proin at turpis a pede posuere nonummy integer non velit', 'Community Post');
-insert into notification (id, content, time, description, motive) values (3, 347, '2019-08-21 04:18:45', 'in faucibus orci luctus et ultrices posuere cubilia', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (4, 246, '2019-08-24 08:41:22', 'blandit non interdum in ante', 'Community Post');
-insert into notification (id, content, time, description, motive) values (5, 348, '2019-10-13 23:29:40', 'pede posuere nonummy integer non velit donec diam', 'Block');
-insert into notification (id, content, time, description, motive) values (6, 158, '2019-11-29 09:04:47', 'elit proin risus praesent lectus vestibulum quam sapien', 'Block');
-insert into notification (id, content, time, description, motive) values (7, 190, '2020-03-16 03:31:28', 'maecenas tincidunt lacus at velit vivamus vel', 'Rating');
-insert into notification (id, content, time, description, motive) values (8, 258, '2019-09-08 01:02:48', 'pretium iaculis justo in hac habitasse', 'Block');
-insert into notification (id, content, time, description, motive) values (9, 168, '2020-02-15 03:54:19', 'pede ullamcorper augue a suscipit nulla elit ac nulla', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (10, 275, '2019-07-02 05:33:35', 'blandit mi in porttitor pede justo', 'New Comment');
-insert into notification (id, content, time, description, motive) values (11, 90, '2019-04-14 21:46:51', 'ullamcorper augue a suscipit nulla elit ac', 'New Comment');
-insert into notification (id, content, time, description, motive) values (12, 396, '2019-10-18 13:05:08', 'proin interdum mauris non ligula pellentesque ultrices phasellus', 'New Comment');
-insert into notification (id, content, time, description, motive) values (13, 2, '2019-04-25 17:25:47', 'in faucibus orci luctus et ultrices posuere cubilia', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (14, 335, '2019-12-09 16:42:58', 'sit amet turpis elementum ligula', 'Community Post');
-insert into notification (id, content, time, description, motive) values (15, 322, '2019-07-24 06:18:53', 'tellus in sagittis dui vel nisl duis ac nibh fusce', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (16, 94, '2019-12-04 16:06:04', 'maecenas rhoncus aliquam lacus morbi quis', 'Community Post');
-insert into notification (id, content, time, description, motive) values (17, 12, '2019-12-24 11:29:47', 'vitae quam suspendisse potenti nullam', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (18, 130, '2019-06-06 11:20:05', 'donec ut mauris eget massa tempor convallis nulla', 'New Comment');
-insert into notification (id, content, time, description, motive) values (19, 371, '2019-04-14 05:25:01', 'varius nulla facilisi cras non velit nec nisi vulputate nonummy', 'Community Post');
-insert into notification (id, content, time, description, motive) values (20, 260, '2019-05-25 00:44:34', 'eros elementum pellentesque quisque porta volutpat erat quisque erat', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (21, 20, '2020-03-22 15:06:00', 'aliquam convallis nunc proin at turpis a pede posuere nonummy', 'Block');
-insert into notification (id, content, time, description, motive) values (22, 123, '2019-08-02 14:26:01', 'tellus nulla ut erat id mauris vulputate elementum nullam', 'New Comment');
-insert into notification (id, content, time, description, motive) values (23, 346, '2020-02-13 10:06:04', 'orci luctus et ultrices posuere cubilia curae nulla', 'Rating');
-insert into notification (id, content, time, description, motive) values (24, 335, '2019-04-07 23:43:23', 'felis donec semper sapien a', 'Community Post');
-insert into notification (id, content, time, description, motive) values (25, 163, '2020-02-15 23:52:21', 'suscipit a feugiat et eros vestibulum ac est lacinia', 'Block');
-insert into notification (id, content, time, description, motive) values (26, 30, '2019-06-28 10:20:58', 'lorem vitae mattis nibh ligula nec sem', 'Rating');
-insert into notification (id, content, time, description, motive) values (27, 270, '2019-07-27 23:47:46', 'vel dapibus at diam nam tristique tortor', 'Block');
-insert into notification (id, content, time, description, motive) values (28, 91, '2019-05-20 16:06:29', 'nulla ultrices aliquet maecenas leo odio condimentum id luctus', 'Rating');
-insert into notification (id, content, time, description, motive) values (29, 47, '2019-11-24 08:21:04', 'tellus nisi eu orci mauris lacinia sapien quis libero', 'Block');
-insert into notification (id, content, time, description, motive) values (30, 36, '2019-04-17 02:13:44', 'luctus nec molestie sed justo pellentesque viverra', 'Block');
-insert into notification (id, content, time, description, motive) values (31, 376, '2019-10-11 00:48:22', 'tempor convallis nulla neque libero', 'Rating');
-insert into notification (id, content, time, description, motive) values (32, 287, '2020-01-25 07:15:02', 'ac nibh fusce lacus purus aliquet at feugiat non pretium', 'Rating');
-insert into notification (id, content, time, description, motive) values (33, 214, '2019-06-13 17:46:16', 'pede justo lacinia eget tincidunt eget tempus', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (34, 183, '2019-07-02 03:34:17', 'pede ullamcorper augue a suscipit nulla', 'Community Post');
-insert into notification (id, content, time, description, motive) values (35, 281, '2019-06-03 16:54:53', 'et magnis dis parturient montes nascetur', 'New Comment');
-insert into notification (id, content, time, description, motive) values (36, 227, '2019-09-09 08:04:05', 'amet erat nulla tempus vivamus', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (37, 276, '2019-05-09 19:32:33', 'pellentesque ultrices phasellus id sapien in', 'Block');
-insert into notification (id, content, time, description, motive) values (38, 21, '2019-05-28 11:37:52', 'potenti cras in purus eu magna', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (39, 227, '2019-05-24 18:03:24', 'elementum in hac habitasse platea dictumst morbi vestibulum velit id', 'Community Post');
-insert into notification (id, content, time, description, motive) values (40, 181, '2019-11-16 17:02:52', 'nibh quisque id justo sit amet sapien', 'Community Post');
-insert into notification (id, content, time, description, motive) values (41, 10, '2019-10-20 23:00:59', 'quam pharetra magna ac consequat', 'Community Post');
-insert into notification (id, content, time, description, motive) values (42, 17, '2020-01-10 16:14:57', 'rhoncus dui vel sem sed sagittis nam congue risus semper', 'Block');
-insert into notification (id, content, time, description, motive) values (43, 102, '2019-04-23 11:35:42', 'platea dictumst morbi vestibulum velit', 'Community Post');
-insert into notification (id, content, time, description, motive) values (44, 39, '2019-12-10 14:22:43', 'suscipit a feugiat et eros vestibulum', 'Block');
-insert into notification (id, content, time, description, motive) values (45, 171, '2019-12-24 13:01:57', 'proin leo odio porttitor id consequat in consequat ut', 'New Comment');
-insert into notification (id, content, time, description, motive) values (46, 171, '2020-02-16 14:35:45', 'morbi a ipsum integer a nibh in quis', 'Rating');
-insert into notification (id, content, time, description, motive) values (47, 350, '2019-10-14 19:22:01', 'ridiculus mus etiam vel augue vestibulum', 'Rating');
-insert into notification (id, content, time, description, motive) values (48, 236, '2019-05-22 05:20:04', 'mattis odio donec vitae nisi nam ultrices libero non mattis', 'Rating');
-insert into notification (id, content, time, description, motive) values (49, 187, '2020-03-03 10:10:33', 'eget rutrum at lorem integer tincidunt ante vel', 'New Comment');
-insert into notification (id, content, time, description, motive) values (50, 186, '2019-05-03 07:41:35', 'augue vestibulum ante ipsum primis', 'Rating');
-insert into notification (id, content, time, description, motive) values (51, 63, '2020-03-01 05:00:48', 'viverra dapibus nulla suscipit ligula in lacus', 'New Comment');
-insert into notification (id, content, time, description, motive) values (52, 339, '2019-11-10 07:55:17', 'massa id lobortis convallis tortor risus dapibus augue vel', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (53, 322, '2019-05-31 06:11:30', 'quis orci eget orci vehicula condimentum curabitur in libero', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (54, 286, '2019-08-22 14:30:49', 'ut erat id mauris vulputate elementum', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (55, 190, '2019-04-30 09:10:26', 'consequat varius integer ac leo pellentesque', 'Rating');
-insert into notification (id, content, time, description, motive) values (56, 337, '2020-03-17 04:50:36', 'nullam orci pede venenatis non sodales sed tincidunt eu felis', 'Rating');
-insert into notification (id, content, time, description, motive) values (57, 135, '2020-03-25 01:55:06', 'ut nunc vestibulum ante ipsum primis in', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (58, 164, '2020-03-18 19:56:27', 'nunc nisl duis bibendum felis sed interdum venenatis turpis enim', 'Community Post');
-insert into notification (id, content, time, description, motive) values (59, 222, '2019-12-12 15:52:36', 'cum sociis natoque penatibus et', 'Block');
-insert into notification (id, content, time, description, motive) values (60, 168, '2019-09-17 15:28:18', 'ante vestibulum ante ipsum primis in faucibus orci luctus', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (61, 92, '2019-08-05 20:22:18', 'amet nunc viverra dapibus nulla suscipit', 'Block');
-insert into notification (id, content, time, description, motive) values (62, 107, '2020-01-27 05:35:58', 'curabitur in libero ut massa volutpat convallis morbi odio odio', 'New Comment');
-insert into notification (id, content, time, description, motive) values (63, 129, '2019-10-13 14:51:57', 'convallis tortor risus dapibus augue', 'New Comment');
-insert into notification (id, content, time, description, motive) values (64, 204, '2020-03-03 16:01:44', 'rutrum nulla tellus in sagittis dui', 'Community Post');
-insert into notification (id, content, time, description, motive) values (65, 133, '2019-09-25 01:02:32', 'scelerisque quam turpis adipiscing lorem vitae', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (66, 334, '2019-06-20 11:31:35', 'in tempor turpis nec euismod scelerisque quam turpis adipiscing', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (67, 97, '2019-06-01 01:07:40', 'ac neque duis bibendum morbi non quam nec dui', 'Rating');
-insert into notification (id, content, time, description, motive) values (68, 107, '2019-03-30 11:57:08', 'primis in faucibus orci luctus et ultrices posuere', 'Rating');
-insert into notification (id, content, time, description, motive) values (69, 86, '2019-09-01 10:50:09', 'velit vivamus vel nulla eget eros elementum', 'Block');
-insert into notification (id, content, time, description, motive) values (70, 369, '2019-12-14 03:54:45', 'habitasse platea dictumst morbi vestibulum', 'Community Post');
-insert into notification (id, content, time, description, motive) values (71, 209, '2019-06-12 17:24:34', 'velit id pretium iaculis diam erat fermentum justo', 'Block');
-insert into notification (id, content, time, description, motive) values (72, 95, '2020-01-17 12:18:35', 'primis in faucibus orci luctus et', 'Rating');
-insert into notification (id, content, time, description, motive) values (73, 132, '2020-03-20 00:41:05', 'vestibulum aliquet ultrices erat tortor sollicitudin mi sit', 'Community Post');
-insert into notification (id, content, time, description, motive) values (74, 182, '2019-09-02 11:17:06', 'vulputate vitae nisl aenean lectus pellentesque eget nunc', 'Block');
-insert into notification (id, content, time, description, motive) values (75, 31, '2019-08-14 15:23:37', 'integer aliquet massa id lobortis convallis tortor', 'Rating');
-insert into notification (id, content, time, description, motive) values (76, 351, '2019-12-26 03:50:29', 'consectetuer adipiscing elit proin risus praesent lectus vestibulum quam', 'Block');
-insert into notification (id, content, time, description, motive) values (77, 189, '2020-01-30 06:12:05', 'diam erat fermentum justo nec condimentum neque', 'New Comment');
-insert into notification (id, content, time, description, motive) values (78, 166, '2019-05-22 07:44:31', 'nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue', 'Block');
-insert into notification (id, content, time, description, motive) values (79, 138, '2019-11-19 16:59:35', 'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui', 'New Comment');
-insert into notification (id, content, time, description, motive) values (80, 273, '2019-04-20 13:15:35', 'sapien non mi integer ac neque', 'Rating');
-insert into notification (id, content, time, description, motive) values (81, 209, '2019-10-20 06:59:34', 'tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae', 'Community Post');
-insert into notification (id, content, time, description, motive) values (82, 260, '2019-11-20 10:47:50', 'curabitur convallis duis consequat dui nec nisi volutpat eleifend donec', 'Block');
-insert into notification (id, content, time, description, motive) values (83, 103, '2019-09-03 13:04:12', 'mauris vulputate elementum nullam varius nulla facilisi cras', 'Rating');
-insert into notification (id, content, time, description, motive) values (84, 219, '2019-09-15 07:53:21', 'interdum mauris ullamcorper purus sit amet nulla quisque', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (85, 179, '2020-03-24 09:04:35', 'curabitur gravida nisi at nibh in hac habitasse platea', 'Rating');
-insert into notification (id, content, time, description, motive) values (86, 255, '2019-12-20 15:48:36', 'in quis justo maecenas rhoncus aliquam lacus morbi quis', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (87, 327, '2020-01-02 23:29:49', 'vestibulum vestibulum ante ipsum primis in faucibus orci', 'Rating');
-insert into notification (id, content, time, description, motive) values (88, 109, '2019-06-14 22:04:47', 'interdum venenatis turpis enim blandit mi', 'Content Deleted');
-insert into notification (id, content, time, description, motive) values (89, 304, '2019-12-31 05:22:25', 'eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit', 'Block');
-insert into notification (id, content, time, description, motive) values (90, 113, '2019-10-05 11:13:21', 'semper porta volutpat quam pede lobortis ligula', 'New Comment');
-insert into notification (id, content, time, description, motive) values (91, 83, '2020-01-16 18:08:41', 'erat tortor sollicitudin mi sit', 'New Comment');
-insert into notification (id, content, time, description, motive) values (92, 4, '2019-08-29 09:50:47', 'hac habitasse platea dictumst aliquam augue quam sollicitudin', 'Rating');
-insert into notification (id, content, time, description, motive) values (93, 262, '2019-08-07 02:39:50', 'vulputate ut ultrices vel augue', 'Community Post');
-insert into notification (id, content, time, description, motive) values (94, 362, '2020-02-14 11:17:52', 'nunc purus phasellus in felis donec semper sapien a libero', 'Community Post');
-insert into notification (id, content, time, description, motive) values (95, 323, '2020-03-06 12:47:55', 'mus etiam vel augue vestibulum rutrum rutrum neque', 'Block');
-insert into notification (id, content, time, description, motive) values (96, 151, '2020-01-03 18:50:21', 'vestibulum ante ipsum primis in', 'Block');
-insert into notification (id, content, time, description, motive) values (97, 202, '2020-03-04 20:39:40', 'luctus et ultrices posuere cubilia curae donec pharetra magna', 'Block');
-insert into notification (id, content, time, description, motive) values (98, 397, '2019-08-01 21:24:34', 'ornare imperdiet sapien urna pretium nisl ut', 'Rating');
-insert into notification (id, content, time, description, motive) values (99, 206, '2019-07-21 02:08:26', 'eu sapien cursus vestibulum proin eu mi', 'New Comment');
-insert into notification (id, content, time, description, motive) values (100, 2, '2019-07-31 04:15:21', 'amet sapien dignissim vestibulum vestibulum ante ipsum primis in', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (1, 379, '2019-11-22 18:56:46', 'donec semper sapien a libero nam dui', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (2, 94, '2019-07-04 21:57:03', 'proin at turpis a pede posuere nonummy integer non velit', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (3, 347, '2019-08-21 04:18:45', 'in faucibus orci luctus et ultrices posuere cubilia', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (4, 246, '2019-08-24 08:41:22', 'blandit non interdum in ante', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (5, 348, '2019-10-13 23:29:40', 'pede posuere nonummy integer non velit donec diam', 'Block');
+insert into notifications (id, content, created_at, data, type) values (6, 158, '2019-11-29 09:04:47', 'elit proin risus praesent lectus vestibulum quam sapien', 'Block');
+insert into notifications (id, content, created_at, data, type) values (7, 190, '2020-03-16 03:31:28', 'maecenas tincidunt lacus at velit vivamus vel', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (8, 258, '2019-09-08 01:02:48', 'pretium iaculis justo in hac habitasse', 'Block');
+insert into notifications (id, content, created_at, data, type) values (9, 168, '2020-02-15 03:54:19', 'pede ullamcorper augue a suscipit nulla elit ac nulla', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (10, 275, '2019-07-02 05:33:35', 'blandit mi in porttitor pede justo', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (11, 90, '2019-04-14 21:46:51', 'ullamcorper augue a suscipit nulla elit ac', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (12, 396, '2019-10-18 13:05:08', 'proin interdum mauris non ligula pellentesque ultrices phasellus', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (13, 2, '2019-04-25 17:25:47', 'in faucibus orci luctus et ultrices posuere cubilia', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (14, 335, '2019-12-09 16:42:58', 'sit amet turpis elementum ligula', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (15, 322, '2019-07-24 06:18:53', 'tellus in sagittis dui vel nisl duis ac nibh fusce', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (16, 94, '2019-12-04 16:06:04', 'maecenas rhoncus aliquam lacus morbi quis', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (17, 12, '2019-12-24 11:29:47', 'vitae quam suspendisse potenti nullam', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (18, 130, '2019-06-06 11:20:05', 'donec ut mauris eget massa tempor convallis nulla', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (19, 371, '2019-04-14 05:25:01', 'varius nulla facilisi cras non velit nec nisi vulputate nonummy', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (20, 260, '2019-05-25 00:44:34', 'eros elementum pellentesque quisque porta volutpat erat quisque erat', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (21, 20, '2020-03-22 15:06:00', 'aliquam convallis nunc proin at turpis a pede posuere nonummy', 'Block');
+insert into notifications (id, content, created_at, data, type) values (22, 123, '2019-08-02 14:26:01', 'tellus nulla ut erat id mauris vulputate elementum nullam', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (23, 346, '2020-02-13 10:06:04', 'orci luctus et ultrices posuere cubilia curae nulla', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (24, 335, '2019-04-07 23:43:23', 'felis donec semper sapien a', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (25, 163, '2020-02-15 23:52:21', 'suscipit a feugiat et eros vestibulum ac est lacinia', 'Block');
+insert into notifications (id, content, created_at, data, type) values (26, 30, '2019-06-28 10:20:58', 'lorem vitae mattis nibh ligula nec sem', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (27, 270, '2019-07-27 23:47:46', 'vel dapibus at diam nam tristique tortor', 'Block');
+insert into notifications (id, content, created_at, data, type) values (28, 91, '2019-05-20 16:06:29', 'nulla ultrices aliquet maecenas leo odio condimentum id luctus', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (29, 47, '2019-11-24 08:21:04', 'tellus nisi eu orci mauris lacinia sapien quis libero', 'Block');
+insert into notifications (id, content, created_at, data, type) values (30, 36, '2019-04-17 02:13:44', 'luctus nec molestie sed justo pellentesque viverra', 'Block');
+insert into notifications (id, content, created_at, data, type) values (31, 376, '2019-10-11 00:48:22', 'tempor convallis nulla neque libero', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (32, 287, '2020-01-25 07:15:02', 'ac nibh fusce lacus purus aliquet at feugiat non pretium', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (33, 214, '2019-06-13 17:46:16', 'pede justo lacinia eget tincidunt eget tempus', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (34, 183, '2019-07-02 03:34:17', 'pede ullamcorper augue a suscipit nulla', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (35, 281, '2019-06-03 16:54:53', 'et magnis dis parturient montes nascetur', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (36, 227, '2019-09-09 08:04:05', 'amet erat nulla tempus vivamus', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (37, 276, '2019-05-09 19:32:33', 'pellentesque ultrices phasellus id sapien in', 'Block');
+insert into notifications (id, content, created_at, data, type) values (38, 21, '2019-05-28 11:37:52', 'potenti cras in purus eu magna', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (39, 227, '2019-05-24 18:03:24', 'elementum in hac habitasse platea dictumst morbi vestibulum velit id', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (40, 181, '2019-11-16 17:02:52', 'nibh quisque id justo sit amet sapien', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (41, 10, '2019-10-20 23:00:59', 'quam pharetra magna ac consequat', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (42, 17, '2020-01-10 16:14:57', 'rhoncus dui vel sem sed sagittis nam congue risus semper', 'Block');
+insert into notifications (id, content, created_at, data, type) values (43, 102, '2019-04-23 11:35:42', 'platea dictumst morbi vestibulum velit', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (44, 39, '2019-12-10 14:22:43', 'suscipit a feugiat et eros vestibulum', 'Block');
+insert into notifications (id, content, created_at, data, type) values (45, 171, '2019-12-24 13:01:57', 'proin leo odio porttitor id consequat in consequat ut', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (46, 171, '2020-02-16 14:35:45', 'morbi a ipsum integer a nibh in quis', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (47, 350, '2019-10-14 19:22:01', 'ridiculus mus etiam vel augue vestibulum', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (48, 236, '2019-05-22 05:20:04', 'mattis odio donec vitae nisi nam ultrices libero non mattis', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (49, 187, '2020-03-03 10:10:33', 'eget rutrum at lorem integer tincidunt ante vel', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (50, 186, '2019-05-03 07:41:35', 'augue vestibulum ante ipsum primis', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (51, 63, '2020-03-01 05:00:48', 'viverra dapibus nulla suscipit ligula in lacus', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (52, 339, '2019-11-10 07:55:17', 'massa id lobortis convallis tortor risus dapibus augue vel', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (53, 322, '2019-05-31 06:11:30', 'quis orci eget orci vehicula condimentum curabitur in libero', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (54, 286, '2019-08-22 14:30:49', 'ut erat id mauris vulputate elementum', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (55, 190, '2019-04-30 09:10:26', 'consequat varius integer ac leo pellentesque', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (56, 337, '2020-03-17 04:50:36', 'nullam orci pede venenatis non sodales sed tincidunt eu felis', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (57, 135, '2020-03-25 01:55:06', 'ut nunc vestibulum ante ipsum primis in', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (58, 164, '2020-03-18 19:56:27', 'nunc nisl duis bibendum felis sed interdum venenatis turpis enim', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (59, 222, '2019-12-12 15:52:36', 'cum sociis natoque penatibus et', 'Block');
+insert into notifications (id, content, created_at, data, type) values (60, 168, '2019-09-17 15:28:18', 'ante vestibulum ante ipsum primis in faucibus orci luctus', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (61, 92, '2019-08-05 20:22:18', 'amet nunc viverra dapibus nulla suscipit', 'Block');
+insert into notifications (id, content, created_at, data, type) values (62, 107, '2020-01-27 05:35:58', 'curabitur in libero ut massa volutpat convallis morbi odio odio', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (63, 129, '2019-10-13 14:51:57', 'convallis tortor risus dapibus augue', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (64, 204, '2020-03-03 16:01:44', 'rutrum nulla tellus in sagittis dui', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (65, 133, '2019-09-25 01:02:32', 'scelerisque quam turpis adipiscing lorem vitae', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (66, 334, '2019-06-20 11:31:35', 'in tempor turpis nec euismod scelerisque quam turpis adipiscing', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (67, 97, '2019-06-01 01:07:40', 'ac neque duis bibendum morbi non quam nec dui', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (68, 107, '2019-03-30 11:57:08', 'primis in faucibus orci luctus et ultrices posuere', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (69, 86, '2019-09-01 10:50:09', 'velit vivamus vel nulla eget eros elementum', 'Block');
+insert into notifications (id, content, created_at, data, type) values (70, 369, '2019-12-14 03:54:45', 'habitasse platea dictumst morbi vestibulum', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (71, 209, '2019-06-12 17:24:34', 'velit id pretium iaculis diam erat fermentum justo', 'Block');
+insert into notifications (id, content, created_at, data, type) values (72, 95, '2020-01-17 12:18:35', 'primis in faucibus orci luctus et', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (73, 132, '2020-03-20 00:41:05', 'vestibulum aliquet ultrices erat tortor sollicitudin mi sit', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (74, 182, '2019-09-02 11:17:06', 'vulputate vitae nisl aenean lectus pellentesque eget nunc', 'Block');
+insert into notifications (id, content, created_at, data, type) values (75, 31, '2019-08-14 15:23:37', 'integer aliquet massa id lobortis convallis tortor', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (76, 351, '2019-12-26 03:50:29', 'consectetuer adipiscing elit proin risus praesent lectus vestibulum quam', 'Block');
+insert into notifications (id, content, created_at, data, type) values (77, 189, '2020-01-30 06:12:05', 'diam erat fermentum justo nec condimentum neque', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (78, 166, '2019-05-22 07:44:31', 'nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue', 'Block');
+insert into notifications (id, content, created_at, data, type) values (79, 138, '2019-11-19 16:59:35', 'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (80, 273, '2019-04-20 13:15:35', 'sapien non mi integer ac neque', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (81, 209, '2019-10-20 06:59:34', 'tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (82, 260, '2019-11-20 10:47:50', 'curabitur convallis duis consequat dui nec nisi volutpat eleifend donec', 'Block');
+insert into notifications (id, content, created_at, data, type) values (83, 103, '2019-09-03 13:04:12', 'mauris vulputate elementum nullam varius nulla facilisi cras', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (84, 219, '2019-09-15 07:53:21', 'interdum mauris ullamcorper purus sit amet nulla quisque', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (85, 179, '2020-03-24 09:04:35', 'curabitur gravida nisi at nibh in hac habitasse platea', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (86, 255, '2019-12-20 15:48:36', 'in quis justo maecenas rhoncus aliquam lacus morbi quis', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (87, 327, '2020-01-02 23:29:49', 'vestibulum vestibulum ante ipsum primis in faucibus orci', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (88, 109, '2019-06-14 22:04:47', 'interdum venenatis turpis enim blandit mi', 'Content Deleted');
+insert into notifications (id, content, created_at, data, type) values (89, 304, '2019-12-31 05:22:25', 'eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit', 'Block');
+insert into notifications (id, content, created_at, data, type) values (90, 113, '2019-10-05 11:13:21', 'semper porta volutpat quam pede lobortis ligula', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (91, 83, '2020-01-16 18:08:41', 'erat tortor sollicitudin mi sit', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (92, 4, '2019-08-29 09:50:47', 'hac habitasse platea dictumst aliquam augue quam sollicitudin', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (93, 262, '2019-08-07 02:39:50', 'vulputate ut ultrices vel augue', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (94, 362, '2020-02-14 11:17:52', 'nunc purus phasellus in felis donec semper sapien a libero', 'Community Post');
+insert into notifications (id, content, created_at, data, type) values (95, 323, '2020-03-06 12:47:55', 'mus etiam vel augue vestibulum rutrum rutrum neque', 'Block');
+insert into notifications (id, content, created_at, data, type) values (96, 151, '2020-01-03 18:50:21', 'vestibulum ante ipsum primis in', 'Block');
+insert into notifications (id, content, created_at, data, type) values (97, 202, '2020-03-04 20:39:40', 'luctus et ultrices posuere cubilia curae donec pharetra magna', 'Block');
+insert into notifications (id, content, created_at, data, type) values (98, 397, '2019-08-01 21:24:34', 'ornare imperdiet sapien urna pretium nisl ut', 'Rating');
+insert into notifications (id, content, created_at, data, type) values (99, 206, '2019-07-21 02:08:26', 'eu sapien cursus vestibulum proin eu mi', 'New Comment');
+insert into notifications (id, content, created_at, data, type) values (100, 2, '2019-07-31 04:15:21', 'amet sapien dignissim vestibulum vestibulum ante ipsum primis in', 'Community Post');
 
 select setval('notification_id_seq', 100);
 

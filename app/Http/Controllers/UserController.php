@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\MessageBag;
 
 
 use App\Models\User;
@@ -42,13 +43,13 @@ class UserController extends Controller
         if ($user == null)
             return abort(404);
 
-        $categories = DB::table("category_glory")->where("user_id", $id)->where("glory", '>', 0)->orderBy("glory",'DESC')->take(3)->get();
+        $categories = DB::table("category_glory")->where("user_id", $id)->where("glory", '>', 0)->orderBy("glory", 'DESC')->take(3)->get();
 
         //TODO: $this->authorize('show', $post);
 
-        return view('pages.profile.show', [    
+        return view('pages.profile.show', [
             'user' => $user,
-            'categories' => $categories, 
+            'categories' => $categories,
         ]);
     }
 
@@ -71,7 +72,7 @@ class UserController extends Controller
         return view('pages.profile.edit', [
             'user' => $user,
         ]);
-    } 
+    }
 
 
 
@@ -106,8 +107,10 @@ class UserController extends Controller
             'body' => 'string|min:1',
         ]);
 
+        $errors = $validator->errors();
+
         if ($validator->fails())
-            return redirect()->back()->withInput();
+            return redirect()->back()->withInput()->withErrors($errors);
 
         $user = User::find($id);
         if ($user == null)
@@ -116,42 +119,49 @@ class UserController extends Controller
         $user->bio = $request->input('body');
         $user->save();
 
-        return redirect('users/' . $id);
-
+        return redirect('users/' . $id)->with('alert-success', "Profile successfully edited!");
     }
 
 
-    public function changeCredentials( Request $request, $id)
+    public function changeCredentials(Request $request, $id ,MessageBag $mb)
     {
 
         $this->validateID($id);
         $modify_pass = false;
 
+        $messages = [
+            'username.not_regex' => 'User can not be "anon"',
+        ];
+
         $validator =  Validator::make($request->all(), [
             'username' => 'required|string|max:255|not_regex:/anon/',
             'email' => 'required|email|max:255',
-        ]);
+        ], $messages);
+
+        $errors = $validator->errors();
 
 
         if ($validator->fails())
-            return redirect()->back();
+            return redirect()->back()->withErrors($errors);
 
 
-        if(filled($request->input('password'))){
+        if (filled($request->input('password'))) {
 
             $validator2 =  Validator::make($request->all(), [
                 'password' => 'required|string|min:6|confirmed',
             ]);
 
+            $errors2 = $validator2->errors();
 
-            if($validator2->fails())
-                return redirect()-> back();
+
+            if ($validator2->fails())
+                return redirect()->back()->withErrors($errors2);
 
             $modify_pass = true;
         }
 
-        
-        
+
+
         $user = User::find($id);
         if ($user == null)
             return abort(404);
@@ -161,43 +171,47 @@ class UserController extends Controller
         $old_email = $user->email;
 
 
-        if($old_username != $request->input('username')){
+        if ($old_username != $request->input('username')) {
             $users = User::where('username', $request->input('username'))->get();
 
-            if(count($users) > 0){
-               return redirect()->back();
+            if (count($users) > 0) {
+                $mb->add('username', 'Username already taken');
+                return redirect()->back()->withErrors($mb);
             }
 
             $user->username = $request->input('username');
             $user->save();
         }
 
-        if($old_email != $request->input('email')){
+        if ($old_email != $request->input('email')) {
             $users = User::where('email', $request->input('email'))->get();
 
-            if (count($users) > 0){
-                return redirect()->back();
+            if (count($users) > 0) {
+                $mb->add('email', 'Email already taken');
+                return redirect()->back()->withErrors($mb);
             }
 
             $user->email = $request->input('email');
             $user->save();
         }
 
-        if($modify_pass){
+        if ($modify_pass) {
 
             $old_password = $request->input('old_pass');
+            error_log($old_password);
             $hasher = app('hash');
+
             //FIXME: the following condition may not be right - user->password is not yet the new password
             if (!$hasher->check($old_password, $user->password)) {
-                return redirect()->back();  
+                $mb->add('old_pass', 'Old password not correct');
+                return redirect()->back()->withErrors($mb);
             }
-            
+
             $user->password = bcrypt($request->input('password'));
             $user->save();
         }
 
 
-       return redirect('users/' . $id);
-
+        return redirect('users/' . $id)->with('alert-success', "Profile successfully edited!");
     }
 }

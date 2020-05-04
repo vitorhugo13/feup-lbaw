@@ -2,6 +2,7 @@
 
 @push('styles')
     <link href="{{ asset('css/edit_profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/errors.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
@@ -26,6 +27,12 @@
             {{ csrf_field() }}
             
             <textarea rows="5" cols="30" class="mt-3" name="body">{{$user-> bio == null ? 'Write something about yourself' : $user->bio }}</textarea>
+
+            @if ($errors->has('body'))
+                <span class="error" style=" padding-bottom: 0; margin-left: 6.2em;">
+                    {{ $errors->first('body') }}
+                </span>
+            @endif
             <button type="submit" class="mt-1 btn">Update bio</button>
         </form>
 
@@ -39,23 +46,47 @@
 
             <div class="form-input">
                 <span> <i class="fa fa-user"></i></span>
-            <input type="text" name="username" value="{{$user-> username}}" placeholder="Username" required>
+                <input type="text" name="username" value="{{$user-> username}}" placeholder="Username" required>
             </div>
+
+            @if ($errors->has('username'))
+                <span class="error"  style="padding-top: 0;" >
+                    {{ $errors->first('username') }}
+                </span>
+            @endif
 
             <div class="form-input">
                 <span> <i class="fa fa-envelope"></i></span>
                 <input type="email" name="email" value="{{$user-> email}}" placeholder="Email" required>
             </div>
 
+            @if ($errors->has('email'))
+                <span class="error">
+                    {{ $errors->first('email') }}
+                </span>
+            @endif
+
             <div class="form-input">
                 <span> <i class="fa fa-lock"></i></span>
                 <input type="password" name="old_pass" class="old_pass" placeholder="Old Password" >
             </div>
 
+            @if ($errors->has('old_pass'))
+                <span class="error">
+                    {{ $errors->first('old_pass') }}
+                </span>
+            @endif
+
             <div class="form-input">
                 <span> <i class="fa fa-lock"></i></span>
                 <input type="password" name="password" class="password" placeholder="New Password">
             </div>
+
+             @if ($errors->has('password'))
+                <span class="error">
+                    {{ $errors->first('password') }}
+                </span>
+            @endif
 
             <div class="form-input">
                 <span> <i class="fa fa-lock"></i></span>
