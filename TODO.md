@@ -12,7 +12,7 @@
     - [ ] cut photos to make them all the same size
     - [x] error/success messages
     - [ ] return back with input(user/email)
-    - [ ] css if kind weird after error messages, fix it
+    - [ ] css iS kind weird after error messages, fix it
     
 * **post creation**
     - [ ] if the user is not an admin, "community news" should not appear as an option at categories
