@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -52,16 +53,28 @@ class PostController extends ContentController
   public function showCreateForm()
   {
     $this->authorize('create', Content::class);
-    return view('pages.posts.update', ['post' => null]);
+
+    if(Auth::user()->role != 'Administrator')
+      $categories = Category::orderBy('title')->get()->where('title', '!=', 'Community News');
+    else
+      $categories = Category::orderBy('title')->get();
+
+    return view('pages.posts.update', ['post' => null, 'categories' => $categories]);
   }
 
   public function showEditForm($id)
   {
     $this->validateID($id);
 
+    if (Auth::user()->role != 'Administrator')
+      $categories = Category::orderBy('title')->get()->where('title', '!=', 'Community News');
+    else
+      $categories = Category::orderBy('title')->get();
+
     $post = Post::find($id);
     $this->authorize('edit', $post->content);
-    return view('pages.posts.update', ['post' => $post]);
+    
+    return view('pages.posts.update', ['post' => $post, 'categories' => $categories]);
   }
 
   /**

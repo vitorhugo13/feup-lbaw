@@ -25,7 +25,7 @@
         <div class="input-group">
             <select class="custom-select">
                 <option selected>Add new category...</option>
-                @foreach (App\Models\Category::orderBy('title')->get() as $category)
+                @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->title }}</option>
                 @endforeach
             </select>
