@@ -12,8 +12,7 @@
         @include('partials.posts.star', ['post' => $post])
     </header>
     <div class="content">
-        <!--TODO: newlines/ format text-->
-        <p>{{ $post->content->body }}</p>
+        <a href="{{url('posts/' . $post->id)}}" style="text-decoration: none; color:var(--foreground);"><p>{{ $post->content->body }}</p></a>
     </div>
     <footer>
         <div class="votes">

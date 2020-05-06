@@ -25,12 +25,12 @@ function order(criteria){
         }
     }).then(response => {
         if (response['status'] != 200) {
-            console.log(response);
+            console.log(response)
             return;
         }
         response.json().then(data => {
-            feed.innerHTML = "";
-            feed.innerHTML = data['feed'];
+            feed.innerHTML = data['feed']
+            window.scrollTo(0, 0) //TODO: Automatically scroll to top?
         })
     })
 }

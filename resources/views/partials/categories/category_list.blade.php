@@ -1,1 +1,1 @@
-<li>! {{ $category->title }} <li>
+<li style="cursor:pointer;">! {{ $category->title }} <li>

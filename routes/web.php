@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'Auth\LoginController@home');
+Route::get('/', 'FeedController@show');
 
 // Static Pages
 // TODO: ask if this is the correct use of Route::view()
