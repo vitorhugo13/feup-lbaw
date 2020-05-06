@@ -6,7 +6,6 @@ let orderByActivityButton = document.querySelector('#sidebar-navigation ul .acti
 
 let categoryDeck = document.getElementById('category-deck')
 let categoriesInput = document.getElementById('categories')
-let orderedCategories = []
 
 function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {
@@ -34,8 +33,6 @@ function order(criteria, order){
             categoryDeck.innerHTML = data['deck'];
         })
     })
-
-    //updateCategoryDeck()
 }
 
 function orderByName() {
@@ -48,9 +45,6 @@ function orderByPosts() {
 
 function orderByActivity() {
     order('last_activity', 'DESC')    
-}
-
-function updateCategoryDeck(){
 }
 
 orderByNameButton.addEventListener('click', orderByName)

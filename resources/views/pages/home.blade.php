@@ -9,6 +9,7 @@
     <script src="{{ asset('js/api/filters.js') }}" defer></script>
     <script src="{{ asset('js/api/rating.js') }}" defer></script>
     <script src="{{ asset('js/api/star.js') }}" defer></script>
+    <script src="{{ asset('js/api/post_order.js') }}" defer></script>
 @endpush
 
 @section('side-bar')
@@ -24,32 +25,17 @@
                 </nav>
                 <div class="tab-categories tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-fresh" role="tabpanel" aria-labelledby="nav-fresh-tab">
-                        <ul>
-                            <li>! Politics</li>
-                            <li>! Cars</li>
-                            <li>! College</li>
-                            <li>! Religion</li>
-                        </ul>
+                        @include('partials.categories.category_listing', ['categories' => $fresh_categories])
                     </div>
                     <div class="tab-pane fade" id="nav-hot" role="tabpanel" aria-labelledby="nav-hot-tab">
-                        <ul>
-                            <li>! Feelings</li>
-                            <li>! Cars</li>
-                            <li>! Religion</li>
-                        </ul>
+                        @include('partials.categories.category_listing', ['categories' => $hot_categories])
                     </div>
                     <div class="tab-pane fade" id="nav-top" role="tabpanel" aria-labelledby="nav-top-tab">
-                        <ul>
-                            <li>! College</li>
-                            <li>! Teenager</li>
-                            <li>! Politics</li>
-                            <li>! Cars</li>
-                            <li>! Corona Virus</li>
-                        </ul>
+                        @include('partials.categories.category_listing', ['categories' => $top_categories])
                     </div>
                 </div>
             </div>
-            <a id="view-categories" href="#">View all</a>
+            <a id="view-categories" href="{{ route('categories_page') }}">View all</a>
         </div>
         <a href="{{ route('create') }}"><i class="fas fa-plus"></i><strong> New Post</strong></a>
         <div id="side-toggle">
@@ -69,5 +55,6 @@
     </nav>
 
     <div id="feed">
+        @include('partials.posts.post_deck', ['posts' => $posts])
     </div>
 @endsection

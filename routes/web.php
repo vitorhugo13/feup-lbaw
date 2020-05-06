@@ -29,7 +29,7 @@ Route::post('posts', 'PostController@create')->name('create');
 Route::post('posts/{id}', 'PostController@edit');
 
 // Categories
-Route::get('categories', 'CategoryController@show');
+Route::get('categories', 'CategoryController@show')->name('categories_page');
 
 //User
 Route::get('users/{id}', 'UserController@showProfile')->name('profile');
@@ -41,7 +41,7 @@ Route::post('users/{id}/edit/credentials', 'UserController@changeCredentials');
 Route::post('api/notifications', 'UserController@getNotifications');
 
 // Homepage
-Route::view('home', 'pages/home')->name('home');
+Route::get('home', 'FeedController@show')->name('home');
 
 //API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
@@ -57,6 +57,11 @@ Route::put('api/contents/{id}/votes', 'ContentController@update');
 
 Route::post('api/categories/{id}/stars', 'CategoryController@star');
 Route::delete('api/categories/{id}/stars', 'CategoryController@unstar');
+
+//API Feed
+Route::get('api/fresh', 'FeedController@fresh');
+Route::get('api/hot', 'FeedController@hot');
+Route::get('api/top', 'FeedController@top');
 
 //API Comments
 Route::post('/api/comments', 'CommentController@create');

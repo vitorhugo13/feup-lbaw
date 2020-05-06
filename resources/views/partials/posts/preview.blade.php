@@ -3,7 +3,10 @@
         <div>
         <a class="title" href="{{url('posts/' . $post->id)}}">{{$post->title}}</a>
             <span class="by">
-                by <a class="author" href="{{url('users/' . $post->content->owner->id)}}">{{$post->content->owner->username}}</a>
+                by @if($post->content->owner != null) <a class="author"  href="{{url('users/' . $post->content->owner->id)}}">{{$post->content->owner->username}}</a>
+                @else
+                <a class="author"  href="">anon</a>
+                @endif
             </span>
         </div>
         @include('partials.posts.star', ['post' => $post])

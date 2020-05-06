@@ -45,7 +45,6 @@
             @include('partials.categories.category_card', ['category' => $categories->where('title', 'Community News')->first()])
             <div class="col-0 col-md-3"></div>
         </section>
-        <input type="hidden" id="categories" name="categories" value= {{ $categories }}>
         <div id="category-deck">
             @include('partials.categories.category_deck', ['categories' => $categories])
         </div>

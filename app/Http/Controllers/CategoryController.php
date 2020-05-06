@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Validator;
 
-class CategoryController extends ContentController
+class CategoryController extends Controller
 {
     private function validateID($id)
     {

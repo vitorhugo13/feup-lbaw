@@ -1,0 +1,1 @@
+@each('partials.posts.preview',  collect($posts), 'post')
