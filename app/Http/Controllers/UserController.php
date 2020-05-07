@@ -84,12 +84,13 @@ class UserController extends Controller
 
 
 
-    //TODO: CHANGE POLICIES -> everyone is capable of edit profile of other users :'(
+    // TODO: CHANGE POLICIES -> everyone is capable of edit profile of other users :'(
+    // TODO: consider creating a disk in filesystems.php for uploads, may be a good idea, dont know :)
+    // FIXME: no restrictions to the uploaded file
+    // FIXME: photos have to be "cut", so all photo have the same width*length
+
     public function changePhoto(Request $request, $id, MessageBag $mb)
     {
-        // TODO: consider creating a disk in filesystems.php for uploads, may be a good idea, dont know :)
-        // FIXME: no restrictions to the uploaded file
-        // FIXME: photos have to be "cut", so all photo have the same width*length
 
         $this->validateID($id);
 
@@ -153,11 +154,11 @@ class UserController extends Controller
         if($path != $default){
 
             $file = explode("/", $path, 2);
-            $exists = Storage::disk('public')->exists($file);
+            $exists = Storage::disk('public')->exists($file[1]);
 
             if($exists){
-                Storage::disk('public')->delete($file);
-                $user->photo = asset('storage/uploads/avatars/default.png');
+                Storage::disk('public')->delete($file[1]);
+                $user->photo = 'storage/uploads/avatars/default.png';
                 $user-> save();
             }
         }
