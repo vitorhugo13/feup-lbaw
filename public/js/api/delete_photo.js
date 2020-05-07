@@ -3,8 +3,7 @@
 let reset = document.querySelector('#btn-2')
 reset.addEventListener('click', resetPhoto)
 
-function resetPhoto(){
-    
+function resetPhoto(){ 
     //FIXME: change route
     fetch('../../api/delete/photo', {
         method: 'POST',
@@ -19,9 +18,7 @@ function resetPhoto(){
         }
         response.json().then(data => {
             console.log(data['success'])
-            console.log(data['id'])
-
-            location.replace("./users/" + data['id']);
+            location.replace("../../users/" + data['id']);
         })
     })
 }

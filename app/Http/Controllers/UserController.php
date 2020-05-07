@@ -87,9 +87,6 @@ class UserController extends Controller
     //TODO: CHANGE POLICIES -> everyone is capable of edit profile of other users :'(
     public function changePhoto(Request $request, $id, MessageBag $mb)
     {
-        // TODO: check if the user exists
-        // TODO: only .jpg and .png photos
-        // TODO: if we do "Change photo" without any file it's returning error
         // TODO: consider creating a disk in filesystems.php for uploads, may be a good idea, dont know :)
         // FIXME: no restrictions to the uploaded file
         // FIXME: photos have to be "cut", so all photo have the same width*length
@@ -109,28 +106,64 @@ class UserController extends Controller
 
         $extension = $avatar->getClientOriginalExtension();
 
-        if ($extension != 'jpg' && $extension != 'jpeg' && $extension != 'jpeg'){
+        if ($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg'){
             $mb->add('avatar', 'Only .jpg .jpeg or .png allowed.');
             return redirect()->back()->withErrors($mb);
         }
 
-        //TODO: crop da imagem 
-        //TODO: apagar a foto de perfil anterior se existir
-        Storage::disk('public')->put('uploads/avatars/' . $id . '.' . $extension, File::get($avatar));
+      
+        
+        $path = $user->photo;
+        $default = 'storage/uploads/avatars/default.png';
 
-        $user->photo = asset('storage/uploads/avatars/' . $id . '.' . $extension);
+        if ($path != $default) {
+            $file = explode("/", $path, 2);
+            $exists = Storage::disk('public')->exists($file[1]);
+
+            if($exists){
+                Storage::disk('public')->delete($file[1]);
+            }
+        }
+    
+        Storage::disk('public')->put('uploads/avatars/' . $id . '.' . $extension, File::get($avatar));
+        $user->photo = 'storage/uploads/avatars/' . $id . '.' . $extension;
         $user->save();
         
 
         return redirect()->route('profile', $id)->with('alert-success', 'Profile picture changed successfuly!');
     }
 
-    //FIXME: not working(500 - internal error)
+    //TODO: check if this verifications are correct and enough
     public function deletePhoto()
     {
         $id = Auth::user()->id;
+        $this->validateID($id);
+        $user = User::find($id);
+        if ($user == null)
+            return abort(404);
 
-        return response()->json(['success' => "Deleted photo successfully", 'id' =>$id], 200);
+
+        $path = $user->photo;
+        $default = 'storage/uploads/avatars/default.png';
+        if($path == $default){
+            return response()->json(['success' => "successfully", 'id' => $id], 200);
+
+        }
+
+        if($path != $default){
+
+            $file = explode("/", $path, 2);
+            $exists = Storage::disk('public')->exists($file);
+
+            if($exists){
+                Storage::disk('public')->delete($file);
+                $user->photo = asset('storage/uploads/avatars/default.png');
+                $user-> save();
+            }
+        }
+
+        return response()->json(['success' => "Deleted photo successfully", 'id' => $id], 200);
+
     }
 
     public function changeBio(Request $request, $id)
@@ -250,11 +283,7 @@ class UserController extends Controller
     }
 
     public function getNotifications(Request $request) {
-
         $notifications = Auth::user()->notifications;
-
-        
-
         return response()->json(['success' => "Retrieved notifications", 'notifications' => $notifications], 200);
     }
 
