@@ -1,5 +1,5 @@
 <div class="col mb-4 px-3 px-sm-0">
-        <article class="card category-card">
+        <article class="card category-card" data-category-id="{{ $category->id }}">
             <div class="card-body">
                 <header class="d-flex flex-row justify-content-between">
                     <h5 class="card-title">! {{ $category->title }}</h5>

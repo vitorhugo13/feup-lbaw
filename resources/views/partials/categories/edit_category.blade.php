@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div id="category-input" class="modal-body">
-                <input type="text" name="name" id="new-category-name" placeholder="New Category Name"
+                <input type="text" name="name" id="edit-category-name" placeholder="New Category Name"
                 @if ($errors->has('name'))
                     value = "{{ old('name') }}"
                 @endif />
@@ -21,7 +21,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary" type="submit">Update</button>
+                <button class="btn btn-primary" data-dismiss="modal">Update</button>
             </div>
         </form>
     </div>

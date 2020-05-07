@@ -8,6 +8,7 @@
 @push('scripts')
     <script src="{{ asset('js/api/category_star.js') }}" defer></script>
     <script src="{{ asset('js/api/category_order.js') }}" defer></script>
+    <script src="{{ asset('js/api/category_modal.js') }}" defer></script>
 @endpush
 
 @section('main-content')
