@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Facades\Session;
 
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Intervention\Image\Facades\Image;
+
 
 use App\Models\User;
 
@@ -125,12 +125,17 @@ class UserController extends Controller
                 Storage::disk('public')->delete($file[1]);
             }
         }
-    
-        Storage::disk('public')->put('uploads/avatars/' . $id . '.' . $extension, File::get($avatar));
+
+
+
+        $img = Image::make($avatar->getRealPath())->fit(400, 400);
+        $img->save();
+
+        Storage::disk('public')->put('uploads/avatars/' . $id . '.' . $extension, $img);
         $user->photo = 'storage/uploads/avatars/' . $id . '.' . $extension;
         $user->save();
-        
 
+        
         return redirect()->route('profile', $id)->with('alert-success', 'Profile picture changed successfuly!');
     }
 
@@ -146,11 +151,7 @@ class UserController extends Controller
 
         $path = $user->photo;
         $default = 'storage/uploads/avatars/default.png';
-        if($path == $default){
-            return response()->json(['success' => "successfully", 'id' => $id], 200);
-
-        }
-
+       
         if($path != $default){
 
             $file = explode("/", $path, 2);
@@ -163,6 +164,8 @@ class UserController extends Controller
             }
         }
 
+        // $request->session()->flash('alert-success', "Posted with success!");
+        Session::flash('alert-success', 'Deleted photo successfully!');
         return response()->json(['success' => "Deleted photo successfully", 'id' => $id], 200);
 
     }
