@@ -21,6 +21,10 @@
 * **post deletion**
     - [ ] form to confirm action
 * **post controller**
-    - [ ] the rating functions should be on the content controller
+    - [x] the rating functions should be on the content controller
 * **comment controller**
-    - [ ] the rating functions should be on the content controller
+    - [x] the rating functions should be on the content controller
+
+* **home page**
+    - [ ] when we are in small screens(i.e. cellphones) the bar indicating fresh,hot or top is not updating the posts.
+

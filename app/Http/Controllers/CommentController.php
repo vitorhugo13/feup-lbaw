@@ -87,13 +87,13 @@ class CommentController extends ContentController
 
       // notify the owner of the main comment
       $main_comment = Thread::find($thread_id)->comment;
-      if ($main_comment->content->tracking && $main_comment->content->author != Auth::user()->id)
-        $main_comment->content->owner->notify(new NewComment($post->id, Auth::user()->id, $comment->id));
+      //if ($main_comment->content->tracking && $main_comment->content->author != Auth::user()->id)
+        //$main_comment->content->owner->notify(new NewComment($post->id, Auth::user()->id, $comment->id));
     }
 
     // notify the author
-    if ($post->content->tracking && $post->content->author != Auth::user()->id)
-      $post->content->owner->notify(new NewComment($post->id, Auth::user()->id, $comment->id));
+    //if ($post->content->tracking && $post->content->author != Auth::user()->id)
+      //$post->content->owner->notify(new NewComment($post->id, Auth::user()->id, $comment->id));
 
     return response()->json(['id' => $comment->id, 'thread_id' => $thread_id], 200);
   }
