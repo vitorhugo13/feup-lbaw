@@ -1,22 +1,20 @@
 'use strict'
 
-let editButtons = document.querySelectorAll('a[data-target="#edit-category"]')
-let editConfirmButton = document.querySelector('#edit-category .modal-footer > .btn-primary')
+let editButtons = document.querySelectorAll('a[data-target="#edit-category-modal"]')
+let editConfirmButton = document.querySelector('#edit-category-modal .modal-footer > .btn-primary')
 let editInput = document.getElementById('edit-category-name')
 let lastClickedID = -1
 
 function editClicked(ev) {
     editInput.value = ''
     lastClickedID = ev.currentTarget.getAttribute('data-category-id')
-    console.log('Clicked on category ' + lastClickedID)
 }
 
 function confirmEdit(ev) {
     ev.preventDefault()
     let newName = editInput.value
-    console.log('New category name = ' + newName)
 
-    if(lastClickedID == 1) return
+    if(lastClickedID == -1) return
 
 
     fetch( '../api/categories/' + lastClickedID, {

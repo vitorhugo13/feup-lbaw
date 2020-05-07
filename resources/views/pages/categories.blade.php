@@ -8,7 +8,8 @@
 @push('scripts')
     <script src="{{ asset('js/api/category_star.js') }}" defer></script>
     <script src="{{ asset('js/api/category_order.js') }}" defer></script>
-    <script src="{{ asset('js/api/category_modal.js') }}" defer></script>
+    <script src="{{ asset('js/api/category_edit.js') }}" defer></script>
+    <script src="{{ asset('js/api/category_add.js') }}" defer></script>
 @endpush
 
 @section('main-content')
@@ -30,7 +31,7 @@
         </div>
         <a href={{ route('create') }}><i class="fas fa-plus"></i><strong> New Post</strong></a>
         @if(Auth::check() && Auth::user()->role == 'Administrator')
-            <a data-toggle="modal" data-target="#new_category_modal" style="cursor: pointer;"><i class="fas fa-plus"></i><strong> New Category</strong></a>
+            <a data-toggle="modal" data-target="#new-category-modal" style="cursor: pointer;"><i class="fas fa-plus"></i><strong> New Category</strong></a>
         @endif
         <div id="side-toggle">
             <i class="fas fa-bars active" id="angle-right"></i>

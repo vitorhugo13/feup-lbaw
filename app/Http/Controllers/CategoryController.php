@@ -34,8 +34,6 @@ class CategoryController extends Controller
 
     public function create(Request $request)
     {
-        $categories = Category::all();
-
         $data = ['name' => $request->input('name')];
 
         $validator = Validator::make($data, [
@@ -45,11 +43,13 @@ class CategoryController extends Controller
         $errors = $validator->errors();
 
         if ($validator->fails())
-            return redirect()->back()->withInput()->withErrors($errors);
+            return response()->json($errors, 400);
 
-        DB::table('category')->insert(['title' => $request->input('name')]);
+        $category = new Category;
+        $category->title = $request->input('name');
+        $category->save();
 
-        return view('pages.categories', ['categories' => $categories]);
+        return response()->json(['success' => 'Category added successfully', 'category' => $category], 200);
     }
 
     public function edit(Request $request, $id)

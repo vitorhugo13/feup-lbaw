@@ -89,7 +89,7 @@
     margin-left: 0.75em;
 }
 
-#category-input {
+.category-input {
     padding-bottom: 0;
 }
 
@@ -106,7 +106,7 @@
     width: 100%;
     height: 90%;
     border-radius: 5px;
-    padding-bottom: 0%;
+    padding-bottom: 0;
 }
 
 #new-category-name:focus,
