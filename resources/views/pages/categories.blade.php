@@ -50,5 +50,6 @@
         </div>
     </main>
         @include('partials.categories.new_category_modal')
+        @include('partials.categories.edit_category')
 </section>
 @endsection

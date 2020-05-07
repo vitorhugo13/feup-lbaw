@@ -5,8 +5,7 @@
                     <h5 class="card-title">! {{ $category->title }}</h5>
                     <aside>
                         @if(Auth::check() && Auth::user()->role == 'Administrator' && $category->title != 'Community News')
-                            <a data-toggle="modal" data-target="#edit_category" style="cursor: pointer;"><i class="fas fa-pen"></i></a>
-                            @include('partials.categories.edit_category', ['category_id' => $category->id])
+                        <a data-toggle="modal" data-category-id="{{ $category->id }}" data-target="#edit-category" style="cursor: pointer;"><i class="fas fa-pen"></i></a>
                         @endif
                         @include('partials.categories.star', ['category' => $category])
                     </aside>

@@ -1,6 +1,6 @@
-<div class="modal fade" id="edit_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="edit-category" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <form class="modal-content" method="POST" action="{{ route('edit_category', $category_id) }}">
+        <form class="modal-content" method="POST">
         {{ csrf_field() }}
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Edit category</h5>
@@ -20,7 +20,7 @@
                 @endif
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button class="btn btn-primary" type="submit">Update</button>
             </div>
         </form>
