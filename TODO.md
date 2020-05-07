@@ -3,15 +3,20 @@
 
 * **user profile**
     - [ ] only the owner can edit the profile (policies)
-    - [ ] countdown if user is blocked
     - [ ] change directory @profile dropdown
+
+    - [x] display remaining time to unblock
+    - [x] countdown if user is blocked
+    - [ ] condition to display if user is block is not correct
+    - [ ] how do we handle the countdown reaches 0?
+
 
 * **edit profile**
     - [x] only allow .jpg and .png files in the photo form
     - [x] when the user submits the "change photo" without any files nothing should happen (at this moment it gives an error)
-    - [ ] cut photos to make them all the same size
-    - [ ] error/success messages in photo edition
-    - [ ] crop photo
+    - [x] cut photos to make them all the same size
+    - [x] error/success messages in photo edition
+    - [x] crop photo
     - [x] error/success messages
     - [x] css is kind weird after error messages, fix it
     - [x] delete photo with bug in ajax request
@@ -29,4 +34,3 @@
 
 * **home page**
     - [ ] when we are in small screens(i.e. cellphones) the bar indicating fresh,hot or top is not updating the posts.
-
