@@ -164,7 +164,7 @@ class UserController extends Controller
             }
         }
 
-        // $request->session()->flash('alert-success', "Posted with success!");
+        
         Session::flash('alert-success', 'Deleted photo successfully!');
         return response()->json(['success' => "Deleted photo successfully", 'id' => $id], 200);
 
