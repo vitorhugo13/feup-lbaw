@@ -1,3 +1,5 @@
+'use strict'
+
 let addButton = document.querySelector('#categories-tab button')
 let dropdownCategories = document.querySelector('#categories-tab .custom-select')
 let selectedCategories = document.getElementById('selected-categories')
@@ -12,7 +14,7 @@ function addSelectedCategory(){
     let selectedCategory = dropdownCategories.options[dropdownCategories.selectedIndex].innerHTML;
 
     if(categoriesList.includes(selectedCategory) || dropdownCategories.selectedIndex == 0)
-        return;
+        return
 
     let badge = document.createElement('span')
     let remove = document.createElement('i')
@@ -52,7 +54,7 @@ function removeSelectedCategory(event){
     Array.from(dropdownCategories.options).forEach(category => {
         if(category.innerHTML == badge.textContent.replace("! ", ""))
             category.style['display']='block'
-    });
+    })
 
     updateCategories()
 }
@@ -60,20 +62,20 @@ function removeSelectedCategory(event){
 function getAllSelectedCategories() {
     Array.from(selectedCategories.children).forEach(badge => {
         categoriesList.push(badge.textContent.replace("! ", ""))
-    });
+    })
 
     Array.from(dropdownCategories.options).forEach(category => {
         if(categoriesList.includes(category.innerHTML))
             category.style['display']='none'
-    });
+    })
 }
 
-getAllSelectedCategories();
+getAllSelectedCategories()
 
 updateCategories()
 
-addButton.addEventListener('click', addSelectedCategory);
+addButton.addEventListener('click', addSelectedCategory)
 
 Array.from(selectedCategories.children).forEach(badge => {
     badge.querySelector('i.fa-times').addEventListener('click', removeSelectedCategory)
-});
+})

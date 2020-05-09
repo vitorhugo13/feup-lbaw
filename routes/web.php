@@ -46,6 +46,8 @@ Route::get('home', 'FeedController@show')->name('home');
 //API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
 Route::delete('api/posts/{id}/stars','PostController@unstar');
+Route::post('api/categories/{id}/stars', 'CategoryController@star');
+Route::delete('api/categories/{id}/stars', 'CategoryController@unstar');
 
 //API Profile
 Route::post('api/delete/photo', 'UserController@deletePhoto');
@@ -54,9 +56,6 @@ Route::post('api/delete/photo', 'UserController@deletePhoto');
 Route::post('api/contents/{id}/votes', 'ContentController@add');
 Route::delete('api/contents/{id}/votes', 'ContentController@remove');
 Route::put('api/contents/{id}/votes', 'ContentController@update');
-
-Route::post('api/categories/{id}/stars', 'CategoryController@star');
-Route::delete('api/categories/{id}/stars', 'CategoryController@unstar');
 
 //API Feed
 Route::get('api/fresh', 'FeedController@fresh');
@@ -73,6 +72,7 @@ Route::delete('/api/comments/{id}', 'CommentController@delete');
 Route::post('api/categories', 'CategoryController@create')->name('create_category');
 Route::put('api/categories/{id}', 'CategoryController@edit')->name('edit_category');
 Route::get('api/categories/{criteria}/{order}', 'CategoryController@order');
+Route::post('api/posts/{id}/categories', 'PostController@updateCategories');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

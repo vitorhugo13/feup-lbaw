@@ -57,9 +57,9 @@
                 value = "{{ old('title', ''.$post->title) }}"
             @endif />
             @if ($errors->has('title'))
-            <span class="error">
-                {{ $errors->first('title') }}
-            </span>
+                <span class="error">
+                    {{ $errors->first('title') }}
+                </span>
             @endif
             <textarea id="post-body" name="body" placeholder="What is this post about?">@if($post != null){{ old('body', ''.$post->content->body) }}@else{{ old('body', '') }}@endif</textarea>
             @if ($errors->has('body'))

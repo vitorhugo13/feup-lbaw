@@ -7,6 +7,7 @@
 
 @push('scripts')
     <script src="{{ asset('js/textarea.js') }}" defer></script>
+    <script src="{{ asset('js/edit_post.js') }}" defer></script>
     <script src="{{ asset('js/api/rating.js') }}" defer></script>
     <script src="{{ asset('js/api/star.js') }}" defer></script>
     <script src="{{ asset('js/api/comment.js') }}" defer></script>

@@ -7,7 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div id="categories-tab" class="modal-body">
                 <div class="input-group">
                     <select class="custom-select">
                         <option selected>Add new category...</option>
@@ -19,9 +19,10 @@
                         <button class="btn btn-outline-secondary" type="button">Add</button>
                     </div>
                 </div>
-                <div class="selected-categories">
+                <div id="selected-categories">
                     @each('partials.categories.move_badge', $post_categories, 'category')
                 </div>
+                <input type="hidden" id="categories" name="categories" value="">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
