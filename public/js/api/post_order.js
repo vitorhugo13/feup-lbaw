@@ -1,8 +1,8 @@
 'use strict'
 
-let freshButton = document.querySelector('#sidebar-navigation .nav .fresh-tab')
-let hotButton = document.querySelector('#sidebar-navigation .nav .hot-tab')
-let topButton = document.querySelector('#sidebar-navigation .nav .top-tab')
+let freshButtons = document.querySelectorAll('.fresh-tab')
+let hotButtons = document.querySelectorAll('.hot-tab')
+let topButtons = document.querySelectorAll('.top-tab')
 
 let feed = document.getElementById('feed')
 
@@ -47,6 +47,6 @@ function topSelection() {
     order('top')    
 }
 
-freshButton.addEventListener('click', freshSelection)
-hotButton.addEventListener('click', hotSelection)
-topButton.addEventListener('click', topSelection)
+freshButtons.forEach(btn => btn.addEventListener('click', freshSelection))
+hotButtons.forEach(btn => btn.addEventListener('click', hotSelection))
+topButtons.forEach(btn => btn.addEventListener('click', topSelection))
