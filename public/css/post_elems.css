@@ -7,7 +7,7 @@
 
 .upvotes:hover,
 .downvotes:hover {
-    /* filter: brightness(0) saturate(100%) invert(86%) sepia(39%) saturate(770%) hue-rotate(77deg) brightness(96%) contrast(110%) */
+    filter: brightness(0) saturate(100%) invert(40%) sepia(27%) saturate(2010%) hue-rotate(233deg) brightness(97%) contrast(98%);
 }
 
 .selected {
