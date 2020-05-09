@@ -12,7 +12,11 @@
                     <select class="custom-select">
                         <option selected>Add new category...</option>
                         @foreach (App\Models\Category::orderBy('title')->get() as $category)
-                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @if($category->title != 'Community News')
+                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @elseif($author != null && $author->role == 'Administrator' && Auth::check() && Auth::user()->role == 'Administrator')
+                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @endif
                         @endforeach
                     </select>
                     <div class="input-group-append">

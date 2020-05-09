@@ -67,7 +67,7 @@
 </div>
 
 @include('partials.content.report_modal')
-@include('partials.posts.move_modal', ['post_categories' => $post->categories, 'id' => $post->id])
+@include('partials.posts.move_modal', ['post_categories' => $post->categories, 'id' => $post->id, 'author' => $author])
 @include('partials.comment.delete_modal')
 
 @endsection
