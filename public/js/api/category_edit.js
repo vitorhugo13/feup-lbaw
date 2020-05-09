@@ -3,16 +3,18 @@
 let editButtons = document.querySelectorAll('a[data-target="#edit-category-modal"]')
 let editConfirmButton = document.querySelector('#edit-category-modal .modal-footer > .btn-primary')
 let editInput = document.getElementById('edit-category-name')
+let editErrorSpan = document.querySelector('#edit-category-name + span.error')
 let lastClickedID = -1
 
 function editClicked(ev) {
     editInput.value = ''
+    editErrorSpan.textContent = ''
     lastClickedID = ev.currentTarget.getAttribute('data-category-id')
 }
 
 function confirmEdit(ev) {
-    ev.preventDefault()
     let newName = editInput.value
+    ev.preventDefault()
 
     if(lastClickedID == -1) return
 
@@ -27,13 +29,21 @@ function confirmEdit(ev) {
         body: 'name=' + newName
     }).then(response => {
         console.log(response)
-        response.json().then(data => console.log(data))
-        if(response['status'] != 200) {
-            return
-        }
 
-        changeCardName(newName)
-        lastClickedID = -1
+        response.json().then(data => {
+            if (response['status'] != 200) {
+                console.log(data['name'])
+
+                editErrorSpan.textContent = ''
+                data['name'].forEach(error => editErrorSpan.textContent += error + '\n')
+            } else {
+                console.log(data['success'])
+                //Manually hiding the modal
+                $('#edit-category-modal').modal('hide')
+                changeCardName(newName)
+                lastClickedID = -1
+            }
+        })
     })
 }
 

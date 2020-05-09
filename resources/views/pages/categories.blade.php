@@ -3,6 +3,7 @@
 @push('styles')
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/categories.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/errors.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')

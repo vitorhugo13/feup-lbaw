@@ -93,6 +93,19 @@
     padding-bottom: 0;
 }
 
+a[data-target="#edit-category-modal"] {
+    cursor: pointer;
+    color: inherit;
+
+    transition: color 200ms ease-in 0s;
+    -webkit-transition: color 200ms ease-in 0s;
+    -moz-transition: color 200ms ease-in 0s;
+}
+
+a[data-target="#edit-category-modal"]:hover {
+    color: var(--accent-color);
+}
+
 #new-category-name,
 #edit-category-name {
     background-color: var(--background-strong);

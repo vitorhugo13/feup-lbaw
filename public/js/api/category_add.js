@@ -3,12 +3,12 @@
 let addButton = document.querySelector('a[data-target="#new-category-modal"]')
 let addConfirmButton = document.querySelector('#new-category-modal .modal-footer > .btn-primary')
 let addInput = document.getElementById('new-category-name')
+let addErrorSpan = document.querySelector('#new-category-name + span.error')
 let cardsList = document.querySelector('section.category-cards')
 
 function confirmAddition(ev) {
-    ev.preventDefault()
     let newName = addInput.value
-    console.log('New category name = ' + newName)
+    ev.preventDefault()
 
     fetch('../api/categories', {
         method: 'POST',
@@ -20,13 +20,19 @@ function confirmAddition(ev) {
         body: 'name=' + newName
     }).then(response => {
         console.log(response)
-        if (response['status'] != 200) {
-            return
-        }
         
         response.json().then(data => {
-            console.log(data['success'])
-            addCard(data['category'])            
+            if (response['status'] != 200) {
+                console.log(data['name'])
+                
+                addErrorSpan.textContent = ''
+                data['name'].forEach(error => addErrorSpan.textContent += error + '\n')
+            } else {
+                console.log(data['success'])
+                //Manually hiding the modal
+                $('#new-category-modal') .modal('hide')
+                addCard(data['category'])                
+            }
         })
     })
 }
@@ -94,5 +100,8 @@ function refreshCardListeners() {
     newEditButtons.forEach(element => element.addEventListener('click', editClicked))
 }
 
-addButton.addEventListener('click', () => addInput.value = '')
+addButton.addEventListener('click', () => {
+    addInput.value = ''
+    addErrorSpan.textContent = ''
+})
 addConfirmButton.addEventListener('click', confirmAddition)

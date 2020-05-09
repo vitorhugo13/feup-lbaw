@@ -10,15 +10,12 @@
             </div>
             <div class="category-input modal-body">
                 <input type="text" name="name" id="new-category-name" placeholder="New Category Name"/>
-                @if ($errors->has('name'))
                 <span class="error">
-                    {{ $errors->first('name') }}
-                </span>
-                @endif
+                </span>                
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary" data-dismiss="modal">Create</button>
+                <button class="btn btn-primary">Create</button>
             </div>
         </form>
     </div>
