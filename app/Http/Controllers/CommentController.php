@@ -42,7 +42,7 @@ class CommentController extends ContentController
 
     $this->authorize('show', $comment->content);
 
-    return view('partials.posts.comment', ['comment' => $comment, 'thread_id' => $request->input('thread_id'), 'author' => $author]);
+    return view('partials.comment.comment', ['comment' => $comment, 'thread_id' => $request->input('thread_id'), 'author' => $author]);
   }
 
   /**
