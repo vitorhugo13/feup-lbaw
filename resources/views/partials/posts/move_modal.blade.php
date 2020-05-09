@@ -25,8 +25,8 @@
                 <input type="hidden" id="categories" name="categories" value="">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Update</button>
+                <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" data-post-id="{{ $id }}">Update</button>
             </div>
         </div>
     </div>

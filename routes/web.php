@@ -72,7 +72,7 @@ Route::delete('/api/comments/{id}', 'CommentController@delete');
 Route::post('api/categories', 'CategoryController@create')->name('create_category');
 Route::put('api/categories/{id}', 'CategoryController@edit')->name('edit_category');
 Route::get('api/categories/{criteria}/{order}', 'CategoryController@order');
-Route::post('api/posts/{id}/categories', 'PostController@updateCategories');
+Route::post('api/posts/{id}/categories', 'PostController@move');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

@@ -26,6 +26,18 @@ class PostController extends ContentController
             return abort(404);
     }
 
+    private function updateCategories($categoriesList, $post_id) {
+        $categories = array_filter(explode(',', $categoriesList));
+
+        DB::table('post_category')->where('post', $post_id)->delete();
+
+        foreach ($categories as $category) {
+            $category_id = DB::table('category')->where('title', $category)->value('id');
+
+            DB::table('post_category')->insert(['post' => $post_id, 'category' => $category_id]);
+        }
+    }
+
     /**
      * Shows the card for a given id.
      *
@@ -108,7 +120,7 @@ class PostController extends ContentController
         $post->title = $request->input('title');
         $post->save();
 
-        $this->updateCategories($request, $post->id);
+        $this->updateCategories($request->input('categories'), $post->id);
 
         $request->session()->flash('alert-success', "Posted with success!");
         return redirect('posts/' . $post->id)->with('alert-success', "Post successfully created!");
@@ -132,7 +144,7 @@ class PostController extends ContentController
         $post = Post::find($id);
         $this->authorize('edit', $post->content);
 
-        $this->updateCategories($request, $id);
+        $this->updateCategories($request->input('categories'), $id);
 
         $post->title = $request->input('title');
         $post->content->body = $request->input('body');
@@ -180,16 +192,21 @@ class PostController extends ContentController
 
     /* ================= CATEGORIES ============= */
 
-    public function updateCategories(Request $request, $id)
+    public function move(Request $request, $id)
     {
-        $categories = array_filter(explode(',', $request->input('categories')));
+        $this->validateID($id);
 
-        DB::table('post_category')->where('post', $id)->delete();
+        $validator = Validator::make($request->all(), [
+            'categories' => 'required|string'
+        ]);
 
-        foreach ($categories as $category) {
-            $category_id = DB::table('category')->where('title', $category)->value('id');
+        $errors = $validator->errors();
 
-            DB::table('post_category')->insert(['post' => $id, 'category' => $category_id]);
-        }
+        if ($validator->fails())
+            return response()->json($errors, 400);
+
+        $this->updateCategories($request->input('categories'), $id);
+
+        return response()->json(['success' => 'Updated categories successfully'], 200);
     }
 }
