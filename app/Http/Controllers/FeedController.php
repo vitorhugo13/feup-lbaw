@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Post;
+use App\Models\User;
 use Carbon\Carbon;
 
 class FeedController extends Controller
@@ -49,19 +51,22 @@ class FeedController extends Controller
         return $posts->take(30);
     }
 
-    /**
-     * Shows the card for a given id.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show()
+    public function showFeed()
     {
-        $posts = Post::orderBy('num_comments', 'DESC')->get()->take(30);
+        $user = User::find(Auth::user()->id);
+        $posts = $user->starredPosts->sortByDesc(function ($post) {
+            return $post->content->creation_time;
+        })->take(30);
+        $starred_categories = $user->starredCategories->take(5);
 
+        return view('pages.feed', ['posts' => $posts, 'starred_categories' => $starred_categories]);
+    }
+
+    public function showHome()
+    {
         $fresh_categories = Category::orderBy('last_activity', 'DESC')->get()->take(5);
-        $hot_categories = Category::get()->sortBy(function($category) { 
-            return $category->num_posts + strtotime($category->last_activity); 
+        $hot_categories = Category::get()->sortBy(function ($category) {
+            return $category->num_posts + strtotime($category->last_activity);
         })->take(5); //TODO: Probably change this criteria
         $top_categories = Category::orderBy('num_posts', 'DESC')->get()->take(5);
 

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Post;
 use App\Models\Content;
+
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends ContentController

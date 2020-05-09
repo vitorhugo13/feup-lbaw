@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'FeedController@show');
+Route::get('/', 'FeedController@showHome');
 
 // Static Pages
 // TODO: ask if this is the correct use of Route::view()
@@ -40,8 +40,9 @@ Route::post('users/{id}/edit/credentials', 'UserController@changeCredentials');
 
 Route::post('api/notifications', 'UserController@getNotifications');
 
-// Homepage
-Route::get('home', 'FeedController@show')->name('home');
+// Homepage & Feed
+Route::get('home', 'FeedController@showHome')->name('home');
+Route::get('feed', 'FeedController@showFeed')->name('feed');
 
 //API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
