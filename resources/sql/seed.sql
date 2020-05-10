@@ -3230,7 +3230,7 @@ insert into notifications (id, content, created_at, data, type) values (98, 397,
 insert into notifications (id, content, created_at, data, type) values (99, 206, '2019-07-21 02:08:26', 'eu sapien cursus vestibulum proin eu mi', 'New Comment');
 insert into notifications (id, content, created_at, data, type) values (100, 2, '2019-07-31 04:15:21', 'amet sapien dignissim vestibulum vestibulum ante ipsum primis in', 'Community Post');
 
-select setval('notification_id_seq', 100);
+select setval('notifications_id_seq', 100);
 
 
 -- insert user_notification
