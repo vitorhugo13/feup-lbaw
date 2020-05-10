@@ -34,6 +34,10 @@
 
 * **home page**
     - [x] when we are in small screens(i.e. cellphones) the bar indicating fresh,hot or top is not updating the posts.
+    - [ ] rating and staring posts is not working when we order posts (event listeners probably not working)
 * **categories page**
     - [ ] it is necessary to review categories page, at this moment you can only give star / unstar in order by name
     - [ ] when we create a post ORDER BY ACTIVITY is not working 
+* **comments**
+    - [ ] post's owner should have green link
+    - [ ] link in user name to redirect to profile
