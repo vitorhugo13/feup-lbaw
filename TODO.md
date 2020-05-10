@@ -22,7 +22,7 @@
     - [x] delete photo with bug in ajax request
     
 * **post creation**
-    - [ ] if the user is not an admin, "community news" should not appear as an option at categories
+    - [x] if the user is not an admin, "community news" should not appear as an option at categories
 * **post preview**
     - [ ] newlines/format text
 * **post deletion**
