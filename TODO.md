@@ -33,4 +33,7 @@
     - [x] the rating functions should be on the content controller
 
 * **home page**
-    - [ ] when we are in small screens(i.e. cellphones) the bar indicating fresh,hot or top is not updating the posts.
+    - [x] when we are in small screens(i.e. cellphones) the bar indicating fresh,hot or top is not updating the posts.
+* **categories page**
+    - [ ] it is necessary to review categories page, at this moment you can only give star / unstar in order by name
+    - [ ] when we create a post ORDER BY ACTIVITY is not working 
