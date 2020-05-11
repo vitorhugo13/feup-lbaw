@@ -1,6 +1,9 @@
 # LAMA
 ### TODO list
 
+* **general**
+    - [ ] e.g. when an user is not logged in and tries to create a post we display 403 page. SHoyld we redirect user to login/register form and then redirect him back to post creation
+    - [ ] in the same situation, when we try to rate a content ou comment something nothing is done 
 * **user profile**
     - [ ] only the owner can edit the profile (policies)
     - [ ] change directory @profile dropdown
@@ -9,6 +12,8 @@
     - [x] countdown if user is blocked
     - [ ] condition to display if user is block is not correct
     - [ ] how do we handle the countdown reaches 0?
+    
+    - [ ] only show countdown (in case user is blocked) if the user blocked is the one authenticated
 
 
 * **edit profile**
@@ -41,3 +46,5 @@
 * **comments**
     - [ ] post's owner should have green link
     - [ ] link in user name to redirect to profile
+
+
