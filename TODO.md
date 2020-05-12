@@ -30,6 +30,7 @@
     - [x] error/success messages
     - [x] css is kind weird after error messages, fix it
     - [x] delete photo with bug in ajax request
+    - [ ] not working in production
     
 * **post creation**
     - [x] if the user is not an admin, "community news" should not appear as an option at categories
