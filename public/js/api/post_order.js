@@ -30,7 +30,9 @@ function order(criteria){
         }
         response.json().then(data => {
             feed.innerHTML = data['feed']
-            window.scrollTo(0, 0) //TODO: Automatically scroll to top?
+            window.scrollTo(0, 0)
+            refreshVoteListeners()
+            refreshStarsListeners()
         })
     })
 }

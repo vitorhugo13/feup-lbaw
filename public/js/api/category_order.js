@@ -17,6 +17,14 @@ function updateCategories() {
     categoriesInput.value = categoriesList.toString()
 }
 
+function refreshCardListeners() {
+    let newStars = document.getElementsByClassName('fa-star')
+    let newEditButtons = document.querySelectorAll('a[data-target="#edit-category-modal"]')
+
+    Array.from(newStars).forEach(element => element.addEventListener('click', star))
+    newEditButtons.forEach(element => element.addEventListener('click', editClicked))
+}
+
 function order(criteria, order){
     fetch('../api/categories/' + criteria + "/" + order, {
         method: 'GET',
@@ -26,11 +34,13 @@ function order(criteria, order){
         }
     }).then(response => {
         if (response['status'] != 200) {
-            console.log(response);
-            return;
+            console.log(response)
+            return
         }
         response.json().then(data => {
-            categoryDeck.innerHTML = data['deck'];
+            categoryDeck.innerHTML = data['deck']
+            window.scrollTo(0, 0)
+            refreshCardListeners()
         })
     })
 }
