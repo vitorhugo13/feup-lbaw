@@ -2,6 +2,7 @@
 
 #sidebar {
     position: fixed;
+    float: left;
     width: 16em;
 }
 
