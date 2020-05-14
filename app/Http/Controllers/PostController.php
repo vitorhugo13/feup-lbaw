@@ -105,7 +105,7 @@ class PostController extends ContentController
       DB::table('post_category')->insert(['post' => $post->id, 'category' => $category_id]);
     }
 
-    $request->session()->flash('alert-success', "Posted with success!");
+    // $request->session()->flash('alert-success', "Posted with success!");
     return redirect('posts/'.$post->id)->with('alert-success', "Post successfully created!");
   }
 

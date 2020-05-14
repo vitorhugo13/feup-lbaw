@@ -3048,7 +3048,7 @@ insert into report_file (id, content, reviewer) values (16, 16, 17);
 insert into report_file (id, content, reviewer) values (17, 17, null);
 insert into report_file (id, content, reviewer) values (18, 18, null);
 insert into report_file (id, content, reviewer) values (19, 19, 13);
-insert into report_file (id, content, reviewer) values (20, 20, 14);
+insert into report_file (id, content, reviewer) values (20, 369, 14);
 
 select setval('report_file_id_seq', 20);
 
