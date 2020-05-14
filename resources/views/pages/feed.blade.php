@@ -7,9 +7,9 @@
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('js/filters.js') }}" defer></script>
     <script src="{{ asset('js/api/rating.js') }}" defer></script>
     <script src="{{ asset('js/api/star.js') }}" defer></script>
+    <script src="{{ asset('js/api/filter_posts.js') }}" defer></script>
 @endpush
 
 @section('side-bar')
@@ -23,8 +23,6 @@
                     @include('partials.categories.category_selection', ['categories' => $starred_categories])
                 @endif
             </div>
-
-            <a id="view-categories" href="{{ route('categories_page') }}">Load More</a>
         </div>
         <a href="{{ route('create') }}"><i class="fas fa-plus"></i><strong> New Post</strong></a>
         <div id="side-toggle">
@@ -37,6 +35,10 @@
 @section('content-body')
     {{-- <h1>Personal Feed</h1>  TODO: Ver como isto vai funcionar...--}}
     <div id="feed">
-        @include('partials.posts.post_deck', ['posts' => $posts])
+        @if(!$posts->isEmpty())
+            @include('partials.posts.post_deck', ['posts' => $posts])
+        @else
+            <h4 class="no-results"> No starred content.. &#9785; </h4>
+        @endif
     </div>
 @endsection

@@ -12,6 +12,10 @@
     justify-content: start;
     text-align: left;
     margin-left: 0;
+    max-height: 15em;
+    max-width: 90%;
+    overflow-y: scroll;
+    margin: auto;
 }
 
 .opt .d-flex {
@@ -29,4 +33,11 @@
 .form-check label {
     font-size: 0.9em;
     font-weight: 400;
+}
+
+.no-results {
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 2em;
+    color: var(--foreground-color)
 }

@@ -17,8 +17,7 @@ class SearchController extends Controller
         $posts = $user->starredPosts->sortByDesc(function ($post) {
             return $post->content->creation_time;
         })->take(30);
-        $starred_categories = $user->starredCategories->take(5);
 
-        return view('pages.feed', ['posts' => $posts, 'starred_categories' => $starred_categories]);
+        return view('pages.search', ['posts' => $posts]);
     }
 }

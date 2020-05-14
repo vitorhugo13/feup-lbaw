@@ -12,6 +12,29 @@ use Carbon\Carbon;
 class FeedController extends Controller
 {
 
+    private function getDefaultFeedPosts(){
+        $user = User::find(Auth::user()->id);
+        $starred_posts = $user->starredPosts;
+
+        $other_posts = Post::get()->filter(function($post){
+            if($post->content->author == Auth::user()->id)
+                return false;
+
+            foreach($post->categories as $category){
+                if(Auth::user()->starredCategories->contains($category))
+                    return true;
+            }
+
+            return false;
+        });
+
+        $posts = $starred_posts->merge($other_posts)->sortByDesc(function ($post) {
+            return $post->content->creation_time;
+        });
+
+        return $posts;
+    }
+
     private function getFreshPosts(){
         $posts = Post::get()->sortByDesc(function ($post) {
             return $post->content->creation_time;
@@ -53,13 +76,33 @@ class FeedController extends Controller
 
     public function showFeed()
     {
-        $user = User::find(Auth::user()->id);
-        $posts = $user->starredPosts->sortByDesc(function ($post) {
-            return $post->content->creation_time;
-        })->take(30);
-        $starred_categories = $user->starredCategories->take(5);
+        $starred_categories = Auth::user()->starredCategories->sortBy('title');
+        
+        $posts = $this->getDefaultFeedPosts();
 
         return view('pages.feed', ['posts' => $posts, 'starred_categories' => $starred_categories]);
+    }
+
+    public function nofilter(){
+        return response()->json(['feed' => view('partials.posts.post_deck', ['posts' => $this->getDefaultFeedPosts()->take(30)])->render()]);
+    }
+
+    public function filter($selected_categories){     
+        $selected_categories = collect($selected_categories);
+        
+        $posts = Post::get()->filter(function($post) use($selected_categories){
+            if($post->content->author == Auth::user()->id)
+            return false;
+
+            foreach($post->categories as $category){
+                if($selected_categories->contains($category))
+                    return true;
+            }
+
+            return false;
+        });
+              
+        return response()->json(['feed' => view('partials.posts.post_deck', ['posts' => $posts->take(30)])->render()]);
     }
 
     public function showHome()
