@@ -65,7 +65,6 @@ Route::put('api/contents/{id}/votes', 'ContentController@update');
 Route::get('api/fresh', 'FeedController@fresh');
 Route::get('api/hot', 'FeedController@hot');
 Route::get('api/top', 'FeedController@top');
-Route::get('api/filter/', 'FeedController@nofilter');
 Route::get('api/filter/{selected_categories}', 'FeedController@filter');
 
 //API Comments

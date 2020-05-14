@@ -35,10 +35,6 @@
 @section('content-body')
     {{-- <h1>Personal Feed</h1>  TODO: Ver como isto vai funcionar...--}}
     <div id="feed">
-        @if(!$posts->isEmpty())
-            @include('partials.posts.post_deck', ['posts' => $posts])
-        @else
-            <h4 class="no-results"> No starred content.. &#9785; </h4>
-        @endif
+        @include('partials.posts.post_deck', ['posts' => $posts])
     </div>
 @endsection

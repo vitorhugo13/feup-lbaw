@@ -11,7 +11,7 @@ function encodeForAjax(data) {
 }
 
 function filter(){
-    fetch('../api/filter/' + selectedCategories, {
+    fetch('../api/filter/' + JSON.stringify(selectedCategories), {
         method: 'GET',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -24,6 +24,7 @@ function filter(){
         }
         response.json().then(data => {
             feed.innerHTML = data['feed']
+            console.log(data['feed'])
             window.scrollTo(0, 0)
             refreshVoteListeners()
             refreshStarsListeners()
@@ -39,15 +40,14 @@ function checkClicked(){
 }
 
 function clicked(event){
-    let title = event.currentTarget.getAttribute('value')
-    let index = selectedCategories.indexOf(title)
+    let category = event.currentTarget.getAttribute('value')
+    let index = selectedCategories.indexOf(category)
 
     if(index == -1)
-        selectedCategories.push(title)
+        selectedCategories.push(category)
     else
         selectedCategories.splice(index, 1)
 
-    console.log(selectedCategories)
     filter()
 }
 
