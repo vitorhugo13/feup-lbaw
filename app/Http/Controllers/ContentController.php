@@ -44,7 +44,7 @@ class ContentController extends Controller
         // notify the content author
         // TODO: support disable notifications
         // TODO: the owner does not receive notifications when he rates his own contents
-        $content->owner->notify(new Rating($content->id, Auth::user()->id));
+        //$content->owner->notify(new Rating($content->id, Auth::user()->id));
 
         return response()->json(['success' => 'Voted successfully. Type: ' . $request->input('type')]);
     }

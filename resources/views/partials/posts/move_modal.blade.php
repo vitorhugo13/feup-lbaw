@@ -7,25 +7,30 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div id="categories-tab" class="modal-body">
                 <div class="input-group">
                     <select class="custom-select">
                         <option selected>Add new category...</option>
                         @foreach (App\Models\Category::orderBy('title')->get() as $category)
-                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @if($category->title != 'Community News')
+                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @elseif($author != null && $author->role == 'Administrator' && Auth::check() && Auth::user()->role == 'Administrator')
+                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @endif
                         @endforeach
                     </select>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button">Add</button>
                     </div>
                 </div>
-                <div class="selected-categories">
+                <div id="selected-categories">
                     @each('partials.categories.move_badge', $post_categories, 'category')
                 </div>
+                <input type="hidden" id="categories" name="categories" value="">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Update</button>
+                <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" data-post-id="{{ $id }}">Update</button>
             </div>
         </div>
     </div>

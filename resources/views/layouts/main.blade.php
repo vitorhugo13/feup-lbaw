@@ -3,6 +3,7 @@
 @push('scripts')
     <script src="{{ asset('js/searchbar.js') }}" defer></script>
     <script src="{{ asset('js/api/notifications.js') }}" defer></script>
+    <script src="{{ asset('js/dropdown_counter.js') }}" defer></script>
 @endpush
 
 @push('styles')

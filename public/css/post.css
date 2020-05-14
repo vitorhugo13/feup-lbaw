@@ -246,6 +246,10 @@
     color: var(--accent-color);
 }
 
+span.op {
+    color: var(--main-color);
+}
+
 
 /* ----------========== MEDIA QUERIES ==========---------- */
 

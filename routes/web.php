@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'Auth\LoginController@home');
+Route::get('/', 'FeedController@showHome');
 
 // Static Pages
 // TODO: ask if this is the correct use of Route::view()
@@ -29,7 +29,7 @@ Route::post('posts', 'PostController@create')->name('create');
 Route::post('posts/{id}', 'PostController@edit');
 
 // Categories
-Route::get('categories', 'CategoryController@show');
+Route::get('categories', 'CategoryController@show')->name('categories_page');
 
 // Reports
 Route::get('reports', 'ReportController@show')->name('reports');
@@ -46,8 +46,12 @@ Route::post('users/{id}/edit/credentials', 'UserController@changeCredentials');
 
 Route::post('api/notifications', 'UserController@getNotifications');
 
-// Homepage
-Route::view('home', 'pages/home')->name('home');
+// Homepage & Feed
+Route::get('home', 'FeedController@showHome')->name('home');
+Route::get('feed', 'FeedController@showFeed')->name('feed');
+
+// API Profile
+Route::post('api/delete/photo', 'UserController@deletePhoto');
 
 //API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
@@ -60,11 +64,22 @@ Route::post('api/contents/{id}/votes', 'ContentController@add');
 Route::delete('api/contents/{id}/votes', 'ContentController@remove');
 Route::put('api/contents/{id}/votes', 'ContentController@update');
 
+//API Feed
+Route::get('api/fresh', 'FeedController@fresh');
+Route::get('api/hot', 'FeedController@hot');
+Route::get('api/top', 'FeedController@top');
+
 //API Comments
 Route::post('/api/comments', 'CommentController@create');
 Route::get('/api/comments/{id}', 'CommentController@show');
 Route::put('/api/comments/{id}', 'CommentController@edit');
 Route::delete('/api/comments/{id}', 'CommentController@delete');
+
+// API Category
+Route::post('api/categories', 'CategoryController@create')->name('create_category');
+Route::put('api/categories/{id}', 'CategoryController@edit')->name('edit_category');
+Route::get('api/categories/{criteria}/{order}', 'CategoryController@order');
+Route::post('api/posts/{id}/categories', 'PostController@move');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

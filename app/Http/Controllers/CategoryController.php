@@ -7,14 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Comment;
-use App\Models\Content;
-use App\Models\Post;
-use App\Models\Thread;
-use App\Models\User;
+
 use Illuminate\Support\Facades\Validator;
 
-class CategoryController extends ContentController
+class CategoryController extends Controller
 {
     private function validateID($id)
     {
@@ -31,9 +27,55 @@ class CategoryController extends ContentController
 
     public function show()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('title', 'ASC')->get();
 
         return view('pages.categories', ['categories' => $categories]);
+    }
+
+    public function create(Request $request)
+    {
+        $data = ['name' => $request->input('name')];
+
+        $validator = Validator::make($data, [
+            'name' => 'required|string|unique:category,title'
+        ]);
+
+        $errors = $validator->errors();
+
+        if ($validator->fails())
+            return response()->json($errors, 400);
+
+        $category = new Category;
+        $category->title = $request->input('name');
+        $category->save();
+
+        return response()->json(['success' => 'Category added successfully', 'category' => $category], 200);
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $data = ['name' => $request->input('name')];
+
+        $validator = Validator::make($data, [
+            'name' => 'required|string|unique:category,title'
+        ]);
+
+        $errors = $validator->errors();
+
+        if ($validator->fails())
+            return response()->json($errors, 400);
+
+        $category = Category::find($id);
+
+        $category->title = $request->input('name');
+        $category->save();
+
+        return response()->json(['success' => 'Category name updated successfully'], 200);
+    }
+
+    public function order($criteria, $order)
+    {
+        return response()->json(['deck' => view('partials.categories.category_deck', ['categories' => Category::orderBy($criteria, $order)->get()])->render()]);
     }
 
 

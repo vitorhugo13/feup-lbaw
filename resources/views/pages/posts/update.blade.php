@@ -25,7 +25,7 @@
         <div class="input-group">
             <select class="custom-select">
                 <option selected>Add new category...</option>
-                @foreach (App\Models\Category::orderBy('title')->get() as $category)
+                @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->title }}</option>
                 @endforeach
             </select>
@@ -57,9 +57,9 @@
                 value = "{{ old('title', ''.$post->title) }}"
             @endif />
             @if ($errors->has('title'))
-            <span class="error">
-                {{ $errors->first('title') }}
-            </span>
+                <span class="error">
+                    {{ $errors->first('title') }}
+                </span>
             @endif
             <textarea id="post-body" name="body" placeholder="What is this post about?">@if($post != null){{ old('body', ''.$post->content->body) }}@else{{ old('body', '') }}@endif</textarea>
             @if ($errors->has('body'))

@@ -7,9 +7,11 @@
 
 @push('scripts')
     <script src="{{ asset('js/textarea.js') }}" defer></script>
+    <script src="{{ asset('js/edit_post.js') }}" defer></script>
     <script src="{{ asset('js/api/rating.js') }}" defer></script>
     <script src="{{ asset('js/api/star.js') }}" defer></script>
     <script src="{{ asset('js/api/comment.js') }}" defer></script>
+    <script src="{{ asset('js/api/post_move.js') }}" defer></script>
 @endpush
 
 @section('main-content')
@@ -18,7 +20,6 @@
         <div class="d-flex flex-row align-items-center justify-content-between">
             <div class="post-user d-flex flex-row align-items-center justify-content-between">
                 {{-- TODO: this photo path is temporary --}}
-                {{-- FIXME: for some reason route('profile' , $author->id) was not working --}}
                 @if ($author != null)
                     <a href="{{ route('profile', $author->id) }}"><img class="rounded-circle" src="{{ asset($author->photo) }}" width="40"></a>
                 @else
@@ -45,7 +46,6 @@
             @each('partials.categories.normal_badge', $post->categories, 'category')
         </div>
     </header>
-    {{-- TODO: make a partial to separate the content body into paragraphs --}}
     <p class="post-body">{{ $post->content->body }}</p>
     <footer class="d-flex flex-row align-items-center">
         @include('partials.content.rating', ['content' => $post->content])
@@ -66,9 +66,8 @@
     </div>
 </div>
 
-{{-- TODO: draw move moval --}}
 @include('partials.content.report_modal')
-@include('partials.posts.move_modal', ['post_categories' => $post->categories])
+@include('partials.posts.move_modal', ['post_categories' => $post->categories, 'id' => $post->id, 'author' => $author])
 @include('partials.comment.delete_modal')
 
 @endsection

@@ -7,7 +7,7 @@
             @else
                 <span
                 @if ($author != null && $comment->content->owner->id == $author->id)
-                    style="color: var(--main-color);"
+                    class="op"
                 @endif>{{ $comment->content->owner->username }}</span>
             @endif
 

@@ -17,7 +17,6 @@ class ContentPolicy
 
     public function create(User $user) {
         return $user->role != 'Blocked';
-        // return true;
     }
 
     public function delete(User $user, Content $content) {
