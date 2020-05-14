@@ -40,9 +40,10 @@ Route::post('users/{id}/edit/credentials', 'UserController@changeCredentials');
 
 Route::post('api/notifications', 'UserController@getNotifications');
 
-// Homepage & Feed
+// Homepage, Feed & Search
 Route::get('home', 'FeedController@showHome')->name('home');
 Route::get('feed', 'FeedController@showFeed')->name('feed');
+Route::get('search', 'SearchController@show')->name('search');
 
 //API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
