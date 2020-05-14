@@ -43,7 +43,9 @@ Route::post('api/notifications', 'UserController@getNotifications');
 // Homepage, Feed & Search
 Route::get('home', 'FeedController@showHome')->name('home');
 Route::get('feed', 'FeedController@showFeed')->name('feed');
-Route::get('search', 'SearchController@show')->name('search');
+Route::get('search-results', 'SearchController@show')->name('search');
+Route::get('search', 'SearchController@search');
+Route::get('search/filter', 'SearchController@filter');
 
 //API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
