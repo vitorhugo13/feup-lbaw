@@ -10,7 +10,9 @@
     <script src="{{ asset('js/api/category_star.js') }}" defer></script>
     <script src="{{ asset('js/api/category_order.js') }}" defer></script>
     <script src="{{ asset('js/api/category_edit.js') }}" defer></script>
+    @if(Auth::check() && Auth::user()->role == 'Administrator')
     <script src="{{ asset('js/api/category_add.js') }}" defer></script>
+    @endif
 @endpush
 
 @section('main-content')

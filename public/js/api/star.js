@@ -1,7 +1,9 @@
 'use strict'
 
-let stars = document.getElementsByClassName('fa-star')
-Array.from(stars).forEach(element => { element.addEventListener('click', star) })
+function refreshStarsListeners() {
+    let stars = document.getElementsByClassName('fa-star')
+    Array.from(stars).forEach(element => { element.addEventListener('click', star) })
+}
 
 function star(event) {
     let star = event.currentTarget
@@ -32,3 +34,5 @@ function star(event) {
         })
     })
 }
+
+refreshStarsListeners()

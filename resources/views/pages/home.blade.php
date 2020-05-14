@@ -54,7 +54,7 @@
         </div>
     </nav>
 
-    <div id="feed">
+    <div id="feed" class="infinitescroll" id="myInfiniteScroll">
         @include('partials.posts.post_deck', ['posts' => $posts])
     </div>
 @endsection

@@ -30,7 +30,7 @@ function confirmAddition(ev) {
             } else {
                 console.log(data['success'])
                 //Manually hiding the modal
-                $('#new-category-modal') .modal('hide')
+                $('#new-category-modal').modal('hide')
                 addCard(data['category'])                
             }
         })
@@ -90,14 +90,6 @@ function addCard(category) {
     let pos = card.getBoundingClientRect()
     window.scrollTo(0, pos.top)
     refreshCardListeners()
-}
-
-function refreshCardListeners() {
-    let newStars = document.getElementsByClassName('fa-star')
-    let newEditButtons = document.querySelectorAll('a[data-target="#edit-category-modal"]')
-
-    Array.from(newStars).forEach(element => element.addEventListener('click', star))
-    newEditButtons.forEach(element => element.addEventListener('click', editClicked))
 }
 
 addButton.addEventListener('click', () => {
