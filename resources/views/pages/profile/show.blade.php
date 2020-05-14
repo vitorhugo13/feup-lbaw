@@ -32,30 +32,35 @@
             </div>
         </div>
         <p class="bio text-left">{{$user->bio}} </p>
-        <a class="edit-button" href="{{url('users/' . $user->id . '/edit')}}"><strong>Edit profile</strong></a>
 
-        @if($user->release_date > 0)
-            <div id="blocked" class="mt-5">
-                <p class="blocked-text mb-1">You are blocked for:</p>
-                <p class="remaining-time">
-                    @php
-                        $currentDate = date("Y-m-d");
-                        $currentTime = date("H:i:s");
-                        $currentDate = date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
-                        $remaining = strtotime($user->release_date) - strtotime($currentDate);
+        @if(Auth::check() && $user->id == Auth::user()->id)
+            <a class="edit-button" href="{{url('users/' . $user->id . '/edit')}}"><strong>Edit profile</strong></a>
+        @endif
 
-                        $hours = floor($remaining / 3600) - 1;
-                        $minutes = floor(($remaining / 60) % 60);
-                        $seconds = $remaining % 60;
-                    @endphp
+        @if(Auth::check() && $user->id == Auth::user()->id)
+            @if($user->release_date > 0)
+                <div id="blocked" class="mt-5">
+                    <p class="blocked-text mb-1">You are blocked for:</p>
+                    <p class="remaining-time">
+                        @php
+                            $currentDate = date("Y-m-d");
+                            $currentTime = date("H:i:s");
+                            $currentDate = date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
+                            $remaining = strtotime($user->release_date) - strtotime($currentDate);
 
-                    <span class="hidden-time" hidden>{{$user->release_date}}</span>
-                    <span class="remain-hours"><?=(($hours < 10) ? '0' : '')?>{{$hours}}h </span>
-                    <span class="remain-min"><?=(($minutes < 10) ? '0' : '')?>{{$minutes}}m </span>
-                    <span class="remain-sec"><?=(($seconds < 10) ? '0' : '')?>{{$seconds}}s</span>
-                </p>
-                <button class="contest-button"><i class="fas fa-exclamation-circle"></i><strong> Contest</strong></button>
-            </div>
+                            $hours = floor($remaining / 3600) - 1;
+                            $minutes = floor(($remaining / 60) % 60);
+                            $seconds = $remaining % 60;
+                        @endphp
+
+                        <span class="hidden-time" hidden>{{$user->release_date}}</span>
+                        <span class="remain-hours"><?=(($hours < 10) ? '0' : '')?>{{$hours}}h </span>
+                        <span class="remain-min"><?=(($minutes < 10) ? '0' : '')?>{{$minutes}}m </span>
+                        <span class="remain-sec"><?=(($seconds < 10) ? '0' : '')?>{{$seconds}}s</span>
+                    </p>
+                    <button class="contest-button"><i class="fas fa-exclamation-circle"></i><strong> Contest</strong></button>
+                </div>
+            @endif
         @endif
         
     </article>

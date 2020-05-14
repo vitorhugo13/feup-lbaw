@@ -42,8 +42,9 @@ class UserController extends Controller
     public function showProfile($id)
     {
         $this->validateID($id);
-
         $user = User::find($id);
+        $this->authorize('showProfile', User::class);
+
         if ($user == null)
             return abort(404);
 
@@ -66,7 +67,11 @@ class UserController extends Controller
      */
     public function showEditProfile($id)
     {
+        $this->validateID($id);
         $user = User::find($id);
+
+        $this->authorize('showEditProfile', $user, Auth::user());
+
         if ($user == null)
             return abort(404);
 

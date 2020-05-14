@@ -23,10 +23,26 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     {{-- TODO: add all of these links --}}
                     <a class="dropdown-item" href="{{ url('../users', Auth::user()->id) }}">Profile</a> {{-- FIXME:route was not working --}}
-                <a class="dropdown-item" href="{{ route('feed') }}">Feed</a>
+                    <a class="dropdown-item" href="{{ route('feed') }}">Feed</a>
                     <a class="dropdown-item" href="">Reports</a>
                     @if (Auth::user()->role == 'Blocked')
-                    <a class="dropdown-item" href="{{ url('../users/' . Auth::user()->id . "#blocked") }}"><i class="fas fa-ban"></i> 49:30:06</a>
+                        @php
+                            $currentDate = date("Y-m-d");
+                            $currentTime = date("H:i:s");
+                            $currentDate = date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
+                            $remaining = strtotime(Auth::user()->release_date) - strtotime($currentDate);
+
+                            $hours = floor($remaining / 3600) - 1;
+                            $minutes = floor(($remaining / 60) % 60);
+                            $seconds = $remaining % 60;
+                        @endphp
+
+                        <a class="dropdown-item remainingTime" href="{{ url('../users/' . Auth::user()->id . "#blocked") }}">
+                            <i class="fas fa-ban"></i> 
+                            <span class="hiddentime" hidden>{{Auth::user()->release_date}}</span>
+                            <span class="remain-hour"><?=(($hours < 10) ? '0' : '')?>{{$hours}}</span><span>:</span><span class="remain-minute"><?=(($minutes < 10) ? '0' : '')?>{{$minutes}}</span><span>:</span><span class="remain-second"><?=(($seconds < 10) ? '0' : '')?>{{$seconds}}</span>
+                        </a>
+
                     @endif
                     <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
