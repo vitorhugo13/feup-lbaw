@@ -616,7 +616,7 @@ insert into "user" (id, username, email, password, bio) values (97, 'vcollicott2
 insert into "user" (id, username, email, password, bio) values (98, 'akolushev2p', 'kdrillingcourt2p@amazon.co.uk', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.');
 insert into "user" (id, username, email, password, bio) values (99, 'hhansen2q', 'kbeig2q@dailymail.co.uk', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.');
 insert into "user" (id, username, email, password, bio) values (100, 'abomfield2r', 'bkleinerman2r@domainmarket.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat.');
-insert into "user" (id, username, email, password, bio, role, release_date) values (101, 'vitinho', 'vitinho@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-05-18 00:49:31');
+insert into "user" (id, username, email, password, bio, role, release_date) values (101, 'vitinho', 'vitinho@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-05-13 00:58:31');
 insert into "user" (id, username, email, password, bio, role) values (102, 'bernas', 'bernas@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Bernas.', 'Administrator');
 
 select setval('user_id_seq', 102);
@@ -3230,7 +3230,7 @@ insert into notifications (id, content, created_at, data, type) values (98, 397,
 insert into notifications (id, content, created_at, data, type) values (99, 206, '2019-07-21 02:08:26', 'eu sapien cursus vestibulum proin eu mi', 'New Comment');
 insert into notifications (id, content, created_at, data, type) values (100, 2, '2019-07-31 04:15:21', 'amet sapien dignissim vestibulum vestibulum ante ipsum primis in', 'Community Post');
 
-select setval('notification_id_seq', 100);
+select setval('notifications_id_seq', 100);
 
 
 -- insert user_notification
