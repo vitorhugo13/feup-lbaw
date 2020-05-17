@@ -21,6 +21,7 @@ function sendRequest(role) {
         response.json().then(data => {
             console.log(data)
             addAlert('success', data['success'])
+            swapOption(role)
         })
     })
 }
@@ -31,4 +32,16 @@ function promote() {
 
 function demote() {
     sendRequest('Member')
+}
+
+function swapOption(role) {
+    if(role == 'Member'){
+        let dropdownOption = document.querySelector('.dropdown-item[data-target="#demote-modal"]')
+        dropdownOption.textContent = 'Promote'
+        dropdownOption.setAttribute('data-target', '#promote-modal')
+    } else {
+        let dropdownOption = document.querySelector('.dropdown-item[data-target="#promote-modal"]')
+        dropdownOption.textContent = 'Demote'
+        dropdownOption.setAttribute('data-target', '#demote-modal')
+    }
 }

@@ -27,7 +27,7 @@
             <a class="edit-button" href="{{url('users/' . $user->id . '/edit')}}"><strong>Edit profile</strong></a>
         @endif
 
-        @if(Auth::check() && $user->id == Auth::user()->id)
+        @if(Auth::check() && ($user->id == Auth::user()->id || Auth::user()->role == 'Administrator'))
             @if($user->release_date > 0)
                 <div id="blocked" class="mt-5">
                     <p class="blocked-text mb-1">You are blocked for:</p>
