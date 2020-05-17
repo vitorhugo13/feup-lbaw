@@ -114,6 +114,12 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
     overflow-y: auto;
 }
 
+.alert {
+    position:fixed;
+    top: 0px;
+    z-index:99;
+}
+
 /* ----------========== FOOTER ==========---------- */
 #footer {
     background-color: var(--background-strong);
