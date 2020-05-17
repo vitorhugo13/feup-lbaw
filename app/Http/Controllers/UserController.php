@@ -296,4 +296,33 @@ class UserController extends Controller
         return response()->json(['success' => "Retrieved notifications", 'notifications' => $notifications], 200);
     }
 
+    /*===================== CHANGE PERMISSIONS ============================ */
+    public function changePermissions(Request $request, $id) {
+        $this->authorize('changePermissions', Auth::user());
+
+        $new_role = $request->input('role');
+
+        $validator =  Validator::make($request->all(), [
+            'role' => 'required|string|regex:/(Moderator)|(Member)/',
+        ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors(), 400);
+
+        $user = User::find($id);
+        $user->role = $new_role;
+        $user->save();
+
+        return response()->json(['success' => "User " . $user->username . " is now a " . $new_role], 200);
+    }
+    
+    public function block($id) {
+        $user = User::find($id);
+        $this->authorize('block', Auth::user(), $user);
+
+        $user->role = 'Blocked';
+        $user->save();
+
+        return response()->json(['success' => "User " . $user->username . " is now Blocked"], 200);
+    }
 }

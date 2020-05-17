@@ -53,6 +53,10 @@ Route::get('feed', 'FeedController@showFeed')->name('feed');
 // API Profile
 Route::post('api/delete/photo', 'UserController@deletePhoto');
 
+//API User Management
+Route::put('api/users/{id}/role', 'UserController@changePermissions');
+Route::put('api/users/{id}/block', 'UserController@block');
+
 //API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
 Route::delete('api/posts/{id}/stars','PostController@unstar');
