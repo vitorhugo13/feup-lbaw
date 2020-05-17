@@ -13,7 +13,6 @@
 @endpush
 
 @section('main-content')
-  
 <section class="row justify-content-center">
     <article class="user-info col-12 col-lg-5 d-flex flex-column justify-content-center align-items-center" data-user-id="{{ $user->id }}">
     <!--TODO: change directory -->

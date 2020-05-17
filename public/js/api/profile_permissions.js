@@ -16,15 +16,11 @@ function sendRequest(role) {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: 'role=' + role
-
     }).then(response => {
-        // if (response['status'] != 200) {
-        //     console.log(response)
-        //     return
-        // }
         console.log(response)
         response.json().then(data => {
             console.log(data)
+            addAlert('success', data['success'])
         })
     })
 }
