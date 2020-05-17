@@ -46,9 +46,12 @@ Route::post('users/{id}/edit/credentials', 'UserController@changeCredentials');
 
 Route::post('api/notifications', 'UserController@getNotifications');
 
-// Homepage & Feed
+// Homepage, Feed & Search
 Route::get('home', 'FeedController@showHome')->name('home');
 Route::get('feed', 'FeedController@showFeed')->name('feed');
+Route::get('search-results', 'SearchController@show')->name('search');
+Route::get('search', 'SearchController@search');
+Route::get('search/filter', 'SearchController@filter');
 
 // API Profile
 Route::post('api/delete/photo', 'UserController@deletePhoto');
@@ -68,6 +71,7 @@ Route::put('api/contents/{id}/votes', 'ContentController@update');
 Route::get('api/fresh', 'FeedController@fresh');
 Route::get('api/hot', 'FeedController@hot');
 Route::get('api/top', 'FeedController@top');
+Route::get('api/filter/{selected_categories}', 'FeedController@filter');
 
 //API Comments
 Route::post('/api/comments', 'CommentController@create');

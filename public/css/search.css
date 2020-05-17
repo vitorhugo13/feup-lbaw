@@ -43,3 +43,10 @@
         margin-left: 0;
     }
 }
+
+.no-results {
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 2em;
+    color: var(--foreground-color)
+}
