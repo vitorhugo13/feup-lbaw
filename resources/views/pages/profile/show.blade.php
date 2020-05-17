@@ -8,28 +8,19 @@
 @push('scripts')
     <script src="{{ asset('js/api/star.js') }}" defer></script>
     <script src="{{ asset('js/api/rating.js') }}" defer></script>
+    <script src="{{ asset('js/api/profile_permissions.js') }}" defer></script>
     <script src="{{ asset('js/counter.js') }}" defer></script>
 @endpush
 
 @section('main-content')
   
 <section class="row justify-content-center">
-    <article class="user-info col-12 col-lg-5 d-flex flex-column justify-content-center align-items-center">
+    <article class="user-info col-12 col-lg-5 d-flex flex-column justify-content-center align-items-center" data-user-id="{{ $user->id }}">
     <!--TODO: change directory -->
-    <img src="{{ asset($user->photo) }}" class="img rounded-circle" alt="Profile photo">
+        <img src="{{ asset($user->photo) }}" class="img rounded-circle" alt="Profile photo">
         <div class="username d-flex flex-row align-items-center mt-3">
-        <p>{{ $user-> username}}</p>
-            <div class="dropdown col-1">
-                <div data-toggle="dropdown"><i class="fas fa-ellipsis-v"></i></div>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">Promote</a>
-                    <a class="dropdown-item" href="#">Demote</a>
-                    <a class="dropdown-item" href="#">Report</a>
-                    <a class="dropdown-item" href="#">Block</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Delete</a>
-                </div>
-            </div>
+            <p>{{ $user-> username}}</p>
+            @include('partials.profile.options', [ 'user' => $user ])
         </div>
         <p class="bio text-left">{{$user->bio}} </p>
 
@@ -87,4 +78,7 @@
     @each('partials.posts.preview', $user->posts, 'post')
 </div>
 
+@include('partials.profile.delete_profile')
+@include('partials.profile.promote-modal')
+@include('partials.profile.demote-modal')
 @endsection
