@@ -303,15 +303,22 @@ class UserController extends Controller
         $new_role = $request->input('role');
 
         $validator =  Validator::make($request->all(), [
-            'role' => 'required|string|regex:/(Moderator)|(Member)/',
+            'role' => array(
+                'required',
+                'string',
+                'regex:/(Moderator)|(Member)/'
+                )
         ]);
 
         if ($validator->fails())
             return response()->json($validator->errors(), 400);
 
         $user = User::find($id);
-        $user->role = $new_role;
-        $user->save();
+
+        if($user->role != $new_role) {
+            $user->role = $new_role;
+            $user->save();
+        }
 
         return response()->json(['success' => "User " . $user->username . " is now a " . $new_role], 200);
     }
