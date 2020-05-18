@@ -106,11 +106,6 @@
     padding-top: 6em;
 }
 
-.form-box  h4{
-    font-weight: bold;
-    color: var(--foreground);
-}
-
 .form-box .form-input{
     position: relative;
 }
@@ -122,6 +117,7 @@
     border:none;
     border-radius: 5px;
     outline: none;
+    color: var(--foreground);
     background: var(--background-strong);
     padding-left: 45px;
 }
