@@ -1,7 +1,8 @@
 @extends('layouts.main')
 
 @push('styles')
-    <link href="{{ asset('css/post.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/post/post.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/post/print.css') }}" rel="stylesheet" media="print" />
     <link href="{{ asset('css/post_elems.css') }}" rel="stylesheet">
 @endpush
 

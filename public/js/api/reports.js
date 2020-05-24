@@ -185,5 +185,7 @@ function drawContestEntry(contest) {
     menu.innerHTML += '<a class="dropdown-item" href="#">Ignore</a>'
     dropdown.appendChild(menu)
 
+    row.appendChild(dropdown)
+
     return row
 }

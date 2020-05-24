@@ -1,0 +1,18 @@
+/* hide the comment area */
+#comment-area {
+    display: none;
+}
+
+/* hide reply buttons */
+.reply-btn {
+    visibility: hidden;
+}
+
+/* hide back to top button */
+#to-top {
+    visibility: hidden;
+}
+
+footer {
+    display: none;
+}
