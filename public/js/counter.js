@@ -2,6 +2,7 @@
 
 
 let blocked = document.querySelector('.remaining-time')
+let blocked_div = document.querySelector('#blocked')
 
 if (blocked != null) {
     let remainHours = document.querySelector('.remain-hours');
@@ -52,9 +53,11 @@ if (blocked != null) {
             remainSec.innerHTML += 's'
         }
 
-        // If the count down is finished, write some text
+        //TODO: send notification??
         if (distance <= 0) {
-            
+            if(blocked_div != null){
+                blocked_div.remove();
+            }
         }
     }, 1000);
 }

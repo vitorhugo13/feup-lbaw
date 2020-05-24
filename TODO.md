@@ -18,6 +18,7 @@
     - [x] countdown if user is blocked
     - [x] condition to display if user is block is not correct
     - [ ] how do we handle the countdown reaches 0?
+    - [ ] change timestamp of release_date to null and user role
     - [X] only show countdown (in case user is blocked) if the user blocked is the one authenticated
 
 * **edit profile**
@@ -29,7 +30,7 @@
     - [x] error/success messages
     - [x] css is kind weird after error messages, fix it
     - [x] delete photo with bug in ajax request
-    - [ ] not working in production (change photo)
+    - [ ] not working in production (change photo) (maybe because i use an external library and i need to send it to production??)
     
 * **post creation**
     - [x] if the user is not an admin, "community news" should not appear as an option at categories
