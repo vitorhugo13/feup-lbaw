@@ -19,7 +19,7 @@
 
             <div class="dropdown" style="margin-left: 1em">
                 {{-- FIXME: the image path is temporary --}}
-                <img class="rounded-circle dropdown-toggle" data-toggle="dropdown" src="{{ asset(Auth::user()->photo) }}" height="30">
+                <img class="rounded-circle dropdown-toggle" data-toggle="dropdown" src="{{ asset(Auth::user()->photo) }}" alt="Profile picture dropdown" height="30">
                 <div class="dropdown-menu dropdown-menu-right">
                     {{-- TODO: add all of these links --}}
                     <a class="dropdown-item" href="{{ url('../users', Auth::user()->id) }}">Profile</a> {{-- FIXME:route was not working --}}
