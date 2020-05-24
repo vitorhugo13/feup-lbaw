@@ -3,8 +3,9 @@
 let freshButtons = document.querySelectorAll('.fresh-tab')
 let hotButtons = document.querySelectorAll('.hot-tab')
 let topButtons = document.querySelectorAll('.top-tab')
-
+let page = 0
 let feed = document.getElementById('feed')
+let criteria = 'fresh'
 
 function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {
@@ -16,8 +17,8 @@ function updateCategories() {
     categoriesInput.value = categoriesList.toString()
 }
 
-function order(criteria){
-    fetch('../api/' + criteria, {
+function order(page){
+    fetch('../api/' + criteria + "/" + page, {
         method: 'GET',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -37,16 +38,46 @@ function order(criteria){
     })
 }
 
+function pageBottom(){
+    fetch('../api/' + criteria + "/" + page, {
+        method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response['status'] != 200) {
+            console.log(response)
+            return;
+        }
+        response.json().then(data => {
+            let newPosts = data['feed']
+
+            if(newPosts != null){
+                feed.innerHTML += newPosts
+                refreshVoteListeners()
+                refreshStarsListeners()
+            }
+        })
+    })
+}
+
 function freshSelection() {
-    order('fresh')    
+    criteria = 'fresh'
+    order(0)
+    page = 0; 
 }
 
 function hotSelection() {
-    order('hot')    
+    criteria = 'hot'
+    order(0)
+    page = 0; 
 }
 
 function topSelection() {
-    order('top')    
+    criteria = 'top'
+    order(0)
+    page = 0; 
 }
 
 freshButtons.forEach(btn => btn.addEventListener('click', freshSelection))
