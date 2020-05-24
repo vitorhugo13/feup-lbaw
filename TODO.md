@@ -12,6 +12,7 @@
     - [ ] html and css errors
     - [ ] try and catch sql exceptions
     - [ ] test everyMinute command 
+    - [ ] back to top not displaying in some pages
 
 * **user profile**
     - [x] only the owner can edit the profile (policies)
