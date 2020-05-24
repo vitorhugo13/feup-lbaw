@@ -123,7 +123,7 @@ class PostController extends ContentController
 
         $this->updateCategories($request->input('categories'), $post->id);
 
-        $request->session()->flash('alert-success', "Posted with success!");
+        // $request->session()->flash('alert-success', "Posted with success!");
         return redirect('posts/' . $post->id)->with('alert-success', "Post successfully created!");
     }
 

@@ -616,7 +616,7 @@ insert into "user" (id, username, email, password, bio) values (97, 'vcollicott2
 insert into "user" (id, username, email, password, bio) values (98, 'akolushev2p', 'kdrillingcourt2p@amazon.co.uk', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.');
 insert into "user" (id, username, email, password, bio) values (99, 'hhansen2q', 'kbeig2q@dailymail.co.uk', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.');
 insert into "user" (id, username, email, password, bio) values (100, 'abomfield2r', 'bkleinerman2r@domainmarket.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat.');
-insert into "user" (id, username, email, password, bio, role, release_date) values (101, 'vitinho', 'vitinho@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-05-13 00:58:31');
+insert into "user" (id, username, email, password, bio, role, release_date) values (101, 'vitinho', 'vitinho@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-05-24 18:28:31');
 insert into "user" (id, username, email, password, bio, role) values (102, 'bernas', 'bernas@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Bernas.', 'Administrator');
 
 select setval('user_id_seq', 102);
@@ -3048,7 +3048,7 @@ insert into report_file (id, content, reviewer) values (16, 16, 17);
 insert into report_file (id, content, reviewer) values (17, 17, null);
 insert into report_file (id, content, reviewer) values (18, 18, null);
 insert into report_file (id, content, reviewer) values (19, 19, 13);
-insert into report_file (id, content, reviewer) values (20, 20, 14);
+insert into report_file (id, content, reviewer) values (20, 369, 14);
 
 select setval('report_file_id_seq', 20);
 

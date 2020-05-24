@@ -21,7 +21,7 @@
         <link href="https://fonts.googleapis.com/css?family=Heebo:100,300,400,500,700,800,900&display=swap" rel="stylesheet">
         <link rel="icon" type="image/png" href="../images/logo_tab.png">
 
-        <script type="text/javascript">
+        <script>
             // Fix for Firefox autofocus CSS bug
             // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
         </script>
@@ -38,7 +38,7 @@
         <div id="alert-section" class="row d-flex justify-content-center sticky-top">
             @foreach(['danger', 'warning', 'success', 'info'] as $msg)
                 @if(Session::has('alert-' . $msg))
-                <div class="alert alert-{{ $msg }} alert-dismissible fade show" role="alert" style="position:fixed; top: 0px; z-index:99;">
+                <div class="alert alert-{{ $msg }} alert-dismissible fade show" role="alert">
                     {{ Session::get('alert-' . $msg) }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

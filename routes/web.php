@@ -31,6 +31,12 @@ Route::post('posts/{id}', 'PostController@edit');
 // Categories
 Route::get('categories', 'CategoryController@show')->name('categories_page');
 
+// Reports
+Route::get('reports', 'ReportController@show')->name('reports');
+Route::get('api/reports/posts', 'ReportController@getPosts');
+Route::get('api/reports/comments', 'ReportController@getComments');
+Route::get('api/reports/contests', 'ReportController@getContests');
+
 //User
 Route::get('users/{id}', 'UserController@showProfile')->name('profile');
 Route::get('users/{id}/edit', 'UserController@showEditProfile');
@@ -47,14 +53,18 @@ Route::get('search-results', 'SearchController@show')->name('search');
 Route::get('search', 'SearchController@search');
 Route::get('search/filter', 'SearchController@filter');
 
+// API Profile
+Route::post('api/delete/photo', 'UserController@deletePhoto');
+
+//API User Management
+Route::put('api/users/{id}/role', 'UserController@changePermissions');
+Route::put('api/users/{id}/block', 'UserController@block');
+
 //API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
 Route::delete('api/posts/{id}/stars','PostController@unstar');
 Route::post('api/categories/{id}/stars', 'CategoryController@star');
 Route::delete('api/categories/{id}/stars', 'CategoryController@unstar');
-
-//API Profile
-Route::post('api/delete/photo', 'UserController@deletePhoto');
 
 // API Rating
 Route::post('api/contents/{id}/votes', 'ContentController@add');

@@ -42,8 +42,9 @@ class UserController extends Controller
     public function showProfile($id)
     {
         $this->validateID($id);
-
         $user = User::find($id);
+        $this->authorize('showProfile', User::class);
+
         if ($user == null)
             return abort(404);
 
@@ -66,7 +67,11 @@ class UserController extends Controller
      */
     public function showEditProfile($id)
     {
+        $this->validateID($id);
         $user = User::find($id);
+
+        $this->authorize('showEditProfile', $user, Auth::user());
+
         if ($user == null)
             return abort(404);
 
@@ -291,4 +296,53 @@ class UserController extends Controller
         return response()->json(['success' => "Retrieved notifications", 'notifications' => $notifications], 200);
     }
 
+    /*===================== CHANGE PERMISSIONS ============================ */
+    public function changePermissions(Request $request, $id) {
+        $this->authorize('changePermissions', Auth::user());
+
+        $new_role = $request->input('role');
+
+        $validator =  Validator::make($request->all(), [
+            'role' => array(
+                'required',
+                'string',
+                'regex:/(Moderator)|(Member)/'
+                )
+        ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors(), 400);
+
+        $user = User::find($id);
+
+        if($user->role != $new_role) {
+            $user->role = $new_role;
+            $user->save();
+        }
+
+        return response()->json(['success' => "User " . $user->username . " is now a " . $new_role], 200);
+    }
+    
+    public function block(Request $request, $id) {
+        $user = User::find($id);
+        $this->authorize('block', Auth::user(), $user);
+
+        $time = $request->input('time');
+
+        $validator =  Validator::make($request->all(), [
+            'time' => array(
+                'required',
+                'numeric',
+                'between:24,8760'
+                )
+        ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors(), 400);
+
+        //TODO: time logic
+        $user->save();
+
+        return response()->json(['success' => "User " . $user->username . " is now Blocked"], 200);
+    }
 }
