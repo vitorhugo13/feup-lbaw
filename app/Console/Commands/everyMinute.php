@@ -41,6 +41,6 @@ class everyMinute extends Command
     public function handle()
     {
         //TODO: verify 
-        User::whereNotNull('release_date')->where('release_date', '<', now())->insert(['release_date' => NULL]);
+        User::whereNotNull('release_date')->where('release_date', '<', now())->insert(['release_date' => NULL])->insert(['role' => 'Member']);
     }
 }
