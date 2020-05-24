@@ -17,10 +17,11 @@
 }
 
 #sidebar-navigation a {
-    font-weight: 400;
     color: var(--foreground);
-    border-left: solid var(--background);
-    border-radius: 0 0 0 0;
+    background-color: var(--background);
+    border-bottom: solid var(--background-strong);
+    border-radius: 0;
+    font-weight: 400;
 
     transition: color 200ms linear 0s;
     -webkit-transition: color 200ms linear 0s;
@@ -36,9 +37,9 @@
 }
 
 #sidebar-navigation a.active {
-    color: var(--main-color);
     border-color: var(--main-color);
-    background-color: var(--background-strong);
+    color: var(--main-color);
+    /* background-color: var(--background-strong); */
 }
 
 /* ----------========== MAIN CONTENT ==========---------- */
@@ -50,7 +51,6 @@
     background-color: var(--background-strong);
     position: relative;
     border-radius: 5px;
-    margin-left: 17em;
 }
 
 /* ----------========== TABLES ==========---------- */
@@ -78,17 +78,6 @@ table tbody tr:nth-child(2n) {
 
 table td {
     position: relative;
-}
-
-table .data-title span,
-table .data-date span {
-    position: absolute;
-    left: 0;
-    right: 0;
-    padding-left: .75rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .data-title {
