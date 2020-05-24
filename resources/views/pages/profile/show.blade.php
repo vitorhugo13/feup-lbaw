@@ -9,6 +9,7 @@
     <script src="{{ asset('js/api/star.js') }}" defer></script>
     <script src="{{ asset('js/api/rating.js') }}" defer></script>
     <script src="{{ asset('js/api/profile_permissions.js') }}" defer></script>
+    <script src="{{ asset('js/api/block_user.js') }}" defer></script>
     <script src="{{ asset('js/counter.js') }}" defer></script>
 @endpush
 
@@ -80,4 +81,5 @@
 @include('partials.profile.delete_profile')
 @include('partials.profile.promote-modal')
 @include('partials.profile.demote-modal')
+@include('partials.profile.block-modal')
 @endsection

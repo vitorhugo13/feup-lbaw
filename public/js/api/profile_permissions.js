@@ -2,12 +2,12 @@
 
 let promoteButton = document.getElementById('confirm-promote')
 let demoteButton = document.getElementById('confirm-demote')
-let id = document.getElementsByClassName('user-info')[0].getAttribute('data-user-id')
 
 promoteButton.addEventListener('click', promote)
 demoteButton.addEventListener('click', demote)
 
 function sendRequest(role) {
+    let id = document.getElementsByClassName('user-info')[0].getAttribute('data-user-id')
     fetch('../api/users/' + id + '/role', {
         method: 'PUT',
         headers: {

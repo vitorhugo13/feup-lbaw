@@ -23,7 +23,7 @@
                 @if ($author != null)
                     <a href="{{ route('profile', $author->id) }}"><img class="rounded-circle" src="{{ asset($author->photo) }}" width="40"></a>
                 @else
-                    <a><img class="rounded-circle" src="{{ asset('storage/uploads/avatars/default.png') }}" width="40"></a>
+                    <a><img class="rounded-circle" src="{{ asset('storage/uploads/avatars/default.png') }}" alt="Post's author profile picture" width="40"></a>
                 @endif
                 <div class="name-time">
                     @if ($author != null)

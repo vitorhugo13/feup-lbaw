@@ -323,11 +323,24 @@ class UserController extends Controller
         return response()->json(['success' => "User " . $user->username . " is now a " . $new_role], 200);
     }
     
-    public function block($id) {
+    public function block(Request $request, $id) {
         $user = User::find($id);
         $this->authorize('block', Auth::user(), $user);
 
-        $user->role = 'Blocked';
+        $time = $request->input('time');
+
+        $validator =  Validator::make($request->all(), [
+            'time' => array(
+                'required',
+                'numeric',
+                'between:24,8760'
+                )
+        ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors(), 400);
+
+        //TODO: time logic
         $user->save();
 
         return response()->json(['success' => "User " . $user->username . " is now Blocked"], 200);

@@ -10,6 +10,7 @@
     - [ ] internal db error architecture
     - [ ] helper
     - [ ] html and css errors
+    - [ ] try and catch sql exceptions
 
 * **user profile**
     - [x] only the owner can edit the profile (policies)
