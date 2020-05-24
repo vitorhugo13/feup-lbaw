@@ -44,7 +44,7 @@
                 $currentDate = date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
                 $remaining = strtotime($user->release_date) - strtotime($currentDate);
             @endphp
-            @if($remaining - 3600> 0) 
+            @if($remaining - 3600 > 0) 
                 <div id="blocked" class="mt-5">
                     <p class="blocked-text mb-1">You are blocked for:</p>
                     <p class="remaining-time">

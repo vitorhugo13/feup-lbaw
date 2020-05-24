@@ -47,7 +47,7 @@ if (blockedUser != null) {
 
         // If the count down is finished, write some text
         if (distance <= 0) {
-
+            blockedUser.remove();
         }
     }, 1000);
 }
