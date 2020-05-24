@@ -3,6 +3,7 @@
 let checkboxes = document.querySelectorAll('.category-checkbox')
 let feed = document.getElementById('feed')
 let selectedCategories = []
+let page = 0
 
 function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {
@@ -11,7 +12,7 @@ function encodeForAjax(data) {
 }
 
 function filter(){
-    fetch('../api/filter/' + JSON.stringify(selectedCategories), {
+    fetch('../api/filter/' + JSON.stringify(selectedCategories) + "/" + page, {
         method: 'GET',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -28,6 +29,30 @@ function filter(){
             window.scrollTo(0, 0)
             refreshVoteListeners()
             refreshStarsListeners()
+        })
+    })
+}
+
+function pageBottom(){
+    fetch('../api/filter/' + JSON.stringify(selectedCategories) + "/" + page, {
+        method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response['status'] != 200) {
+            console.log(response)
+            return;
+        }
+        response.json().then(data => {
+            let newPosts = data['feed']
+
+            if(newPosts != null){
+                feed.innerHTML += newPosts
+                refreshVoteListeners()
+                refreshStarsListeners()
+            }
         })
     })
 }
@@ -49,6 +74,7 @@ function clicked(event){
         selectedCategories.splice(index, 1)
 
     filter()
+    page = 0; 
 }
 
 checkClicked()

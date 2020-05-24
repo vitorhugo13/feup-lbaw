@@ -72,10 +72,10 @@ Route::delete('api/contents/{id}/votes', 'ContentController@remove');
 Route::put('api/contents/{id}/votes', 'ContentController@update');
 
 //API Feed
-Route::get('api/fresh', 'FeedController@fresh');
-Route::get('api/hot', 'FeedController@hot');
-Route::get('api/top', 'FeedController@top');
-Route::get('api/filter/{selected_categories}', 'FeedController@filter');
+Route::get('api/fresh/{page}', 'FeedController@fresh');
+Route::get('api/hot/{page}', 'FeedController@hot');
+Route::get('api/top/{page}', 'FeedController@top');
+Route::get('api/filter/{selected_categories}/{page}', 'FeedController@filter');
 
 //API Comments
 Route::post('/api/comments', 'CommentController@create');

@@ -12,6 +12,8 @@ use Carbon\Carbon;
 class FeedController extends Controller
 {
 
+    const PAGE_SIZE = 5;
+
     private function getDefaultFeedPosts(){
         $user = User::find(Auth::user()->id);
         $starred_posts = $user->starredPosts;
@@ -36,15 +38,15 @@ class FeedController extends Controller
         return $posts;
     }
 
-    private function getFreshPosts(){
+    private function getFreshPosts($page){
         $posts = Post::get()->sortByDesc(function ($post) {
             return $post->content->creation_time;
         });
 
-        return $posts->take(30);
+        return $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'));
     }
 
-    private function getHotPosts()
+    private function getHotPosts($page)
     {
         $posts = Post::get()->sortByDesc(function ($post) {
             $value = $post->num_comments;
@@ -63,33 +65,32 @@ class FeedController extends Controller
             return $value;
         });
 
-        return $posts->take(30);
+        return $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'));
     }
 
-    private function getTopPosts()
+    private function getTopPosts($page)
     {
         $posts = Post::get()->sortByDesc(function ($post) {
             return $post->num_comments + 2 * $post->content->upvotes - $post->content->downvotes;
         });
 
-        return $posts->take(30);
+        return $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'));
     }
 
     public function showFeed()
     {
         $starred_categories = Auth::user()->starredCategories->sortBy('title');
         
-        $posts = $this->getDefaultFeedPosts()->take(30);
+        $posts = $this->getDefaultFeedPosts()->take(config('constants.page-size'));
 
         return view('pages.feed', ['posts' => $posts, 'starred_categories' => $starred_categories]);
     }
 
-    public function filter($selected_categories){     
+    public function filter($selected_categories, $page){     
         $selected_categories = collect(json_decode($selected_categories));
 
-
         if($selected_categories->isEmpty())
-            $posts = $this->getDefaultFeedPosts()->take(30);
+            $posts = $this->getDefaultFeedPosts();
         else{
             $posts = Post::get()->filter(function($post) use($selected_categories){
                 if($post->content->author == Auth::user()->id)
@@ -105,6 +106,11 @@ class FeedController extends Controller
                 return $post->content->creation_time;
             });
         }
+
+        $posts = $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'));
+
+        if($page != 0 && $posts->isEmpty())
+            return response()->json(['feed' => null]);
               
         return response()->json(['feed' => view('partials.posts.post_deck', ['posts' => $posts])->render()]);
     }
@@ -114,24 +120,39 @@ class FeedController extends Controller
         $fresh_categories = Category::orderBy('last_activity', 'DESC')->get()->take(5);
         $hot_categories = Category::get()->sortBy(function ($category) {
             return $category->num_posts + strtotime($category->last_activity);
-        })->take(5); //TODO: Probably change this criteria
+        })->take(5);
         $top_categories = Category::orderBy('num_posts', 'DESC')->get()->take(5);
 
-        return view('pages.home', ['posts' => $this->getFreshPosts(), 'fresh_categories' => $fresh_categories, 'hot_categories' => $hot_categories, 'top_categories' => $top_categories]);
+        return view('pages.home', ['posts' => $this->getFreshPosts(0), 'fresh_categories' => $fresh_categories, 'hot_categories' => $hot_categories, 'top_categories' => $top_categories]);
     }
 
-    public function fresh()
+    public function fresh($page)
     {
-        return response()->json(['feed' => view('partials.posts.post_deck', ['posts' => $this->getFreshPosts()])->render()]);
+        $posts = $this->getFreshPosts($page);
+
+        if($page != 0 && $posts->isEmpty())
+            return response()->json(['feed' => null]);
+
+        return response()->json(['feed' => view('partials.posts.post_deck', ['posts' => $posts])->render()]);
     }
 
-    public function hot()
+    public function hot($page)
     {
-        return response()->json(['feed' => view('partials.posts.post_deck', ['posts' => $this->getHotPosts()])->render()]);
+        $posts = $this->getHotPosts($page);
+
+        if($page != 0 && $posts->isEmpty())
+            return response()->json(['feed' => null]);
+
+        return response()->json(['feed' => view('partials.posts.post_deck', ['posts' => $posts])->render()]);
     }
 
-    public function top()
+    public function top($page)
     {
-        return response()->json(['feed' => view('partials.posts.post_deck', ['posts' => $this->getTopPosts()])->render()]);
+        $posts = $this->getTopPosts($page);
+
+        if($page != 0 && $posts->isEmpty())
+            return response()->json(['feed' => null]);
+
+        return response()->json(['feed' => view('partials.posts.post_deck', ['posts' => $posts])->render()]);
     }
 }

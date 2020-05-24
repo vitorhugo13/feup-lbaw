@@ -10,6 +10,7 @@
     <script src="{{ asset('js/api/rating.js') }}" defer></script>
     <script src="{{ asset('js/api/star.js') }}" defer></script>
     <script src="{{ asset('js/api/post_order.js') }}" defer></script>
+    <script src="{{ asset('js/scroll.js') }}" defer></script>
 @endpush
 
 @section('side-bar')
