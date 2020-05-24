@@ -29,16 +29,17 @@
         @endif
 
         @if(Auth::check() && ($user->id == Auth::user()->id || Auth::user()->role == 'Administrator'))
-            @if($user->release_date > 0)
+            @php
+                $currentDate = date("Y-m-d");
+                $currentTime = date("H:i:s");
+                $currentDate = date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
+                $remaining = strtotime($user->release_date) - strtotime($currentDate);
+            @endphp
+            @if($remaining - 3600 > 0) 
                 <div id="blocked" class="mt-5">
                     <p class="blocked-text mb-1">You are blocked for:</p>
                     <p class="remaining-time">
                         @php
-                            $currentDate = date("Y-m-d");
-                            $currentTime = date("H:i:s");
-                            $currentDate = date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
-                            $remaining = strtotime($user->release_date) - strtotime($currentDate);
-
                             $hours = floor($remaining / 3600) - 1;
                             $minutes = floor(($remaining / 60) % 60);
                             $seconds = $remaining % 60;

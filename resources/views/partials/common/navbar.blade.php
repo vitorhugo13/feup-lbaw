@@ -18,20 +18,19 @@
             </div>
 
             <div class="dropdown" style="margin-left: 1em">
-                {{-- FIXME: the image path is temporary --}}
                 <img class="rounded-circle dropdown-toggle" data-toggle="dropdown" src="{{ asset(Auth::user()->photo) }}" alt="Profile picture dropdown" height="30">
                 <div class="dropdown-menu dropdown-menu-right">
-                    {{-- TODO: add all of these links --}}
-                    <a class="dropdown-item" href="{{ url('../users', Auth::user()->id) }}">Profile</a> {{-- FIXME:route was not working --}}
+                    <a class="dropdown-item" href="{{ url('../users', Auth::user()->id) }}">Profile</a>
                     <a class="dropdown-item" href="{{ route('feed') }}">Feed</a>
                     <a class="dropdown-item" href="{{ route('reports') }}">Reports</a>
-                    @if (Auth::user()->role == 'Blocked')
+                    @php
+                        $currentDate = date("Y-m-d");
+                        $currentTime = date("H:i:s");
+                        $currentDate = date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
+                        $remaining = strtotime(Auth::user()->release_date) - strtotime($currentDate);
+                    @endphp
+                    @if (Auth::user()->role == 'Blocked' && $remaining - 3600 > 0)
                         @php
-                            $currentDate = date("Y-m-d");
-                            $currentTime = date("H:i:s");
-                            $currentDate = date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
-                            $remaining = strtotime(Auth::user()->release_date) - strtotime($currentDate);
-
                             $hours = floor($remaining / 3600) - 1;
                             $minutes = floor(($remaining / 60) % 60);
                             $seconds = $remaining % 60;

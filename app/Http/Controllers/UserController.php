@@ -86,13 +86,7 @@ class UserController extends Controller
 
 
     /*===================== EDIT PROFILE ============================ */
-
-
-
-    // TODO: CHANGE POLICIES -> everyone is capable of edit profile of other users :'(
     // TODO: consider creating a disk in filesystems.php for uploads, may be a good idea, dont know :)
-    // FIXME: no restrictions to the uploaded file
-    // FIXME: photos have to be "cut", so all photo have the same width*length
 
     public function changePhoto(Request $request, $id, MessageBag $mb)
     {

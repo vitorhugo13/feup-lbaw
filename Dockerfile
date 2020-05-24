@@ -18,3 +18,4 @@ RUN mkdir /var/run/php
 
 # Start command
 CMD sh /docker_run.sh
+
