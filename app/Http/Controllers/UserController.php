@@ -345,4 +345,13 @@ class UserController extends Controller
 
         return response()->json(['success' => "User " . $user->username . " is now Blocked"], 200);
     }
+
+    public function delete($id){
+
+        $user = User::find($id);
+        $this->authorize('delete', $user);
+        $user->delete();
+
+        return redirect('home')->with('alert-success', "Profile was deleted!");
+    }
 }

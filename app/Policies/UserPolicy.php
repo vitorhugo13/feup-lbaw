@@ -27,4 +27,8 @@ class UserPolicy{
         //Only Admins and Mods can block; only Members can be blocked
         return ($requester->role == 'Administrator' || $requester->role == 'Moderator') && $requestee->role == 'Member';
     }
+
+    public function delete(User $user, User $owner){
+        return $user != null && $owner != null && $user->id == $owner->id;
+    }
 }

@@ -11,6 +11,7 @@
     <script src="{{ asset('js/api/profile_permissions.js') }}" defer></script>
     <script src="{{ asset('js/api/block_user.js') }}" defer></script>
     <script src="{{ asset('js/counter.js') }}" defer></script>
+    <script src="{{ asset('js/profile.js') }}" defer></script>
 @endpush
 
 @section('main-content')
@@ -77,8 +78,7 @@
     <p class="number-posts ml-1 mb-2"> <strong>Posts</strong> ({{count($user->posts)}})</p>
     @each('partials.posts.preview', $user->posts, 'post')
 </div>
-
-@include('partials.profile.delete_profile')
+@include('partials.profile.delete_profile', ['id' => $user->id])
 @include('partials.profile.promote-modal')
 @include('partials.profile.demote-modal')
 @include('partials.profile.block-modal')
