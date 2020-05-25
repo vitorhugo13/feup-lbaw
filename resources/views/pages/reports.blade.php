@@ -18,9 +18,9 @@
 
     <nav id="sidebar-navigation" class="d-flex flex-column align-items-center">
         <div class="nav nav-pills" id="mid-pills-tab" role="tablist">
-            <a class="nav-item nav-link posts-tab active" id="posts-nav" data-toggle="tab" href="#posts-tab" role="tab" aria-selected="true">Posts</a>
+            <a class="nav-item nav-link active" id="posts-nav" data-toggle="tab" href="#posts-tab" role="tab" aria-selected="true">Posts</a>
             <a class="nav-item nav-link" id="comments-nav" data-toggle="tab" href="#comments-tab" role="tab" aria-selected="false">Comments</a>
-            <a class="nav-link" id="contests-nav" data-toggle="tab" href="#contests-tab" role="tab" aria-selected="false">Contests</a>
+            <a class="nav-item nav-link" id="contests-nav" data-toggle="tab" href="#contests-tab" role="tab" aria-selected="false">Contests</a>
         </div>
     </nav>
 
