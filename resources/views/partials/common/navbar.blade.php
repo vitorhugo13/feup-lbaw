@@ -2,8 +2,9 @@
     <nav class="navbar">
     <a class="navbar-brand" href="{{ route('home') }}"><img src="{{asset('images/logo_text.svg')}}" width="50" alt="LAMA logo" /></a>
         {{-- TODO: change the action --}}
-        <form class="expandable-search" action="{{url('search')}}"> 
-            <input type="search" placeholder="Search" aria-label="Search" />
+        <form method="POST" class="expandable-search" action="{{ url('search/0') }}"> 
+            @csrf
+            <input type="search" placeholder="Search" aria-label="Search" name="search"/>
         </form>
 
         <div class="d-flex align-items-center">
@@ -61,6 +62,7 @@
 </header>
 
 {{-- TODO: change the search url --}}
-<form action="{{url('search')}}" id="collapsed-search" class="d-flex flex-row justify-content-center">
-    <input type="search" placeholder="Search" aria-label="Search" />
+<form method="POST" action="{{ url('search/0') }}" id="collapsed-search" class="d-flex flex-row justify-content-center">
+    @csrf
+    <input type="search" placeholder="Search" aria-label="Search" id="search"/>
 </form>
