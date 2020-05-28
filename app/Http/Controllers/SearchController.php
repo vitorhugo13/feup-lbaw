@@ -11,10 +11,10 @@ use App\Models\Post;
 
 class SearchController extends Controller
 {
-    public function show(Request $request, $page)
-    {
+
+    private function text_search($search){
         $results = DB::table('post')
-                    ->selectRaw('post_info.id AS result_id, ts_rank(post_info.document, to_tsquery(\'english\', ?)) AS rank', [$request->input('search')])
+                    ->selectRaw('post_info.id AS result_id, ts_rank(post_info.document, to_tsquery(\'english\', ?)) AS rank', [$search])
                     ->fromRaw('(SELECT post.id AS id,
                                 setweight(to_tsvector(\'english\', post.title), \'A\') ||
                                 setweight(to_tsvector(\'simple\', coalesce("user".username, \'\')), \'C\') ||
@@ -26,12 +26,14 @@ class SearchController extends Controller
                                 JOIN category ON (post_category.category = category.id)
                                 GROUP BY post.id, "user".id) AS post_info
                                 WHERE post_info.document @@ to_tsquery(\'english\', ?)
-                                ORDER BY rank DESC', [$request->input('search')])->pluck('result_id')->all();
+                                ORDER BY rank DESC', [$search])->pluck('result_id')->all();
 
-        $posts = Post::all()->whereIn('id', $results);
+        return Post::all()->whereIn('id', $results);
+    }
 
-
-        //print_r($posts);
+    public function show(Request $request, $page)
+    {
+        $posts = $this->text_search($request->input('search'));
 
         return view('pages.search', ['posts' => $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'))]);
     }
