@@ -7,7 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 
 
-class everyMinute extends Command
+class BlockUserUpdate extends Command
 {
     /**
      * The name and signature of the console command.

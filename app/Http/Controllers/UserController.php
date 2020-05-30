@@ -111,6 +111,11 @@ class UserController extends Controller
             return redirect()->back()->withErrors($mb);
         }
 
+        if($avatar->getSize() > 1000000){
+            $mb->add('avatar', 'Maximum file size: 1MB');
+            return redirect()->back()->withErrors($mb);
+        }
+
       
         
         $path = $user->photo;
