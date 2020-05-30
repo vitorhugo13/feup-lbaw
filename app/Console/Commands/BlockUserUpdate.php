@@ -41,6 +41,5 @@ class BlockUserUpdate extends Command
     public function handle()
     {
         User::whereNotNull('release_date')->where('release_date', '<', Carbon::parse(now())->addHour())->update(['release_date' => NULL, 'role' => 'Member']);
-        echo (Carbon::parse(now())->addHour());
     }
 }

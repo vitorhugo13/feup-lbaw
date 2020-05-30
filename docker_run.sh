@@ -9,4 +9,5 @@ php artisan storage:link
 echo "* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1" >> cronfile
 crontab cronfile
 rm cronfile
+
 nginx -g "daemon off;"
