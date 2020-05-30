@@ -111,13 +111,11 @@ class UserController extends Controller
             return redirect()->back()->withErrors($mb);
         }
 
-        if($avatar->getSize() > 1000000){
-            $mb->add('avatar', 'Maximum file size: 1MB');
+        if($avatar->getSize() > 5000000){
+            $mb->add('avatar', 'Maximum file size: 5MB');
             return redirect()->back()->withErrors($mb);
         }
 
-      
-        
         $path = $user->photo;
         $default = 'storage/uploads/avatars/default.png';
 
