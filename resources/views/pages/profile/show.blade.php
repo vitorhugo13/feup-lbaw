@@ -50,7 +50,7 @@
                         <span class="remain-min"><?=(($minutes < 10) ? '0' : '')?>{{$minutes}}m </span>
                         <span class="remain-sec"><?=(($seconds < 10) ? '0' : '')?>{{$seconds}}s</span>
                     </p>
-                    <button class="contest-button"><i class="fas fa-exclamation-circle"></i><strong> Contest</strong></button>
+                    <button class="contest-button" data-toggle="modal" data-target="#contest-modal"><i class="fas fa-exclamation-circle"></i><strong> Contest </strong></button>
                 </div>
             @endif
         @endif
@@ -79,8 +79,10 @@
     @each('partials.posts.preview', $user->posts, 'post')
 </div>
 
+
 @include('partials.profile.delete_profile')
 @include('partials.profile.promote-modal')
 @include('partials.profile.demote-modal')
 @include('partials.profile.block-modal')
+@include('partials.profile.contest-modal')
 @endsection
