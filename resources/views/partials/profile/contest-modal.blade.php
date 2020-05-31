@@ -10,15 +10,21 @@
             </div>
             <div class="modal-body">
                 <div class="blocked-reason">
-                    <span class="block-title"> Block reason: </span> you are a bastard
+
+                    @php
+                        
+                    @endphp
+
+                    <!--TODO: ir buscar razões de o user ter sido bloqueado-->
+                    <span class="block-title"> Block reason:</span> You were blocked because you did not follow the LAMA rules
                 </div>
                 <div class="contest-reason">
-                    <textarea rows="5" cols="49" placeholder="Here you must present the reason why you think you shouldn't have been blocked." class="mt-3 form-control" name="reason_contest"></textarea> 
+                    <textarea rows="5" cols="49" placeholder="Here you must present the reason why you think you shouldn't have been blocked." class="mt-3 form-control justification" name="reason_contest"></textarea> 
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Send</button>
+                <button type="button" class="btn btn-primary submitContest">Send</button>
             </div>
         </div>
     </div>

@@ -88,7 +88,12 @@ class ReportController extends ContentController
     // TODO: create a new report
     // TODO: delete a report
     // TODO: sort a report
+
     // TODO: contest a report
+    public function contestReport(Request $request){
+        return response()->json(['success' => 'ok cheguei aqui'], 200);
+    }
+
     // TODO: sort a contest
 
 }
