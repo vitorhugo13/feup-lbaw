@@ -48,11 +48,13 @@ submit_contest.addEventListener('click', function() {
         body: encodeForAjax({'user_id': user_id, 'justification': justification})
     }).then(response => {
         if (response['status'] != 200) {
-            console.log(response);
+            console.log(response)
+            addAlert('warning', 'Contest not submited!')
             return;
         }
         response.json().then(data => {
             console.log(data)
+            addAlert('success', 'Contest successfuly submited.')
         })
     })
 
