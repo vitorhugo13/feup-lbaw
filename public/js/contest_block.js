@@ -55,6 +55,16 @@ submit_contest.addEventListener('click', function() {
         response.json().then(data => {
             console.log(data)
             addAlert('success', 'Contest successfuly submited.')
+            document.querySelector('.contest-button').remove()
+
+
+            let nBut = document.createElement('button')
+            nBut.setAttribute('class', 'already-contested')
+            nBut.setAttribute('title', 'You can only contest once.')
+            nBut.innerHTML = "<i class=\"fas fa-exclamation-circle\"></i><strong> Contest </strong>"
+
+            document.getElementById('blocked').insertAdjacentElement('beforeend', nBut)
+
         })
     })
 

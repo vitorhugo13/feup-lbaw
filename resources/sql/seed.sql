@@ -619,8 +619,8 @@ insert into "user" (id, username, email, password, bio) values (99, 'hhansen2q',
 insert into "user" (id, username, email, password, bio) values (100, 'abomfield2r', 'bkleinerman2r@domainmarket.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat.');
 insert into "user" (id, username, email, password, bio, role, release_date) values (101, 'vitinho', 'vitinho@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-06-01 21:50:51');
 insert into "user" (id, username, email, password, bio, role) values (102, 'bernas', 'bernas@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Bernas.', 'Administrator');
-insert into "user" (id, username, email, password, bio, role, release_date) values (103, 'joaozinho', 'vitinho44@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-05-31 21:50:51');
-insert into "user" (id, username, email, password, bio, role, release_date) values (104, 'maezinha', 'vitinho4444@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-05-31 21:52:51');
+insert into "user" (id, username, email, password, bio, role, release_date) values (103, 'joaozinho', 'vitinho44@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-06-01 21:50:51');
+insert into "user" (id, username, email, password, bio, role, release_date) values (104, 'maezinha', 'vitinho4444@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-06-01 21:52:51');
 
 
 select setval('user_id_seq', 104);

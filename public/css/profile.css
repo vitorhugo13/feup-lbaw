@@ -101,7 +101,7 @@
     color: var(--foreground);
 }
 
-.contest-button{
+.contest-button, .already-contested{
     width: 100%;
     padding: 0.7em 1.2em;
     margin: auto;
@@ -118,11 +118,20 @@
 .contest-button:hover{
     background-color: var(--error-color);
     color: var(--foreground);
+
+    transition: all ease-in-out 0.1s;
+    cursor: pointer;
+}
+
+.already-contested:hover{
+    background-color: var(--background);
+    color: var(--foreground);
 }
 
 .contest-button:focus{
     outline: 0 none;
 }
+
 
 /* ----------------- Glory Points -------------- */
 .glory-points {
