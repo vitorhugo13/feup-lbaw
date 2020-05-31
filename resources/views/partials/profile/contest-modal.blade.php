@@ -10,19 +10,6 @@
             </div>
             <div class="modal-body">
                 <div class="blocked-reason">
-
-                    @php
-                        $contents = Illuminate\Support\Facades\DB::table('content')->where('author', $user->id)->get('id');
-                        var_dump($contents);
-                        // $report_file = Illuminate\Support\Facades\DB::table('report_file')
-                        //     ->where('sorted', true)
-                        //     ->where('blocked', true)
-                        //     ->whereIn('content', $contents)->first();
-                        
-                        
-                                                
-                    @endphp
-
                     <!--TODO: ir buscar razões de o user ter sido bloqueado-->
                     <span class="block-title"> Block reason:</span> 
                 </div>
