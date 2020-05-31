@@ -13,8 +13,11 @@ class SearchController extends Controller
 {
 
     private function text_search($search){
+        $query = str_replace(' ', ' | ', $search);
+
+        error_log($query);
         $results = DB::table('post')
-                    ->selectRaw('post_info.id AS result_id, ts_rank(post_info.document, to_tsquery(\'english\', ?)) AS rank', [$search])
+                    ->selectRaw('post_info.id AS result_id, ts_rank(post_info.document, to_tsquery(\'english\', ?)) AS rank', [$query])
                     ->fromRaw('(SELECT post.id AS id,
                                 setweight(to_tsvector(\'english\', post.title), \'A\') ||
                                 setweight(to_tsvector(\'simple\', coalesce("user".username, \'\')), \'C\') ||
@@ -26,7 +29,7 @@ class SearchController extends Controller
                                 JOIN category ON (post_category.category = category.id)
                                 GROUP BY post.id, "user".id) AS post_info
                                 WHERE post_info.document @@ to_tsquery(\'english\', ?)
-                                ORDER BY rank DESC', [$search])->pluck('result_id')->all();
+                                ORDER BY rank DESC', [$query])->pluck('result_id')->all();
 
         return Post::all()->whereIn('id', $results);
     }
