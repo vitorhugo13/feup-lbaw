@@ -12,6 +12,7 @@
     <script src="{{ asset('js/api/block_user.js') }}" defer></script>
     <script src="{{ asset('js/counter.js') }}" defer></script>
     <script src="{{ asset('js/contest_block.js') }}" defer></script>
+    <script src="{{ asset('js/api/block_information.js') }}" defer></script>
 @endpush
 
 @section('main-content')

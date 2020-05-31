@@ -1,13 +1,10 @@
 'use strict'
 
-let submit_contest = document.querySelector('.modal-footer .submitContest')
+let contest_button = document.querySelector('.contest-button')
 
-submit_contest.addEventListener('click', function(){
-    let contest_reason = document.querySelector('.contest-reason .justification').value
-    let user_id = document.getElementsByClassName('user-info')[0].getAttribute('data-user-id')
-    let report_file_id = document.querySelector('#reportFile').getAttribute("value")
+contest_button.addEventListener('click', function(){
 
-    fetch('../api/reports/' + report_file_id + '/contests', {
+    fetch('../api/reports/contest/reasons', {
         method: 'POST',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -21,8 +18,8 @@ submit_contest.addEventListener('click', function(){
         }
         response.json().then(data => {
             console.log(data['success'])
+            document.querySelector('#reason_for_block').innerHTML = "olaaa"
+            document.querySelector('#reportFile').setAttribute("value", 34)
         })
     })
-
-    $('#contest-modal').modal('hide')
 })

@@ -10,21 +10,8 @@
             </div>
             <div class="modal-body">
                 <div class="blocked-reason">
-
-                    @php
-                        $contents = Illuminate\Support\Facades\DB::table('content')->where('author', $user->id)->get('id');
-                        var_dump($contents);
-                        // $report_file = Illuminate\Support\Facades\DB::table('report_file')
-                        //     ->where('sorted', true)
-                        //     ->where('blocked', true)
-                        //     ->whereIn('content', $contents)->first();
-                        
-                        
-                                                
-                    @endphp
-
-                    <!--TODO: ir buscar razões de o user ter sido bloqueado-->
-                    <span class="block-title"> Block reason:</span> 
+                    <input type="hidden" id="reportFile" name="report_file" value="">
+                    <span class="block-title"> Block reason:</span> <span id="reason_for_block"></span>
                 </div>
                 <div class="contest-reason">
                     <textarea rows="5" cols="49" placeholder="Here you must present the reason why you think you shouldn't have been blocked." class="mt-3 form-control justification" name="reason_contest"></textarea> 

@@ -135,4 +135,9 @@ class ReportController extends ContentController
     public function sortContest($id, $decision) {
 
     }
+
+    public function getBlockReasons()
+    {
+        return response()->json(['success' => 'ok cheguei aqui boooiiiii'], 200);
+    }
 }
