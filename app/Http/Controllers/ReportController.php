@@ -118,13 +118,7 @@ class ReportController extends ContentController
     // CONTESTS
 
     public function getBlockReasons() {
-        $contents = Content::where('author', Auth::user()->id)
-            ->select('id')->get();
-
-        $report = ReportFile::where('blocked', true)
-        ->where('sorted', true)
-        ->whereIn('content', $contents)
-        ->first();
+        $report = Auth::user()->getBlockReport();
 
         $reasons_array = $report->getReasons();
         $reasons = $reasons_array[0];
@@ -137,15 +131,19 @@ class ReportController extends ContentController
     // TODO: contest a report
     public function contestReport($id, Request $request) {
         
-        // user id
-        // justification
+        $user = $request['user_id'];
+        $justification = $request['justification'];
 
         // authorize
 
-        // create new contest
-        // set report_file sorted to false
+        $contest = new Contest;
+        $contest->justification = $justification;
+        $contest->report = $id;
+        $contest->save();
 
-        return response()->json(['success' => 'ok cheguei aqui'], 200);
+        ReportFile::find($id)->update(['sorted' => false]);
+
+        return response()->json(['success' => 'Contest successfuly created.'], 200);
     }
 
     // TODO: sort a contest
