@@ -6,16 +6,23 @@ let page = 0
 let filters = [0,0,0]
 
 function update_filter(){
-
+    let filters_request = ''
     let active_filters = ['username', 'category', 'title']
 
     for(let i = 0; i < filters.length; i++){
-        if(filters[i] == 0)
-            active_filters.slice(i, 1)
-    }
+        filters_request += active_filters[i]
 
-    /*
-    fetch('../api/' + criteria + "/" + page, {
+        if(filters[i] != 0)
+            filters_request += '=true'
+        else  
+            filters_request += '=false'
+
+        if(i != filters.length - 1)
+            filters_request += '&'
+    }
+   
+    
+    fetch('../api/search/filter?' + filters_request, {
         method: 'GET',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -32,7 +39,7 @@ function update_filter(){
             refreshVoteListeners()
             refreshStarsListeners()
         })
-    })*/
+    })
 }
 
 function filter_username(){

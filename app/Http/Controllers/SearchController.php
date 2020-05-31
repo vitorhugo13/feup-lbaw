@@ -11,17 +11,27 @@ use App\Models\Post;
 
 class SearchController extends Controller
 {
+    private $search;
+    
+    private function text_search($username, $title, $category){
+        $filters_array = [];
 
-    private function text_search($search){
-        $query = str_replace(' ', ' | ', $search);
+        if($username) {
+            array_push($filters_array, 'setweight(to_tsvector(\'english\', post.title), \'A\')');
+        }
+        if($title) {
+            array_push($filters_array, 'setweight(to_tsvector(\'simple\', coalesce("user".username, \'\')), \'C\')');   
+        }
+        if($category) {
+            array_push($filters_array, 'setweight(to_tsvector(\'english\', coalesce(string_agg(category.title, \' \'))), \'B\')');
+        }
 
-        error_log($query);
+        $filters = implode(' || ', $filters_array);
+
         $results = DB::table('post')
-                    ->selectRaw('post_info.id AS result_id, ts_rank(post_info.document, to_tsquery(\'english\', ?)) AS rank', [$query])
+                    ->selectRaw('post_info.id AS result_id, ts_rank(post_info.document, to_tsquery(\'english\', ?)) AS rank', [$this->search])
                     ->fromRaw('(SELECT post.id AS id,
-                                setweight(to_tsvector(\'english\', post.title), \'A\') ||
-                                setweight(to_tsvector(\'simple\', coalesce("user".username, \'\')), \'C\') ||
-                                setweight(to_tsvector(\'english\', coalesce(string_agg(category.title, \' \'))), \'B\') as document
+                                ? as document
                                 FROM post
                                 JOIN content ON (post.id = content.id)
                                 LEFT JOIN "user" ON (content.author = "user".id)
@@ -29,19 +39,31 @@ class SearchController extends Controller
                                 JOIN category ON (post_category.category = category.id)
                                 GROUP BY post.id, "user".id) AS post_info
                                 WHERE post_info.document @@ to_tsquery(\'english\', ?)
-                                ORDER BY rank DESC', [$query])->pluck('result_id')->all();
+                                ORDER BY rank DESC', [$filters, $this->search])->pluck('result_id')->all();
 
         return Post::all()->whereIn('id', $results);
     }
 
     public function show(Request $request, $page)
     {
-        $posts = $this->text_search($request->input('search'));
+        $this->search = str_replace(' ', ' | ', $request->input('search'));
+
+        $posts = $this->text_search(true, true, true);
 
         return view('pages.search', ['posts' => $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'))]);
     }
 
     public function filter(Request $request, $page){
-        
+        $username = $request->input('username');
+        $title = $request->input('title');
+        $category = $request->input('category');
+
+        if(!$username && !$title && !$category) {
+            $posts = $this->text_search(true, true, true);
+        } else {
+            $posts = $this->text_search($username, $title, $category);
+        }
+
+        return view('pages.search', ['posts' => $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'))]);
     }
 }

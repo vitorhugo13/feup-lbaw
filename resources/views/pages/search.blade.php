@@ -7,7 +7,6 @@
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('js/filters.js') }}" defer></script>
     <script src="{{ asset('js/api/rating.js') }}" defer></script>
     <script src="{{ asset('js/api/star.js') }}" defer></script>
     <script src="{{ asset('js/search.js') }}" defer></script>
