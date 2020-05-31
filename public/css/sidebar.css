@@ -22,6 +22,14 @@
 }
 
 /* ----------- Filters on top of page for mobile --- */
+
+.filter-title {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--main-color);
+    margin: 0.5em 0 0 1.5em;
+}
+
 .filters #mid-pills-tab>a {
     padding-bottom: 0.2em;
     background-color: var(--background);
