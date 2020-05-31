@@ -40,4 +40,8 @@ class SearchController extends Controller
 
         return view('pages.search', ['posts' => $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'))]);
     }
+
+    public function filter(Request $request, $page){
+        
+    }
 }

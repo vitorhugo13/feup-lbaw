@@ -75,6 +75,7 @@ Route::get('api/fresh/{page}', 'FeedController@fresh');
 Route::get('api/hot/{page}', 'FeedController@hot');
 Route::get('api/top/{page}', 'FeedController@top');
 Route::get('api/filter/{selected_categories}/{page}', 'FeedController@filter');
+Route::get('api/filter/{filters}/{page}', 'SearchController@filter');
 
 //API Comments
 Route::post('/api/comments', 'CommentController@create');

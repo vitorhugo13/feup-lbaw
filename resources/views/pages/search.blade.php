@@ -10,16 +10,15 @@
     <script src="{{ asset('js/filters.js') }}" defer></script>
     <script src="{{ asset('js/api/rating.js') }}" defer></script>
     <script src="{{ asset('js/api/star.js') }}" defer></script>
+    <script src="{{ asset('js/search.js') }}" defer></script>
 @endpush
 
 @section('side-bar')
     <div id="sidebar" class="d-flex flex-column align-items-center">
-        <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
+        <div id="sidebar-navigation" class="d-flex flex-column align-items-start">
             <nav>
-                <div class="nav nav-pills" id="pills-tab" role="tablist">
-                    <a class="nav-item nav-link fresh-tab active" data-toggle="tab" href="#nav-fresh" aria-selected="true">Fresh</a>
-                    <a class="nav-item nav-link hot-tab" data-toggle="tab" href="#nav-hot" aria-selected="false">Hot</a>
-                    <a class="nav-item nav-link top-tab" data-toggle="tab" href="#nav-top" aria-selected="false">Top</a>
+                <div class="filter-title">
+                    Filters:
                 </div>
             </nav>
             <div class="d-flex flex-column align-self-start" id="filters">
