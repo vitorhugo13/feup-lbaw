@@ -11,6 +11,7 @@
     <script src="{{ asset('js/api/profile_permissions.js') }}" defer></script>
     <script src="{{ asset('js/api/block_user.js') }}" defer></script>
     <script src="{{ asset('js/counter.js') }}" defer></script>
+    <script src="{{ asset('js/contest_block.js') }}" defer></script>
 @endpush
 
 @section('main-content')
@@ -37,7 +38,13 @@
             @endphp
             @if($remaining - 3600 > 0) 
                 <div id="blocked" class="mt-5">
-                    <p class="blocked-text mb-1">You are blocked for:</p>
+
+                    @if(Auth::check() && $user->id == Auth::user()->id )
+                        <p class="blocked-text mb-1">You are blocked for:</p>
+                    @else 
+                        <p class="blocked-text mb-1">User blocked for: </p>
+                    @endif
+
                     <p class="remaining-time">
                         @php
                             $hours = floor($remaining / 3600) - 1;
@@ -50,7 +57,11 @@
                         <span class="remain-min"><?=(($minutes < 10) ? '0' : '')?>{{$minutes}}m </span>
                         <span class="remain-sec"><?=(($seconds < 10) ? '0' : '')?>{{$seconds}}s</span>
                     </p>
-                    <button class="contest-button"><i class="fas fa-exclamation-circle"></i><strong> Contest</strong></button>
+
+                    @if(Auth::check() && $user->id == Auth::user()->id )
+                        <button class="contest-button" data-toggle="modal" data-target="#contest-modal"><i class="fas fa-exclamation-circle"></i><strong> Contest </strong></button>
+                    @endif
+
                 </div>
             @endif
         @endif
@@ -79,8 +90,10 @@
     @each('partials.posts.preview', $user->posts, 'post')
 </div>
 
+
 @include('partials.profile.delete_profile')
 @include('partials.profile.promote-modal')
 @include('partials.profile.demote-modal')
 @include('partials.profile.block-modal')
+@include('partials.profile.contest-modal', ['user' => $user])
 @endsection

@@ -210,7 +210,27 @@
     margin-right: 0.5em;
 }
 
+/* ----------========== CONTEST MODAL  ==========---------- */
+#contest-modal .blocked-reason .block-title{
+    color: var(--main-color);
+}
 
+#contest-modal .contest-reason > textarea{
+    background-color: var(--background-strong);
+    color: var(--foreground);
+    border-style: none;
+    border: solid 1px transparent;
+
+    border-radius: 5px;
+
+    font-size: 0.9em;
+    font-weight: 300;
+}
+
+#contest-modal .contest-reason > textarea:focus{
+    outline: 0 none;
+    border: solid 1px var(--foreground);
+}
 /* ----------========== REPORT MODAL (COMMENT/POST) ==========---------- */
 
 #report-modal .modal-body {

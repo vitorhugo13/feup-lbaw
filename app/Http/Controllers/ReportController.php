@@ -115,11 +115,24 @@ class ReportController extends ContentController
 
     }
 
+    // CONTESTS
+
+    // TODO: contest a report
+    public function contestReport($id, Request $request) {
+        
+        // user id
+        // justification
+
+        // authorize
+
+        // create new contest
+        // set report_file sorted to false
+
+        return response()->json(['success' => 'ok cheguei aqui'], 200);
+    }
+
     // TODO: sort a contest
     public function sortContest($id, $decision) {
 
     }
-
-    // TODO: contest a report
-
 }
