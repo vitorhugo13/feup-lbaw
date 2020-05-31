@@ -102,8 +102,8 @@ function drawPostReportEntry(report) {
     menu.setAttribute('class', 'dropdown-menu dropdown-menu-right')
     menu.innerHTML += '<a class="dropdown-item" href="#">Move</a>'
     menu.innerHTML += '<a class="dropdown-item" href="#">Delete</a>'
+    menu.innerHTML += '<a class="dropdown-item" href="#">Block User</a>'
     menu.innerHTML += '<a class="dropdown-item" href="#">Resolve</a>'
-    menu.innerHTML += '<a class="dropdown-item" href="#">Revert</a>'
     menu.innerHTML += '<a class="dropdown-item" href="#">Ignore</a>'
     dropdown.appendChild(menu)
 
@@ -141,8 +141,8 @@ function drawCommentReportEntry(report) {
     menu.setAttribute('class', 'dropdown-menu dropdown-menu-right')
     menu.innerHTML += '<a class="dropdown-item" href="#">Move</a>'
     menu.innerHTML += '<a class="dropdown-item" href="#">Delete</a>'
+    menu.innerHTML += '<a class="dropdown-item" href="#">Block User</a>'
     menu.innerHTML += '<a class="dropdown-item" href="#">Resolve</a>'
-    menu.innerHTML += '<a class="dropdown-item" href="#">Revert</a>'
     menu.innerHTML += '<a class="dropdown-item" href="#">Ignore</a>'
     dropdown.appendChild(menu)
 
@@ -178,11 +178,11 @@ function drawContestEntry(contest) {
 
     let menu = document.createElement('div')
     menu.setAttribute('class', 'dropdown-menu dropdown-menu-right')
-    menu.innerHTML += '<a class="dropdown-item" href="#">Move</a>'
-    menu.innerHTML += '<a class="dropdown-item" href="#">Delete</a>'
-    menu.innerHTML += '<a class="dropdown-item" href="#">Resolve</a>'
-    menu.innerHTML += '<a class="dropdown-item" href="#">Revert</a>'
-    menu.innerHTML += '<a class="dropdown-item" href="#">Ignore</a>'
+    // menu.innerHTML += '<a class="dropdown-item" href="#">Move</a>'
+    // menu.innerHTML += '<a class="dropdown-item" href="#">Delete</a>'
+    menu.innerHTML += '<a class="dropdown-item" href="#">Accept</a>'
+    menu.innerHTML += '<a class="dropdown-item" href="#">Reject</a>'
+    // menu.innerHTML += '<a class="dropdown-item" href="#">Ignore</a>'
     dropdown.appendChild(menu)
 
     row.appendChild(dropdown)

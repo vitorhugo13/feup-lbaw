@@ -86,9 +86,40 @@ class ReportController extends ContentController
     }
 
     // TODO: create a new report
+    public function createReport(Request $request) {
+
+        // author, content, reason
+
+        // authorize
+
+        // check if a report file for the content already exists
+        // if it does not exists
+            // create a new report file
+            // get its id
+        // else
+            // get the report file id
+
+        // create a new report
+        
+        // alert message
+        // respond
+    }
+
     // TODO: delete a report
+    public function deleteReport($id) {
+
+    }
+
     // TODO: sort a report
-    // TODO: contest a report
+    public function sortReport($id, $decision) {
+
+    }
+
     // TODO: sort a contest
+    public function sortContest($id, $decision) {
+
+    }
+
+    // TODO: contest a report
 
 }
