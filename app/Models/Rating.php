@@ -13,7 +13,7 @@ class Rating extends Model
   
   public function content()
   {
-    return $this->belongsTo('App\Models\Content', 'content_id');
+    return $this->belongsTo('App\Models\Content', 'content');
   }
 
   public function user()
