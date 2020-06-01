@@ -22,7 +22,7 @@
     - [x] how do we handle the countdown reaches 0?
     - [ ] change timestamp of release_date to null and user role (cronjob)
     - [X] only show countdown (in case user is blocked) if the user blocked is the one authenticated
-    - [ ] contest modal if user is blocked
+    - [x] contest modal if user is blocked
 
 * **edit profile**
     - [x] only allow .jpg and .png files in the photo form

@@ -61,7 +61,11 @@
                     </p>
 
                     @if(Auth::check() && $user->id == Auth::user()->id )
-                        <button class="contest-button" data-toggle="modal" data-target="#contest-modal"><i class="fas fa-exclamation-circle"></i><strong> Contest </strong></button>
+                        @if($user->getBlockReport() != null)
+                            <button class="contest-button" data-toggle="modal" data-target="#contest-modal"><i class="fas fa-exclamation-circle"></i><strong> Contest </strong></button>
+                        @else
+                            <button class="already-contested" title="You can only contest once."><i class="fas fa-exclamation-circle"></i><strong> Contest </strong></button>
+                        @endif
                     @endif
 
                 </div>
