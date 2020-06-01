@@ -2,7 +2,12 @@
         <article class="card category-card" data-category-id="{{ $category->id }}">
             <div class="card-body">
                 <header class="d-flex flex-row justify-content-between">
-                    <h5 class="card-title">! {{ $category->title }}</h5>
+                    <form method="POST" action="{{ url('search/0') }}"> 
+                        @csrf
+                        <input type="hidden" value="1" name="category"/>
+                        <input type="hidden" value="{{ $category->title }}" name="search"/>
+                        <button class="card-title" type="submit" aria-label="Category name search">! {{ $category->title }}</button>
+                    </form>
                     <aside>
                         @if(Auth::check() && Auth::user()->role == 'Administrator' && $category->title != 'Community News')
                             <a data-toggle="modal" data-category-id="{{ $category->id }}" data-target="#edit-category-modal"><i class="fas fa-pen"></i></a>

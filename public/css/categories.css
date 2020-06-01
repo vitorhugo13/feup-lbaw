@@ -52,11 +52,21 @@
     transition: border-color 400ms ease-in-out 0s;
     -webkit-transition: border-color 400ms ease-in-out 0s;
     -moz-transition: border-color 400ms ease-in-out 0s;
+}
+
+.category-card>.card-body button {
+    font-size: 1.1em;
+    color: var(--foreground);
+    background-color: var(--background-strong);
+    border: solid 0px;
     cursor: pointer;
 }
 
-.category-card>.card-body h5 {
-    font-size: 1.1em;
+.category-card>.card-body button:hover {
+    color: var(--main-color);
+    background-color: var(--background-strong);
+    border: solid 0px;
+    cursor: pointer;
 }
 
 #feed .community-section .category-card {

@@ -199,7 +199,7 @@ CREATE TABLE "star_category" (
 );
 
 CREATE TABLE "rating" (
-    user_id INTEGER REFERENCES "user" (id) ON UPDATE CASCADE ON DELETE SET NULL,
+    user_id INTEGER REFERENCES "user" (id) ON UPDATE CASCADE ON DELETE CASCADE,
     content INTEGER REFERENCES "content" (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (user_id, content),
     rating RATINGS NOT NULL,

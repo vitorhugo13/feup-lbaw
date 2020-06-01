@@ -26,7 +26,7 @@
                         </form>
                     </a>
                 @else
-                    <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#report-modal"  data-content-id="{{$post->id}}">Report</a>
                 @endif
                 @break
             @default
@@ -46,7 +46,7 @@
                         Delete
                         </form>
                     </a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#report-modal">Report</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#report-modal"  data-content-id="{{$post->id}}">Report</a>
                     <a class="dropdown-item" href="#">Resolve</a>
                     <a class="dropdown-item" data-toggle="modal" data-target="#move-modal">Move</a>
                     <a class="dropdown-item" href="#">Block User</a>

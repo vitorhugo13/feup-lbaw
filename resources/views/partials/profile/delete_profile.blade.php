@@ -9,12 +9,16 @@
             </div>
             <div class="modal-body ml-2 mt-2">
                 <p> Are you sure you want to delete your profile? </p>
-                <p> All your posts and comments will continue to exist but under the name 'anon'. </p>
+                <p> All your posts and comments will continue to exist but appear as anonymous. </p>
                 <p> There is no going back after this... </p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" id="confirm-delete">Delete</button>
+                <form id="delete-confirmation" method="POST" action="{{ route('deleteProfile', $id) }}">
+                    {{ method_field("DELETE") }}
+                    @csrf
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="confirm-delete" value="">Delete</button>
+                </form>
             </div>
         </div>
     </div>

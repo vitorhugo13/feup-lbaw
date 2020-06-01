@@ -13,6 +13,7 @@
     <script src="{{ asset('js/api/star.js') }}" defer></script>
     <script src="{{ asset('js/api/comment.js') }}" defer></script>
     <script src="{{ asset('js/api/post_move.js') }}" defer></script>
+    <script src="{{ asset('js/api/report_submit.js') }}" defer></script>
 @endpush
 
 @section('main-content')
@@ -20,7 +21,6 @@
     <header class="d-flex flex-column">
         <div class="d-flex flex-row align-items-center justify-content-between">
             <div class="post-user d-flex flex-row align-items-center justify-content-between">
-                {{-- TODO: this photo path is temporary --}}
                 @if ($author != null)
                     <a href="{{ route('profile', $author->id) }}"><img class="rounded-circle" src="{{ asset($author->photo) }}" width="40"></a>
                 @else

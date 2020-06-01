@@ -38,6 +38,7 @@ Route::get('api/reports/comments', 'ReportController@getComments');
 Route::get('api/reports/contests', 'ReportController@getContests');
 Route::post('api/reports/{id}/contests', 'ReportController@contestReport');
 Route::post('api/reports/contest/reasons', 'ReportController@getBlockReasons');
+Route::post('api/reports/create', 'ReportController@createReport');
 
 //User
 Route::get('users/{id}', 'UserController@showProfile')->name('profile');
@@ -45,15 +46,15 @@ Route::get('users/{id}/edit', 'UserController@showEditProfile');
 Route::post('users/{id}/edit/photo', 'UserController@changePhoto')->name('changePhoto');
 Route::post('users/{id}/edit/bio', 'UserController@changeBio');
 Route::post('users/{id}/edit/credentials', 'UserController@changeCredentials');
+Route::delete('users/{id}', 'UserController@delete')->name('deleteProfile');
 
 Route::post('api/notifications', 'UserController@getNotifications');
 
 // Homepage, Feed & Search
 Route::get('home', 'FeedController@showHome')->name('home');
 Route::get('feed', 'FeedController@showFeed')->name('feed');
-Route::get('search-results', 'SearchController@show')->name('search');
-Route::get('search', 'SearchController@search');
-Route::get('search/filter', 'SearchController@filter');
+Route::post('search/{page}', 'SearchController@show');
+Route::get('api/search/{page}/filter', 'SearchController@filter');
 
 // API Profile
 Route::post('api/delete/photo', 'UserController@deletePhoto');
@@ -78,6 +79,7 @@ Route::get('api/fresh/{page}', 'FeedController@fresh');
 Route::get('api/hot/{page}', 'FeedController@hot');
 Route::get('api/top/{page}', 'FeedController@top');
 Route::get('api/filter/{selected_categories}/{page}', 'FeedController@filter');
+Route::get('api/filter/{filters}/{page}', 'SearchController@filter');
 
 //API Comments
 Route::post('/api/comments', 'CommentController@create');
