@@ -1,16 +1,16 @@
 'use strict'
 
-function refreshIgnoreListeners() {
-    let items = document.getElementsByClassName('dropdown-ignore')
-    Array.from(items).forEach(element => { element.addEventListener('click', ignore) })
+function refreshResolveListeners() {
+    let items = document.getElementsByClassName('dropdown-resolve')
+    Array.from(items).forEach(element => { element.addEventListener('click', resolve) })
 }
 
-function ignore(event) {
+function resolve(event) {
     let elem = event.currentTarget
     let file = elem.parentNode.getAttribute('data-id')
 
     fetch('../api/reports/' + file, {
-        method: 'DELETE',
+        method: 'PUT',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'Accept': 'application/json',

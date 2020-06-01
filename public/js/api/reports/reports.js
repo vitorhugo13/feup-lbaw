@@ -23,6 +23,7 @@ function encodeForAjax(data) {
 
 function refreshDropdownListeners() {
     refreshIgnoreListeners()
+    refreshResolveListeners()
 }
 
 function getEntries(criteria) {
