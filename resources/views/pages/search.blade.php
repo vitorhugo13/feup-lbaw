@@ -24,19 +24,28 @@
                 <input type="hidden" value="{{ $search }}" id="search-query">
                 <div class="form-check">
                     <label class="form-check-label" for="filter-username">
-                        <input class="form-check-input" type="checkbox" value="" id="filter-username">
+                        <input class="form-check-input" type="checkbox" autocomplete="off" value="" id="filter-username"
+                        @if($flags[0])
+                            checked
+                        @endif>
                         Username
                     </label>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label" for="filter-category">
-                        <input class="form-check-input" type="checkbox" value="" id="filter-category">
+                        <input class="form-check-input" type="checkbox" autocomplete="off" value="" id="filter-category"
+                        @if($flags[1])
+                            checked
+                        @endif>
                         Category
                     </label>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label" for="filter-title">
-                        <input class="form-check-input" type="checkbox" value="" id="filter-title">
+                        <input class="form-check-input" type="checkbox" autocomplete="off" value="" id="filter-title"
+                        @if($flags[2])
+                            checked
+                        @endif>
                         Title
                     </label>
                 </div>

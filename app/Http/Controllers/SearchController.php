@@ -49,11 +49,18 @@ class SearchController extends Controller
 
     public function show(Request $request, $page)
     {
+        $username = boolval($request->input('username', '0'));
+        $title = boolval($request->input('title', '0'));
+        $category = boolval($request->input('category', '0'));
         $search = str_replace(' ', ' | ', $request->input('search'));
 
-        $posts = $this->text_search(true, true, true, $search);
+        if(!$username && !$title && !$category) {
+            $posts = $this->text_search(true, true, true, $search);
+        } else {
+            $posts = $this->text_search($username, $title, $category, $search);
+        }
 
-        return view('pages.search', ['search' => $search ,'posts' => $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'))]);
+        return view('pages.search', ['search' => $search, 'flags' => [$username, $category, $title] ,'posts' => $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'))]);
     }
 
     public function filter(Request $request, $page){
