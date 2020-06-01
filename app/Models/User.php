@@ -100,4 +100,13 @@ class User extends Authenticatable
         $contents = Content::where('author', $this->id)->select('id')->get();
         return ReportFile::where('blocked', true)->where('sorted', true)->whereIn('content', $contents)->first();
     }
+
+
+    public function block($date) {
+        $this->update(['role' => 'Blocked', 'release_date' => $date]);
+    }
+
+    public function unblock() {
+        $this->update(['role' => 'Member', 'release_date' => null]);
+    }
 }
