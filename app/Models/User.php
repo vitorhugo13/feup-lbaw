@@ -92,4 +92,12 @@ class User extends Authenticatable
     public function categoryGlories() {
         return $this->belongsToMany('App\Models\Category', 'category_glory', 'user_id', 'category');
     }
+
+    /**
+     * Gets the id of the report file that got the user blocked
+     */
+    public function getBlockReport() {
+        $contents = Content::where('author', $this->id)->select('id')->get();
+        return ReportFile::where('blocked', true)->where('sorted', true)->whereIn('content', $contents)->first();
+    }
 }

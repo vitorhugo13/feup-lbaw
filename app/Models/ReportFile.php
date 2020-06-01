@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class ReportFile extends Model
 {
@@ -21,5 +22,21 @@ class ReportFile extends Model
 
     public function getReports() {
         return $this->hasMany('App\Models\Report', 'file', 'id');
+    }
+
+    public function getReasons() {
+        $reports = Report::where('file', $this->id)->get();
+
+        $reasons = array();
+        foreach($reports as $report) {
+            array_push($reasons, $report['reason']);
+        }
+        $reasons = array_unique($reasons);
+        
+        return $reasons;
+    }
+
+    public function getTimestamp() {
+        return Report::where('file', $this->id)->select('time')->get()->max()['time'];
     }
 }

@@ -86,9 +86,68 @@ class ReportController extends ContentController
     }
 
     // TODO: create a new report
-    // TODO: delete a report
-    // TODO: sort a report
-    // TODO: contest a report
-    // TODO: sort a contest
+    public function createReport(Request $request) {
 
+        // author, content, reason
+
+        // authorize
+
+        // check if a report file for the content already exists
+        // if it does not exists
+            // create a new report file
+            // get its id
+        // else
+            // get the report file id
+
+        // create a new report
+        
+        // alert message
+        // respond
+    }
+
+    // TODO: delete a report
+    public function deleteReport($id) {
+
+    }
+
+    // TODO: sort a report
+    public function sortReport($id, $decision) {
+
+    }
+
+    // CONTESTS
+
+    public function getBlockReasons() {
+        $report = Auth::user()->getBlockReport();
+
+        $reasons_array = $report->getReasons();
+        $reasons = $reasons_array[0];
+        for ($i = 1; $i < count($reasons_array); $i++)
+            $reasons = $reasons . ', ' . $reasons_array[$i];
+
+        return response()->json(['success' => 'Retrieved reasons', 'reasons' => $reasons, 'report' => $report->id], 200);
+    }
+
+    // TODO: contest a report
+    public function contestReport($id, Request $request) {
+        
+        $user = $request['user_id'];
+        $justification = $request['justification'];
+
+        // authorize
+
+        $contest = new Contest;
+        $contest->justification = $justification;
+        $contest->report = $id;
+        $contest->save();
+
+        ReportFile::find($id)->update(['sorted' => false]);
+
+        return response()->json(['success' => 'Contest successfuly created.'], 200);
+    }
+
+    // TODO: sort a contest
+    public function sortContest($id, $decision) {
+
+    }
 }

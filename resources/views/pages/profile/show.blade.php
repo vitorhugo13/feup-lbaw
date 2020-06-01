@@ -3,6 +3,7 @@
 @push('styles')
     <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/post_elems.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/errors.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
@@ -11,6 +12,8 @@
     <script src="{{ asset('js/api/profile_permissions.js') }}" defer></script>
     <script src="{{ asset('js/api/block_user.js') }}" defer></script>
     <script src="{{ asset('js/counter.js') }}" defer></script>
+    <script src="{{ asset('js/contest_block.js') }}" defer></script>
+    <script src="{{ asset('js/api/block_information.js') }}" defer></script>
     <script src="{{ asset('js/profile.js') }}" defer></script>
 @endpush
 
@@ -38,7 +41,13 @@
             @endphp
             @if($remaining - 3600 > 0) 
                 <div id="blocked" class="mt-5">
-                    <p class="blocked-text mb-1">You are blocked for:</p>
+
+                    @if(Auth::check() && $user->id == Auth::user()->id )
+                        <p class="blocked-text mb-1">You are blocked for:</p>
+                    @else 
+                        <p class="blocked-text mb-1">User blocked for: </p>
+                    @endif
+
                     <p class="remaining-time">
                         @php
                             $hours = floor($remaining / 3600) - 1;
@@ -51,7 +60,15 @@
                         <span class="remain-min"><?=(($minutes < 10) ? '0' : '')?>{{$minutes}}m </span>
                         <span class="remain-sec"><?=(($seconds < 10) ? '0' : '')?>{{$seconds}}s</span>
                     </p>
-                    <button class="contest-button"><i class="fas fa-exclamation-circle"></i><strong> Contest</strong></button>
+
+                    @if(Auth::check() && $user->id == Auth::user()->id )
+                        @if($user->getBlockReport() != null)
+                            <button class="contest-button" data-toggle="modal" data-target="#contest-modal"><i class="fas fa-exclamation-circle"></i><strong> Contest </strong></button>
+                        @else
+                            <button class="already-contested" title="You can only contest once."><i class="fas fa-exclamation-circle"></i><strong> Contest </strong></button>
+                        @endif
+                    @endif
+
                 </div>
             @endif
         @endif
@@ -83,4 +100,5 @@
 @include('partials.profile.promote-modal')
 @include('partials.profile.demote-modal')
 @include('partials.profile.block-modal')
+@include('partials.profile.contest-modal', ['user' => $user])
 @endsection

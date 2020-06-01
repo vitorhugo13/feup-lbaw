@@ -4,10 +4,10 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\User;
-use Carbon\Traits\Timestamp;
-use Illuminate\Database\Query\Builder;
+use Carbon\Carbon;
 
-class everyMinute extends Command
+
+class BlockUserUpdate extends Command
 {
     /**
      * The name and signature of the console command.
@@ -40,7 +40,6 @@ class everyMinute extends Command
      */
     public function handle()
     {
-        //TODO: verify 
-        User::whereNotNull('release_date')->where('release_date', '<', now())->insert(['release_date' => NULL])->insert(['role' => 'Member']);
+        User::whereNotNull('release_date')->where('release_date', '<', Carbon::parse(now())->addHour())->update(['release_date' => NULL, 'role' => 'Member']);
     }
 }
