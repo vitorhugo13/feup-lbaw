@@ -85,34 +85,52 @@ class ReportController extends ContentController
         return response()->json(['success' => 'Retrieved report contests.', 'contests' => $contests], 200);
     }
 
-    // TODO: create a new report
     public function createReport(Request $request) {
+        $author = $request['author'];       // id of the author
+        $content = $request['content'];     // id of the content
+        $reason = $request['reason'];       // string with reason
 
-        // author, content, reason
+        // TODO: authorize
 
-        // authorize
+        $file = ReportFile::where('content', $content)->first();
+        if ($file === null) {
+            $file = new ReportFile;
+            $file->content = $content;
+            $file->save();
+        }
 
-        // check if a report file for the content already exists
-        // if it does not exists
-            // create a new report file
-            // get its id
-        // else
-            // get the report file id
-
-        // create a new report
+        $report = new Report;
+        $report->file = $file->id;
+        $report->author = $author;
+        $report->reason = $reason;
         
-        // alert message
-        // respond
+        return response()->json(['success' => 'Report successfuly submited.'], 200);
     }
 
-    // TODO: delete a report
     public function deleteReport($id) {
+        $report = ReportFile::find($id);
 
+        // FIXME: the return code might be wrong here
+        if ($report === null)
+            return response()->json(['error' => 'Report not found.'], 404);
+        
+        // TODO: authorize
+
+        $report->delete();
+        return response()->json(['success' => 'Report successfuly deleted.'], 200);
     }
 
-    // TODO: sort a report
-    public function sortReport($id, $decision) {
+    public function sortReport($id) {
+        $report = ReportFile::find($id);
 
+        // FIXME: the return code might be wrong here
+        if ($report === null)
+            return response()->json(['error' => 'Report not found.'], 404);
+
+        // TODO: authorize
+
+        $report->update(['sorted' => true]);
+        return response()->json(['success' => 'Report successfuly resolved.']);
     }
 
     // CONTESTS
@@ -128,7 +146,6 @@ class ReportController extends ContentController
         return response()->json(['success' => 'Retrieved reasons', 'reasons' => $reasons, 'report' => $report->id], 200);
     }
 
-    // TODO: contest a report
     public function contestReport($id, Request $request) {
         
         $user = $request['user_id'];
@@ -146,8 +163,26 @@ class ReportController extends ContentController
         return response()->json(['success' => 'Contest successfuly created.'], 200);
     }
 
-    // TODO: sort a contest
-    public function sortContest($id, $decision) {
+    public function sortContest($id) {
+        // TODO: authorize
 
+        $contest = Contest::find($id);
+        if ($contest === null)
+            return response()->json(['error' => 'Contest not found.'], 404);
+
+        $report = ReportFile::find($contest->report);
+        if ($report === null)
+            return response()->json(['error' => 'Report file not found.'], 404);
+        
+        $content = Content::find($report->content);
+        if ($content === null)
+            return response()->json(['error' => 'Content not found.'], 404);
+        
+        if ($content->owner === null)
+            return response()->json(['error' => 'Content author not found.'], 404);
+        
+        $content->owner->unblock();
+        return response()->json(['success' => 'User unblocked successfuly.'], 200);
     }
+
 }
