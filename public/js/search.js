@@ -1,28 +1,34 @@
 let username_filter = document.getElementById('filter-username')
 let category_filter = document.getElementById('filter-category')
 let title_filter = document.getElementById('filter-title')
+let feed = document.getElementById('search-results')
+let query = document.getElementById('search-query').value
 let page = 0
 
 let filters = [0,0,0]
+let filters_request = ''
 
-function update_filter(){
-    let filters_request = ''
+function parse_filters() {
     let active_filters = ['username', 'category', 'title']
+    filters_request = ''
 
     for(let i = 0; i < filters.length; i++){
         filters_request += active_filters[i]
 
         if(filters[i] != 0)
-            filters_request += '=true'
+            filters_request += '=1'
         else  
-            filters_request += '=false'
+            filters_request += '=0'
 
         if(i != filters.length - 1)
             filters_request += '&'
     }
-   
+}
+
+function update_filter(){
+    parse_filters()
     
-    fetch('../api/search/filter?' + filters_request, {
+    fetch('../api/search/0/filter?' + filters_request + '&search="' + query + '"', {
         method: 'GET',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -34,10 +40,35 @@ function update_filter(){
             return;
         }
         response.json().then(data => {
+            page = 0
             feed.innerHTML = data['feed']
             window.scrollTo(0, 0)
             refreshVoteListeners()
             refreshStarsListeners()
+        })
+    })
+}
+
+function pageBottom(){
+    fetch('../api/search/' + page + 'filter?' + filters_request + '&search="' + query + '"', {
+        method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response['status'] != 200) {
+            console.log(response)
+            return;
+        }
+        response.json().then(data => {
+            let newPosts = data['feed']
+
+            if(newPosts != null){
+                feed.innerHTML += newPosts
+                refreshVoteListeners()
+                refreshStarsListeners()
+            }
         })
     })
 }

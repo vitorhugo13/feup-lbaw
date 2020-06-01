@@ -21,6 +21,7 @@
                 </div>
             </nav>
             <div class="d-flex flex-column align-self-start" id="filters">
+                <input type="hidden" value="{{ $search }}" id="search-query">
                 <div class="form-check">
                     <label class="form-check-label" for="filter-username">
                         <input class="form-check-input" type="checkbox" value="" id="filter-username">

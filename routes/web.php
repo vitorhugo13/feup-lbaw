@@ -51,7 +51,7 @@ Route::post('api/notifications', 'UserController@getNotifications');
 Route::get('home', 'FeedController@showHome')->name('home');
 Route::get('feed', 'FeedController@showFeed')->name('feed');
 Route::post('search/{page}', 'SearchController@show');
-Route::get('api/search/filter', 'SearchController@filter');
+Route::get('api/search/{page}/filter', 'SearchController@filter');
 
 // API Profile
 Route::post('api/delete/photo', 'UserController@deletePhoto');

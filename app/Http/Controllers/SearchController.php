@@ -10,60 +10,69 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 
 class SearchController extends Controller
-{
-    private $search;
-    
-    private function text_search($username, $title, $category){
+{    
+    private function text_search($username, $title, $category, $search){
         $filters_array = [];
 
         if($username) {
-            array_push($filters_array, 'setweight(to_tsvector(\'english\', post.title), \'A\')');
-        }
-        if($title) {
             array_push($filters_array, 'setweight(to_tsvector(\'simple\', coalesce("user".username, \'\')), \'C\')');   
         }
+        if($title) {
+            array_push($filters_array, 'setweight(to_tsvector(\'simple\', post.title), \'A\')');
+        }
         if($category) {
-            array_push($filters_array, 'setweight(to_tsvector(\'english\', coalesce(string_agg(category.title, \' \'))), \'B\')');
+            array_push($filters_array, 'setweight(to_tsvector(\'simple\', coalesce(string_agg(category.title, \' \'))), \'B\')');
         }
 
         $filters = implode(' || ', $filters_array);
 
+        error_log('Filters: ' . $filters);
+
         $results = DB::table('post')
-                    ->selectRaw('post_info.id AS result_id, ts_rank(post_info.document, to_tsquery(\'english\', ?)) AS rank', [$this->search])
-                    ->fromRaw('(SELECT post.id AS id,
-                                ? as document
+                    ->selectRaw('post_info.id AS result_id, ts_rank(post_info.document, to_tsquery(\'simple\', ?)) AS rank', [$search])
+                    ->fromRaw('(SELECT post.id AS id,' . $filters . 'as document
                                 FROM post
                                 JOIN content ON (post.id = content.id)
                                 LEFT JOIN "user" ON (content.author = "user".id)
                                 JOIN post_category ON (post.id = post_category.post)
                                 JOIN category ON (post_category.category = category.id)
                                 GROUP BY post.id, "user".id) AS post_info
-                                WHERE post_info.document @@ to_tsquery(\'english\', ?)
-                                ORDER BY rank DESC', [$filters, $this->search])->pluck('result_id')->all();
+                                WHERE post_info.document @@ to_tsquery(\'simple\', ?)
+                                ORDER BY rank DESC', [$search])->pluck('result_id')->all();
+
+        foreach($results as $result) {
+            error_log($result);
+        }
 
         return Post::all()->whereIn('id', $results);
     }
 
     public function show(Request $request, $page)
     {
-        $this->search = str_replace(' ', ' | ', $request->input('search'));
+        $search = str_replace(' ', ' | ', $request->input('search'));
 
-        $posts = $this->text_search(true, true, true);
+        $posts = $this->text_search(true, true, true, $search);
 
-        return view('pages.search', ['posts' => $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'))]);
+        return view('pages.search', ['search' => $search ,'posts' => $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'))]);
     }
 
     public function filter(Request $request, $page){
-        $username = $request->input('username');
-        $title = $request->input('title');
-        $category = $request->input('category');
+        $username = boolval($request->input('username'));
+        $title = boolval($request->input('title'));
+        $category = boolval($request->input('category'));
+        $search = $request->input('search');
 
         if(!$username && !$title && !$category) {
-            $posts = $this->text_search(true, true, true);
+            $posts = $this->text_search(true, true, true, $search);
         } else {
-            $posts = $this->text_search($username, $title, $category);
+            $posts = $this->text_search($username, $title, $category, $search);
         }
 
-        return view('pages.search', ['posts' => $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'))]);
+        $posts = $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'));
+
+        if($page != 0 && $posts->isEmpty())
+            return response()->json(['feed' => null]);
+
+        return response()->json(['feed' => view('partials.posts.post_deck', ['posts' => $posts])->render()]);
     }
 }
