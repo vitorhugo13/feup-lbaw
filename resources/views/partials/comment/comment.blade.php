@@ -1,4 +1,4 @@
-<div class="comment p-3" data-comment-id="{{ $comment->id }}">
+<div class="comment p-3" data-comment-id="{{ $comment->id }}" id="comment-{{ $comment->id }}">
     <header class="d-flex flex-row align-items-center justify-content-between">
         <div class="name-time">
             {{-- TODO: missing link to user profile --}}

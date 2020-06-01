@@ -24,7 +24,7 @@ class ReportController extends ContentController
 
     public function getPosts() {
         $reports = ReportFile::join('post', 'content', 'post.id')
-            ->select('report_file.id', 'post.title')
+            ->select('report_file.id', 'report_file.content', 'post.title')
             ->get();
 
         foreach ($reports as $report) {
@@ -38,12 +38,15 @@ class ReportController extends ContentController
     
     public function getComments() {
         $reports = ReportFile::join('comment', 'content', 'comment.id')
-            ->select('report_file.id')
+            ->select('report_file.id', 'report_file.content')
             ->get();
 
         foreach ($reports as $report) {
             $file = ReportFile::find($report->id);
-            $report['content'] = Content::find($file->content)->body;
+            $comment = Comment::find($file->content);
+
+            $report['post'] = $comment->getPostId();
+            $report['content'] = $comment->content->body;
             $report['reason'] = implode(', ', $file->getReasons());
             $report['date'] = $file->getTimestamp();
         }
@@ -161,6 +164,8 @@ class ReportController extends ContentController
         if ($content->owner === null)
             return response()->json(['error' => 'Content author not found.'], 404);
         
+        // TODO: delete the report file?
+
         $content->owner->unblock();
         return response()->json(['success' => 'User unblocked successfuly.'], 200);
     }

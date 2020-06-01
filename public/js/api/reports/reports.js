@@ -78,7 +78,7 @@ function drawPostReportEntry(report) {
 
     let title = document.createElement('td')
     title.setAttribute('class', 'data-title')
-    title.innerHTML = '<span>' + report['title'] + '</span>'
+    title.innerHTML = '<a href="posts/' + report['content'] + '">' + report['title'] + '</a>'
     row.appendChild(title)
 
     let reason = document.createElement('td')
@@ -117,7 +117,7 @@ function drawCommentReportEntry(report) {
 
     let content = document.createElement('td')
     content.setAttribute('class', 'data-content')
-    content.innerHTML = '<span>' + report['content'] + '</span>'
+    content.innerHTML = '<a href="posts/' + report['post'] + '#comment-' + report['id'] + '">' + report['content'] + '</a>'
     row.appendChild(content)
 
     let reason = document.createElement('td')
@@ -139,7 +139,6 @@ function drawCommentReportEntry(report) {
 
     let menu = document.createElement('div')
     menu.setAttribute('class', 'dropdown-menu dropdown-menu-right')
-    menu.innerHTML += '<a class="dropdown-item" href="#">Move</a>'
     menu.innerHTML += '<a class="dropdown-item" href="#">Delete</a>'
     menu.innerHTML += '<a class="dropdown-item" href="#">Block User</a>'
     menu.innerHTML += '<a class="dropdown-item" href="#">Resolve</a>'
