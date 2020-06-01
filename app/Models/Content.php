@@ -27,7 +27,7 @@ class Content extends Model
     * @var array
     */
   protected $fillable = [
-    'author', 'body',
+    'author', 'body', 'visible'
   ];
 
   public function owner() {

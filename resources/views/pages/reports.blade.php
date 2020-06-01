@@ -9,6 +9,7 @@
     <script src="{{ asset('js/api/reports/reports.js') }}" defer></script>
     <script src="{{ asset('js/api/reports/ignore.js') }}" defer></script>
     <script src="{{ asset('js/api/reports/resolve.js') }}" defer></script>
+    <script src="{{ asset('js/api/content/hide.js') }}" defer></script>
 @endpush
 
 @section('main-content')

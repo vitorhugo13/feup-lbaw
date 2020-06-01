@@ -27,7 +27,6 @@ Route::get('posts/{id}/edit', 'PostController@showEditForm')->name('edit');
 Route::delete('posts/{id}', 'PostController@delete')->name('delete');
 Route::post('posts', 'PostController@create')->name('create');
 Route::post('posts/{id}', 'PostController@edit');
-Route::put('posts/{id}', 'PostController@hide');
 
 // Categories
 Route::get('categories', 'CategoryController@show')->name('categories_page');
@@ -67,18 +66,22 @@ Route::post('api/delete/photo', 'UserController@deletePhoto');
 Route::put('api/users/{id}/role', 'UserController@changePermissions');
 Route::put('api/users/{id}/block', 'UserController@block');
 
-//API Stars
+
+// API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
 Route::delete('api/posts/{id}/stars','PostController@unstar');
 Route::post('api/categories/{id}/stars', 'CategoryController@star');
 Route::delete('api/categories/{id}/stars', 'CategoryController@unstar');
 
+// -----===== API CONTENT =====-----
+Route::put('api/contents/{id}', 'ContentController@hide');
 // API Rating
 Route::post('api/contents/{id}/votes', 'ContentController@add');
 Route::delete('api/contents/{id}/votes', 'ContentController@remove');
 Route::put('api/contents/{id}/votes', 'ContentController@update');
 
-//API Feed
+
+// API Feed
 Route::get('api/fresh/{page}', 'FeedController@fresh');
 Route::get('api/hot/{page}', 'FeedController@hot');
 Route::get('api/top/{page}', 'FeedController@top');

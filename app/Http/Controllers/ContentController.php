@@ -79,4 +79,16 @@ class ContentController extends Controller
         return response()->json(['success' => 'Updated vote successfully. Type: ' . $request->input('type')]);
     }
 
+
+    public function hide($id)
+    {
+        $content = Content::find($id);
+        if ($content === null)
+            return response()->json(['error' => 'Content not found.'], 404);
+
+        // TODO: policy for this action
+        $content->update(['visible' => false]);
+
+        return response()->json(['success' => 'Content hidden.'], 200);
+    }
 }

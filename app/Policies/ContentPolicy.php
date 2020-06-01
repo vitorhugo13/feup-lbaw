@@ -12,6 +12,7 @@ class ContentPolicy
     use HandlesAuthorization;
 
     public function show(?User $user, Content $content) {
+        // FIXME: change this policy
         return $content->visible;
     }
 

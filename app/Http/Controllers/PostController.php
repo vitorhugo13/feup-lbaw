@@ -165,18 +165,6 @@ class PostController extends ContentController
         return redirect('users/' . Auth::user()->id)->with('alert-success', "Post successfully deleted!");
     }
 
-    public function hide($id)
-    {
-        $content = Content::find($id);
-        if ($content === null)
-            return response()->json(['error' => 'Content not found.'], 404);
-
-        // TODO: policy for this action
-        $content->update(['visible' => false]);
-
-        return response()->json(['success' => 'Content hidden.'], 200);
-    }
-
     /* ================= STAR/UNSTAR ============= */
 
     public function star($id)

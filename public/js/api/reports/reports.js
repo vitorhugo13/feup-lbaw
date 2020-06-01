@@ -23,6 +23,7 @@ function encodeForAjax(data) {
 
 function refreshDropdownListeners() {
     refreshIgnoreListeners()
+    refreshHideListeners()
     refreshResolveListeners()
 }
 
@@ -109,17 +110,9 @@ function drawPostReportEntry(report) {
     let menu = document.createElement('div')
     menu.setAttribute('class', 'dropdown-menu dropdown-menu-right')
     menu.setAttribute('data-id', report['id'])
+    menu.setAttribute('data-content', report['content'])
     menu.innerHTML += '<a class="dropdown-item" href="posts/' + report['content'] + '?move=1">Move</a>'
     menu.innerHTML += '<a class="dropdown-item dropdown-hide">Hide</a>'
-    
-    // menu.innerHTML += '<a class="dropdown-item">'
-    // menu.innerHTML += '<form method="POST" action="posts/' + report['content'] + '" onclick="submit()">'
-    // menu.innerHTML += '<input type="hidden" name="_method" value="PUT"></input>'
-    // menu.innerHTML += '<input type="hidden" name="_token" value="' + csrf_token + '"></input>'
-    // menu.innerHTML += 'Hide'
-    // menu.innerHTML += '</form>'
-    // menu.innerHTML += '</a>'
-
     menu.innerHTML += '<a class="dropdown-item dropdown-block">Block User</a>'
     menu.innerHTML += '<a class="dropdown-item dropdown-resolve">Resolve</a>'
     menu.innerHTML += '<span class="dropdown-item dropdown-ignore">Ignore</span>'
@@ -157,10 +150,12 @@ function drawCommentReportEntry(report) {
 
     let menu = document.createElement('div')
     menu.setAttribute('class', 'dropdown-menu dropdown-menu-right')
-    menu.innerHTML += '<a class="dropdown-item" href="#">Delete</a>'
-    menu.innerHTML += '<a class="dropdown-item" href="#">Block User</a>'
-    menu.innerHTML += '<a class="dropdown-item" href="#">Resolve</a>'
-    menu.innerHTML += '<a class="dropdown-item" href="#">Ignore</a>'
+    menu.setAttribute('data-id', report['id'])
+    menu.setAttribute('data-content', report['content'])
+    menu.innerHTML += '<a class="dropdown-item dropdown-hide">Hide</a>'
+    menu.innerHTML += '<a class="dropdown-item dropdown-block">Block User</a>'
+    menu.innerHTML += '<a class="dropdown-item dropdown-resolve">Resolve</a>'
+    menu.innerHTML += '<span class="dropdown-item dropdown-ignore">Ignore</span>'
     dropdown.appendChild(menu)
 
     row.appendChild(dropdown)
@@ -195,11 +190,8 @@ function drawContestEntry(contest) {
 
     let menu = document.createElement('div')
     menu.setAttribute('class', 'dropdown-menu dropdown-menu-right')
-    // menu.innerHTML += '<a class="dropdown-item" href="#">Move</a>'
-    // menu.innerHTML += '<a class="dropdown-item" href="#">Delete</a>'
-    menu.innerHTML += '<a class="dropdown-item" href="#">Accept</a>'
-    menu.innerHTML += '<a class="dropdown-item" href="#">Reject</a>'
-    // menu.innerHTML += '<a class="dropdown-item" href="#">Ignore</a>'
+    menu.innerHTML += '<a class="dropdown-item dropdown-accept">Accept</a>'
+    menu.innerHTML += '<a class="dropdown-item dropdown-reject">Reject</a>'
     dropdown.appendChild(menu)
 
     row.appendChild(dropdown)
