@@ -37,7 +37,14 @@
     margin-right: 0.5em;
 }
 
+.category-form {
+    display: inline;
+}
+
 .category-badge {
+    border: none;
+    outline: none;
+    display: inline;
     background-color: var(--background);
     color: var(--main-color);
     padding: 0.5em 1em;

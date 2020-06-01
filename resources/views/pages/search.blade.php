@@ -12,6 +12,10 @@
     <script src="{{ asset('js/search.js') }}" defer></script>
 @endpush
 
+@section('page-title')
+    <p class="search-tooltip"> <strong>Search results for:</strong> "{{ str_replace(' | ', ' ', $original_search) }}" </p>
+@endsection
+
 @section('side-bar')
     <div id="sidebar" class="d-flex flex-column align-items-center">
         <div id="sidebar-navigation" class="d-flex flex-column align-items-start">
