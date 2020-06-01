@@ -56,4 +56,7 @@
     - [ ] post's owner should have green link
     - [ ] link in user name to redirect to profile
 
+* **database**
+    - [ ] block_rem_vote trigger may case problems with post deletion
+
 
