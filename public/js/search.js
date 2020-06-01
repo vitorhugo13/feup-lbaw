@@ -5,7 +5,7 @@ let feed = document.getElementById('search-results')
 let query = document.getElementById('search-query').value
 let page = 0
 
-let filters = [0,0,0]
+let filters = [username_filter.checked, category_filter.checked, title_filter.checked]
 let filters_request = ''
 
 function parse_filters() {

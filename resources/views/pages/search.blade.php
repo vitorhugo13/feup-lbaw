@@ -60,14 +60,6 @@
 @endsection
 
 @section('content-body')
-    <nav class="filters d-lg-none mb-3 d-flex flex-column align-items-center">
-        <div class="nav nav-pills" id="mid-pills-tab" role="tablist">
-            <a class="nav-item nav-link fresh-tab active" data-toggle="tab" href="#nav-fresh" aria-selected="true">Fresh</a>
-            <a class="nav-item nav-link hot-tab" data-toggle="tab" href="#nav-hot" aria-selected="false">Hot</a>
-            <a class="nav-item nav-link top-tab" data-toggle="tab" href="#nav-top" aria-selected="false">Top</a>
-        </div>
-    </nav>
-    {{-- <h1>Search Results</h1>  TODO: Ver como isto vai funcionar...--}}
     <div id="search-results">
         @if(!$posts->isEmpty())
             @include('partials.posts.post_deck', ['posts' => $posts])

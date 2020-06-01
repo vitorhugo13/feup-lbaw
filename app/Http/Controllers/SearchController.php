@@ -26,8 +26,6 @@ class SearchController extends Controller
 
         $filters = implode(' || ', $filters_array);
 
-        error_log('Filters: ' . $filters);
-
         $results = DB::table('post')
                     ->selectRaw('post_info.id AS result_id, ts_rank(post_info.document, to_tsquery(\'simple\', ?)) AS rank', [$search])
                     ->fromRaw('(SELECT post.id AS id,' . $filters . 'as document
@@ -39,10 +37,6 @@ class SearchController extends Controller
                                 GROUP BY post.id, "user".id) AS post_info
                                 WHERE post_info.document @@ to_tsquery(\'simple\', ?)
                                 ORDER BY rank DESC', [$search])->pluck('result_id')->all();
-
-        foreach($results as $result) {
-            error_log($result);
-        }
 
         return Post::all()->whereIn('id', $results);
     }
