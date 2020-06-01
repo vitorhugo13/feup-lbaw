@@ -9,24 +9,23 @@
             </div>
             <div class="modal-body">
                 <select class="custom-select" id="report-reason">
-                    <option  value="" disabled selected>Choose...</option>
-                    <option value="1">Wrong category</option>
+                    <option value="1" selected>Wrong category</option>
                     <option value="2">Explicit content</option>
                     <option value="3">Harassement</option>
-                    <option value="3">Harmful</option>
-                    <option value="3">Offensive</option>
-                    <option value="3">Pedophilia</option>
-                    <option value="4">Racism</option>
-                    <option value="4">Repulsive</option>
-                    <option value="4">Sexually Explicit</option>
-                    <option value="4">Spam</option>
-                    <option value="4">Terrorism</option>
-                    <option value="4">Violent</option>
+                    <option value="4">Harmful</option>
+                    <option value="5">Offensive</option>
+                    <option value="6">Pedophilia</option>
+                    <option value="7">Racism</option>
+                    <option value="8">Repulsive</option>
+                    <option value="9">Sexually Explicit</option>
+                    <option value="10">Spam</option>
+                    <option value="11">Terrorism</option>
+                    <option value="12">Violent</option>
                 </select>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Report</button>
+                <button type="button" class="btn btn-primary  sendReport">Report</button>
             </div>
         </div>
     </div>

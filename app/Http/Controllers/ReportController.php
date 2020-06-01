@@ -66,7 +66,8 @@ class ReportController extends ContentController
     }
 
     public function createReport(Request $request) {
-        $author = $request['author'];       // id of the author
+        
+        $author = Auth::user()->id;         // id of the author
         $content = $request['content'];     // id of the content
         $reason = $request['reason'];       // string with reason
 
@@ -83,8 +84,12 @@ class ReportController extends ContentController
         $report->file = $file->id;
         $report->author = $author;
         $report->reason = $reason;
+        $report->save();
+
         
-        return response()->json(['success' => 'Report successfuly submited.'], 200);
+        
+       return response()->json(['success' => 'Report successfuly submited.'], 200);
+
     }
 
     public function deleteReport($id) {
