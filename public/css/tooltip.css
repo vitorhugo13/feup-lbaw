@@ -1,0 +1,17 @@
+@import 'constants.css';
+
+
+#tiptools:hover{
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+#tiptools{
+    color: inherit;
+}
+
+.font-awesome-icon{
+    font-size: 80%;
+    margin-bottom: 2px;
+    margin-left: 2px;
+}
