@@ -54,7 +54,7 @@ class SearchController extends Controller
             $posts = $this->text_search($username, $title, $category, $search);
         }
 
-        return view('pages.search', ['search' => $search, 'flags' => [$username, $category, $title] ,'posts' => $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'))]);
+        return view('pages.search', ['search' => $search, 'original_search' => $request->input('search'), 'flags' => [$username, $category, $title] ,'posts' => $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'))]);
     }
 
     public function filter(Request $request, $page){

@@ -28,6 +28,10 @@
 }
 
 /* ----------========== FEED ==========---------- */
+p.search-tooltip {
+    text-align: left;
+}
+
 #mainpage {
     margin: auto;
     justify-content: center;
@@ -47,6 +51,5 @@
 .no-results {
     text-align: center;
     vertical-align: middle;
-    padding-top: 2em;
     color: var(--foreground-color)
 }

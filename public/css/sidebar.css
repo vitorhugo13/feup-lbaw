@@ -21,6 +21,20 @@
     font-size: 1em;
 }
 
+/* ----------- Category listings --- */
+
+.category-name {
+    outline: none;
+    border: none;
+    background-color: inherit;
+    color: var(--foreground-color);
+    padding: 0;
+    width: 100%;
+    text-align: left;
+    font-weight: 300;
+    font-size: 1em;
+}
+
 /* ----------- Filters on top of page for mobile --- */
 
 .filter-title {

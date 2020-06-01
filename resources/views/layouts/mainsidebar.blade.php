@@ -12,7 +12,7 @@
 
 @section('main-content')
     <div class="wraper">
-
+        @yield('page-title')
         @yield('side-bar')
         @yield('content-body')
                 
