@@ -23,63 +23,43 @@ class ReportController extends ContentController
     }
 
     public function getPosts() {
-
         $reports = ReportFile::join('post', 'content', 'post.id')
             ->select('report_file.id', 'post.title')
             ->get();
 
         foreach ($reports as $report) {
-            $data = Report::where('file', $report['id']);
-            
-            foreach ($data->select('reason')->get() as $reason) {
-                $reasons = $reason['reason'] . ', ';
-            }
-
-            $report['reason'] = $reasons;
-            $report['date'] = $data->select('time')->get()->max()['time'];
+            $file = ReportFile::find($report->id);
+            $report['reason'] = implode(', ', $file->getReasons());
+            $report['date'] = $file->getTimestamp();
         }
 
         return response()->json(['success' => 'Retrieved post reports.', 'reports' => $reports], 200);
     }
     
-    public function getComments()
-    {
+    public function getComments() {
         $reports = ReportFile::join('comment', 'content', 'comment.id')
             ->select('report_file.id')
             ->get();
 
         foreach ($reports as $report) {
-            $data = Report::where('file', $report['id']);
-            
-            foreach ($data->select('reason')->get() as $reason) {
-                $reasons = $reason['reason'] . ', ';
-            }
-
-            $comment_id = ReportFile::find($report['id'])->content;
-            $report['content'] = Content::find($comment_id)->body;
-            $report['reason'] = $reasons;
-            $report['date'] = $data->select('time')->get()->max()['time'];
+            $file = ReportFile::find($report->id);
+            $report['content'] = Content::find($file->content)->body;
+            $report['reason'] = implode(', ', $file->getReasons());
+            $report['date'] = $file->getTimestamp();
         }
         
         return response()->json(['success' => 'Retrieved comment reports.', 'reports' => $reports], 200);
     }
 
-    public function getContests()
-    {
-
+    public function getContests() {
         $contests = ReportFile::join('contest', 'report_file.id', 'contest.report')
             ->where('report_file.sorted', false)
             ->select('report_file.id', 'contest.justification', 'contest.time')
             ->get();
 
         foreach ($contests as $report) {
-            $data = Report::where('file', $report['id']);
-
-            foreach ($data->select('reason')->get() as $reason) {
-                $reasons = $reason['reason'] . ', ';
-            }
-
-            $report['reason'] = $reasons;
+            $file = ReportFile::find($report->id);
+            $report['reason'] = implode(', ', $file->getReasons());
         }
 
         return response()->json(['success' => 'Retrieved report contests.', 'contests' => $contests], 200);
