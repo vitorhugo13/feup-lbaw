@@ -7,6 +7,7 @@
 
 @push('scripts')
     <script src="{{ asset('js/api/reports/reports.js') }}" defer></script>
+    <script src="{{ asset('js/api/reports/ignore.js') }}" defer></script>
 @endpush
 
 @section('main-content')

@@ -27,6 +27,7 @@ Route::get('posts/{id}/edit', 'PostController@showEditForm')->name('edit');
 Route::delete('posts/{id}', 'PostController@delete')->name('delete');
 Route::post('posts', 'PostController@create')->name('create');
 Route::post('posts/{id}', 'PostController@edit');
+Route::put('posts/{id}', 'PostController@hide');
 
 // Categories
 Route::get('categories', 'CategoryController@show')->name('categories_page');
@@ -39,6 +40,8 @@ Route::get('api/reports/contests', 'ReportController@getContests');
 Route::post('api/reports/{id}/contests', 'ReportController@contestReport');
 Route::post('api/reports/contest/reasons', 'ReportController@getBlockReasons');
 Route::post('api/reports/create', 'ReportController@createReport');
+// Reports API
+Route::delete('api/reports/{id}', 'ReportController@deleteReport');
 
 //User
 Route::get('users/{id}', 'UserController@showProfile')->name('profile');
