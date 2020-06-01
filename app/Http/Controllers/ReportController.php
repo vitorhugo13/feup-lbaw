@@ -12,6 +12,7 @@ use App\Models\Content;
 use App\Models\Contest;
 use App\Models\Report;
 use App\Models\ReportFile;
+use Exception;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -72,20 +73,33 @@ class ReportController extends ContentController
         $reason = $request['reason'];       // string with reason
 
         // TODO: authorize
+        DB::beginTransaction();
 
-        $file = ReportFile::where('content', $content)->first();
-        if ($file === null) {
-            $file = new ReportFile;
-            $file->content = $content;
-            $file->save();
+        try {
+
+            $file = ReportFile::where('content', $content)->first();
+            if ($file === null) {
+                $file = new ReportFile;
+                $file->content = $content;
+                $file->save();
+            }
+        } catch(Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
-
-        $report = new Report;
-        $report->file = $file->id;
-        $report->author = $author;
-        $report->reason = $reason;
-        $report->save();
-
+        
+        try {
+            $report = new Report;
+            $report->file = $file->id;
+            $report->author = $author;
+            $report->reason = $reason;
+            $report->save();
+        } catch(Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+        
+        DB::commit();
         
         
        return response()->json(['success' => 'Report successfuly submited.'], 200);
