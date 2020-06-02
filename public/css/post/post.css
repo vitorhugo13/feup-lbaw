@@ -170,12 +170,18 @@
     color: var(--background-strong);
 }
 
-.thread .comment>header>div>span {
+.comment>header a {
+    color: var(--foregrond-color);
+}
+
+.thread .comment>header>div>span,
+.thread .comment>header>div>a {
     font-size: 0.7em;
     font-weight: 300;
 }
 
-.thread .comment>header>div>span:first-child {
+.thread .comment>header>div>span:first-child,
+.thread .comment>header>div>a:first-child {
     font-size: 0.8em;
     font-weight: 400;
 }
@@ -246,7 +252,7 @@
     color: var(--accent-color);
 }
 
-span.op {
+.thread .comment>header>div>a.op  {
     color: var(--main-color);
 }
 

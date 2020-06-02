@@ -65,6 +65,9 @@ class PostController extends ContentController
 
     public function showCreateForm()
     {
+        if(!Auth::check())
+            return view('auth.login');
+
         $this->authorize('create', Content::class);
 
         if (Auth::user()->role != 'Administrator')
