@@ -12,8 +12,14 @@ class ContentPolicy
     use HandlesAuthorization;
 
     public function show(?User $user, Content $content) {
-        // FIXME: change this policy
-        return $content->visible;
+        if ($user === null)
+            return $content->visible;
+        else if ($content->author === $user->id)
+            return true;
+        else if ($user->role === 'Moderator' || $user->role === 'Administrator')
+            return true;
+    
+        return false;
     }
 
     public function create(User $user) {
@@ -31,6 +37,8 @@ class ContentPolicy
     public function rating(User $user, Content $content) {
         return $user->role != 'Blocked' && $content->visible;
     }
-    
-    // TODO: report policy
+
+    public function report(User $user, Content $content) {
+        return $user->role !== 'Blocked' && $content->author !== $user->id;
+    }
 }

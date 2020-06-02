@@ -19,6 +19,7 @@ class ReportController extends ContentController
 {
 
     public function show() {
+        $this->authorize('show', ReportFile::class);
         return view('pages.reports');
     }
 
@@ -74,7 +75,7 @@ class ReportController extends ContentController
         $content = $request['content'];     // id of the content
         $reason = $request['reason'];       // string with reason
 
-        // TODO: authorize
+        $this->authorize('createReport', ReportFile::class);
 
         $file = ReportFile::where('content', $content)->first();
         if ($file === null) {
@@ -89,10 +90,7 @@ class ReportController extends ContentController
         $report->reason = $reason;
         $report->save();
 
-        
-        
-       return response()->json(['success' => 'Report successfuly submited.'], 200);
-
+        return response()->json(['success' => 'Report successfuly submited.'], 200);
     }
 
     public function deleteReport($id) {
@@ -102,7 +100,7 @@ class ReportController extends ContentController
         if ($report === null)
             return response()->json(['error' => 'Report not found.'], 404);
         
-        // TODO: authorize
+        $this->authorize('deleteReport', ReportFile::class);
 
         $report->delete();
         return response()->json(['success' => 'Report successfuly deleted.'], 200);
@@ -115,7 +113,7 @@ class ReportController extends ContentController
         if ($report === null)
             return response()->json(['error' => 'Report not found.'], 404);
 
-        // TODO: authorize
+        $this->authorize('sortReport', ReportFile::class);
 
         $report->update(['sorted' => true]);
         return response()->json(['success' => 'Report successfuly resolved.']);
@@ -135,11 +133,10 @@ class ReportController extends ContentController
     }
 
     public function contestReport($id, Request $request) {
-        
-        $user = $request['user_id'];
+        // $user = $request['user_id'];
         $justification = $request['justification'];
 
-        // authorize
+        $this->authorize('contestReport', ReportFile::class);
 
         $contest = new Contest;
         $contest->justification = $justification;
@@ -152,7 +149,7 @@ class ReportController extends ContentController
     }
 
     public function sortContest($id) {
-        // TODO: authorize
+        $this->authorize('sortContest', ReportFile::class);
 
         $report = ReportFile::find($id);
         if ($report === null)
