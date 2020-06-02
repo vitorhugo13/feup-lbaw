@@ -43,6 +43,7 @@ Route::post('api/reports/create', 'ReportController@createReport');
 // Reports API
 Route::delete('api/reports/{id}', 'ReportController@deleteReport');
 Route::put('api/reports/{id}', 'ReportController@sortReport');
+Route::delete('api/reports/contests/{id}', 'ReportController@sortContest');
 
 //User
 Route::get('users/{id}', 'UserController@showProfile')->name('profile');

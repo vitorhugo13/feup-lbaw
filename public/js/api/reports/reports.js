@@ -25,6 +25,8 @@ function refreshDropdownListeners() {
     refreshIgnoreListeners()
     refreshHideListeners()
     refreshResolveListeners()
+    refreshAcceptListeners()
+    refreshRejectListeners()
 }
 
 function getEntries(criteria) {
@@ -190,6 +192,7 @@ function drawContestEntry(contest) {
 
     let menu = document.createElement('div')
     menu.setAttribute('class', 'dropdown-menu dropdown-menu-right')
+    menu.setAttribute('data-id', contest['id'])
     menu.innerHTML += '<a class="dropdown-item dropdown-accept">Accept</a>'
     menu.innerHTML += '<a class="dropdown-item dropdown-reject">Reject</a>'
     dropdown.appendChild(menu)

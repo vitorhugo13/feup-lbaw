@@ -2,10 +2,10 @@
 
 function refreshHideListeners() {
     let items = document.getElementsByClassName('dropdown-hide')
-    Array.from(items).forEach(element => { element.addEventListener('click', ignore) })
+    Array.from(items).forEach(element => { element.addEventListener('click', hide) })
 }
 
-function ignore(event) {
+function hide(event) {
     let elem = event.currentTarget
     let file = elem.parentNode.getAttribute('data-content')
 

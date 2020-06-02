@@ -154,11 +154,7 @@ class ReportController extends ContentController
     public function sortContest($id) {
         // TODO: authorize
 
-        $contest = Contest::find($id);
-        if ($contest === null)
-            return response()->json(['error' => 'Contest not found.'], 404);
-
-        $report = ReportFile::find($contest->report);
+        $report = ReportFile::find($id);
         if ($report === null)
             return response()->json(['error' => 'Report file not found.'], 404);
         
@@ -169,10 +165,11 @@ class ReportController extends ContentController
         if ($content->owner === null)
             return response()->json(['error' => 'Content author not found.'], 404);
         
+        $content->owner->unblock();
+        // TODO: make content visible again
         // TODO: delete the report file?
 
-        $content->owner->unblock();
-        return response()->json(['success' => 'User unblocked successfuly.'], 200);
+        return response()->json(['success' => 'Contest sorted.'], 200);
     }
 
 }

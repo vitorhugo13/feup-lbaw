@@ -10,6 +10,8 @@
     <script src="{{ asset('js/api/reports/ignore.js') }}" defer></script>
     <script src="{{ asset('js/api/reports/resolve.js') }}" defer></script>
     <script src="{{ asset('js/api/content/hide.js') }}" defer></script>
+    <script src="{{ asset('js/api/reports/contests/accept.js') }}" defer></script>
+    <script src="{{ asset('js/api/reports/contests/reject.js') }}" defer></script>
 @endpush
 
 @section('main-content')
