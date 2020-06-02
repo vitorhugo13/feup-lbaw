@@ -359,9 +359,7 @@ class UserController extends Controller
         }
 
         try {
-            $user->release_date = $date->format('Y-m-d H:i:s');
-            $user->role = 'Blocked';
-            $user->save();
+            $user->block($date);
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
