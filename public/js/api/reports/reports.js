@@ -116,7 +116,7 @@ function drawPostReportEntry(report) {
     menu.innerHTML += '<a class="dropdown-item" href="posts/' + report['content'] + '?move=1">Move</a>'
     menu.innerHTML += '<a class="dropdown-item dropdown-hide" href="#">Hide</a>'
     if (report['author'] !== null)
-        menu.innerHTML += '<a class="dropdown-item dropdown-block" href="#" data-toggle="modal" data-target="#block-modal" data-author="' + report['author'] + '">Block User</a>'
+        menu.innerHTML += '<a class="dropdown-item dropdown-block" href="#" data-toggle="modal" data-target="#block-modal" data-author="' + report['author'] + '" data-file="' + report['id'] + '">Block User</a>'
     menu.innerHTML += '<a class="dropdown-item dropdown-resolve" href="#">Resolve</a>'
     menu.innerHTML += '<span class="dropdown-item dropdown-ignore" href="#">Ignore</span>'
     dropdown.appendChild(menu)
@@ -157,7 +157,7 @@ function drawCommentReportEntry(report) {
     menu.setAttribute('data-content', report['content'])
     menu.innerHTML += '<a class="dropdown-item dropdown-hide" href="#">Hide</a>'
     if (report['author'] !== null)
-        menu.innerHTML += '<a class="dropdown-item dropdown-block" href="#" data-toggle="modal" data-target="#block-modal" data-author="' + report['author'] + '">Block User</a>'
+        menu.innerHTML += '<a class="dropdown-item dropdown-block" href="#" data-toggle="modal" data-target="#block-modal" data-author="' + report['author'] + '" data-file="' + report['id'] + '">Block User</a>'
     menu.innerHTML += '<a class="dropdown-item dropdown-resolve" href="#">Resolve</a>'
     menu.innerHTML += '<span class="dropdown-item dropdown-ignore" href="#">Ignore</span>'
     dropdown.appendChild(menu)
