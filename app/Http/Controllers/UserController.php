@@ -20,14 +20,12 @@ use App\Models\User;
 class UserController extends Controller
 {
 
-    //TODO: validate the ids everywhere in this controller
-    //TODO: we can only edit a profile if we are logged in that account
     private function validateID($id)
     {
         $data = ['id' => $id];
 
         $validator = Validator::make($data, [
-            'id' => 'required|integer|exists:content',
+            'id' => 'required|integer|exists:user',
         ]);
 
         if ($validator->fails())
@@ -344,7 +342,6 @@ class UserController extends Controller
     }
 
     public function delete($id){
-
         $user = User::find($id);
         $this->authorize('delete', $user);
         $user->delete();

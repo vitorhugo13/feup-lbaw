@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Post;
 use App\Models\Content;
+use App\Models\Rating;
 use Exception;
 use Illuminate\Support\Facades\Validator;
 
@@ -51,7 +52,7 @@ class PostController extends ContentController
 
         $post = Post::find($id);
 
-        if (!$post->content->visible)
+        if ($post == null || !$post->content->visible)
             return abort(404);
 
         $this->authorize('show', $post->content);
@@ -173,11 +174,12 @@ class PostController extends ContentController
 
     public function delete($id)
     {
-        $content = Content::find($id);
-        $this->authorize('delete', $content);
+        $content = Content::find($id);        
+        $this->authorize('delete', Auth::user(), $content);
+        
+        Rating::where('content', $id)->delete();
         $content->delete();
-
-
+        
         return redirect('users/' . Auth::user()->id)->with('alert-success', "Post successfully deleted!");
     }
 

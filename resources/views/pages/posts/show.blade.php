@@ -22,9 +22,9 @@
         <div class="d-flex flex-row align-items-center justify-content-between">
             <div class="post-user d-flex flex-row align-items-center justify-content-between">
                 @if ($author != null)
-                    <a href="{{ route('profile', $author->id) }}"><img class="rounded-circle" src="{{ asset($author->photo) }}" width="40"></a>
+                    <a href="{{ route('profile', $author->id) }}"><img class="rounded-circle" src="{{ asset($author->photo) }}" alt="Post's author profile picture" width="40"></a>
                 @else
-                    <a><img class="rounded-circle" src="{{ asset('storage/uploads/avatars/default.png') }}" alt="Post's author profile picture" width="40"></a>
+                    <a><img class="rounded-circle" src="{{ asset('storage/uploads/avatars/default.png') }}" alt="Anonymous' author profile picture" width="40"></a>
                 @endif
                 <div class="name-time">
                     @if ($author != null)
