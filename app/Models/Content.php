@@ -12,7 +12,6 @@ class Content extends Model
    */
   public $timestamps  = false;
   const CREATED_AT = 'creation_time';
-  //TODO: it may create error because there is no updated_at
   
   /**
     * Model associated with table content

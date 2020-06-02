@@ -15,9 +15,6 @@ class Post extends Content
     return $this->belongsTo('App\Models\Content', 'id', 'id');
   }
 
-  /*
-  * categories of a post (//TODO: hasMany(?) - pode ter só 1...)
-  */
   public function categories(){
     return $this->belongsToMany('App\Models\Category', 'post_category', 'post', 'category');
   }

@@ -77,20 +77,6 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
         ],
-
-        // 'dbm' => [
-        //     'driver' => 'pgsql',
-        //     'host' => 'dbm.fe.up.pt',
-        //     'port' => '5432',
-        //     'database' => 'lbaw2031',
-        //     'username' => 'lbaw2031',
-        //     'password' => '', //FIXME: when to use insert password here
-        //     'charset' => 'utf8',
-        //     'prefix' => '',
-        //     'schema' => 'public',
-        //     'sslmode' => 'prefer',
-        // ],
-
     ],
 
     /*

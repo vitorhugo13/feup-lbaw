@@ -14,7 +14,6 @@
 Route::get('/', 'FeedController@showHome');
 
 // Static Pages
-// TODO: ask if this is the correct use of Route::view()
 Route::view('team', 'pages/team')->name('team');
 Route::view('regulations', 'pages/regulations')->name('regulations');
 Route::view('404', 'errors/404')->name('404');

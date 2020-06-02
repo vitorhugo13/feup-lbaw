@@ -42,7 +42,7 @@ function getEntries(criteria) {
     }).then(response => {
         if (response['status'] != 200) {
             console.log(response)
-            // return;
+            return;
         }
         response.json().then(data => {
             console.log(data)
@@ -55,7 +55,6 @@ function getEntries(criteria) {
             else {
                 drawCommentEntries(data['reports'])
             }
-            // window.scrollTo(0, 0) //TODO: Automatically scroll to top?
         })
     })
 }
