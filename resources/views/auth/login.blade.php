@@ -48,7 +48,7 @@
           @endif
 
           <div class="mb-3 text-right">
-            <a href="#" class="forget-link">Forgot password</a>
+            <a href="{{url('password/reset')}}" class="forget-link">Forgot password</a>
           </div>
 
           <div class="text-center mb-3">
