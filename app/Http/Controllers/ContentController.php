@@ -68,13 +68,15 @@ class ContentController extends Controller
         $content = Content::find($id);
         $this->authorize('rating', $content);
 
-        if ($request->input('type') == 'upvote') {
-            DB::table('rating')->where('rating', 'downvote')->where('content', $id)->where('user_id', Auth::user()->id)->delete();
-            DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);
-        } else {
-            DB::table('rating')->where('rating', 'upvote')->where('content', $id)->where('user_id', Auth::user()->id)->delete();
-            DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);
-        }
+        DB::transaction(function() use ($request, $id) {
+            if ($request->input('type') == 'upvote') {            
+                DB::table('rating')->where('rating', 'downvote')->where('content', $id)->where('user_id', Auth::user()->id)->delete();
+                DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);
+            } else {
+                DB::table('rating')->where('rating', 'upvote')->where('content', $id)->where('user_id', Auth::user()->id)->delete();
+                DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);
+            }
+        });
 
         return response()->json(['success' => 'Updated vote successfully. Type: ' . $request->input('type')]);
     }
