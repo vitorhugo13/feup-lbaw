@@ -12,17 +12,20 @@ use App\Models\Content;
 use App\Models\Contest;
 use App\Models\Report;
 use App\Models\ReportFile;
+use Exception;
 use Illuminate\Support\Facades\Validator;
 
 
 class ReportController extends ContentController
 {
 
-    public function show() {
+    public function show()
+    {
         return view('pages.reports');
     }
 
-    public function getPosts() {
+    public function getPosts()
+    {
         $reports = ReportFile::join('post', 'content', 'post.id')
             ->select('report_file.id', 'post.title')
             ->get();
@@ -35,8 +38,9 @@ class ReportController extends ContentController
 
         return response()->json(['success' => 'Retrieved post reports.', 'reports' => $reports], 200);
     }
-    
-    public function getComments() {
+
+    public function getComments()
+    {
         $reports = ReportFile::join('comment', 'content', 'comment.id')
             ->select('report_file.id')
             ->get();
@@ -47,11 +51,12 @@ class ReportController extends ContentController
             $report['reason'] = implode(', ', $file->getReasons());
             $report['date'] = $file->getTimestamp();
         }
-        
+
         return response()->json(['success' => 'Retrieved comment reports.', 'reports' => $reports], 200);
     }
 
-    public function getContests() {
+    public function getContests()
+    {
         $contests = ReportFile::join('contest', 'report_file.id', 'contest.report')
             ->where('report_file.sorted', false)
             ->select('report_file.id', 'contest.justification', 'contest.time')
@@ -65,47 +70,62 @@ class ReportController extends ContentController
         return response()->json(['success' => 'Retrieved report contests.', 'contests' => $contests], 200);
     }
 
-    public function createReport(Request $request) {
-        
+    public function createReport(Request $request)
+    {
+
         $author = Auth::user()->id;         // id of the author
         $content = $request['content'];     // id of the content
         $reason = $request['reason'];       // string with reason
 
         // TODO: authorize
+        DB::beginTransaction();
 
-        $file = ReportFile::where('content', $content)->first();
-        if ($file === null) {
-            $file = new ReportFile;
-            $file->content = $content;
-            $file->save();
+        try {
+
+            $file = ReportFile::where('content', $content)->first();
+            if ($file === null) {
+                $file = new ReportFile;
+                $file->content = $content;
+                $file->save();
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
 
-        $report = new Report;
-        $report->file = $file->id;
-        $report->author = $author;
-        $report->reason = $reason;
-        $report->save();
+        try {
+            $report = new Report;
+            $report->file = $file->id;
+            $report->author = $author;
+            $report->reason = $reason;
+            $report->save();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
 
-        
-        
-       return response()->json(['success' => 'Report successfuly submited.'], 200);
+        DB::commit();
 
+
+        return response()->json(['success' => 'Report successfuly submited.'], 200);
     }
 
-    public function deleteReport($id) {
+    public function deleteReport($id)
+    {
         $report = ReportFile::find($id);
 
         // FIXME: the return code might be wrong here
         if ($report === null)
             return response()->json(['error' => 'Report not found.'], 404);
-        
+
         // TODO: authorize
 
         $report->delete();
         return response()->json(['success' => 'Report successfuly deleted.'], 200);
     }
 
-    public function sortReport($id) {
+    public function sortReport($id)
+    {
         $report = ReportFile::find($id);
 
         // FIXME: the return code might be wrong here
@@ -120,7 +140,8 @@ class ReportController extends ContentController
 
     // CONTESTS
 
-    public function getBlockReasons() {
+    public function getBlockReasons()
+    {
         $report = Auth::user()->getBlockReport();
 
         $reasons_array = $report->getReasons();
@@ -131,24 +152,33 @@ class ReportController extends ContentController
         return response()->json(['success' => 'Retrieved reasons', 'reasons' => $reasons, 'report' => $report->id], 200);
     }
 
-    public function contestReport($id, Request $request) {
-        
+    public function contestReport($id, Request $request)
+    {
+
         $user = $request['user_id'];
         $justification = $request['justification'];
 
         // authorize
+        DB::beginTransaction();
 
-        $contest = new Contest;
-        $contest->justification = $justification;
-        $contest->report = $id;
-        $contest->save();
+        try {
+            $contest = new Contest;
+            $contest->justification = $justification;
+            $contest->report = $id;
+            $contest->save();
+            ReportFile::find($id)->update(['sorted' => false]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
 
-        ReportFile::find($id)->update(['sorted' => false]);
+        DB::commit();
 
         return response()->json(['success' => 'Contest successfuly created.'], 200);
     }
 
-    public function sortContest($id) {
+    public function sortContest($id)
+    {
         // TODO: authorize
 
         $contest = Contest::find($id);
@@ -158,16 +188,15 @@ class ReportController extends ContentController
         $report = ReportFile::find($contest->report);
         if ($report === null)
             return response()->json(['error' => 'Report file not found.'], 404);
-        
+
         $content = Content::find($report->content);
         if ($content === null)
             return response()->json(['error' => 'Content not found.'], 404);
-        
+
         if ($content->owner === null)
             return response()->json(['error' => 'Content author not found.'], 404);
-        
+
         $content->owner->unblock();
         return response()->json(['success' => 'User unblocked successfuly.'], 200);
     }
-
 }
