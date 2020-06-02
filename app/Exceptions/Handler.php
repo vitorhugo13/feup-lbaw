@@ -45,7 +45,9 @@ class Handler extends ExceptionHandler
             mkdir($logfolder, 0777);
         }
 
-        error_log($error_msg.PHP_EOL.$trace.PHP_EOL, 3, $logfilename);
+        if (!empty($error_msg)) {
+            error_log($error_msg.PHP_EOL.$trace.PHP_EOL, 3, $logfilename);
+        }
 
         parent::report($exception);
     }
