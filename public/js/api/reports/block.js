@@ -1,16 +1,21 @@
 'use strict'
 
-let blockButton = document.getElementById('block-modal')
+let blockButton = document.getElementById('confirm-block')
 let time = document.getElementById('block-time-input')
+let selectedAuthor = -1
 
 blockButton.addEventListener('click', requestBlock)
 
+function refreshBlockListeners() {
+    let blocks = document.getElementsByClassName('dropdown-block')
+    Array.from(blocks).forEach(element => { element.addEventListener('click', block) })
+}
+
 function requestBlock(ev) {
-    if(ev.currentTarget != blockButton)
+    if(ev.currentTarget != blockButton || selectedAuthor == -1)
         return
 
-    let id = document.getElementsByClassName('user-info')[0].getAttribute('data-user-id')
-    fetch('../api/users/' + id + '/block', {
+    fetch('../api/users/' + selectedAuthor + '/block', {
         method: 'PUT',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -22,8 +27,14 @@ function requestBlock(ev) {
         console.log(response)
         response.json().then(data => {
             console.log(data)
-            addAlert('success', data['success'])
-            //TODO: somehow update the page
+            addAlert('success', data['success'])            
         })
     })
+
+    selectedAuthor = -1
+}
+
+function block(ev) {
+    selectedAuthor = ev.currentTarget.getAttribute('data-author')
+    console.log(selectedAuthor)
 }

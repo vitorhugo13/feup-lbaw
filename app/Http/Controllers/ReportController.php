@@ -30,8 +30,10 @@ class ReportController extends ContentController
 
         foreach ($reports as $report) {
             $file = ReportFile::find($report->id);
+            $content = Content::find($report->content);
             $report['reason'] = implode(', ', $file->getReasons());
             $report['date'] = $file->getTimestamp();
+            $report['author'] = $content->author;
         }
 
         return response()->json(['success' => 'Retrieved post reports.', 'reports' => $reports], 200);
@@ -47,9 +49,11 @@ class ReportController extends ContentController
             $comment = Comment::find($file->content);
 
             $report['post'] = $comment->getPostId();
+            $report['comment_id'] = $comment->id;
             $report['content'] = $comment->content->body;
             $report['reason'] = implode(', ', $file->getReasons());
             $report['date'] = $file->getTimestamp();
+            $report['author'] = $comment->content->author;
         }
         
         return response()->json(['success' => 'Retrieved comment reports.', 'reports' => $reports], 200);

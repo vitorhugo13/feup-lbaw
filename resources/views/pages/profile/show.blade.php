@@ -10,7 +10,6 @@
     <script src="{{ asset('js/api/star.js') }}" defer></script>
     <script src="{{ asset('js/api/rating.js') }}" defer></script>
     <script src="{{ asset('js/api/profile_permissions.js') }}" defer></script>
-    <script src="{{ asset('js/api/block_user.js') }}" defer></script>
     <script src="{{ asset('js/counter.js') }}" defer></script>
     <script src="{{ asset('js/contest_block.js') }}" defer></script>
     <script src="{{ asset('js/api/block_information.js') }}" defer></script>
@@ -64,7 +63,7 @@
                         @if($user->getBlockReport() != null)
                             <button class="contest-button" data-toggle="modal" data-target="#contest-modal"><i class="fas fa-exclamation-circle"></i><strong> Contest </strong></button>
                         @else
-                            <button class="already-contested" title="You can only contest once."><i class="fas fa-exclamation-circle"></i><strong> Contest </strong></button>
+                            <button class="already-contested" title="You can only contest once." disabled><i class="fas fa-exclamation-circle"></i><strong> Already Contested </strong></button>
                         @endif
                     @endif
 
@@ -98,6 +97,5 @@
 @include('partials.profile.delete_profile', ['id' => $user->id])
 @include('partials.profile.promote-modal')
 @include('partials.profile.demote-modal')
-@include('partials.profile.block-modal')
 @include('partials.profile.contest-modal', ['user' => $user])
 @endsection

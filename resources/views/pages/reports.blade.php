@@ -6,6 +6,7 @@
 @endpush
 
 @push('scripts')
+    <script src="{{ asset('js/api/reports/block.js') }}" defer></script>
     <script src="{{ asset('js/api/reports/reports.js') }}" defer></script>
     <script src="{{ asset('js/api/reports/ignore.js') }}" defer></script>
     <script src="{{ asset('js/api/reports/resolve.js') }}" defer></script>
@@ -77,5 +78,6 @@
     </div>
 </section>
 
+@include('partials.reports.block-modal')
 {{-- @include('partials.posts.move_modal', ['post_categories' => $post->categories]) --}}
 @endsection
