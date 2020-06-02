@@ -1,5 +1,7 @@
 'use strict'
 
+let auth = document.getElementsByClassName('upvotes')[0].getAttribute('data-auth')
+
 function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
@@ -23,12 +25,16 @@ function updateVote(elem, num){
         val.innerText = 0
 }
 
+function redirectToLogin() {
+    window.location.href = '../login'
+}
+
 function refreshVoteListeners() {
     let upvotes = document.getElementsByClassName('upvotes')
     let downvotes = document.getElementsByClassName('downvotes')
 
-    Array.from(upvotes).forEach(element => { element.addEventListener('click', upvote) })
-    Array.from(downvotes).forEach(element => { element.addEventListener('click', downvote) })
+    Array.from(upvotes).forEach(element => { element.addEventListener('click', auth ? upvote : redirectToLogin) })
+    Array.from(downvotes).forEach(element => { element.addEventListener('click', auth ? downvote : redirectToLogin) })
 }
 
 function upvote(event) {
