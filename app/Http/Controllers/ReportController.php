@@ -166,8 +166,8 @@ class ReportController extends ContentController
             return response()->json(['error' => 'Content author not found.'], 404);
         
         $content->owner->unblock();
-        // TODO: make content visible again
-        // TODO: delete the report file?
+        $content->update(['visible' => true]);
+        $report->delete();
 
         return response()->json(['success' => 'Contest sorted.'], 200);
     }

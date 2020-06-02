@@ -19,12 +19,11 @@ function accept(event) {
     }).then(response => {
         if (response['status'] != 200) {
             console.log(response)
-            // return
+            return
         }
         response.json().then(data => {
-            console.log(data)
-            // console.log(data['success'])
-            // elem.closest('tr').remove()
+            console.log(data['success'])
+            elem.closest('tr').remove()
         })
     })
 }
