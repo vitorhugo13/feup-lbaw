@@ -19,6 +19,7 @@ Route::view('team', 'pages/team')->name('team');
 Route::view('regulations', 'pages/regulations')->name('regulations');
 Route::view('404', 'errors/404')->name('404');
 Route::view('403', 'errors/403')->name('403');
+Route::view('500', 'errors/500')->name('500');
 
 // Posts
 Route::get('posts/{id}', 'PostController@show');
