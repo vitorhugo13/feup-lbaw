@@ -13,6 +13,7 @@
     <script src="{{ asset('js/api/star.js') }}" defer></script>
     <script src="{{ asset('js/api/comment.js') }}" defer></script>
     <script src="{{ asset('js/api/post_move.js') }}" defer></script>
+    <script src="{{ asset('js/api/report_submit.js') }}" defer></script>
 @endpush
 
 @section('main-content')

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\Content;
 use App\Models\Rating;
+use Exception;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends ContentController
@@ -111,16 +112,29 @@ class PostController extends ContentController
 
         $this->authorize('create', Content::class);
 
-        $content = new Content;
-        $content->author = Auth::user()->id;
-        $content->body = $request->input('body');
-        $content->save();
+        DB::beginTransaction();
+        try {
+            $content = new Content;
+            $content->author = Auth::user()->id;
+            $content->body = $request->input('body');
+            $content->save(); 
+        } catch(Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
 
-        $post = new Post;
-        $post->id = $content->id;
-        $post->title = $request->input('title');
-        $post->save();
+        try {
+            $post = new Post;
+            $post->id = $content->id;
+            $post->title = $request->input('title');
+            $post->save();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
 
+        DB::commit();
+        
         $this->updateCategories($request->input('categories'), $post->id);
 
         // $request->session()->flash('alert-success', "Posted with success!");

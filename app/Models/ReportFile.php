@@ -28,10 +28,10 @@ class ReportFile extends Model
         $reports = Report::where('file', $this->id)->get();
 
         $reasons = array();
-        foreach($reports as $report) {
+        foreach ($reports as $report) {
             array_push($reasons, $report['reason']);
         }
-        $reasons = array_unique($reasons);
+        $reasons = array_unique($reasons, SORT_STRING);
         
         return $reasons;
     }

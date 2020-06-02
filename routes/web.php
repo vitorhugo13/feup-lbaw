@@ -38,6 +38,7 @@ Route::get('api/reports/comments', 'ReportController@getComments');
 Route::get('api/reports/contests', 'ReportController@getContests');
 Route::post('api/reports/{id}/contests', 'ReportController@contestReport');
 Route::post('api/reports/contest/reasons', 'ReportController@getBlockReasons');
+Route::post('api/reports/create', 'ReportController@createReport');
 
 //User
 Route::get('users/{id}', 'UserController@showProfile')->name('profile');
