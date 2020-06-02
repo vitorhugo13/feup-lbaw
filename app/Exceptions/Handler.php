@@ -39,10 +39,10 @@ class Handler extends ExceptionHandler
         $error_msg = $exception->getMessage();
         $trace = $exception->getTraceAsString();
         $logfolder = 'logs';
-        $logfilename = $logfolder.'/log_' . date('Y-M-d H-i-s') . '.log';
+        $logfilename = $logfolder.'/log_' . date('Y-M-d_H-i-s') . '.log';
 
         if (!file_exists($logfolder)) {
-            mkdir($logfolder, 0777, true);
+            mkdir($logfolder, 0777);
         }
 
         error_log($error_msg.PHP_EOL.$trace.PHP_EOL, 3, $logfilename);
