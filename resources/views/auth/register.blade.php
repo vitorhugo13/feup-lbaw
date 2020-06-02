@@ -16,7 +16,7 @@
       <div class="col-lg-6 col-md-6 form-container">
           <div class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
               <div class="logo mt-5 mb-3">
-                  <a href=""><img src={{ asset('images/lama_logo.svg') }} width="140px"></a>
+                <a href="{{ route('home') }}"><img src={{ asset('images/lama_logo.svg') }} width="140px"></a>
               </div>
 
               <div class="heading mb-3">
@@ -50,7 +50,11 @@
 
                 @if ($errors->has('username'))
                       <span class="error">
-                          {{ $errors->first('username') }}
+                        @if(strcmp($errors->first('username'), 'validation.not_regex') == 0)
+                            {{ 'The username has already been taken.' }}
+                        @else
+                            {{ $errors->first('username') }}
+                        @endif
                       </span>
                 @endif
                 @if ($errors->has('email'))

@@ -1,0 +1,24 @@
+@import 'constants.css';
+
+
+#tiptools:hover{
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+#tiptools{
+    color: inherit;
+}
+
+/*add categories - posts*/
+.font-awesome-icon{
+    font-size: 80%;
+    margin-bottom: 2px;
+    margin-left: 2px;
+}
+
+/*top categories - profile */
+h3 .cat-tip .font-awesome-icon{
+    font-size: 66%;  
+    margin-left: 10px;
+}

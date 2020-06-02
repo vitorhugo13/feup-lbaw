@@ -4,6 +4,7 @@
     <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/post_elems.css') }}" rel="stylesheet">
     <link href="{{ asset('css/errors.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tooltip.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
@@ -83,7 +84,7 @@
         @if(count($categories) > 0)
         <hr>
         <div class="top-categories">
-            <h3>Top Categories</h3>
+            <h3>Top Categories  <span class="cat-tip"> @include('partials.posts.tooltip', ['title' => 'Here are the categories where you have the best reputation (up to a maximum of 3). The reputation of each category is calculated by the difference between upvotes and downvotes in the posts tagged with it.']) </span></h3>
             @each('partials.profile.category', $categories, 'category')     
         </div>
         @endif
@@ -96,6 +97,7 @@
     <p class="number-posts ml-1 mb-2"> <strong>Posts</strong> ({{count($user->posts)}})</p>
     @each('partials.posts.preview', $user->posts, 'post')
 </div>
+
 @include('partials.profile.delete_profile', ['id' => $user->id])
 @include('partials.profile.promote-modal')
 @include('partials.profile.demote-modal')
