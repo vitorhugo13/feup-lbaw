@@ -60,15 +60,15 @@ body>header>nav>div>div .badge {
     color: var(--background-strong);
 }
 
-body>header>nav>div>div .dropdown-menu {
+.dropdown-item {
     background-color: var(--foreground);
 }
 
-body>header>nav>div>div .dropdown-menu>a {
+.dropdown-item {
     color: var(--background-strong);
 }
 
-body>header>nav>div>div .dropdown-menu>a:hover {
+.dropdown-item:hover {
     background-color: var(--background);
     color: var(--foreground);
 }
@@ -225,6 +225,20 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
     background-color: var(--background-strong);
     color: var(--main-color);
     font-weight: 400;
+}
+
+.modal-body input{
+    height: 3em;
+    margin-left: 10px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    background: var(--background-strong);
+    color: var(--foreground);
+    text-align: center;
+}
+
+.modal-body input:focus{
+    border-bottom: 2px solid var(--main-color);
 }
 
 

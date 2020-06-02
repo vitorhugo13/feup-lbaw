@@ -27,6 +27,7 @@ function refreshDropdownListeners() {
     refreshResolveListeners()
     refreshAcceptListeners()
     refreshRejectListeners()
+    refreshBlockListeners()
 }
 
 function getEntries(criteria) {
@@ -113,10 +114,11 @@ function drawPostReportEntry(report) {
     menu.setAttribute('data-id', report['id'])
     menu.setAttribute('data-content', report['content'])
     menu.innerHTML += '<a class="dropdown-item" href="posts/' + report['content'] + '?move=1">Move</a>'
-    menu.innerHTML += '<a class="dropdown-item dropdown-hide">Hide</a>'
-    menu.innerHTML += '<a class="dropdown-item dropdown-block">Block User</a>'
-    menu.innerHTML += '<a class="dropdown-item dropdown-resolve">Resolve</a>'
-    menu.innerHTML += '<span class="dropdown-item dropdown-ignore">Ignore</span>'
+    menu.innerHTML += '<a class="dropdown-item dropdown-hide" href="#">Hide</a>'
+    if (report['author'] !== null)
+        menu.innerHTML += '<a class="dropdown-item dropdown-block" href="#" data-toggle="modal" data-target="#block-modal" data-author="' + report['author'] + '">Block User</a>'
+    menu.innerHTML += '<a class="dropdown-item dropdown-resolve" href="#">Resolve</a>'
+    menu.innerHTML += '<span class="dropdown-item dropdown-ignore" href="#">Ignore</span>'
     dropdown.appendChild(menu)
 
     row.appendChild(dropdown)
@@ -129,7 +131,7 @@ function drawCommentReportEntry(report) {
 
     let content = document.createElement('td')
     content.setAttribute('class', 'data-content')
-    content.innerHTML = '<a href="posts/' + report['post'] + '#comment-' + report['id'] + '">' + report['content'] + '</a>'
+    content.innerHTML = '<a href="posts/' + report['post'] + '#comment-' + report['comment_id'] + '">' + report['content'] + '</a>'
     row.appendChild(content)
 
     let reason = document.createElement('td')
@@ -153,10 +155,11 @@ function drawCommentReportEntry(report) {
     menu.setAttribute('class', 'dropdown-menu dropdown-menu-right')
     menu.setAttribute('data-id', report['id'])
     menu.setAttribute('data-content', report['content'])
-    menu.innerHTML += '<a class="dropdown-item dropdown-hide">Hide</a>'
-    menu.innerHTML += '<a class="dropdown-item dropdown-block">Block User</a>'
-    menu.innerHTML += '<a class="dropdown-item dropdown-resolve">Resolve</a>'
-    menu.innerHTML += '<span class="dropdown-item dropdown-ignore">Ignore</span>'
+    menu.innerHTML += '<a class="dropdown-item dropdown-hide" href="#">Hide</a>'
+    if (report['author'] !== null)
+        menu.innerHTML += '<a class="dropdown-item dropdown-block" href="#" data-toggle="modal" data-target="#block-modal" data-author="' + report['author'] + '">Block User</a>'
+    menu.innerHTML += '<a class="dropdown-item dropdown-resolve" href="#">Resolve</a>'
+    menu.innerHTML += '<span class="dropdown-item dropdown-ignore" href="#">Ignore</span>'
     dropdown.appendChild(menu)
 
     row.appendChild(dropdown)
@@ -192,8 +195,8 @@ function drawContestEntry(contest) {
     let menu = document.createElement('div')
     menu.setAttribute('class', 'dropdown-menu dropdown-menu-right')
     menu.setAttribute('data-id', contest['id'])
-    menu.innerHTML += '<a class="dropdown-item dropdown-accept">Accept</a>'
-    menu.innerHTML += '<a class="dropdown-item dropdown-reject">Reject</a>'
+    menu.innerHTML += '<a class="dropdown-item dropdown-accept" href="#">Accept</a>'
+    menu.innerHTML += '<a class="dropdown-item dropdown-reject" href="#">Reject</a>'
     dropdown.appendChild(menu)
 
     row.appendChild(dropdown)

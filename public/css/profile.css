@@ -123,11 +123,6 @@
     cursor: pointer;
 }
 
-.already-contested:hover{
-    background-color: var(--background);
-    color: var(--foreground);
-}
-
 .contest-button:focus{
     outline: 0 none;
 }
@@ -193,20 +188,6 @@
 }
 
 /* ----------------- Modal Inputs -------------- */
-
-.modal-body input{
-    height: 3em;
-    margin-left: 10px;
-    border: 2px solid transparent;
-    border-radius: 5px;
-    background: var(--background-strong);
-    color: var(--foreground);
-    text-align: center;
-}
-
-.modal-body input:focus{
-    border-bottom: 2px solid var(--main-color);
-}
 
 @media (max-width: 991px) {
     .post-section {

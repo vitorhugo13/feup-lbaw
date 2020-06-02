@@ -80,6 +80,14 @@ table td {
     position: relative;
 }
 
+.dropdown-item {
+    cursor: pointer;
+}
+
+i[data-toggle="dropdown"] {
+    cursor: pointer;
+}
+
 .data-title {
     width: 70%;
     
