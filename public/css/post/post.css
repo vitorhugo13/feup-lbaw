@@ -109,6 +109,25 @@
     font-weight: 300;
 }
 
+#comment-area {
+    position: relative;
+}
+
+#comment-area-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    position: absolute;
+    left: -3.5%;
+    top: -5%;
+    height: 110%;
+    width: 107%;
+    z-index: 10;
+}
+
+#comment-area-overlay a {
+    color: var(--main-color);
+}
+
 #comment-area textarea {
     background-color: var(--background);
     color: var(--foreground);

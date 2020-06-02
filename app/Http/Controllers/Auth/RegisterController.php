@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
-//TODO : do not allow username 'anon'
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -69,5 +69,25 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function showRegistrationForm()
+    {
+        if (preg_match('/posts\/[\d]{1,}/', url()->previous()) === 1) {
+            session(['url.intended' => url()->previous()]);
+        }
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect()->intended($this->redirectPath());
     }
 }
