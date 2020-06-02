@@ -11,8 +11,6 @@
                         </form>
                     </a>
                     <a class="dropdown-item" href="#">Mute</a>
-                @else
-                    <a class="dropdown-item" href="#">Block User</a>
                 @endif
                 @break
             @case('Member')
@@ -49,7 +47,6 @@
                     <a class="dropdown-item" data-toggle="modal" data-target="#report-modal"  data-content-id="{{$post->id}}">Report</a>
                     <a class="dropdown-item" href="#">Resolve</a>
                     <a class="dropdown-item" data-toggle="modal" data-target="#move-modal">Move</a>
-                    <a class="dropdown-item" href="#">Block User</a>
                 @endif
         @endswitch
     </div>

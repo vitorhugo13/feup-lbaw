@@ -1,6 +1,6 @@
 'use strict'
 
-let blockButton = document.getElementById('block-modal')
+let blockButton = document.getElementById('confirm-block')
 let time = document.getElementById('block-time-input')
 
 blockButton.addEventListener('click', requestBlock)
