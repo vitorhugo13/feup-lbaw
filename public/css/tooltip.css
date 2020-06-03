@@ -10,6 +10,12 @@
     color: inherit;
 }
 
+.tooltip > .tooltip-inner {
+    padding: 1em;
+    color: var(--background-strong);
+    background-color: var(--foreground);
+}
+
 /*add categories - posts*/
 .font-awesome-icon{
     font-size: 80%;

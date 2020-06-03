@@ -19,19 +19,19 @@
             <div>
                 <nav>
                     <div class="nav nav-pills" id="pills-tab" role="tablist">
-                        <a class="nav-item nav-link fresh-tab active" data-toggle="tab" href="#nav-fresh" aria-selected="true">Fresh</a>
-                        <a class="nav-item nav-link hot-tab" data-toggle="tab" href="#nav-hot" aria-selected="false">Hot</a>
-                        <a class="nav-item nav-link top-tab" data-toggle="tab" href="#nav-top" aria-selected="false">Top</a>
+                        <a class="nav-item nav-link fresh-tab active" data-toggle="tab" href="#nav-fresh" aria-selected="true" role="tab">Fresh</a>
+                        <a class="nav-item nav-link hot-tab" data-toggle="tab" href="#nav-hot" aria-selected="false" role="tab">Hot</a>
+                        <a class="nav-item nav-link top-tab" data-toggle="tab" href="#nav-top" aria-selected="false" role="tab">Top</a>
                     </div>
                 </nav>
                 <div class="tab-categories tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-fresh" role="tabpanel" aria-labelledby="nav-fresh-tab">
+                    <div class="tab-pane fade show active" id="nav-fresh" role="tabpanel" aria-labelledby="nav-fresh">
                         @include('partials.categories.category_listing', ['categories' => $fresh_categories])
                     </div>
-                    <div class="tab-pane fade" id="nav-hot" role="tabpanel" aria-labelledby="nav-hot-tab">
+                    <div class="tab-pane fade" id="nav-hot" role="tabpanel" aria-labelledby="nav-hot">
                         @include('partials.categories.category_listing', ['categories' => $hot_categories])
                     </div>
-                    <div class="tab-pane fade" id="nav-top" role="tabpanel" aria-labelledby="nav-top-tab">
+                    <div class="tab-pane fade" id="nav-top" role="tabpanel" aria-labelledby="nav-top">
                         @include('partials.categories.category_listing', ['categories' => $top_categories])
                     </div>
                 </div>
@@ -49,13 +49,13 @@
 @section('content-body')
     <nav class="filters d-lg-none mb-3 d-flex flex-column align-items-center">
         <div class="nav nav-pills" id="mid-pills-tab" role="tablist">
-            <a class="nav-item nav-link fresh-tab active" data-toggle="tab" href="#nav-fresh" aria-selected="true">Fresh</a>
-            <a class="nav-item nav-link hot-tab" data-toggle="tab" href="#nav-hot" aria-selected="false">Hot</a>
-            <a class="nav-item nav-link top-tab" data-toggle="tab" href="#nav-top" aria-selected="false">Top</a>
+            <a class="nav-item nav-link fresh-tab active" data-toggle="tab" href="#nav-fresh" aria-selected="true" role="tab">Fresh</a>
+            <a class="nav-item nav-link hot-tab" data-toggle="tab" href="#nav-hot" aria-selected="false" role="tab">Hot</a>
+            <a class="nav-item nav-link top-tab" data-toggle="tab" href="#nav-top" aria-selected="false" role="tab">Top</a>
         </div>
     </nav>
 
-    <div id="feed" class="infinitescroll" id="myInfiniteScroll">
+    <div id="feed" class="infinitescroll" >
         @include('partials.posts.post_deck', ['posts' => $posts])
     </div>
 @endsection

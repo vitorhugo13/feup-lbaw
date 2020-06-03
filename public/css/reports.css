@@ -39,7 +39,6 @@
 #sidebar-navigation a.active {
     border-color: var(--main-color);
     color: var(--main-color);
-    /* background-color: var(--background-strong); */
 }
 
 /* ----------========== MAIN CONTENT ==========---------- */
@@ -115,9 +114,6 @@ i[data-toggle="dropdown"] {
 }
 
 @media (max-width: 72em) {
-    /* #main {
-        width: 60em;
-    } */
     #main .tab-content {
         padding: 0.7em 1.4em;
     }
