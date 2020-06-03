@@ -84,7 +84,8 @@ CREATE TABLE "user" (
     glory INTEGER NOT NULL DEFAULT 0,
     role ROLES NOT NULL DEFAULT 'Member',
     photo TEXT NOT NULL DEFAULT 'storage/uploads/avatars/default.png',
-    release_date TIMESTAMP CONSTRAINT INVALID_RELEASE_DATE CHECK (release_date > CURRENT_TIMESTAMP OR release_date IS NULL)
+    release_date TIMESTAMP CONSTRAINT INVALID_RELEASE_DATE CHECK (release_date > CURRENT_TIMESTAMP OR release_date IS NULL),
+    remember_token VARCHAR
 );
 
 CREATE TABLE "content" (

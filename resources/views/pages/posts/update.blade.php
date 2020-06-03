@@ -4,6 +4,7 @@
     <link href="{{ asset('css/edit_post.css') }}" rel="stylesheet">
     <link href="{{ asset('css/post_elems.css') }}" rel="stylesheet">
     <link href="{{ asset('css/errors.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tooltip.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
@@ -21,7 +22,8 @@
 @endif >
 {{ csrf_field() }}
     <section id="categories-tab" class="col-12 col-lg-4">
-        <header>Post Categories</header>
+               
+        <header>Post Categories  @include('partials.posts.tooltip', ['title' => 'Here you can select the categories that best fit your post. Don\'t worry that you can edit at any time. Just search for the category in the dropdown and click on Add.']) </header>
         <div class="input-group">
             <select class="custom-select">
                 <option selected>Add new category...</option>

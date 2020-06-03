@@ -109,6 +109,25 @@
     font-weight: 300;
 }
 
+#comment-area {
+    position: relative;
+}
+
+#comment-area-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    position: absolute;
+    left: -3.5%;
+    top: -5%;
+    height: 110%;
+    width: 107%;
+    z-index: 10;
+}
+
+#comment-area-overlay a {
+    color: var(--main-color);
+}
+
 #comment-area textarea {
     background-color: var(--background);
     color: var(--foreground);
@@ -170,12 +189,18 @@
     color: var(--background-strong);
 }
 
-.thread .comment>header>div>span {
+.comment>header a {
+    color: var(--foregrond-color);
+}
+
+.thread .comment>header>div>span,
+.thread .comment>header>div>a {
     font-size: 0.7em;
     font-weight: 300;
 }
 
-.thread .comment>header>div>span:first-child {
+.thread .comment>header>div>span:first-child,
+.thread .comment>header>div>a:first-child {
     font-size: 0.8em;
     font-weight: 400;
 }
@@ -246,7 +271,7 @@
     color: var(--accent-color);
 }
 
-span.op {
+.thread .comment>header>div>a.op  {
     color: var(--main-color);
 }
 

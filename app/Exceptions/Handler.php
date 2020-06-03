@@ -36,6 +36,19 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        $error_msg = $exception->getMessage();
+        $trace = $exception->getTraceAsString();
+        $logfolder = 'logs';
+        $logfilename = $logfolder.'/log_' . date('Y-M-d_H-i-s') . '.log';
+
+        if (!file_exists($logfolder)) {
+            mkdir($logfolder, 0777);
+        }
+
+        if (!empty($error_msg)) {
+            error_log($error_msg.PHP_EOL.$trace.PHP_EOL, 3, $logfilename);
+        }
+
         parent::report($exception);
     }
 

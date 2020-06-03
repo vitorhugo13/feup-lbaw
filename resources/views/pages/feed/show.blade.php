@@ -13,6 +13,10 @@
     <script src="{{ asset('js/scroll.js') }}" defer></script>
 @endpush
 
+@section('page-title')
+<h1>Personal Feed</h1>
+@endsection
+
 @section('side-bar')
     <div id="sidebar" class="d-flex flex-column align-items-center">
         <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
@@ -33,8 +37,7 @@
     </div>
 @endsection
 
-@section('content-body')
-    {{-- <h1>Personal Feed</h1>  TODO: Ver como isto vai funcionar...--}}
+@section('content-body')    
     <div id="feed">
         @include('partials.posts.post_deck', ['posts' => $posts])
     </div>

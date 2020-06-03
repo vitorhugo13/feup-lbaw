@@ -16,7 +16,7 @@ function confirmMove() {
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: 'categories=' + categoriesInput.value
+        body: 'categories=' + encodeURIComponent(categoriesInput.value)
     }).then(response => {
         if (response['status'] != 200) {
             return
