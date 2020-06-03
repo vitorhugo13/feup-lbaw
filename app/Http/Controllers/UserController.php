@@ -289,12 +289,6 @@ class UserController extends Controller
         return redirect('users/' . $id)->with('alert-success', "Profile successfully edited!");
     }
 
-    public function getNotifications(Request $request)
-    {
-        $notifications = Auth::user()->notifications;
-        return response()->json(['success' => "Retrieved notifications", 'notifications' => $notifications], 200);
-    }
-
     /*===================== CHANGE PERMISSIONS ============================ */
     public function changePermissions(Request $request, $id)
     {

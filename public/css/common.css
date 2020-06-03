@@ -106,14 +106,6 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
     }
 }
 
-/* ----------========== NOTIFICATIONS ==========---------- */
-
-.notification-menu {
-    width: 25em;
-    max-height: 15em;
-    overflow-y: auto;
-}
-
 /* ----------========== Alerts ==========---------- */
 
 .alert {
@@ -385,19 +377,12 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
     #content {
         width: 35em;
     }
-    .notification-menu {
-        width: 15em;
-    }
 }
 
 @media (max-width: 575px) {
     #content {
         width: 95%;
         padding: 1.5em 0.5em;
-    }
-
-    .notification-menu {
-        width: auto;
     }
 
     #footer-content {
