@@ -115,7 +115,7 @@ function drawPostReportEntry(report) {
     menu.setAttribute('data-content', report['content'])
     menu.innerHTML += '<a class="dropdown-item" href="posts/' + report['content'] + '?move=1">Move</a>'
     menu.innerHTML += '<a class="dropdown-item dropdown-hide" href="#">Hide</a>'
-    if (report['author'] !== null)
+    if (report['author'] !== null && report['role'] !== 'Moderator' && report['role'] !== 'Administrator')
         menu.innerHTML += '<a class="dropdown-item dropdown-block" href="#" data-toggle="modal" data-target="#block-modal" data-author="' + report['author'] + '" data-file="' + report['id'] + '">Block User</a>'
     menu.innerHTML += '<a class="dropdown-item dropdown-resolve" href="#">Resolve</a>'
     menu.innerHTML += '<span class="dropdown-item dropdown-ignore" href="#">Ignore</span>'
@@ -156,7 +156,7 @@ function drawCommentReportEntry(report) {
     menu.setAttribute('data-id', report['id'])
     menu.setAttribute('data-content', report['content'])
     menu.innerHTML += '<a class="dropdown-item dropdown-hide" href="#">Hide</a>'
-    if (report['author'] !== null)
+    if (report['author'] !== null && report['role'] !== 'Moderator' && report['role'] !== 'Administrator')
         menu.innerHTML += '<a class="dropdown-item dropdown-block" href="#" data-toggle="modal" data-target="#block-modal" data-author="' + report['author'] + '" data-file="' + report['id'] + '">Block User</a>'
     menu.innerHTML += '<a class="dropdown-item dropdown-resolve" href="#">Resolve</a>'
     menu.innerHTML += '<span class="dropdown-item dropdown-ignore" href="#">Ignore</span>'
