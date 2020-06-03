@@ -16,7 +16,7 @@
       <div class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
 
         <div class="logo mt-5 mb-3">
-          <a href="{{ route('home') }}"><img src={{ asset('images/lama_logo.svg') }} width="140px"></a>
+          <a href="{{ route('home') }}"><img src={{ asset('images/lama_logo.svg') }} width="140" alt="Lama logo"></a>
         </div>
 
         <div class="heading mb-3">
