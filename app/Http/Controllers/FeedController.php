@@ -19,7 +19,10 @@ class FeedController extends Controller
         $starred_posts = $user->starredPosts;
         $starred_categories = $user->starredCategories;
 
-        $other_posts = Post::get()->filter(function($post) use($starred_categories){
+        $other_posts = Post::get()->filter(function($post) use($starred_categories){                        
+            if (!$post->isVisible())
+                return false;
+            
             if($post->content->author == Auth::user()->id)
                 return false;
 
@@ -39,16 +42,21 @@ class FeedController extends Controller
     }
 
     private function getFreshPosts($page){
-        $posts = Post::get()->sortByDesc(function ($post) {
+        $posts = Post::get()->filter(function($post) {
+            return $post->isVisible();
+        })->sortByDesc(function ($post) {
             return $post->content->creation_time;
         });
+
 
         return $posts->slice($page * config('constants.page-size'))->take(config('constants.page-size'));
     }
 
     private function getHotPosts($page)
     {
-        $posts = Post::get()->sortByDesc(function ($post) {
+        $posts = Post::get()->filter(function($post) {
+            return $post->isVisible();
+        })->sortByDesc(function ($post) {
             $value = $post->num_comments;
             $threads = $post->threads;
             $previous_day = strtotime(Carbon::now()) / 86400 - 2;
@@ -70,7 +78,9 @@ class FeedController extends Controller
 
     private function getTopPosts($page)
     {
-        $posts = Post::get()->sortByDesc(function ($post) {
+        $posts = Post::get()->filter(function($post) {
+            return $post->isVisible();
+        })->sortByDesc(function ($post) {
             return $post->num_comments + 2 * $post->content->upvotes - $post->content->downvotes;
         });
 

@@ -39,4 +39,5 @@ class Content extends Model
   public function ratings() {
       return $this->belongsToMany('App\Models\Rating', 'rating', 'id', 'content_id');
   }
+
 }
