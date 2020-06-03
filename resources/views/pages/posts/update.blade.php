@@ -21,7 +21,7 @@
     action="{{ url('posts/'.$post->id) }}" 
 @endif >
 {{ csrf_field() }}
-    <section id="categories-tab" class="col-12 col-lg-4">
+    <aside id="categories-tab" class="col-12 col-lg-4">
                
         <header>Post Categories  @include('partials.posts.tooltip', ['title' => 'Here you can select the categories that best fit your post. Just search categories in the dropdown, select one and click on Add.']) </header>
         <div class="input-group">
@@ -48,9 +48,9 @@
                 {{ $errors->first('categories') }}
             </span>
         @endif
-    </section>
+    </aside>
 
-    <section id="text-tab" class="col-12 col-lg-7 ml-0 ml-lg-3 mt-4 mt-lg-0">
+    <aside id="text-tab" class="col-12 col-lg-7 ml-0 ml-lg-3 mt-4 mt-lg-0">
         <div class="d-flex flex-column justify-content-start align-items-stretch form-group">
             <input type="text" name="title" id="post-title" placeholder="Title"
             @if ($post == null)
@@ -74,7 +74,7 @@
                 <button class="btn btn-primary" type="submit">Post</button>
             </div>
         </div>
-    </section>
+    </aside>
 </form>
 
 @endsection

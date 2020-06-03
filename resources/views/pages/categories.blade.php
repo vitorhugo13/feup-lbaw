@@ -11,12 +11,12 @@
     <script src="{{ asset('js/api/category_order.js') }}" defer></script>
     <script src="{{ asset('js/api/category_edit.js') }}" defer></script>
     @if(Auth::check() && Auth::user()->role == 'Administrator')
-    <script src="{{ asset('js/api/category_add.js') }}" defer></script>
+        <script src="{{ asset('js/api/category_add.js') }}" defer></script>
     @endif
 @endpush
 
 @section('main-content')
-<section id="wrapper">
+<div id="wrapper">
     <aside id="sidebar" class="d-flex flex-column align-items-center">
         <div id="sidebar-navigation" class="d-flex flex-column align-items-center">
             <p class="align-self-start ml-3">Order By:</p>
@@ -45,16 +45,16 @@
     <div class="overlay"></div>
 
     <main id="feed">
-        <section class="community-section card-deck row">
+        <div class="community-section card-deck row">
             <div class="col-0 col-md-3"></div>
             @include('partials.categories.category_card', ['category' => $categories->where('title', 'Community News')->first()])
             <div class="col-0 col-md-3"></div>
-        </section>
+        </div>
         <div id="category-deck">
             @include('partials.categories.category_deck', ['categories' => $categories])
         </div>
     </main>
         @include('partials.categories.new_category_modal')
         @include('partials.categories.edit_category')
-</section>
+</div>
 @endsection

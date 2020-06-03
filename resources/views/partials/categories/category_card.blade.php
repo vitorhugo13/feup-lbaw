@@ -1,5 +1,5 @@
 <div class="col mb-4 px-3 px-sm-0">
-        <article class="card category-card" data-category-id="{{ $category->id }}">
+        <div class="card category-card" data-category-id="{{ $category->id }}">
             <div class="card-body">
                 <header class="d-flex flex-row justify-content-between">
                     <form method="POST" action="{{ url('search/0') }}"> 
@@ -19,5 +19,5 @@
             <footer class="card-footer d-flex flex-row justify-content-between">
                 <p>{{ $category->num_posts }} posts </p> <p>Last active: @include('partials.content.time', ['creation_time' => $category->last_activity])</p>
             </footer>
-        </article>
+        </div>
 </div>
