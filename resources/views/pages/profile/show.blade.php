@@ -84,7 +84,7 @@
         @if(count($categories) > 0)
         <hr>
         <div class="top-categories">
-            <h3>Top Categories  <span class="cat-tip"> @include('partials.posts.tooltip', ['title' => 'Here are the categories where you have the best reputation (up to a maximum of 3). The reputation of each category is calculated by the difference between upvotes and downvotes in the posts tagged with it.']) </span></h3>
+            <h3>Top Categories  <span class="cat-tip"> @include('partials.posts.tooltip', ['title' => 'These are the categories where you have the most reputation. The reputation depends on the number of upvotes and downvotes you have on your activity.']) </span></h3>
             @each('partials.profile.category', $categories, 'category')     
         </div>
         @endif
