@@ -39,13 +39,13 @@
 
                   <div class="form-input">
                       <span> <i class="fa fa-lock"></i></span>
-                      <input type="password" name="password" placeholder="Password" required>
+                      <input type="password" name="password" minlength="8" placeholder="Password" required>
                       
                   </div>
 
                   <div class="form-input">
                       <span> <i class="fa fa-lock"></i></span>
-                      <input type="password" name="password_confirmation" placeholder="Repeat Password" required>
+                      <input type="password" name="password_confirmation" minlength="8" placeholder="Repeat Password" required>
                   </div>
 
                 @if ($errors->has('username'))
