@@ -142,12 +142,14 @@ class ReportController extends ContentController
 
         $this->authorize('contestReport', ReportFile::class);
 
-        $contest = new Contest;
-        $contest->justification = $justification;
-        $contest->report = $id;
-        $contest->save();
-
-        ReportFile::find($id)->update(['sorted' => false]);
+        DB::transaction(function () use ($justification, $id) {            
+            $contest = new Contest;
+            $contest->justification = $justification;
+            $contest->report = $id;
+            $contest->save();
+    
+            ReportFile::find($id)->update(['sorted' => false]);
+        });
 
         return response()->json(['success' => 'Contest successfuly created.'], 200);
     }

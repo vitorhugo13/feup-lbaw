@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ReportFile;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,7 @@ use Intervention\Image\Facades\Image;
 
 use App\Models\User;
 use Carbon\Carbon;
+use Exception;
 
 class UserController extends Controller
 {
@@ -327,13 +329,15 @@ class UserController extends Controller
         $this->authorize('block', $user);
 
         $time = $request->input('time');
+        $file_id = $request->input('id');
 
         $validator =  Validator::make($request->all(), [
             'time' => array(
                 'required',
                 'numeric',
                 'between:24,8760'
-            )
+            ),
+            'id' => 'required|integer|exists:report_file'
         ]);
 
         if ($validator->fails())
@@ -341,12 +345,27 @@ class UserController extends Controller
 
         $date = Carbon::now();
         $date->addHours($time);
-        // To fix UTC time
         $date->addHour();
-        error_log('Writing_date: '. $date->format('Y-m-d H:i:s'));
-        $user->release_date = $date->format('Y-m-d H:i:s');
-        $user->role = 'Blocked';
-        $user->save();
+
+        DB::beginTransaction();
+
+        try {
+            $file = ReportFile::find($file_id);
+            $file->blocked = true;
+            $file->save();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        try {
+            $user->block($date);
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        DB::commit();
 
         return response()->json(['success' => "User " . $user->username . " is now Blocked"], 200);
     }
