@@ -18,10 +18,13 @@
 
     <div class="edit-profile-info d-flex flex-column align-items-center flex-fill">
         
-        <form class="d-flex flex-column align-items-center change-photo" method="post" action="{{ route('changePhoto', $user->id) }}" enctype="multipart/form-data">
+        <form id="change-photo-form" class="d-flex flex-column align-items-center change-photo" method="post" action="{{ route('changePhoto', $user->id) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <img src="{{ asset($user->photo) }}" class="img rounded-circle" alt="Profile photo">
-            <input type="file" name="avatar">
+            <img src="{{ asset($user->photo) }}" id="photo-button" class="img rounded-circle" alt="Profile photo" style="cursor: pointer">
+            <label class="photo-input">
+                <input type="file" name="avatar" >
+                Select photo
+            </label>
 
             @if ($errors->has('avatar'))
                 <span class="error3">
