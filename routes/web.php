@@ -52,8 +52,6 @@ Route::post('users/{id}/edit/bio', 'UserController@changeBio');
 Route::post('users/{id}/edit/credentials', 'UserController@changeCredentials');
 Route::delete('users/{id}', 'UserController@delete')->name('deleteProfile');
 
-Route::post('api/notifications', 'UserController@getNotifications');
-
 // Homepage, Feed & Search
 Route::get('home', 'FeedController@showHome')->name('home');
 Route::get('feed', 'FeedController@showFeed')->name('feed');

@@ -55,11 +55,6 @@ body>header>nav>div>div>i {
     cursor: pointer;
 }
 
-body>header>nav>div>div .badge {
-    background-color: var(--main-color);
-    color: var(--background-strong);
-}
-
 .dropdown-item {
     background-color: var(--foreground);
 }
@@ -104,14 +99,6 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
     #log-buttons :nth-child(2) {
         display: none;
     }
-}
-
-/* ----------========== NOTIFICATIONS ==========---------- */
-
-.notification-menu {
-    width: 25em;
-    max-height: 15em;
-    overflow-y: auto;
 }
 
 /* ----------========== Alerts ==========---------- */
@@ -385,19 +372,12 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
     #content {
         width: 35em;
     }
-    .notification-menu {
-        width: 15em;
-    }
 }
 
 @media (max-width: 575px) {
     #content {
         width: 95%;
         padding: 1.5em 0.5em;
-    }
-
-    .notification-menu {
-        width: auto;
     }
 
     #footer-content {

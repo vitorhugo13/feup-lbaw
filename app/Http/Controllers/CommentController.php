@@ -14,9 +14,6 @@ use App\Models\Post;
 use App\Models\Thread;
 use App\Models\User;
 
-use App\Notifications\NewComment;
-
-
 class CommentController extends ContentController
 {
   private function validateID($id)

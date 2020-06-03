@@ -53,7 +53,6 @@ if (blocked != null) {
             remainSec.innerHTML += 's'
         }
 
-        //TODO: send notification??
         if (distance <= 0) {
             if(blocked_div != null){
                 blocked_div.remove();
