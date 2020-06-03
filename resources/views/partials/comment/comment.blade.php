@@ -5,10 +5,10 @@
             @if ($comment->content->owner == null)
                 <span>anon</span>
             @else
-                <span
+                <a href="{{ $comment->content->owner->id }}"
                 @if ($author != null && $comment->content->owner->id == $author->id)
                     class="op"
-                @endif>{{ $comment->content->owner->username }}</span>
+                @endif>{{ $comment->content->owner->username }}</a>
             @endif
 
             &middot; @include('partials.content.time', ['creation_time' => $comment->content->creation_time])

@@ -37,12 +37,21 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        if (preg_match('/posts\/[\d]{1,}/', url()->previous()) === 1) {
+            session(['url.intended' => url()->previous()]);
+        }
+        return view('auth.login');
+    }
+
     public function username()
     {
         return 'username';
     }
 
-    public function getUser(){
+    public function getUser()
+    {
         return $request->user();
     }
 }

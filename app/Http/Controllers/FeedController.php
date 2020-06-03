@@ -83,7 +83,10 @@ class FeedController extends Controller
         
         $posts = $this->getDefaultFeedPosts()->take(config('constants.page-size'));
 
-        return view('pages.feed', ['posts' => $posts, 'starred_categories' => $starred_categories]);
+        if($posts->isEmpty())
+            return view('pages.feed.empty');
+        else
+            return view('pages.feed.show', ['posts' => $posts, 'starred_categories' => $starred_categories]);
     }
 
     public function filter($selected_categories, $page){     
