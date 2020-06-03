@@ -24,7 +24,8 @@ class ReportController extends ContentController
     }
 
     public function getPosts() {
-        $reports = ReportFile::join('post', 'content', 'post.id')
+        $reports = ReportFile::where('sorted', false)
+            ->join('post', 'content', 'post.id')
             ->select('report_file.id', 'report_file.content', 'post.title')
             ->get();
 
@@ -40,7 +41,8 @@ class ReportController extends ContentController
     }
     
     public function getComments() {
-        $reports = ReportFile::join('comment', 'content', 'comment.id')
+        $reports = ReportFile::where('sorted', false)
+            ->join('comment', 'content', 'comment.id')
             ->select('report_file.id', 'report_file.content')
             ->get();
 
