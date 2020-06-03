@@ -268,7 +268,6 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
     box-sizing: content-box;
     font-family: inherit;
     font-size: 90%;
-    /* background: var(--foreground) url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 10px center; */
     background: var(--foreground) url("../images/search.svg") no-repeat 2px center;
     border: solid 2px transparent;
     -webkit-border-radius: 10em;
@@ -331,15 +330,6 @@ body>header>nav>div>div .dropdown-menu .dropdown-divider {
         background-color: var(--foreground);
         cursor: auto;
     }
-
-    /* .expandable-search input:hover:-moz-placeholder {
-        color: var(--background-strong);
-        -webkit-transition: all .5s;git 
-    -webkit-transition: all .5s;git 
-        -webkit-transition: all .5s;git 
-        -moz-transition: all .5s;
-        transition: all .5s;
-    } */
 
     .expandable-search input:focus::-webkit-input-placeholder,
     .expandable-search input:hover::-webkit-input-placeholder {

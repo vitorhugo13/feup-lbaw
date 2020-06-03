@@ -122,8 +122,6 @@ a[data-target="#edit-category-modal"]:hover {
     color: var(--foreground);
     padding-left: 0.5em;
     margin-bottom: 1em;
-    /* font-size: 1.2em;
-    font-weight: 500; */
     border: none;
     border-bottom: 1px solid var(--background);
     width: 100%;

@@ -58,12 +58,6 @@
     color: var(--main-color);
 }
 
-/* .filters hr {
-    width: 90%;
-    margin: -3px 0 0 0;
-    border-top: 3px solid var(--background-strong);
-    z-index: -1;
-} */
 /* ----------- End of Filters for mobile ------------ */
 
 .tab-categories {
@@ -118,7 +112,6 @@
 #side-toggle {
     display: none;
     background-color: var(--main-color);
-    /* border-right: solid 1px var(--accent-color); */
     color: var(--background-strong);
     text-align: center;
     padding-top: 1em;

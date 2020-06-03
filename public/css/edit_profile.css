@@ -102,8 +102,6 @@
     border: solid 1px var(--foreground);
 }
 
-/*from previous style sheet*/
-
 .form-box{
     display: flex;
     flex-direction: column;
