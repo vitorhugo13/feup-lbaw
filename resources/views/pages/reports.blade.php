@@ -11,7 +11,7 @@
 
 @section('main-content')
 <h1>Reports Table</h1>
-<section class="wrapper">
+<div class="wrapper">
     
     <!-- Dark Overlay element -->
     <div class="overlay"></div>
@@ -26,7 +26,7 @@
 
     <div id="main">
         <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade show active" id="posts-tab" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <div class="tab-pane fade show active" id="posts-tab" role="tabpanel" aria-labelledby="posts-tab">
                 <table class="table table-responsive-sm">
                     <thead>
                         <tr>
@@ -40,7 +40,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane fade" id="comments-tab" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <div class="tab-pane fade" id="comments-tab" role="tabpanel" aria-labelledby="comments-tab">
                 <table class="table table-responsive-sm">
                     <thead>
                         <tr>
@@ -54,7 +54,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane fade" id="contests-tab" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+            <div class="tab-pane fade" id="contests-tab" role="tabpanel" aria-labelledby="contests-tab">
                 <table class="table table-responsive-sm">
                     <thead>
                         <tr>
@@ -70,7 +70,7 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 
 {{-- @include('partials.posts.move_modal', ['post_categories' => $post->categories]) --}}
 @endsection

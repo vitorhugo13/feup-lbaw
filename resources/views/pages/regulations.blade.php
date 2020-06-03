@@ -72,8 +72,9 @@
         <p><span>15 &middot;</span> You can not use the Services in any manner that could interfere with, disrupt, negatively affect, or inhibit other users from fully enjoying the Services or that could damage, disable, overburden, or impair the functioning of the Services in any manner.</p>
     </div>
 
-    <img src="{{ asset('images/happy_llama.svg') }}" width="150px" class="img mt-5" alt="Lama photo">
+    <img src="{{ asset('images/happy_llama.svg') }}" width="150" class="img mt-5" alt="Lama photo">
     <h3 class="ty mt-1">Thank you!</h3>
 </div>
 
 @endsection
+git
