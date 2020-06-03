@@ -55,11 +55,6 @@ body>header>nav>div>div>i {
     cursor: pointer;
 }
 
-body>header>nav>div>div .badge {
-    background-color: var(--main-color);
-    color: var(--background-strong);
-}
-
 .dropdown-item {
     background-color: var(--foreground);
 }
