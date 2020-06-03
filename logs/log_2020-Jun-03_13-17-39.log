@@ -1,4 +1,5 @@
------------------------ Drop Existing Tables --------------------------------
+SQLSTATE[23514]: Check violation: 7 ERROR:  new row for relation "user" violates check constraint "invalid_release_date"
+DETAIL:  Failing row contains (101, vitinho, vitinho@mail.pt, $2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W, Olá, eu sou o Vitinho., 0, Blocked, storage/uploads/avatars/default.png, 2020-06-02 21:50:51). (SQL: ----------------------- Drop Existing Tables --------------------------------
 
 DROP TABLE IF EXISTS "rating" CASCADE;
 DROP TABLE IF EXISTS "star_category"  CASCADE;
@@ -86,8 +87,7 @@ CREATE TABLE "user" (
     glory INTEGER NOT NULL DEFAULT 0,
     role ROLES NOT NULL DEFAULT 'Member',
     photo TEXT NOT NULL DEFAULT 'storage/uploads/avatars/default.png',
-    release_date TIMESTAMP CONSTRAINT INVALID_RELEASE_DATE CHECK (release_date > CURRENT_TIMESTAMP OR release_date IS NULL),
-    remember_token VARCHAR
+    release_date TIMESTAMP CONSTRAINT INVALID_RELEASE_DATE CHECK (release_date > CURRENT_TIMESTAMP OR release_date IS NULL)
 );
 
 CREATE TABLE "content" (
@@ -618,11 +618,12 @@ insert into "user" (id, username, email, password, bio) values (97, 'vcollicott2
 insert into "user" (id, username, email, password, bio) values (98, 'akolushev2p', 'kdrillingcourt2p@amazon.co.uk', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.');
 insert into "user" (id, username, email, password, bio) values (99, 'hhansen2q', 'kbeig2q@dailymail.co.uk', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.');
 insert into "user" (id, username, email, password, bio) values (100, 'abomfield2r', 'bkleinerman2r@domainmarket.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat.');
-insert into "user" (id, username, email, password, bio, role, release_date) values (101, 'vitinho', 'vitinho@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-06-22 21:50:51');
+insert into "user" (id, username, email, password, bio, role, release_date) values (101, 'vitinho', 'vitinho@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-06-02 21:50:51');
 insert into "user" (id, username, email, password, bio, role) values (102, 'bernas', 'bernas@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Bernas.', 'Administrator');
 insert into "user" (id, username, email, password, bio, role, release_date) values (103, 'joaozinho', 'vitinho44@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-06-22 21:50:51');
 insert into "user" (id, username, email, password, bio, role, release_date) values (104, 'maezinha', 'vitinho4444@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-06-22 21:52:51');
-insert into "user" (id, username, email, password, bio, role, release_date) values (101, 'vitinho', 'vitinho@mail.pt', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'Olá, eu sou o Vitinho.', 'Blocked', '2020-06-03 21:50:51');
+
+
 select setval('user_id_seq', 104);
 
 
@@ -3338,3 +3339,33 @@ insert into user_notification (user_id, notification) values (100, 10);
 insert into user_notification (user_id, notification) values (74, 62);
 insert into user_notification (user_id, notification) values (76, 21);
 insert into user_notification (user_id, notification) values (18, 93);
+)
+#0 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Database\Connection.php(624): Illuminate\Database\Connection->runQueryCallback('---------------...', Array, Object(Closure))
+#1 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Database\Connection.php(511): Illuminate\Database\Connection->run('---------------...', Array, Object(Closure))
+#2 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(349): Illuminate\Database\Connection->unprepared('---------------...')
+#3 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(239): Illuminate\Database\DatabaseManager->__call('unprepared', Array)
+#4 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\database\seeds\DatabaseSeeder.php(18): Illuminate\Support\Facades\Facade::__callStatic('unprepared', Array)
+#5 [internal function]: DatabaseSeeder->run()
+#6 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php(32): call_user_func_array(Array, Array)
+#7 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php(90): Illuminate\Container\BoundMethod::Illuminate\Container\{closure}()
+#8 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php(34): Illuminate\Container\BoundMethod::callBoundMethod(Object(Illuminate\Foundation\Application), Array, Object(Closure))
+#9 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Container\Container.php(576): Illuminate\Container\BoundMethod::call(Object(Illuminate\Foundation\Application), Array, Array, NULL)
+#10 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Database\Seeder.php(124): Illuminate\Container\Container->call(Array)
+#11 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Database\Console\Seeds\SeedCommand.php(63): Illuminate\Database\Seeder->__invoke()
+#12 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Concerns\GuardsAttributes.php(122): Illuminate\Database\Console\Seeds\SeedCommand->Illuminate\Database\Console\Seeds\{closure}()
+#13 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Database\Console\Seeds\SeedCommand.php(64): Illuminate\Database\Eloquent\Model::unguarded(Object(Closure))
+#14 [internal function]: Illuminate\Database\Console\Seeds\SeedCommand->handle()
+#15 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php(32): call_user_func_array(Array, Array)
+#16 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php(90): Illuminate\Container\BoundMethod::Illuminate\Container\{closure}()
+#17 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php(34): Illuminate\Container\BoundMethod::callBoundMethod(Object(Illuminate\Foundation\Application), Array, Object(Closure))
+#18 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Container\Container.php(576): Illuminate\Container\BoundMethod::call(Object(Illuminate\Foundation\Application), Array, Array, NULL)
+#19 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Console\Command.php(183): Illuminate\Container\Container->call(Array)
+#20 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\symfony\console\Command\Command.php(255): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+#21 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Console\Command.php(170): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+#22 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\symfony\console\Application.php(1012): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\symfony\console\Application.php(272): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Seeds\SeedCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\symfony\console\Application.php(148): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Console\Application.php(90): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(133): Illuminate\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#27 D:\2º Semestre\Laboratório de Bases de Dados e Tecnologias Web\lbaw2031\artisan(37): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#28 {main}

@@ -17,7 +17,7 @@ function confirmAddition(ev) {
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: 'name=' + newName
+        body: 'name=' + encodeURIComponent(newName)
     }).then(response => {
         console.log(response)
         

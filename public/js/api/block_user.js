@@ -17,7 +17,7 @@ function requestBlock(ev) {
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: 'time=' + time.value
+        body: 'time=' + encodeURIComponent(time.value)
     }).then(response => {
         console.log(response)
         response.json().then(data => {

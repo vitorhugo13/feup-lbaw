@@ -48,21 +48,13 @@
           @endif
 
           <div class="mb-3 text-right">
-            <a href="#" class="forget-link">Forgot password</a>
+            <a href="{{url('password/reset')}}" class="forget-link">Forgot password</a>
           </div>
 
           <div class="text-center mb-3">
             <button type="submit" class="btn" >Log in</button>
           </div>
-
-          <h6><span> or login with </span></h6>
-
-          <div class="google mb-3">
-
-            <a href="" class="btn btn-block btn-social btn-google">Google</a>
-
-          </div>
-
+          
           <div class="register-account">
             Don't have an account?
             <a class="register-link" href="{{ route('register') }}"> Register here.</a>

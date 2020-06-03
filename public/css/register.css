@@ -92,36 +92,6 @@
     text-decoration: none;
 }
 
-.form-box .btn-google {
-    width: 40%;
-    padding: 0.7em 1.2em;
-    margin: 0 auto 0.5em auto;
-    border: 0;
-    border-radius: 2px;
-    background-color: #da3f34;
-    color: var(--foreground);
-    font-size: 1em;
-    font-weight: 600;
-    text-align: center;
-    transition: 0.5s;
-}
-
-h6 {
-    width: 100%;
-    text-align: center;
-    border-bottom: 1px solid var(--background-strong);
-    line-height: 0.1em;
-    margin: 10px 0 20px;
-}
-
-h6 span {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-size: 0.9em;
-    font-weight: 400;
-    padding: 0 10px;
-}
-
 .register-account {
     color: var(--foreground);
 }
