@@ -12,6 +12,13 @@ class ContentPolicy
     use HandlesAuthorization;
 
     public function show(?User $user, Content $content) {
+        if ($user === null)
+            return $content->visible;
+        else if ($content->author === $user->id)
+            return true;
+        else if ($user->role === 'Moderator' || $user->role === 'Administrator')
+            return true;
+    
         return $content->visible;
     }
 
@@ -20,7 +27,7 @@ class ContentPolicy
     }
 
     public function delete(User $user, Content $content) {
-        return $user->id == $content->author || $user->role == 'Moderator' || $user->role == 'Administrator';
+        return $user->id == $content->author;
     }
 
     public function edit(User $user, Content $content) {
@@ -30,6 +37,12 @@ class ContentPolicy
     public function rating(User $user, Content $content) {
         return $user->role != 'Blocked' && $content->visible;
     }
-    
-    // TODO: report policy
+
+    public function report(User $user, Content $content) {
+        return $user->role !== 'Blocked' && $content->author !== $user->id;
+    }
+
+    public function hide(User $user) {
+        return $user->role === 'Moderator' || $user->role === 'Administrator';
+    }
 }

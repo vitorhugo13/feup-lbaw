@@ -27,9 +27,5 @@ class Category extends Model
   */
   public function stars(){
     return $this->belongsToMany('App\Models\User');
-  }
-
-  //TODO: category glory
-
-    
+  }    
 }

@@ -16,6 +16,7 @@
     <script src="{{ asset('js/api/report_submit.js') }}" defer></script>
 @endpush
 
+
 @section('main-content')
 <div class="post">
     <header class="d-flex flex-column">
@@ -68,7 +69,9 @@
 </div>
 
 @include('partials.content.report_modal')
-@include('partials.posts.move_modal', ['post_categories' => $post->categories, 'id' => $post->id, 'author' => $author])
 @include('partials.comment.delete_modal')
+
+@include('partials.posts.move_modal', ['post_categories' => $post->categories, 'id' => $post->id, 'author' => $author])
+@if ($move) <script>$('#move-modal').modal('show')</script> @endif
 
 @endsection

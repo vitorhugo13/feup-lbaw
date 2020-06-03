@@ -14,11 +14,11 @@
 Route::get('/', 'FeedController@showHome');
 
 // Static Pages
-// TODO: ask if this is the correct use of Route::view()
 Route::view('team', 'pages/team')->name('team');
 Route::view('regulations', 'pages/regulations')->name('regulations');
 Route::view('404', 'errors/404')->name('404');
 Route::view('403', 'errors/403')->name('403');
+Route::view('500', 'errors/500')->name('500');
 
 // Posts
 Route::get('posts/{id}', 'PostController@show');
@@ -38,7 +38,11 @@ Route::get('api/reports/comments', 'ReportController@getComments');
 Route::get('api/reports/contests', 'ReportController@getContests');
 Route::post('api/reports/{id}/contests', 'ReportController@contestReport');
 Route::post('api/reports/contest/reasons', 'ReportController@getBlockReasons');
-Route::post('api/reports/create', 'ReportController@createReport');
+Route::post('api/reports', 'ReportController@createReport');
+// Reports API
+Route::delete('api/reports/{id}', 'ReportController@deleteReport');
+Route::put('api/reports/{id}', 'ReportController@sortReport');
+Route::delete('api/reports/contests/{id}', 'ReportController@sortContest');
 
 //User
 Route::get('users/{id}', 'UserController@showProfile')->name('profile');
@@ -47,8 +51,6 @@ Route::post('users/{id}/edit/photo', 'UserController@changePhoto')->name('change
 Route::post('users/{id}/edit/bio', 'UserController@changeBio');
 Route::post('users/{id}/edit/credentials', 'UserController@changeCredentials');
 Route::delete('users/{id}', 'UserController@delete')->name('deleteProfile');
-
-Route::post('api/notifications', 'UserController@getNotifications');
 
 // Homepage, Feed & Search
 Route::get('home', 'FeedController@showHome')->name('home');
@@ -63,18 +65,22 @@ Route::post('api/delete/photo', 'UserController@deletePhoto');
 Route::put('api/users/{id}/role', 'UserController@changePermissions');
 Route::put('api/users/{id}/block', 'UserController@block');
 
-//API Stars
+
+// API Stars
 Route::post('api/posts/{id}/stars','PostController@star');
 Route::delete('api/posts/{id}/stars','PostController@unstar');
 Route::post('api/categories/{id}/stars', 'CategoryController@star');
 Route::delete('api/categories/{id}/stars', 'CategoryController@unstar');
 
+// -----===== API CONTENT =====-----
+Route::put('api/contents/{id}', 'ContentController@hide');
 // API Rating
 Route::post('api/contents/{id}/votes', 'ContentController@add');
 Route::delete('api/contents/{id}/votes', 'ContentController@remove');
 Route::put('api/contents/{id}/votes', 'ContentController@update');
 
-//API Feed
+
+// API Feed
 Route::get('api/fresh/{page}', 'FeedController@fresh');
 Route::get('api/hot/{page}', 'FeedController@hot');
 Route::get('api/top/{page}', 'FeedController@top');

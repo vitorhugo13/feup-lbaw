@@ -46,13 +46,13 @@ class PostController extends ContentController
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $this->validateID($id);
 
         $post = Post::find($id);
 
-        if ($post == null || !$post->content->visible)
+        if ($post == null)
             return abort(404);
 
         $this->authorize('show', $post->content);
@@ -60,9 +60,9 @@ class PostController extends ContentController
         return view('pages.posts.show', [
             'post' => $post,
             'author' => $post->content->owner,
+            'move' => boolval($request->input('move', false))
         ]);
     }
-
 
     public function showCreateForm()
     {

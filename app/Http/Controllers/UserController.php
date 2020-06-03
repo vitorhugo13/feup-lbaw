@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ReportFile;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,9 @@ use Intervention\Image\Facades\Image;
 
 
 use App\Models\User;
-
+use App\Models\Post;
+use Carbon\Carbon;
+use Exception;
 
 class UserController extends Controller
 {
@@ -48,11 +51,18 @@ class UserController extends Controller
 
         $categories = DB::table("category_glory")->where("user_id", $id)->where("glory", '>', 0)->orderBy("glory", 'DESC')->take(3)->get();
 
-        //TODO: $this->authorize('show', $post);
+
+        if (Auth::user() == null)
+            $posts = $user->getVisiblePosts();
+        else if (Auth::user()->id === $id || Auth::user()->role === 'Moderator' || Auth::user()->role === 'Administrator')
+            $posts = $user->posts;
+        else
+            $posts = $user->getVisiblePosts();
 
         return view('pages.profile.show', [
             'user' => $user,
             'categories' => $categories,
+            'posts' => $posts,
         ]);
     }
 
@@ -73,9 +83,6 @@ class UserController extends Controller
         if ($user == null)
             return abort(404);
 
-
-        //TODO: $this->authorize('show', $post);
-
         return view('pages.profile.edit', [
             'user' => $user,
         ]);
@@ -84,7 +91,6 @@ class UserController extends Controller
 
 
     /*===================== EDIT PROFILE ============================ */
-    // TODO: consider creating a disk in filesystems.php for uploads, may be a good idea, dont know :)
 
     public function changePhoto(Request $request, $id, MessageBag $mb)
     {
@@ -94,22 +100,22 @@ class UserController extends Controller
         $user = User::find($id);
         if ($user == null)
             return abort(404);
-        
+
         $avatar = $request->file('avatar');
 
-        if($avatar == null){
+        if ($avatar == null) {
             $mb->add('avatar', 'Please select a photo...');
             return redirect()->back()->withErrors($mb);
         }
 
         $extension = $avatar->getClientOriginalExtension();
 
-        if ($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg'){
+        if ($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg') {
             $mb->add('avatar', 'Only .jpg .jpeg or .png allowed.');
             return redirect()->back()->withErrors($mb);
         }
 
-        if($avatar->getSize() > 5000000){
+        if ($avatar->getSize() > 5000000) {
             $mb->add('avatar', 'Maximum file size: 5MB');
             return redirect()->back()->withErrors($mb);
         }
@@ -121,7 +127,7 @@ class UserController extends Controller
             $file = explode("/", $path, 2);
             $exists = Storage::disk('public')->exists($file[1]);
 
-            if($exists){
+            if ($exists) {
                 Storage::disk('public')->delete($file[1]);
             }
         }
@@ -135,11 +141,10 @@ class UserController extends Controller
         $user->photo = 'storage/uploads/avatars/' . $id . '.' . $extension;
         $user->save();
 
-        
+
         return redirect()->route('profile', $id)->with('alert-success', 'Profile picture changed successfuly!');
     }
 
-    //TODO: check if this verifications are correct and enough
     public function deletePhoto()
     {
         $id = Auth::user()->id;
@@ -151,23 +156,22 @@ class UserController extends Controller
 
         $path = $user->photo;
         $default = 'storage/uploads/avatars/default.png';
-       
-        if($path != $default){
+
+        if ($path != $default) {
 
             $file = explode("/", $path, 2);
             $exists = Storage::disk('public')->exists($file[1]);
 
-            if($exists){
+            if ($exists) {
                 Storage::disk('public')->delete($file[1]);
                 $user->photo = 'storage/uploads/avatars/default.png';
-                $user-> save();
+                $user->save();
             }
         }
 
-        
+
         Session::flash('alert-success', 'Deleted photo successfully!');
         return response()->json(['success' => "Deleted photo successfully", 'id' => $id], 200);
-
     }
 
     public function changeBio(Request $request, $id)
@@ -194,7 +198,7 @@ class UserController extends Controller
     }
 
 
-    public function changeCredentials(Request $request, $id ,MessageBag $mb)
+    public function changeCredentials(Request $request, $id, MessageBag $mb)
     {
 
         $this->validateID($id);
@@ -272,7 +276,6 @@ class UserController extends Controller
             error_log($old_password);
             $hasher = app('hash');
 
-            //FIXME: the following condition may not be right - user->password is not yet the new password
             if (!$hasher->check($old_password, $user->password)) {
                 $mb->add('old_pass', 'Old password not correct');
                 return redirect()->back()->withErrors($mb);
@@ -286,13 +289,9 @@ class UserController extends Controller
         return redirect('users/' . $id)->with('alert-success', "Profile successfully edited!");
     }
 
-    public function getNotifications(Request $request) {
-        $notifications = Auth::user()->notifications;
-        return response()->json(['success' => "Retrieved notifications", 'notifications' => $notifications], 200);
-    }
-
     /*===================== CHANGE PERMISSIONS ============================ */
-    public function changePermissions(Request $request, $id) {
+    public function changePermissions(Request $request, $id)
+    {
         $this->authorize('changePermissions', Auth::user());
 
         $new_role = $request->input('role');
@@ -302,7 +301,7 @@ class UserController extends Controller
                 'required',
                 'string',
                 'regex:/(Moderator)|(Member)/'
-                )
+            )
         ]);
 
         if ($validator->fails())
@@ -310,41 +309,67 @@ class UserController extends Controller
 
         $user = User::find($id);
 
-        if($user->role != $new_role) {
+        if ($user->role != $new_role) {
             $user->role = $new_role;
             $user->save();
         }
 
         return response()->json(['success' => "User " . $user->username . " is now a " . $new_role], 200);
     }
-    
-    public function block(Request $request, $id) {
+
+    public function block(Request $request, $id)
+    {
         $user = User::find($id);
-        $this->authorize('block', Auth::user(), $user);
+        $this->authorize('block', $user);
 
         $time = $request->input('time');
+        $file_id = $request->input('id');
 
         $validator =  Validator::make($request->all(), [
             'time' => array(
                 'required',
                 'numeric',
                 'between:24,8760'
-                )
+            ),
+            'id' => 'required|integer|exists:report_file'
         ]);
 
         if ($validator->fails())
             return response()->json($validator->errors(), 400);
 
-        //TODO: time logic
-        $user->save();
+        $date = Carbon::now();
+        $date->addHours($time);
+        $date->addHour();
+
+        DB::beginTransaction();
+
+        try {
+            $file = ReportFile::find($file_id);
+            $file->blocked = true;
+            $file->save();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        try {
+            $user->block($date);
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        DB::commit();
 
         return response()->json(['success' => "User " . $user->username . " is now Blocked"], 200);
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $user = User::find($id);
         $this->authorize('delete', $user);
         $user->delete();
+        $this->deletePhoto();
 
         return redirect('home')->with('alert-success', "Profile was deleted!");
     }

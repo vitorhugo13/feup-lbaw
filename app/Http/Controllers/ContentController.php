@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Content;
 use Illuminate\Support\Facades\Validator;
 
-
-use App\Notifications\Rating;
-
-
 class ContentController extends Controller
 {
 
@@ -40,12 +36,6 @@ class ContentController extends Controller
         $this->authorize('rating', $content);
 
         DB::table('rating')->insert(['rating' => $request->input('type'), 'content' => $id, 'user_id' => Auth::user()->id]);
-
-        // notify the content author
-        // TODO: support disable notifications
-        // TODO: the owner does not receive notifications when he rates his own contents
-        //$content->owner->notify(new Rating($content->id, Auth::user()->id));
-
         return response()->json(['success' => 'Voted successfully. Type: ' . $request->input('type')]);
     }
 
@@ -81,4 +71,16 @@ class ContentController extends Controller
         return response()->json(['success' => 'Updated vote successfully. Type: ' . $request->input('type')]);
     }
 
+
+    public function hide($id)
+    {
+        $content = Content::find($id);
+        if ($content === null)
+            return response()->json(['error' => 'Content not found.'], 404);
+
+        $this->authorize('hide', Content::class);
+        $content->update(['visible' => false]);
+
+        return response()->json(['success' => 'Content hidden.'], 200);
+    }
 }

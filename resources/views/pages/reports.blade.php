@@ -6,7 +6,13 @@
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('js/api/reports.js') }}" defer></script>
+    <script src="{{ asset('js/api/reports/block.js') }}" defer></script>
+    <script src="{{ asset('js/api/reports/reports.js') }}" defer></script>
+    <script src="{{ asset('js/api/reports/ignore.js') }}" defer></script>
+    <script src="{{ asset('js/api/reports/resolve.js') }}" defer></script>
+    <script src="{{ asset('js/api/content/hide.js') }}" defer></script>
+    <script src="{{ asset('js/api/reports/contests/accept.js') }}" defer></script>
+    <script src="{{ asset('js/api/reports/contests/reject.js') }}" defer></script>
 @endpush
 
 @section('main-content')
@@ -72,5 +78,6 @@
     </div>
 </div>
 
+@include('partials.reports.block-modal')
 {{-- @include('partials.posts.move_modal', ['post_categories' => $post->categories]) --}}
 @endsection

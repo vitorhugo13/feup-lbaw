@@ -12,6 +12,7 @@ use App\Models\Content;
 use App\Models\Contest;
 use App\Models\Report;
 use App\Models\ReportFile;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Validator;
 
@@ -19,37 +20,50 @@ use Illuminate\Support\Facades\Validator;
 class ReportController extends ContentController
 {
 
-    public function show()
-    {
+    public function show() {
+        $this->authorize('show', ReportFile::class);
         return view('pages.reports');
     }
 
-    public function getPosts()
-    {
-        $reports = ReportFile::join('post', 'content', 'post.id')
-            ->select('report_file.id', 'post.title')
+    public function getPosts() {
+        $reports = ReportFile::where('sorted', false)
+            ->join('post', 'content', 'post.id')
+            ->select('report_file.id', 'report_file.content', 'post.title')
             ->get();
 
         foreach ($reports as $report) {
             $file = ReportFile::find($report->id);
+            $content = Content::find($report->content);
+            $user = User::find($content->author);
             $report['reason'] = implode(', ', $file->getReasons());
             $report['date'] = $file->getTimestamp();
+            $report['author'] = $content->author;
+            if($user != null)
+                $report['role'] = $user->role;
         }
 
         return response()->json(['success' => 'Retrieved post reports.', 'reports' => $reports], 200);
     }
-
-    public function getComments()
-    {
-        $reports = ReportFile::join('comment', 'content', 'comment.id')
-            ->select('report_file.id')
+    
+    public function getComments() {
+        $reports = ReportFile::where('sorted', false)
+            ->join('comment', 'content', 'comment.id')
+            ->select('report_file.id', 'report_file.content')
             ->get();
 
         foreach ($reports as $report) {
             $file = ReportFile::find($report->id);
-            $report['content'] = Content::find($file->content)->body;
+            $comment = Comment::find($file->content);
+            $user = User::find($comment->content->author);
+
+            $report['post'] = $comment->getPostId();
+            $report['comment_id'] = $comment->id;
+            $report['content'] = $comment->content->body;
             $report['reason'] = implode(', ', $file->getReasons());
             $report['date'] = $file->getTimestamp();
+            $report['author'] = $comment->content->author;
+            if($user != null)
+                $report['role'] = $user->role;
         }
 
         return response()->json(['success' => 'Retrieved comment reports.', 'reports' => $reports], 200);
@@ -77,7 +91,7 @@ class ReportController extends ContentController
         $content = $request['content'];     // id of the content
         $reason = $request['reason'];       // string with reason
 
-        // TODO: authorize
+        $this->authorize('createReport', ReportFile::class);
         DB::beginTransaction();
 
         try {
@@ -106,7 +120,6 @@ class ReportController extends ContentController
 
         DB::commit();
 
-
         return response()->json(['success' => 'Report successfuly submited.'], 200);
     }
 
@@ -114,11 +127,10 @@ class ReportController extends ContentController
     {
         $report = ReportFile::find($id);
 
-        // FIXME: the return code might be wrong here
         if ($report === null)
             return response()->json(['error' => 'Report not found.'], 404);
-
-        // TODO: authorize
+        
+        $this->authorize('deleteReport', ReportFile::class);
 
         $report->delete();
         return response()->json(['success' => 'Report successfuly deleted.'], 200);
@@ -128,11 +140,10 @@ class ReportController extends ContentController
     {
         $report = ReportFile::find($id);
 
-        // FIXME: the return code might be wrong here
         if ($report === null)
             return response()->json(['error' => 'Report not found.'], 404);
 
-        // TODO: authorize
+        $this->authorize('sortReport', ReportFile::class);
 
         $report->update(['sorted' => true]);
         return response()->json(['success' => 'Report successfuly resolved.']);
@@ -157,8 +168,9 @@ class ReportController extends ContentController
 
         $user = $request['user_id'];
         $justification = $request['justification'];
+        
+        $this->authorize('contestReport', ReportFile::class);
 
-        // authorize
         DB::beginTransaction();
 
         try {
@@ -179,13 +191,9 @@ class ReportController extends ContentController
 
     public function sortContest($id)
     {
-        // TODO: authorize
+        $this->authorize('sortContest', ReportFile::class);
 
-        $contest = Contest::find($id);
-        if ($contest === null)
-            return response()->json(['error' => 'Contest not found.'], 404);
-
-        $report = ReportFile::find($contest->report);
+        $report = ReportFile::find($id);
         if ($report === null)
             return response()->json(['error' => 'Report file not found.'], 404);
 
@@ -197,6 +205,9 @@ class ReportController extends ContentController
             return response()->json(['error' => 'Content author not found.'], 404);
 
         $content->owner->unblock();
-        return response()->json(['success' => 'User unblocked successfuly.'], 200);
+        $content->update(['visible' => true]);
+        $report->delete();
+
+        return response()->json(['success' => 'Contest sorted.'], 200);
     }
 }

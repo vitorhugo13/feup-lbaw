@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Post extends Content
 {
@@ -15,9 +16,6 @@ class Post extends Content
     return $this->belongsTo('App\Models\Content', 'id', 'id');
   }
 
-  /*
-  * categories of a post (//TODO: hasMany(?) - pode ter só 1...)
-  */
   public function categories(){
     return $this->belongsToMany('App\Models\Category', 'post_category', 'post', 'category');
   }
@@ -34,6 +32,10 @@ class Post extends Content
   */
   public function stars(){
     return $this->belongsToMany('App\Models\User');
+  }
+
+  public function isVisible() {
+    return DB::table('content')->where('id', $this->id)->value('visible');
   }
 
 }

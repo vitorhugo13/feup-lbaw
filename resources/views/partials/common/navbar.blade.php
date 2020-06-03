@@ -10,20 +10,14 @@
         <div class="d-flex align-items-center">
                         
             @auth
-            {{-- TODO: user notifications --}}
-            <div class="dropdown d-flex align-items-center">
-                <span class="badge badge-pill badge-light mr-2">3</span>
-                <i class="fas fa-bell" data-toggle="dropdown"></i>
-                <div id="notification-tray" class="dropdown-menu dropdown-menu-right notification-menu">
-                </div>
-            </div>
-
             <div class="dropdown" style="margin-left: 1em">
                 <img class="rounded-circle dropdown-toggle" data-toggle="dropdown" src="{{ asset(Auth::user()->photo) }}" alt="Profile picture dropdown" height="30">
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="{{ url('../users', Auth::user()->id) }}">Profile</a>
                     <a class="dropdown-item" href="{{ route('feed') }}">Feed</a>
-                    <a class="dropdown-item" href="{{ route('reports') }}">Reports</a>
+                    @if (Auth::user()->role == 'Administrator' || Auth::user()->role == 'Moderator')                        
+                        <a class="dropdown-item" href="{{ route('reports') }}">Reports</a>
+                    @endif
                     @php
                         $currentDate = date("Y-m-d");
                         $currentTime = date("H:i:s");

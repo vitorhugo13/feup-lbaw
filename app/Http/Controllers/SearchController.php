@@ -34,6 +34,7 @@ class SearchController extends Controller
                                 LEFT JOIN "user" ON (content.author = "user".id)
                                 JOIN post_category ON (post.id = post_category.post)
                                 JOIN category ON (post_category.category = category.id)
+                                WHERE content.visible=true
                                 GROUP BY post.id, "user".id) AS post_info
                                 WHERE post_info.document @@ to_tsquery(\'simple\', ?)
                                 ORDER BY rank DESC', [$search])->pluck('result_id')->all();

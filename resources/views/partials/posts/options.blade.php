@@ -10,15 +10,11 @@
                         Delete
                         </form>
                     </a>
-                    <a class="dropdown-item" href="#">Mute</a>
-                @else
-                    <a class="dropdown-item" href="#">Block User</a>
                 @endif
                 @break
             @case('Member')
                 @if ($author != null && Auth::user()->id == $author->id)
                     <a class="dropdown-item" href="{{ route('edit', $post->id) }}">Edit</a>
-                    <a class="dropdown-item" href="#">Mute</a>
                     <a class="dropdown-item">
                         <form method="POST" action="{{ url('posts/' . $post->id) }}" onclick='submit()'>
                         @csrf @method('DELETE')
@@ -32,7 +28,6 @@
             @default
                 @if ($author != null && Auth::user()->id == $author->id)
                     <a class="dropdown-item" href="{{ route('edit', $post->id) }}">Edit</a>
-                    <a class="dropdown-item" href="#">Mute</a>
                     <a class="dropdown-item">
                         <form method="POST" action="{{ url('posts/' . $post->id) }}" onclick='submit()'>
                         @csrf @method('DELETE')
@@ -40,16 +35,8 @@
                         </form>
                     </a>
                 @else
-                    <a class="dropdown-item">
-                        <form method="POST" action="{{ url('posts/' . $post->id) }}" onclick='submit()'>
-                        @csrf @method('DELETE')
-                        Delete
-                        </form>
-                    </a>
                     <a class="dropdown-item" data-toggle="modal" data-target="#report-modal"  data-content-id="{{$post->id}}">Report</a>
-                    <a class="dropdown-item" href="#">Resolve</a>
                     <a class="dropdown-item" data-toggle="modal" data-target="#move-modal">Move</a>
-                    <a class="dropdown-item" href="#">Block User</a>
                 @endif
         @endswitch
     </div>

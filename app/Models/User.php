@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'username', 'email', 'password', 'role', 'release_date'
     ];
 
     protected $attributes = [
@@ -49,6 +49,14 @@ class User extends Authenticatable
      */
     public function posts() {
       return $this->hasManyThrough('App\Models\Post', 'App\Models\Content', 'author', 'id', 'id', 'id');
+    }
+
+    public function getVisiblePosts() {
+        return Post::join('content', 'post.id', 'content.id')
+            ->where('content.author', $this->id)
+            ->where('content.visible', true)
+            ->select('post.id', 'post.title', 'post.num_comments')
+            ->get();
     }
 
     /**

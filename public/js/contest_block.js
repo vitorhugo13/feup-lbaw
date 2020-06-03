@@ -50,7 +50,7 @@ submit_contest.addEventListener('click', function() {
         if (response['status'] != 200) {
             console.log(response)
             addAlert('warning', 'Contest not submited!')
-            return;
+            // return;
         }
         response.json().then(data => {
             console.log(data)
