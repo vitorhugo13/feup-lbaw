@@ -52,10 +52,6 @@ button[type="submit"]:hover{
     text-align:center;
 }​
 
-input.middle:focus {
-    outline-width: 0;
-}
-
 .send_email{
     border-radius: 5px;
     background-color: var(--background-strong);
