@@ -10,13 +10,11 @@
                         Delete
                         </form>
                     </a>
-                    <a class="dropdown-item" href="#">Mute</a>
                 @endif
                 @break
             @case('Member')
                 @if ($author != null && Auth::user()->id == $author->id)
                     <a class="dropdown-item" href="{{ route('edit', $post->id) }}">Edit</a>
-                    <a class="dropdown-item" href="#">Mute</a>
                     <a class="dropdown-item">
                         <form method="POST" action="{{ url('posts/' . $post->id) }}" onclick='submit()'>
                         @csrf @method('DELETE')
@@ -30,7 +28,6 @@
             @default
                 @if ($author != null && Auth::user()->id == $author->id)
                     <a class="dropdown-item" href="{{ route('edit', $post->id) }}">Edit</a>
-                    <a class="dropdown-item" href="#">Mute</a>
                     <a class="dropdown-item">
                         <form method="POST" action="{{ url('posts/' . $post->id) }}" onclick='submit()'>
                         @csrf @method('DELETE')

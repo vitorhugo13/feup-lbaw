@@ -186,10 +186,6 @@ class ReportController extends ContentController
     {
         $this->authorize('sortContest', ReportFile::class);
 
-        $contest = Contest::find($id);
-        if ($contest === null)
-            return response()->json(['error' => 'Contest not found.'], 404);
-
         $report = ReportFile::find($id);
         if ($report === null)
             return response()->json(['error' => 'Report file not found.'], 404);

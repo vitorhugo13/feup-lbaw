@@ -38,7 +38,7 @@ Route::get('api/reports/comments', 'ReportController@getComments');
 Route::get('api/reports/contests', 'ReportController@getContests');
 Route::post('api/reports/{id}/contests', 'ReportController@contestReport');
 Route::post('api/reports/contest/reasons', 'ReportController@getBlockReasons');
-Route::post('api/reports/create', 'ReportController@createReport');
+Route::post('api/reports', 'ReportController@createReport');
 // Reports API
 Route::delete('api/reports/{id}', 'ReportController@deleteReport');
 Route::put('api/reports/{id}', 'ReportController@sortReport');

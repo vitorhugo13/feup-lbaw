@@ -12,14 +12,13 @@ let content_id = -1
 
 send.addEventListener('click', function(){
 
-    let e = document.getElementById("report-reason");
-    let reason = e.options[e.selectedIndex].text;
-
+    let e = document.getElementById("report-reason")
+    let reason = e.options[e.selectedIndex].text
+    
     if(content_id == -1)
         return
 
-
-    fetch('../api/reports/create', {
+    fetch('../api/reports', {
         method: 'POST',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
