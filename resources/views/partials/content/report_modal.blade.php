@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <select class="custom-select" id="report-reason">
                     <option value="1" selected>Offensive</option>
-                    <option value="2">Span</option>
+                    <option value="2">Spam</option>
                     <option value="3">Harassment</option>
                     <option value="4">Sexually Explicit</option>
                     <option value="5">Violent</option>
