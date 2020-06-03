@@ -1,45 +1,14 @@
 @import 'constants.css';
 
-.container{
-    height: 100%;
-    width: 60%;
-}
-
-.row{
-    height: 50%;
+.pass_field, .reset_pass {
+    padding: 0;
+    margin: auto 0;
+    color: var(--main-color);
 }
 
 .reset_pass{
     border-radius: 5px;
     background-color: var(--background-strong);
-}
-
-.card-header{
-    color: var(--main-color);
-    font-weight: 600;
-    font-size: 1.5em;
-}
-
-.email_field, .pass_field{
-    color: var(--main-color);
-}
-
-button[type="submit"] {
-
-    padding: 0.7em 1.2em;
-    margin: 0 auto 0.5em auto;
-    border: 0;
-    border-radius: 2px;
-    background-color: var(--main-color);
-    color: var(--background-strong);
-    font-size: 1em;
-    font-weight: 600;
-    transition: 0.5s;
-}
-
-button[type="submit"]:hover{
-    background-color: var(--background);
-    color: var(--main-color);
 }
 
 @media (max-width: 991px) {
