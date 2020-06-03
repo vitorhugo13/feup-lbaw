@@ -18,33 +18,32 @@ use Exception;
 
 class CommentController extends ContentController
 {
-	private function validateID($id)
-	{
-		$data = ['id' => $id];
+  private function validateID($id)
+  {
+    $data = ['id' => $id];
 
-		$validator = Validator::make($data, [
-			'id' => 'required|integer|exists:comment',
-		]);
+    $validator = Validator::make($data, [
+      'id' => 'required|integer|exists:comment',
+    ]);
 
-		if ($validator->fails())
-			return abort(404, 'No comment with id ' . $id);
-	}
+    if ($validator->fails())
+      return abort(404, 'No comment with id ' . $id);
+  }
+  
+  public function show(Request $request, $id) {
+    $this->validateID($id);
 
-	public function show(Request $request, $id)
-	{
-		$this->validateID($id);
+    $comment = Comment::find($id);
 
-		$comment = Comment::find($id);
+    $username = $request->input('author_name');
 
-		$username = $request->input('author_name');
+    $author = $username == 'anon' ? null : User::where('username', $username)->first();
 
-		$author = $username == 'anon' ? null : User::where('username', $username)->first();
+    $this->authorize('show', $comment->content);
 
-		$this->authorize('show', $comment->content);
-
-		return view('partials.comment.comment', ['comment' => $comment, 'thread_id' => $request->input('thread_id'), 'author' => $author]);
-	}
-
+    return view('partials.comment.comment', ['comment' => $comment, 'thread_id' => $request->input('thread_id'), 'author' => $author]);
+  }
+  
 	/**
 	 * Creates a new comment.
 	 *
@@ -95,11 +94,6 @@ class CommentController extends ContentController
 				$thread_id = $thread->id;
 			} else {
 				DB::table('reply')->insert(['comment' => $comment->id, 'thread' => $thread_id]);
-
-				// notify the owner of the main comment
-				//$main_comment = Thread::find($thread_id)->comment;
-				//if ($main_comment->content->tracking && $main_comment->content->author != Auth::user()->id)
-				//$main_comment->content->owner->notify(new NewComment($post->id, Auth::user()->id, $comment->id));
 			}
 		} catch (Exception $e) {
 			DB::rollBack();
@@ -107,9 +101,6 @@ class CommentController extends ContentController
 		}
 
 		DB::commit();
-		// notify the author
-		//if ($post->content->tracking && $post->content->author != Auth::user()->id)
-		//$post->content->owner->notify(new NewComment($post->id, Auth::user()->id, $comment->id));
 
 		return response()->json(['id' => $comment->id, 'thread_id' => $thread_id], 200);
 	}
@@ -142,9 +133,6 @@ class CommentController extends ContentController
 		if ($validator->fails())
 			return response()->json(['error' => 'Comment with id' . $id . ' not found'], 404);
 
-		//By deleting the content with the same id as the comment,
-		//the database will cascade the deletions and delete all of these:
-		// comment, reply, thread (if it was main comment)
 		$content = Content::find($id);
 
 		if ($content == null)

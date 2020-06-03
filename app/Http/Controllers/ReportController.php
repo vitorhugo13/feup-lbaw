@@ -25,9 +25,9 @@ class ReportController extends ContentController
         return view('pages.reports');
     }
 
-    public function getPosts()
-    {
-        $reports = ReportFile::join('post', 'content', 'post.id')
+    public function getPosts() {
+        $reports = ReportFile::where('sorted', false)
+            ->join('post', 'content', 'post.id')
             ->select('report_file.id', 'report_file.content', 'post.title')
             ->get();
 
@@ -44,10 +44,10 @@ class ReportController extends ContentController
 
         return response()->json(['success' => 'Retrieved post reports.', 'reports' => $reports], 200);
     }
-
-    public function getComments()
-    {
-        $reports = ReportFile::join('comment', 'content', 'comment.id')
+    
+    public function getComments() {
+        $reports = ReportFile::where('sorted', false)
+            ->join('comment', 'content', 'comment.id')
             ->select('report_file.id', 'report_file.content')
             ->get();
 
