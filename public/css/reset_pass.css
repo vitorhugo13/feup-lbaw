@@ -1,0 +1,20 @@
+@import 'constants.css';
+
+.pass_field, .reset_pass {
+    padding: 0;
+    margin: auto 0;
+    color: var(--main-color);
+}
+
+.reset_pass{
+    border-radius: 5px;
+    background-color: var(--background-strong);
+}
+
+@media (max-width: 991px) {
+
+    .container{
+        width: 100%;
+    }
+    
+}

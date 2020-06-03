@@ -84,7 +84,8 @@ CREATE TABLE "user" (
     glory INTEGER NOT NULL DEFAULT 0,
     role ROLES NOT NULL DEFAULT 'Member',
     photo TEXT NOT NULL DEFAULT 'storage/uploads/avatars/default.png',
-    release_date TIMESTAMP CONSTRAINT INVALID_RELEASE_DATE CHECK (release_date > CURRENT_TIMESTAMP OR release_date IS NULL)
+    release_date TIMESTAMP CONSTRAINT INVALID_RELEASE_DATE CHECK (release_date > CURRENT_TIMESTAMP OR release_date IS NULL),
+    remember_token VARCHAR
 );
 
 CREATE TABLE "content" (
@@ -3024,7 +3025,7 @@ insert into report_file (id, content, reviewer) values (12, 12, 14);
 insert into report_file (id, content, reviewer) values (13, 13, null);
 insert into report_file (id, content, reviewer) values (14, 14, 17);
 insert into report_file (id, content, reviewer) values (15, 15, 11);
-insert into report_file (id, content, reviewer, blocked, sorted) values (16, 16, 17, true, true);
+insert into report_file (id, content, reviewer) values (16, 16, 17);
 insert into report_file (id, content, reviewer) values (17, 17, null);
 insert into report_file (id, content, reviewer) values (18, 18, null);
 insert into report_file (id, content, reviewer) values (19, 19, 13);
@@ -3096,13 +3097,3 @@ insert into report (id, file, author, reason, time) values (59, 1, 88, 'Spam', '
 insert into report (id, file, author, reason, time) values (60, 1, 70, 'Harassment', '2020-03-27 12:03:23');
 
 select setval('report_id_seq', 60);
-
-
--- insert contest (5)
-insert into contest (id, report, justification, time) values (1, 11, 'Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.', '2020-03-29 16:27:53');
-insert into contest (id, report, justification, time) values (2, 5, 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.', '2020-03-29 00:27:52');
-insert into contest (id, report, justification, time) values (3, 15, 'Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', '2020-03-29 06:16:55');
-insert into contest (id, report, justification, time) values (4, 2, 'Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.', '2020-03-29 09:32:45');
-insert into contest (id, report, justification, time) values (5, 7, 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.', '2020-03-29 07:14:02');
-
-select setval('contest_id_seq', 5);

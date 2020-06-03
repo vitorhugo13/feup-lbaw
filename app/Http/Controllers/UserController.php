@@ -22,14 +22,12 @@ use Exception;
 class UserController extends Controller
 {
 
-    //TODO: validate the ids everywhere in this controller
-    //TODO: we can only edit a profile if we are logged in that account
     private function validateID($id)
     {
         $data = ['id' => $id];
 
         $validator = Validator::make($data, [
-            'id' => 'required|integer|exists:content',
+            'id' => 'required|integer|exists:user',
         ]);
 
         if ($validator->fails())
@@ -222,7 +220,7 @@ class UserController extends Controller
         if (filled($request->input('password'))) {
 
             $validator2 =  Validator::make($request->all(), [
-                'password' => 'required|string|min:6|confirmed',
+                'password' => 'required|string|min:8|confirmed',
             ]);
 
             $errors2 = $validator2->errors();
@@ -364,8 +362,12 @@ class UserController extends Controller
         return response()->json(['success' => "User " . $user->username . " is now Blocked"], 200);
     }
 
+<<<<<<< HEAD
     public function delete($id)
     {
+=======
+    public function delete($id){
+>>>>>>> master
         $user = User::find($id);
         $this->authorize('delete', $user);
         $user->delete();

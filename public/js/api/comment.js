@@ -46,7 +46,7 @@ function cancelEdit(comID, threadID, content) {
     let btnSpan = document.querySelector('.comment[data-comment-id="' + comID + '"] footer > span')
     let replyBtn = document.createElement('button')
 
-    commentBody.outerHTML = '<p class="comment-body">' + content + '</p>'
+    commentBody.outerHTML = '<p class="comment-body">' + encodeURI(content) + '</p>'
     btnSpan.remove()
     commentFooter.append(replyBtn)
     replyBtn.outerHTML = '<button class="reply-btn d-flex align-items-center" data-id="' + threadID + '" data-comment-id="' + comID + '"><span>Reply</span></button>'
@@ -246,7 +246,7 @@ function confirmEdit(event) {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'Accept': 'application/json'
         },
-        body: 'body=' + content
+        body: 'body=' + encodeURIComponent(content)
     }).then(response => {
         if (response['status'] == 200)
             response.json().then(data => {

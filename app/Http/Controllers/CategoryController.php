@@ -83,9 +83,6 @@ class CategoryController extends Controller
     {
         $this->validateID($id);
 
-        $category = Category::find($id);
-        //$this->authorize('star', $category);
-
         DB::table('star_category')->insert(['category' => $id, 'user_id' => Auth::user()->id]);
 
         return response()->json(['success' => 'Starred category successfully']);
@@ -95,9 +92,6 @@ class CategoryController extends Controller
     public function unstar($id)
     {
         $this->validateID($id);
-
-        $category = Category::find($id);
-        //$this->authorize('star', $category);
 
         DB::table('star_category')->where('category', $id)->where('user_id', Auth::user()->id)->delete();
 
