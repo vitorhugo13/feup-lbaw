@@ -16,6 +16,7 @@ use Intervention\Image\Facades\Image;
 
 
 use App\Models\User;
+use App\Models\Post;
 use Carbon\Carbon;
 use Exception;
 
@@ -50,9 +51,18 @@ class UserController extends Controller
 
         $categories = DB::table("category_glory")->where("user_id", $id)->where("glory", '>', 0)->orderBy("glory", 'DESC')->take(3)->get();
 
+
+        if (Auth::user() == null)
+            $posts = $user->getVisiblePosts();
+        else if (Auth::user()->id === $id || Auth::user()->role === 'Moderator' || Auth::user()->role === 'Administrator')
+            $posts = $user->posts;
+        else
+            $posts = $user->getVisiblePosts();
+
         return view('pages.profile.show', [
             'user' => $user,
             'categories' => $categories,
+            'posts' => $posts,
         ]);
     }
 

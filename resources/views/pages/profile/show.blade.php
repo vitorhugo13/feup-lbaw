@@ -92,8 +92,8 @@
 
 <div class="post-section">
     {{-- FIXME: count only the visible posts --}}
-    <p class="number-posts ml-1 mb-2"> <strong>Posts</strong> ({{count($user->posts)}})</p>
-    @each('partials.posts.preview', $user->posts, 'post')
+    <p class="number-posts ml-1 mb-2"> <strong>Posts</strong> ({{count($posts)}})</p>
+    @each('partials.posts.preview', $posts, 'post')
 </div>
 
 @include('partials.profile.delete_profile', ['id' => $user->id])
