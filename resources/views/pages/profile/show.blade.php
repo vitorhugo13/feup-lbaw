@@ -20,7 +20,7 @@
 
 @section('main-content')
 <section class="row justify-content-center">
-    <article class="user-info col-12 col-lg-5 d-flex flex-column justify-content-center align-items-center" data-user-id="{{ $user->id }}">
+    <div class="user-info col-12 col-lg-5 d-flex flex-column justify-content-center align-items-center" data-user-id="{{ $user->id }}">
     <!--TODO: change directory -->
         <img src="{{ asset($user->photo) }}" class="img rounded-circle" alt="Profile photo">
         <div class="username d-flex flex-row align-items-center mt-3">
@@ -74,8 +74,8 @@
             @endif
         @endif
         
-    </article>
-    <article class="points-info col-12 col-lg-6 d-flex flex-column justify-content-around align-items-stretch ml-0 ml-lg-4 mt-4 mt-lg-0">
+    </div>
+    <div class="points-info col-12 col-lg-6 d-flex flex-column justify-content-around align-items-stretch ml-0 ml-lg-4 mt-4 mt-lg-0">
         <div class="glory-points d-flex flex-column justify-content-center align-self-center d-flex flex-column align-items-center">
         <img src="{{asset('images/gold_llama.svg')}}" alt="photo">
             <p class="user-points">&diams; <span class="number_points"> <?= $user->glory ?> </span>  <span><?=(($user->glory == 1) ? ' point' : ' points') ?> </span> &diams;</p>
@@ -89,7 +89,7 @@
         </div>
         @endif
 
-    </article>
+    </div>
 </section>
 
 <div class="post-section">
