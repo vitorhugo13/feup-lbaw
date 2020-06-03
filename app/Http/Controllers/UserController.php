@@ -50,8 +50,6 @@ class UserController extends Controller
 
         $categories = DB::table("category_glory")->where("user_id", $id)->where("glory", '>', 0)->orderBy("glory", 'DESC')->take(3)->get();
 
-        //TODO: $this->authorize('show', $post);
-
         return view('pages.profile.show', [
             'user' => $user,
             'categories' => $categories,
@@ -75,9 +73,6 @@ class UserController extends Controller
         if ($user == null)
             return abort(404);
 
-
-        //TODO: $this->authorize('show', $post);
-
         return view('pages.profile.edit', [
             'user' => $user,
         ]);
@@ -86,7 +81,6 @@ class UserController extends Controller
 
 
     /*===================== EDIT PROFILE ============================ */
-    // TODO: consider creating a disk in filesystems.php for uploads, may be a good idea, dont know :)
 
     public function changePhoto(Request $request, $id, MessageBag $mb)
     {
@@ -141,7 +135,6 @@ class UserController extends Controller
         return redirect()->route('profile', $id)->with('alert-success', 'Profile picture changed successfuly!');
     }
 
-    //TODO: check if this verifications are correct and enough
     public function deletePhoto()
     {
         $id = Auth::user()->id;
@@ -273,7 +266,6 @@ class UserController extends Controller
             error_log($old_password);
             $hasher = app('hash');
 
-            //FIXME: the following condition may not be right - user->password is not yet the new password
             if (!$hasher->check($old_password, $user->password)) {
                 $mb->add('old_pass', 'Old password not correct');
                 return redirect()->back()->withErrors($mb);
@@ -362,12 +354,8 @@ class UserController extends Controller
         return response()->json(['success' => "User " . $user->username . " is now Blocked"], 200);
     }
 
-<<<<<<< HEAD
     public function delete($id)
     {
-=======
-    public function delete($id){
->>>>>>> master
         $user = User::find($id);
         $this->authorize('delete', $user);
         $user->delete();

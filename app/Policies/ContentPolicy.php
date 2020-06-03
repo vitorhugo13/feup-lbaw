@@ -19,7 +19,7 @@ class ContentPolicy
         else if ($user->role === 'Moderator' || $user->role === 'Administrator')
             return true;
     
-        return false;
+        return $content->visible;
     }
 
     public function create(User $user) {
