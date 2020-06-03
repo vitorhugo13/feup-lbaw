@@ -78,7 +78,7 @@ class ContentController extends Controller
         if ($content === null)
             return response()->json(['error' => 'Content not found.'], 404);
 
-        // TODO: policy for this action
+        $this->authorize('hide', Content::class);
         $content->update(['visible' => false]);
 
         return response()->json(['success' => 'Content hidden.'], 200);

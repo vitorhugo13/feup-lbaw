@@ -5,7 +5,6 @@
             <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
             <div class="dropdown-menu dropdown-menu-right">
                 @if (Auth::user()->id != $user->id && Auth::user()->role != 'Blocked')
-                    <a class="dropdown-item" href="#">Report</a>
                     @switch($user->role) {{-- this refers to the owner of the profile page --}}
                         @case('Member')
                             @if (Auth::user()->role == 'Administrator')

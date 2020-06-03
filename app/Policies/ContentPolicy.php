@@ -27,7 +27,7 @@ class ContentPolicy
     }
 
     public function delete(User $user, Content $content) {
-        return $user->id == $content->author || $user->role == 'Moderator' || $user->role == 'Administrator';
+        return $user->id == $content->author;
     }
 
     public function edit(User $user, Content $content) {
@@ -40,5 +40,9 @@ class ContentPolicy
 
     public function report(User $user, Content $content) {
         return $user->role !== 'Blocked' && $content->author !== $user->id;
+    }
+
+    public function hide(User $user) {
+        return $user->role === 'Moderator' || $user->role === 'Administrator';
     }
 }

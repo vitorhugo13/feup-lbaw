@@ -52,7 +52,7 @@ class PostController extends ContentController
 
         $post = Post::find($id);
 
-        if ($post == null || !$post->content->visible)
+        if ($post == null)
             return abort(404);
 
         $this->authorize('show', $post->content);
