@@ -219,7 +219,7 @@ class UserController extends Controller
         if (filled($request->input('password'))) {
 
             $validator2 =  Validator::make($request->all(), [
-                'password' => 'required|string|min:6|confirmed',
+                'password' => 'required|string|min:8|confirmed',
             ]);
 
             $errors2 = $validator2->errors();

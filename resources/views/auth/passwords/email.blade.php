@@ -4,14 +4,14 @@
 
 @push('styles')
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/send_email.css') }}" rel="stylesheet">
     <link href="{{ asset('css/errors.css') }}" rel="stylesheet">
 @endpush
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center align-items-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="send_email">
                 <div class="card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
@@ -25,7 +25,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label email_field text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -41,7 +41,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+                                    {{ __('Send Reset Link') }}
                                 </button>
                             </div>
                         </div>
