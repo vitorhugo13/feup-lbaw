@@ -15,7 +15,7 @@ function sendRequest(role) {
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: 'role=' + role
+        body: 'role=' + encodeURIComponent(role)
     }).then(response => {
         console.log(response)
         response.json().then(data => {
