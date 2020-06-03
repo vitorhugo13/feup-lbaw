@@ -68,12 +68,6 @@
                       <button type="submit" class="btn">Register</button>
                   </div>
                     
-                  <h6><span>or register with</span></h6>
-                                    
-                  <div class="google mb-3">         
-                      <a href="" class="btn btn-block btn-social btn-google">Google</a>          
-                  </div>
-                    
                   <div class="text-white">
                   Already have an account?
                   <a href="{{ route('login') }}" class="register-link"> Log in here.</a>
