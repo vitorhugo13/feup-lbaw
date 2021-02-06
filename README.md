@@ -8,7 +8,7 @@ to expose one's particular situation and allow others to question them. The plat
 will make it easy to search between posts and follow your favorite topics.
 
 * Checkout the final product at http://lbaw2031.lbaw-prod.fe.up.pt (be sure to connect with FEUP VPN turned on)
-* Docker command: sudo docker run -it -p 8000:80 -e DB_DATABASE="lbaw2031" -e DB_USERNAME="lbaw2031" -e DB_PASSWORD="VN319989" lbaw2031/lbaw203
+* Docker command: sudo docker run -it -p 8000:80 -e DB_DATABASE="lbaw2031" -e DB_USERNAME="lbaw2031" -e DB_PASSWORD="VN319989" lbaw2031/lbaw2031
 ###  Administration Credentials
 
 | Username | Password |
