@@ -1,35 +1,28 @@
-# LBAW2031
+# **Literally Ask Me Anything (LAMA)** 
+Repository of code developed for the course LBAW @FEUP.
 
-### Theme 5 - Collaborative Q&A
+## Info
+* **Date** : 3rd Year, 2nd Semester, 2019/2020
+* **Course** : [Laboratório de Bases de Dados e Aplicações Web](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=436452) | [Database and Web Applications Laboratory](https://sigarra.up.pt/feup/en/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=436452) (LBAW)
+* **Contributors** : [Bernardo Santos](https://github.com/bernas670), [Carlos Albuquerque](https://github.com/CajoAlbuquerque), [Tito Griné](https://github.com/TitoGrine), [Vítor Gonçalves](https://github.com/vitorhugo13)
 
-**Literally Ask Me Anything (LAMA)** is a platform that allows users to propose questions
-to each other, about their individual circumstances and experiences, or inversely,
-to expose one's particular situation and allow others to question them. The platform
-will make it easy to search between posts and follow your favorite topics.
+## Product presentation
 
-* Checkout the final product at http://lbaw2031.lbaw-prod.fe.up.pt (be sure to connect with FEUP VPN turned on)
-* Docker command: sudo docker run -it -p 8000:80 -e DB_DATABASE="lbaw2031" -e DB_USERNAME="lbaw2031" -e DB_PASSWORD="VN319989" lbaw2031/lbaw2031
-###  Administration Credentials
+**Literally Ask Me Anything**, a.k.a **LAMA**, is a website that allows users to propose questions to each other, about their individual circumstances and experiences, or inversely, to expose one's particular situation and allow others to question them. Our main goal is to create a **clean**, **minimalist** and **useful** platform, allowing all participants to have a great experience.
 
-| Username | Password |
-| -------- | -------- |
-| bernas    | bernas12345 |
+**LAMA** is a forum-like website where anyone can freely browse through posts. After a user logs in, he/she can propose a topic by creating a post, so others can ask questions about it by commenting on the post. Furthermore, if a user demonstrates a good reputation, it can be promoted to Moderator by the website admins. Once this happens, the user gains the right to review reports and help managing toxic content.
 
-###  User Credentials
+This way, we hope **LAMA** to be a safe breeding ground for empathy, awareness and tolerance.
 
-| Type          | Username  | Password |
-| ------------- | --------- | -------- |
-| regular user  | miles_davis | 123456789 |
-| blocked user  | vitinho    | vitinho13   |
-| moderator     | carlosjorge | cajofortnite |
+Check it out at [lbaw2031.lbaw-prod.fe.up.pt](http://lbaw2031.lbaw-prod.fe.up.pt)
 
+## 2. Video presentation
 
-### Team
+To showcase the main features of our website we prepared a small video.
 
-* **Bernardo Manuel Esteves dos Santos** - up201706534@fe.up.pt
-* **Carlos Jorge Direito Albuquerque**   - up201706735@fe.up.pt
-* **Tito Alexandre Trindade Griné**      - up201706732@fe.up.pt
-* **Vítor Hugo Leite Gonçalves**         - up201703917@fe.up.pt
+[![](https://i.imgur.com/L4SpHwK.png)](https://drive.google.com/open?id=1RLNnCNr-o4D9vPGQk9I5WxAA9jwIdsi6)
 
-***
-GROUP2031, 03/06/2020
+Check it out [here](https://drive.google.com/open?id=1RLNnCNr-o4D9vPGQk9I5WxAA9jwIdsi6)!
+
+## Evaluation
+**Project Grade**: 19.9/20.0
