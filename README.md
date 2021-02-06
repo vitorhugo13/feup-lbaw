@@ -16,7 +16,7 @@ This way, we hope **LAMA** to be a safe breeding ground for empathy, awareness a
 
 Check it out at [lbaw2031.lbaw-prod.fe.up.pt](http://lbaw2031.lbaw-prod.fe.up.pt)
 
-## 2. Video presentation
+## Video presentation
 
 To showcase the main features of our website we prepared a small video.
 
