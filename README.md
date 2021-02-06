@@ -14,7 +14,7 @@ Repository of code developed for the course LBAW @FEUP.
 
 This way, we hope **LAMA** to be a safe breeding ground for empathy, awareness and tolerance.
 
-Check it out at [lbaw2031.lbaw-prod.fe.up.pt](http://lbaw2031.lbaw-prod.fe.up.pt)
+Check it out at [lbaw2031.lbaw-prod.fe.up.pt](http://lbaw2031.lbaw-prod.fe.up.pt) (*Make sure you are inside FEUP's network or are using the VPN.*)
 
 ## Video presentation
 
