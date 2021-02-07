@@ -1,12 +1,12 @@
-# **Literally Ask Me Anything (LAMA)** 
+## **Literally Ask Me Anything (LAMA)** 
 Repository of code developed for the course LBAW @FEUP.
 
-## Info
+### Info
 * **Date** : 3rd Year, 2nd Semester, 2019/2020
 * **Course** : [Laboratório de Bases de Dados e Aplicações Web](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=436452) | [Database and Web Applications Laboratory](https://sigarra.up.pt/feup/en/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=436452) (LBAW)
 * **Contributors** : [Bernardo Santos](https://github.com/bernas670), [Carlos Albuquerque](https://github.com/CajoAlbuquerque), [Tito Griné](https://github.com/TitoGrine), [Vítor Gonçalves](https://github.com/vitorhugo13)
 
-## Product presentation
+### Product presentation
 
 **Literally Ask Me Anything**, a.k.a **LAMA**, is a website that allows users to propose questions to each other, about their individual circumstances and experiences, or inversely, to expose one's particular situation and allow others to question them. Our main goal is to create a **clean**, **minimalist** and **useful** platform, allowing all participants to have a great experience.
 
@@ -16,7 +16,7 @@ This way, we hope **LAMA** to be a safe breeding ground for empathy, awareness a
 
 Check it out at [lbaw2031.lbaw-prod.fe.up.pt](http://lbaw2031.lbaw-prod.fe.up.pt) (*Make sure you are inside FEUP's network or are using the VPN.*)
 
-## Video presentation
+### Video presentation
 
 To showcase the main features of our website we prepared a small video.
 
@@ -24,5 +24,12 @@ To showcase the main features of our website we prepared a small video.
 
 Check it out [here](https://drive.google.com/file/d/1qJ0SwHxlALmuDcetr_UTEFXNzWOhis3t/view?usp=sharing)!
 
-## Evaluation
+### Authors
+
+* **Bernardo Santos** - [bernas670](https://github.com/bernas670)
+* **Carlos Albuquerque** - [CajoAlbuquerque](https://github.com/CajoAlbuquerque)
+* **Tito Griné** - [TitoGrine](https://github.com/TitoGrine)
+* **Vítor Gonçalves** - [vitorhugo13](https://github.com/vitorhugo13)
+
+### Evaluation
 **Project Grade**: 19.9/20.0
