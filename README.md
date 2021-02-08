@@ -20,7 +20,7 @@ Check it out at [lbaw2031.lbaw-prod.fe.up.pt](http://lbaw2031.lbaw-prod.fe.up.pt
 
 To showcase the main features of our website we prepared a small video.
 
-[![](https://i.imgur.com/L4SpHwK.png)](https://drive.google.com/open?id=1RLNnCNr-o4D9vPGQk9I5WxAA9jwIdsi6)
+[![](https://i.imgur.com/L4SpHwK.png)](https://drive.google.com/file/d/1qJ0SwHxlALmuDcetr_UTEFXNzWOhis3t/view?usp=sharing)
 
 Check it out [here](https://drive.google.com/file/d/1qJ0SwHxlALmuDcetr_UTEFXNzWOhis3t/view?usp=sharing)!
 
